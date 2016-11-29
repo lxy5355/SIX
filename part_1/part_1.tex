@@ -74,28 +74,78 @@ where
 	\item Y is the dependent variable, $X\in \mathbb{R}^{q}$ is a vector of explanatory variables, $\beta_0$ is the q $\times$ 1 vector of unknown parameters; % Y in interval from 0 to 1?
 	\item $X'\beta_0$ is a single index because it is a scalar;
 	\item $ E(\epsilon|x) = 0 $;
-	\item g: $ \mathbb{R} \rightarrow \mathbb{R} $ is not known;
+	\item $g: \mathbb{R} \rightarrow \mathbb{R} $ is not known;
 \end{enumerate}
 
 is a single index model.
 
 \vspace{5mm} 
 
-Ichimura (1993) refers to this as a linear single index model. The inferential problem from (1) is to estimate $\beta_0$ and g from observation of (Y,X). This model is semiparametric since the functional form of the linear index is specified, while $g(\cdot)$ is left unspecified and the conditional probability of $\epsilon$ conditioned on X is not specified except $ E(\epsilon|X) = 0 $.
+Ichimura (1993) refers to this as a linear single index model. The inferential problem from (1) is to estimate $\beta_0$ and g from observations of (Y, X). This model is semiparametric since the functional form of the linear index is specified, while $g(\cdot)$ is left unspecified and the conditional probability of $\epsilon$ conditioned on X is not specified except $ E(\epsilon|X) = 0 $.
 
 \vspace{5mm} 
 
-Semiparametric single index models arise naturally in binary choice models. Although we emphasize that Y can be continuous or discrete. Model (1) contains many widely used parametric models as special cases. If g is the identity function we obtain a linear model. If g is the cumulative normal or logistic distribution, then we obtain a binary probit or logit model. A tobit model can also be obtained if we assume $g(X'\beta_0) = E(Y|X=x)$ in the model
+%error term versus g normal
+Semiparametric single index models arise naturally in binary choice models. Therefore, even though we emphasize that Y can be continuous or discrete, we will analyze this widly used example. More specifically, if we are willing to accept the parametric linear index assumption governing choices but unwilling to specify the unknown distribution of the error term, we arrive at a semiparametric single index model. Thus when considering the relationship between a binary depedent variable (Y) and some other covariates (X) we can model this relationship as follows:
+
+\begin{eqnarray}
+    Yi = 
+    \begin{cases}
+      1, & \text{if}\ Y_i^* \stackrel{def}{=} \alpha + X_i'\beta + u_i > 0 \\
+      0, & \text{if}\ Y_i^* = \alpha + X_i'\beta + u_i \leq 0
+    \end{cases}
+\end{eqnarray}
+
+where $Y^*$ is a latent variable.
+As an example, we can consider Y represents a labor force participation decision, equal to 1 if the individual participates in the labor market and 0 otherwise. The explanatory variables can contain a series of economic factors that might influence labor participation, such as gender, age, marital status or education. Here we assume a linear relationship between Y and X and are mainly interested in estimating $\beta$.
+Parametric methods for estimating $\beta$ require assumptions on the distribution of the error term $u$. It is commonly assumed $ u \sim N(0, \sigma^2)$. With further identification conditions such as $\sigma = 1$, $\beta$ can be jointly identified ( see Madalla (1986)) and we can use maximum likelihood to estimate it. Nevertheless, excluding the assumption of normality of the error term would in general lead to inconsistent estimates. Let $F_u(\cdot)$ denote the true CDF of $u$. Then we get:
+
+
+\[ 
+\begin{split}
+E(Y|x) & = \sum_{y=0,1} yP(y|x) \\
+ & = 1 \times P(Y=1|x) + 0 \times P(Y=0|x) \\
+ & = P(Y=1|x) \\ 
+ & = P(\alpha + x'\beta + u_i > 0) \\
+ & = P(u_i > -(\alpha + x'\beta)) \\
+ & = 1 - P(u_i \leq -(\alpha + x'\beta)) \\
+ & = 1 - F(-(\alpha + x'\beta))
+\end{split}
+\]
+
+where $F(\cdot)$ is the cummulative distribution function (CDF) of $u$. If $ u \sim N(0,1)$, then $u$ has a symmetric distribution and $1 - F(-(\alpha + x'\beta)) = F(\alpha + x'\beta)$. Thus (2) becomes a Probit model:
+
+\begin{equation}
+E(Y|X) = P(Y=1|x) = \Phi(\alpha + x'\beta),
+\end{equation}
+
+where $\Phi$ is the CDF of a standard normal variable. On the other hand, for $u$ having a symmetric logistic distribution, we obtain instead:
+
+\begin{equation}
+E(Y|X) = P(Y=1|x) = \frac{1}{1 + e^{\alpha + x'\beta}},
+\end{equation}
+
+\vspace{5mm} 
+
+From (3) and (4) we can see that different functional forms for $u$ lead to different functional forms for the conditional probability of $Y = 1$. Therefore, consistent parametric estimation of $E(Y|X) = P(Y=1|x)$ requires the \textit{correct} distribution specification of $u$. 
+
+Generally speaking, model (1) contains many widely used parametric models as special cases. If $g$ is the identity function we obtain a linear model. If $g$ is the cumulative normal or logistic distribution, we obtain a binary probit or logit model.
+A tobit model can also be obtained if we assume $g(X'\beta_0) = E(Y|X=x)$ in the model
+
 
 \[
     Y = max (0, g(X'\beta_0) + \epsilon),
 \]
 
-where $\epsilon$ is an unobserved, normally distributed random variable that has mean zero and is independent of X. However, for model (1) with unknown $g(\dot)$ we obtain a more flexible version of parametric models but retaining many of its desirable features. In particular, it will be proved that the single index model achieves dimension reduction and avoids the curse of dimensionality: g is estimated with the same convergence rate in probability as in the case $X'\beta_0$ was observable and $\beta_0$ achieves the same convergence rate $n^{-\frac{1}{2}}$ as parametric models. Thus, the single index model is as accurate as a parametric model for estimating $X'\beta_0$ and as accurate as a one-dimensional nonparametric mean regression for g. On the other hand, the assumptions are weaker than those of a parametric model and stronger than those of a fully nonparametric model. Thus, while the risk of mispecification is reduced relative to parametric model, it also avoid inconviniences of fully nonparametric models such as the curse of dimensionality, difficulty of interpertation, and the lack of extrapolation capability. % exception with structural economic models
+where $\epsilon$ is an unobserved, normally distributed random variable that has mean zero and is independent of X. 
 
- % explain differences from parametric Racine first page, Horowitz p 7
+All things considered, model (1) with unknown $g(\cdot)$ leads to a more flexible version of parametric models while retaining many of its desirable features. As shown above, it avoids the problem of error distribution mispecification, while being more general than binary choice models. Also, as we will see in more detail later on, the single index model achieves dimension reduction and avoids the curse of dimensionality: $g$ is estimated with the same convergence rate in probability as in the case when $X'\beta_0$ is observable and $\beta_0$ achieves the same convergence rate $n^{-\frac{1}{2}}$ as parametric models. Thus, the single index model is as accurate as a parametric model for estimating $X'\beta_0$ and as accurate as a one-dimensional nonparametric mean regression for $g$. On the other hand, the assumptions are weaker than those of a parametric model and stronger than those of a fully nonparametric model. 
 
-% Identification Racine p 251
+\vspace{5mm} 
+
+In essence, while the risk of mispecification is reduced relative to parametric models, it also avoids inconveniences of fully nonparametric models such as the curse of dimensionality, difficulty of interpretation, and the lack of extrapolation capability. Finally, note that model (1) implies $E(Y|x) = g(x'\beta)$, and thus Y depends on $x$ only through the linear combination $x'\beta_0$, and this relationship is characterized by the link function $g(\cdot)$.  % exception with structural economic models
+
+% Identification Racine p 251, why \alpha is not included p.251 racine
 
 % section introduction (end)
 
