@@ -65,7 +65,7 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 Following Li and Racine (2007) notation, the model 
 
 \begin{eqnarray}
-Y = g(X'\beta_0) + \epsilon,  % with i =1,2 ..., n?
+Y = g(X'\beta_0) + \epsilon,  % with i =1,2 ..., n?, iid?
 \end{eqnarray}
 
 where
@@ -74,7 +74,7 @@ where
 	\item Y is the dependent variable, $X\in \mathbb{R}^{q}$ is a vector of explanatory variables, $\beta_0$ is the q $\times$ 1 vector of unknown parameters; % Y in interval from 0 to 1?
 	\item $X'\beta_0$ is a single index because it is a scalar;
 	\item $ E(\epsilon|x) = 0 $;
-	\item $g: \mathbb{R} \rightarrow \mathbb{R} $ is not known;
+	\item $g: \mathbb{R} \rightarrow \mathbb{R} $ is not known; % dimensions?
 \end{enumerate}
 
 is a single index model.
@@ -85,7 +85,6 @@ Ichimura (1993) refers to this as a linear single index model. The inferential p
 
 \vspace{5mm} 
 
-%error term versus g normal
 Semiparametric single index models arise naturally in binary choice models. Therefore, even though we emphasize that Y can be continuous or discrete, we will analyze this widly used example. More specifically, if we are willing to accept the parametric linear index assumption governing choices but unwilling to specify the unknown distribution of the error term, we arrive at a semiparametric single index model. Thus when considering the relationship between a binary depedent variable (Y) and some other covariates (X) we can model this relationship as follows:
 
 \begin{eqnarray}
@@ -129,7 +128,7 @@ E(Y|X) = P(Y=1|x) = \frac{1}{1 + e^{\alpha + x'\beta}},
 
 From (3) and (4) we can see that different functional forms for $u$ lead to different functional forms for the conditional probability of $Y = 1$. Therefore, consistent parametric estimation of $E(Y|X) = P(Y=1|x)$ requires the \textit{correct} distribution specification of $u$. 
 
-Generally speaking, model (1) contains many widely used parametric models as special cases. If $g$ is the identity function we obtain a linear model. If $g$ is the cumulative normal or logistic distribution, we obtain a binary probit or logit model.
+Generally speaking, model (1) contains as special cases many widely used parametric models that assume that $g$ is known up to a finite-dimensional parameter. If $g$ is the identity function we obtain a linear model. If $g$ is the cumulative normal or logistic distribution, we obtain a binary probit or logit model.
 A tobit model can also be obtained if we assume $g(X'\beta_0) = E(Y|X=x)$ in the model
 
 
@@ -139,19 +138,22 @@ A tobit model can also be obtained if we assume $g(X'\beta_0) = E(Y|X=x)$ in the
 
 where $\epsilon$ is an unobserved, normally distributed random variable that has mean zero and is independent of X. 
 
-All things considered, model (1) with unknown $g(\cdot)$ leads to a more flexible version of parametric models while retaining many of its desirable features. As shown above, it avoids the problem of error distribution mispecification, while being more general than binary choice models. Also, as we will see in more detail later on, the single index model achieves dimension reduction and avoids the curse of dimensionality: $g$ is estimated with the same convergence rate in probability as in the case when $X'\beta_0$ is observable and $\beta_0$ achieves the same convergence rate $n^{-\frac{1}{2}}$ as parametric models. Thus, the single index model is as accurate as a parametric model for estimating $X'\beta_0$ and as accurate as a one-dimensional nonparametric mean regression for $g$. On the other hand, the assumptions are weaker than those of a parametric model and stronger than those of a fully nonparametric model. 
+All things considered, model (1) with unknown $g(\cdot)$ leads to a more flexible version of parametric models while retaining many of its desirable features. As shown above, it avoids the problem of error distribution mispecification, while being more general than binary choice models. Also, as we will see in more detail later on, the single index model achieves dimension reduction and avoids the curse of dimensionality: $g$ is estimated with the same convergence rate in probability as in the case when $X'\beta_0$ is observable and $\beta_0$ achieves the same convergence rate $n^{-\frac{1}{2}}$ as parametric models. Thus, the single index model is as accurate as a parametric model for estimating $X'\beta_0$ and as accurate as a one-dimensional nonparametric mean regression for $g$. On the other hand, the assumptions are weaker than those of a parametric model and stronger than those of a fully nonparametric model. Note however that structural economic models can be an important exception, in which the single index model might have weaker assumptions than a fully parametrized model. 
 
 \vspace{5mm} 
 
 In essence, while the risk of mispecification is reduced relative to parametric models, it also avoids inconveniences of fully nonparametric models such as the curse of dimensionality, difficulty of interpretation, and the lack of extrapolation capability. Finally, note that model (1) implies $E(Y|x) = g(x'\beta)$, and thus Y depends on $x$ only through the linear combination $x'\beta_0$, and this relationship is characterized by the link function $g(\cdot)$.  % exception with structural economic models
 
 % Identification Racine p 251, why \alpha is not included p.251 racine
-
+% Asymptotically normal!!
 % section introduction (end)
 
-\section{Foundations} % (fold)
-\label{sec:foundations}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+\section{Identification} % (fold)
+\label{sec:Identification}
+
+
+
+
 
 \section{Section about quotations} % (fold)
 \label{sec:section_about_quotations}
