@@ -12,6 +12,12 @@
 \usepackage[authoryear,round]{natbib}
 % package for expectation signs
 \usepackage{amsmath,amssymb,mathtools,bm,etoolbox}
+\documentclass[a4paper,11pt]{report} 
+\usepackage{enumitem} 
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{amsmath}
+\newcommand{\abs}[1]{ \left\lvert#1\right\rvert} 
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 % package for header
 \usepackage[automark]{scrpage2}
 \pagestyle{scrheadings}
@@ -81,11 +87,9 @@ is a single index model.
 
 \vspace{5mm} 
 
-Ichimura (1993) refers to this as a linear single index model. The inferential problem from (1) is to estimate $\beta_0$ and g from observations of (Y, X). This model is semiparametric since the functional form of the linear index is specified, while $g(\cdot)$ is left unspecified and the conditional probability of $\epsilon$ conditioned on X is not specified except $ E(\epsilon|X) = 0 $.
+Ichimura (1993) refers to this as a linear single index model. The inferential problem from (1) is to estimate $\beta_0$ and g from observations of (Y, X). This model is semiparametric since the functional form of the linear index is specified, while $g(\cdot)$ is left unspecified and the conditional probability of $\epsilon$ conditioned on X is not specified except $ E(\epsilon|X) = 0 $. 
 
-\vspace{5mm} 
-
-Semiparametric single index models arise naturally in binary choice models. Therefore, even though we emphasize that Y can be continuous or discrete, we will analyze this widly used example. More specifically, if we are willing to accept the parametric linear index assumption governing choices but unwilling to specify the unknown distribution of the error term, we arrive at a semiparametric single index model. Thus when considering the relationship between a binary depedent variable (Y) and some other covariates (X) we can model this relationship as follows:
+Semiparametric single index models arise naturally in binary choice models. Therefore, we will analyze these models, even though we emphasize that Y can be continuous. More specifically, if we are willing to accept the parametric linear index assumption governing choices but unwilling to specify the unknown distribution of the error term, we arrive at a semiparametric single index model. Thus, when considering the relationship between a binary dependent variable (Y) and some other covariates (X) we can model this relationship as follows:
 
 \begin{eqnarray}
     Yi = 
@@ -96,8 +100,8 @@ Semiparametric single index models arise naturally in binary choice models. Ther
 \end{eqnarray}
 
 where $Y^*$ is a latent variable.
-As an example, we can consider Y represents a labor force participation decision, equal to 1 if the individual participates in the labor market and 0 otherwise. The explanatory variables can contain a series of economic factors that might influence labor participation, such as gender, age, marital status or education. Here we assume a linear relationship between Y and X and are mainly interested in estimating $\beta$.
-Parametric methods for estimating $\beta$ require assumptions on the distribution of the error term $u$. It is commonly assumed $ u \sim N(0, \sigma^2)$. With further identification conditions such as $\sigma = 1$, $\beta$ can be jointly identified ( see Madalla (1986)) and we can use maximum likelihood to estimate it. Nevertheless, excluding the assumption of normality of the error term would in general lead to inconsistent estimates. Let $F_u(\cdot)$ denote the true CDF of $u$. Then we get:
+As an example, we can consider Y represents a labor force participation decision, equal to 1 if the individual participates in the labor market. The explanatory variables can contain a series of economic factors that might influence labor participation, such as gender, age, marital status or education. Here we assume a linear relationship between Y and X and are mainly interested in estimating $\beta$.
+Parametric methods for estimating $\beta$ require assumptions on the distribution of the error term $u$. It is commonly assumed $ u \sim N(0, \sigma^2)$. With further identification conditions such as $\sigma = 1$, $\beta_$ can be jointly identified ( see Madalla (1986)) and we can use maximum likelihood to estimate it.  Let $F_u(\cdot)$ denote the true CDF of $u$. Then we get: % Nevertheless, excluding the assumption of normality of the error term would in general lead to inconsistent estimates.
 
 
 \[ 
@@ -124,8 +128,6 @@ where $\Phi$ is the CDF of a standard normal variable. On the other hand, for $u
 E(Y|X) = P(Y=1|x) = \frac{1}{1 + e^{\alpha + x'\beta}},
 \end{equation}
 
-\vspace{5mm} 
-
 From (3) and (4) we can see that different functional forms for $u$ lead to different functional forms for the conditional probability of $Y = 1$. Therefore, consistent parametric estimation of $E(Y|X) = P(Y=1|x)$ requires the \textit{correct} distribution specification of $u$. 
 
 Generally speaking, model (1) contains as special cases many widely used parametric models that assume that $g$ is known up to a finite-dimensional parameter. If $g$ is the identity function we obtain a linear model. If $g$ is the cumulative normal or logistic distribution, we obtain a binary probit or logit model.
@@ -138,9 +140,7 @@ A tobit model can also be obtained if we assume $g(X'\beta_0) = E(Y|X=x)$ in the
 
 where $\epsilon$ is an unobserved, normally distributed random variable that has mean zero and is independent of X. 
 
-All things considered, model (1) with unknown $g(\cdot)$ leads to a more flexible version of parametric models while retaining many of its desirable features. As shown above, it avoids the problem of error distribution mispecification, while being more general than binary choice models. Also, as we will see in more detail later on, the single index model achieves dimension reduction and avoids the curse of dimensionality: $g$ is estimated with the same convergence rate in probability as in the case when $X'\beta_0$ is observable and $\beta_0$ achieves the same convergence rate $n^{-\frac{1}{2}}$ as parametric models. Thus, the single index model is as accurate as a parametric model for estimating $X'\beta_0$ and as accurate as a one-dimensional nonparametric mean regression for $g$. On the other hand, the assumptions are weaker than those of a parametric model and stronger than those of a fully nonparametric model. Note however that structural economic models can be an important exception, in which the single index model might have weaker assumptions than a fully parametrized model. 
-
-\vspace{5mm} 
+All things considered, model (1) with unknown $g(\cdot)$ leads to a more flexible version of parametric models while retaining many of its desirable features. As shown above, it avoids the problem of error distribution mispecification. Also, as we will see in more detail later on, the single index model achieves dimension reduction and avoids the curse of dimensionality: $g$ is estimated with the same convergence rate in probability as in the case when $X'\beta_0$ is observable and $\beta_0$ achieves the same convergence rate $n^{-\frac{1}{2}}$ as parametric models. Thus, the single index model is as accurate as a parametric model for estimating $X'\beta_0$. On the other hand, the assumptions are weaker than those of a parametric model and stronger than those of a fully nonparametric model. Note however that structural economic models can be an important exception, in which the single index model might have weaker assumptions than a fully parameterized model. % and as accurate as a one-dimensional nonparametric mean regression for $g$.
 
 In essence, while the risk of mispecification is reduced relative to parametric models, it also avoids inconveniences of fully nonparametric models such as the curse of dimensionality, difficulty of interpretation, and the lack of extrapolation capability. Finally, note that model (1) implies $E(Y|x) = g(x'\beta)$, and thus Y depends on $x$ only through the linear combination $x'\beta_0$, and this relationship is characterized by the link function $g(\cdot)$.  % exception with structural economic models
 
@@ -151,10 +151,44 @@ In essence, while the risk of mispecification is reduced relative to parametric 
 \section{Identification} % (fold)
 \label{sec:Identification}
 
+It now becomes necessary to find a set of conditions under which the unknown parameter $\beta_0$ and the unknown function $ g(\cdot)$ can be estimated for the semiparametric model:
+
+\[E(Y|x) = g(x'\beta_0) \]
+
+\vspace{5mm} 
+
+Once more, we follow Li and Racine (2007).
 
 
+\newtheorem{prop}{Proposition}
 
+\begin{prop}
+(Identification of a Single Index Model). 
+Identification of $\beta_0$ and $g(\cdot)$ in model (1) requires:
+\begin{enumerate}[label=(\roman*)]
+\item x should not contain a constant and it must contain at least one continuous variable. Furthermore, $\norm{ \beta_0 } = 1$.
+\item $g(\cdot)$ is differentiable and it is not a constant function on the support of $x'\beta_0$.
+\item For the discrete components of $x$, varying the values of the discrete variables will not divide the support of $x'\beta_0$ into disjoint subsets.
+\end{enumerate}
+\end{prop}
 
+% Proofs?
+
+\textit{Intuition}. We start with \textit(i) and by emphasizing that the elements of $x$ cannot suffer from multicollinearity, i.e., $\beta_0$ is not identified if there are a constant $\alpha$ and a scalar $c$ such that $x'\alpha = c$ with probability one. On the other hand, the requirement that $x$ contains at least one continuous variable prevents that $x$ has a finite support, as well as the scalar variable $ v = x'\beta_0$ for any vector $\beta$. Then $E(Y|X = x) = g(x'\beta)$ would impose only a finite number os restrictions  on $g(\cdot)$, leading to a infinite number of different choices for $g(\cdot)$ and $\beta_0$ that satisfy those restrictions. Note however if we assume $g(\cdot)$ is increasing, we can identify bounds on the components of $\beta_0$. See Horowitz (2009) for more concrete examples. In addition, \textit{location normalization} and \textit{scale normalization} requirements are necessary. Define the function $g^*$ by the relation $g^*(\gamma + v\delta) = g(v)$ for all $v$ in the support of $x´\beta_0$. Then
+
+\begin{equation}
+E(Y|X = x) = g(x'\beta_0)
+\end{equation}
+
+and
+
+\begin{equation}
+E(Y|X = x) = g^*(\gamma + x'\beta_0\delta)
+\end{equation}
+
+As it can be observed from (5) and (6), the two models are observationally equivalent. Thus, $\beta_0$ and $g$ are not identified unless restrictions are imposed that uniquely specify $\gamma$ and $\delta$. The restrition on $\gamma$ is then a \textit{location normalization} and it can be reached by for example requiring $x$ not to include a constant. The restriction on $\delta$ is a \textit{scale normalization}. In this case we use the approach that assumes that the vector $\beta_0$ has unit length, i.e., $\norm{ \beta_0 } = 1$ using an Euclidean norm.
+As to what concerns part (ii), it is trivial that $g(\cdot)$ cannot be a constant function, as otherwise $\beta_0$ is clearly not identified. The differentiability of $g(\cdot)$ can be understood by noting that what makes the identification of $E(Y|X = x)$ possible is that it remains constant if $x$ changes in a way such that $x'\beta_0$ stays constant. Then for a continuosly distributed $x'\beta_0$ and some constant $c$, $x'\beta_0 = c$ has probability zero. For $g$ differentiable, the set of $x$ for which $x'\beta_0$ is within any specifiec nonzero distance of $c$ has nonzero probability for $c$ in the interior of the support of $x'\beta_0$ and we identify $\beta_0$ by approximate constancy of $x'\beta_0$.
+Finally, violation of (iii) might lead for examples violation of the \textit{location normalization} and \textit{scale normalization}. For a concrete example see Horowitz (2009).
 \section{Section about quotations} % (fold)
 \label{sec:section_about_quotations}
 
