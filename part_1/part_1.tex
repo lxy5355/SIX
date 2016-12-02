@@ -1,0 +1,279 @@
+\documentclass[a4paper]{article}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+% package for including graphics with figure-environment
+\usepackage{graphicx}
+\usepackage{hyperref}
+% colors for hyperlinks
+% colored borders (false) colored text (true)
+\hypersetup{colorlinks=true,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black}
+
+% package for bibliography
+\usepackage[authoryear,round]{natbib}
+% package for expectation signs
+\usepackage{amsmath,amssymb,mathtools,bm,etoolbox}
+\documentclass[a4paper,11pt]{report} 
+\usepackage{enumitem} 
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{amsmath}
+\newcommand{\abs}[1]{ \left\lvert#1\right\rvert} 
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+% package for header
+\usepackage[automark]{scrpage2}
+\pagestyle{scrheadings}
+\ihead[]{Name of students}
+\ohead[]{\today}
+\cfoot[]{\pagemark} 
+\setheadsepline[122mm]{0.3mm}
+\begin{document}
+	\title{
+	\begin{figure}[!ht]
+		\flushleft
+			\includegraphics[width=0.7\textwidth]{logo.eps}
+	\end{figure}
+	\vspace{1cm}
+	\Huge Here you can insert the title of \\ your seminar paper \\
+	}
+	
+	\vspace{1cm}
+	
+	% if you are the only author, you might use the following
+	% \author{Name of student}	
+	
+	% Insert here your name and correct mail address
+	\author{\Large \href{mailto:first.student@smail.fh-koeln.de}{First Student} \and \Large \href{mailto:second.student@smail.fh-koeln.de}{Second Student}
+	\vspace{1cm}}
+	
+	% name of the course and module
+	\date{
+	\large Module: Modulename \\ Course: Coursename \\ 
+	\vspace{0.8cm}
+	\large Lecturer: Name of the lecturer \\
+	\vspace{1cm}
+	\today
+	}
+
+	\maketitle
+	\setlength{\parindent}{0pt}
+
+\vspace{2cm}
+\begin{abstract}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+\end{abstract}
+	\newpage
+	\tableofcontents
+	\newpage
+	
+\section{Introduction} % (fold)
+\label{sec:introduction}
+
+Following Li and Racine (2007) notation, the model 
+
+\begin{eqnarray}
+Y = g(X'\beta_0) + \epsilon,  % with i =1,2 ..., n?, iid?
+\end{eqnarray}
+
+where
+
+\begin{enumerate}
+	\item Y is the dependent variable, $X\in \mathbb{R}^{q}$ is a vector of explanatory variables, $\beta_0$ is the q $\times$ 1 vector of unknown parameters; % Y in interval from 0 to 1?
+	\item $X'\beta_0$ is a single index because it is a scalar;
+	\item $ E(\epsilon|x) = 0 $;
+	\item $g: \mathbb{R} \rightarrow \mathbb{R} $ is not known; % dimensions?
+\end{enumerate}
+
+is a single index model.
+
+\vspace{5mm} 
+
+The above model is referred to as a linear single index model by Ichimura (1993). This model is semiparametric as the functional form of the linear index is specified, while $g(\cdot)$ is left unspecified and the conditional probability of $\epsilon$ conditioned on X is not specified except $ E(\epsilon|X) = 0 $. 
+
+Semiparametric single index models arise naturally in binary choice models. We now analyze binary choice models in the semiparametric single index setting proposed by Li and Racine (2007)\footnote{While focusing on binary choice, we acknowledge that Y is not strictly bound to a binary character.}. More specifically, by accepting the parametric linear index assumption governing choices while not specifying the unknown distribution of the error term, we obtain a semiparametric single index model. Thus, when considering the relationship between a binary dependent variable (Y) and some covariates (X) this relationship can be modelled as follows:
+
+\begin{eqnarray}
+    Yi = 
+    \begin{cases}
+      1, & \text{if}\ Y_i^* \stackrel{def}{=} \alpha + X_i'\beta + u_i > 0 \\
+      0, & \text{if}\ Y_i^* = \alpha + X_i'\beta + u_i \leq 0
+    \end{cases}
+\end{eqnarray}
+
+where $Y^*$ is a latent variable.
+Consider Y representing labor force participation, equal to 1 if the individual participates in the labor market and 0 otherwise. The explanatory variables can contain a series of economic factors that might influence labor participation, such as gender, age, marital status and education. Assuming a linear relationship between labor force participation and potential determinants, the empirical analysis focuses on the estimation of $\beta$.
+Parametric methods to estimate $\beta$ require assumptions on the distribution of the error term $u$. A common assumption in the parametric framework is $ u \sim N(0, \sigma^2)$. With further identification conditions such as $\sigma = 1$, $\beta_$ can be jointly identified ( see Madalla (1986)) and we can use maximum likelihood to estimate it.  Let $F_u(\cdot)$ denote the true CDF of $u$. Nevertheless, excluding the assumption of normality of the error term would in general lead to inconsistent estimates. Then we get:
+
+
+\[ 
+\begin{split}
+E(Y|x) & = \sum_{y=0,1} yP(y|x) \\
+ & = 1 \times P(Y=1|x) + 0 \times P(Y=0|x) \\
+ & = P(Y=1|x) \\ 
+ & = P(\alpha + x'\beta + u_i > 0) \\
+ & = P(u_i > -(\alpha + x'\beta)) \\
+ & = 1 - P(u_i \leq -(\alpha + x'\beta)) \\
+ & = 1 - F(-(\alpha + x'\beta))
+\end{split}
+\]
+
+where $F(\cdot)$ is the cummulative distribution function (CDF) of $u$. If $ u \sim N(0,1)$ is true, then $u$ has a symmetric distribution and $1 - F(-(\alpha + x'\beta)) = F(\alpha + x'\beta)$. Then model (2) is commonly referred to as a Probit:
+
+\begin{equation}
+E(Y|X) = P(Y=1|x) = \Phi(\alpha + x'\beta),
+\end{equation}
+
+where $\Phi$ is the CDF of a standard normal variable. On the other hand, for $u$ having a symmetric logistic distribution, we obtain:
+
+\begin{equation}
+E(Y|X) = P(Y=1|x) = \frac{1}{1 + e^{\alpha + x'\beta}},
+\end{equation}
+
+From (3) and (4) we can see that different functional forms for $u$ lead to different functional forms for the conditional probability of $Y = 1$. Therefore, consistent parametric estimation of $E(Y|X) = P(Y=1|x)$ requires the \textit{correct} distribution specification of $u$. 
+
+Generally speaking, model (1) contains many widely used parametric models that assume that $g$ is known up to a finite-dimensional parameter. If $g$ is the identity function we obtain a linear model. If $g$ is the cumulative normal or logistic distribution, we obtain a binary probit or logit model. Further, assuming $g(X'\beta_0) = E(Y|X=x)$ model (1) represents a tobit model:
+
+
+\[
+    Y = max (0, g(X'\beta_0) + \epsilon),
+\]
+
+where $\epsilon$ is an unobserved, normally distributed random variable that has mean zero and is independent of X. 
+
+In conclusion, model (1) with unknown $g(\cdot)$ leads to a more flexible version of parametric models while retaining many of its desirable features. As shown above, model (1) avoids the problem of error distribution mispecification. Further, the single index model achieves dimension reduction and avoids the curse of dimensionality: $g$ is estimated with the same convergence rate in probability as in the case when $X'\beta_0$ is observable and $\beta_0$ achieves the same convergence rate $n^{-\frac{1}{2}}$ as parametric models. Thus, the single index model is as accurate as a parametric model for estimating $X'\beta_0$. On the other hand, the assumptions are weaker than those of a parametric model and stronger than those of a fully nonparametric model.  \footnote{However, the necessary assumptions for consistent parametric estimation can be relaxed. In particular, the single index model might have weaker assumptions than a fully parameterized model for structural economic models.} % and as accurate as a one-dimensional nonparametric mean regression for $g$.
+
+Essentially, while the risk of mispecification is reduced relative to parametric models, it also avoids inconveniences of fully nonparametric models such as the curse of dimensionality, difficulty of interpretation, and the lack of extrapolation capability. Moreover, notice that model (1) implies $E(Y|x) = g(x'\beta)$, and thus Y depends on $x$ only through the linear combination $x'\beta_0$, and this relationship is characterized by the link function $g(\cdot)$.  % exception with structural economic models
+
+% Identification Racine p 251, why \alpha is not included p.251 racine
+% Asymptotically normal!!
+% section introduction (end)
+
+\section{Identification} % (fold)
+\label{sec:Identification}
+
+Before estimating  $\beta_0$ and $ g(\cdot)$, restrictions must be imposed to ensure identification of the  semiparametric model:
+
+\[E(Y|x) = g(x'\beta_0) \]
+
+\vspace{5mm} 
+
+For the discussion of the identification strategy we follow Li and Racine (2007).
+
+
+\newtheorem{prop}{Proposition}
+
+\begin{prop}
+(Identification of a Single Index Model). 
+Identification of $\beta_0$ and $g(\cdot)$ in model (1) requires:
+\begin{enumerate}[label=(\roman*)]
+\item x should not contain a constant and it must contain at least one continuous variable. Furthermore, $\norm{ \beta_0 } = 1$.
+\item $g(\cdot)$ is differentiable and it is not a constant function on the support of $x'\beta_0$.
+\item For the discrete components of $x$, varying the values of the discrete variables will not divide the support of $x'\beta_0$ into disjoint subsets.
+\end{enumerate}
+\end{prop}
+
+% Proofs?
+
+\textit{Intuition}. We start with \textit(i) and by emphasizing that the elements of $x$ cannot suffer from multicollinearity, i.e., "$\beta_0$ is not identified, if $Pr(x'\alpha = c)=1$ where $\alpha$ is a constant and $c$ is a scalar. Further, the requirement that $x$ contains at least one continuous variable prevents that $x$ as well as the scalar variable $ v = x'\beta_0$ for any vector $\beta$ have a finite support. Then $E(Y|X = x) = g(x'\beta)$ would impose only a finite number of restrictions  on $g(\cdot)$, leading to a infinite number of different choices for $g(\cdot)$ and $\beta_0$ that satisfy those restrictions. \fotenote{Note however that if $g(\cdot)$ is assumed to be increasing, we can identify bounds on the components of $\beta_0$. See Horowitz (2009) for more concrete examples.} In addition, \textit{location normalization} and \textit{scale normalization} requirements are necessary. Define the function $g^*$ by the relation $g^*(\gamma + v\delta) = g(v)$ for all $v$ in the support of $x´\beta_0$. Then
+
+\begin{equation}
+E(Y|X = x) = g(x'\beta_0)
+\end{equation}
+
+and
+
+\begin{equation}
+E(Y|X = x) = g^*(\gamma + x'\beta_0\delta)
+\end{equation}
+
+The models (5) and (6) are observationally equivalent. Thus, $\beta_0$ and $g$ are not identified unless restrictions are imposed to uniquely specify $\gamma$ and $\delta$. The restrition on $\gamma$ is then a \textit{location normalization} and it can be satisfied by for example requiring $x$ not to include a constant. The restriction on $\delta$ is a \textit{scale normalization}. In this case we use the approach that assumes that the vector $\beta_0$ has unit length, i.e., $\norm{ \beta_0 } = 1$ using an Euclidean norm.
+As to what concerns part (ii), $g(\cdot)$ cannot be a constant function, as otherwise $\beta_0$ is clearly not identified. What makes the identification of $E(Y|X = x)$ possible is that it remains constant if $x$ changes in a way such that $x'\beta_0$ stays constant. Then $P(x'\beta_0 = c)=0$, for $x'\beta_0$ continuosly distributed and for some constant $c$. For $g$ differentiable, the set of $x$ for which $x'\beta_0$ is within any specified nonzero distance of $c$ has nonzero probability for $c$ in the interior of the support of $x'\beta_0$ and we identify $\beta_0$ by the approximate constancy of $x'\beta_0$.
+The violation of (iii) might for example lead to the violation of \textit{location normalization} and \textit{scale normalization}. For a concrete example see Horowitz (2009).
+
+\section{Section about quotations} % (fold)
+\label{sec:section_about_quotations}
+
+In this section, an example for a literal quotation is given. 
+
+\begin{quotation}
+	\emph{``A persona is a rich picture of an imaginary person who represents your core user group.''}
+	\citep{Dix04}
+\end{quotation}
+
+Sometimes you might want to make use of the authors name within the text. Before, we used the command \texttt{citep\{\}}, which creates the brackets around author name and year. You can also use the \texttt{cite} command like this: \\
+
+\cite{Dix04} defined the concept of persona as follows: 
+\begin{quotation}
+	\emph{``A persona is a rich picture of an imaginary person who represents your core user group.''}
+	\citep{Dix04}
+\end{quotation}
+
+You may notice, that this increases the readability of the text. \\
+
+According to APA format\footnote{ American Psychological Association (APA)} there are some rules, when and how to include page numbers, when referring to literature. 
+
+\begin{quotation}
+	\emph{``Include page numbers for any citations in the text of your paper that include direct quotations or refer to a specific part of the work you are referencing. Direct quotations must include a page number as part of the citation. The quoted material should be followed by a citation in parentheses that gives the author's name, the year in which the work was published, and the page number from which the quoted material appears.''}
+	\citep{Hall}
+\end{quotation}
+
+Check out the example and recommendations of \cite{Hall} on \url{http://www.ehow.com/how_5689799_cite-numbers-apa-format.html}. In \LaTeX you can include the pages very easy. For example: \\
+
+\citet[p. 86]{Baddeley:1974ts} stated: 
+
+\begin{quotation}
+	\emph{``We hope that our preliminary attempts to begin answering the question will convince the reader, not necessarily that our views are correct, but that the question was and is well worth asking''}
+	\citep[p. 86]{Baddeley:1974ts}
+\end{quotation}
+
+Note that in the first reference, we used \texttt{citet[]\{\}} in order to have brackets just around year and page number; later we used \texttt{citep[]\{\}}.
+
+% section section_about_quotations (end)
+
+
+\section{Section about references within the document} % (fold)
+\label{sec:section_about_references_within_the_document}
+
+If you want to refer to you own chapters, figures, tables or the like, you can make use of the \texttt{ref\{\}} command, for example:
+\begin{itemize}
+	\item section~\ref{sec:section_about_quotations} on page \pageref{sec:section_about_quotations}
+\end{itemize} 
+
+
+
+% section section_about_references_within_the_document (end)
+
+\subsection{Subsection within Foundations} % (fold)
+\label{sub:subsection_within_foundations}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+% subsection subsection_within_foundations (end)
+
+\subsection{Another subsection within Foundations} % (fold)
+\label{sub:another_subsection_within_foundations}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+% subsection another_subsection_within_foundations (end)
+
+
+% section foundations (end)
+
+\section{Methodology} % (fold)
+\label{sec:methodology}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua \citep{Dix04}. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+% section methodology (end)
+
+\section{Results} % (fold)
+\label{sec:results}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua \citep[p. 48]{Baddeley:1974ts}. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+% section results (end)
+
+\section{Conclusion} % (fold)
+\label{sec:conclusion}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+% section conclusion (end)
+
+
+\newpage 
+
+\bibliographystyle{natdin}
+	\bibliography{references} % expects file "references.bib"
+	\addcontentsline{toc}{section}{References}
+\end{document}
