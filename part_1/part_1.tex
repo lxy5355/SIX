@@ -12,7 +12,7 @@
 \usepackage[authoryear,round]{natbib}
 % package for expectation signs
 \usepackage{amsmath,amssymb,mathtools,bm,etoolbox}
-\documentclass[a4paper,11pt]{report} 
+%\documentclass[a4paper,11pt]{report} 
 \usepackage{enumitem} 
 \usepackage{amsmath, amsthm, amssymb}
 \usepackage{amsmath}
@@ -27,10 +27,10 @@
 \setheadsepline[122mm]{0.3mm}
 \begin{document}
 	\title{
-	\begin{figure}[!ht]
-		\flushleft
-			\includegraphics[width=0.7\textwidth]{logo.eps}
-	\end{figure}
+	%\begin{figure}[!ht]
+	%	\flushleft
+	%		\includegraphics[width=0.7\textwidth]{logo.eps}
+	%\end{figure}
 	\vspace{1cm}
 	\Huge Here you can insert the title of \\ your seminar paper \\
 	}
@@ -101,7 +101,7 @@ Semiparametric single index models arise naturally in binary choice models. We n
 
 where $Y^*$ is a latent variable.
 Consider Y representing labor force participation, equal to 1 if the individual participates in the labor market and 0 otherwise. The explanatory variables can contain a series of economic factors that might influence labor participation, such as gender, age, marital status and education. Assuming a linear relationship between labor force participation and potential determinants, the empirical analysis focuses on the estimation of $\beta$.
-Parametric methods to estimate $\beta$ require assumptions on the distribution of the error term $u$. A common assumption in the parametric framework is $ u \sim N(0, \sigma^2)$. With further identification conditions such as $\sigma = 1$, $\beta_$ can be jointly identified ( see Madalla (1986)) and we can use maximum likelihood to estimate it.  Let $F_u(\cdot)$ denote the true CDF of $u$. Nevertheless, excluding the assumption of normality of the error term would in general lead to inconsistent estimates. Then we get:
+Parametric methods to estimate $\beta$ require assumptions on the distribution of the error term $u$. A common assumption in the parametric framework is $ u \sim N(0, \sigma^2)$. With further identification conditions such as $\sigma = 1$, $\beta$ can be jointly identified ( see Madalla (1986)) and we can use maximum likelihood to estimate it.  Let $F_u(\cdot)$ denote the true CDF of $u$. Nevertheless, excluding the assumption of normality of the error term would in general lead to inconsistent estimates. Then we get:
 
 
 \[ 
@@ -173,7 +173,7 @@ Identification of $\beta_0$ and $g(\cdot)$ in model (1) requires:
 
 % Proofs?
 
-\textit{Intuition}. We start with \textit(i) and by emphasizing that the elements of $x$ cannot suffer from multicollinearity, i.e., "$\beta_0$ is not identified, if $Pr(x'\alpha = c)=1$ where $\alpha$ is a constant and $c$ is a scalar. Further, the requirement that $x$ contains at least one continuous variable prevents that $x$ as well as the scalar variable $ v = x'\beta_0$ for any vector $\beta$ have a finite support. Then $E(Y|X = x) = g(x'\beta)$ would impose only a finite number of restrictions  on $g(\cdot)$, leading to a infinite number of different choices for $g(\cdot)$ and $\beta_0$ that satisfy those restrictions. \fotenote{Note however that if $g(\cdot)$ is assumed to be increasing, we can identify bounds on the components of $\beta_0$. See Horowitz (2009) for more concrete examples.} In addition, \textit{location normalization} and \textit{scale normalization} requirements are necessary. Define the function $g^*$ by the relation $g^*(\gamma + v\delta) = g(v)$ for all $v$ in the support of $x´\beta_0$. Then
+\textit{Intuition}. We start with \textit(i) and by emphasizing that the elements of $x$ cannot suffer from multicollinearity, i.e., "$\beta_0$ is not identified, if $Pr(x'\alpha = c)=1$ where $\alpha$ is a constant and $c$ is a scalar. Further, the requirement that $x$ contains at least one continuous variable prevents that $x$ as well as the scalar variable $ v = x'\beta_0$ for any vector $\beta$ have a finite support. Then $E(Y|X = x) = g(x'\beta)$ would impose only a finite number of restrictions  on $g(\cdot)$, leading to a infinite number of different choices for $g(\cdot)$ and $\beta_0$ that satisfy those restrictions. \footnote{Note however that if $g(\cdot)$ is assumed to be increasing, we can identify bounds on the components of $\beta_0$. See Horowitz (2009) for more concrete examples.} In addition, \textit{location normalization} and \textit{scale normalization} requirements are necessary. Define the function $g^*$ by the relation $g^*(\gamma + v\delta) = g(v)$ for all $v$ in the support of $x'\beta_0$. Then
 
 \begin{equation}
 E(Y|X = x) = g(x'\beta_0)
@@ -185,8 +185,8 @@ and
 E(Y|X = x) = g^*(\gamma + x'\beta_0\delta)
 \end{equation}
 
-The models (5) and (6) are observationally equivalent. Thus, $\beta_0$ and $g$ are not identified unless restrictions are imposed to uniquely specify $\gamma$ and $\delta$. The restrition on $\gamma$ is then a \textit{location normalization} and it can be satisfied by for example requiring $x$ not to include a constant. The restriction on $\delta$ is a \textit{scale normalization}. In this case we use the approach that assumes that the vector $\beta_0$ has unit length, i.e., $\norm{ \beta_0 } = 1$ using an Euclidean norm.
-As to what concerns part (ii), $g(\cdot)$ cannot be a constant function, as otherwise $\beta_0$ is clearly not identified. What makes the identification of $E(Y|X = x)$ possible is that it remains constant if $x$ changes in a way such that $x'\beta_0$ stays constant. Then $P(x'\beta_0 = c)=0$, for $x'\beta_0$ continuosly distributed and for some constant $c$. For $g$ differentiable, the set of $x$ for which $x'\beta_0$ is within any specified nonzero distance of $c$ has nonzero probability for $c$ in the interior of the support of $x'\beta_0$ and we identify $\beta_0$ by the approximate constancy of $x'\beta_0$.
+The models (5) and (6) are observationally equivalent. Thus, $\beta_0$ and $g$ are not identified unless restrictions are imposed to uniquely specify $\gamma$ and $\delta$. The restriction on $\gamma$ is then a \textit{location normalization} and it can be satisfied by for example requiring $x$ not to include a constant. The restriction on $\delta$ is a \textit{scale normalization}. In this case we use the approach that assumes that the vector $\beta_0$ has unit length, i.e., $\norm{ \beta_0 } = 1$ using an Euclidean norm.
+As to what concerns part (ii), $g(\cdot)$ cannot be a constant function, as otherwise $\beta_0$ is clearly not identified. What makes the identification of $E(Y|X = x)$ possible is that it remains constant if $x$ changes in a way such that $x'\beta_0$ stays constant. Then $P(x'\beta_0 = c)=0$, for $x'\beta_0$ continuously distributed and for some constant $c$. For $g$ differentiable, the set of $x$ for which $x'\beta_0$ is within any specified nonzero distance of $c$ has nonzero probability for $c$ in the interior of the support of $x'\beta_0$ and we identify $\beta_0$ by the approximate constancy of $x'\beta_0$.
 The violation of (iii) might for example lead to the violation of \textit{location normalization} and \textit{scale normalization}. For a concrete example see Horowitz (2009).
 
 \section{Section about quotations} % (fold)
