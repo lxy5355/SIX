@@ -68,6 +68,11 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 \section{Introduction} % (fold)
 \label{sec:introduction}
 
+Semiparametric single index models are widely used in applied econometrics and applied to a variety of settings.
+In this section, we elaborate on the model's main features and contributions to the class of semiparametric models. Essentially, while the risk of mispecification is reduced relative to parametric models, it also avoids inconveniences of fully nonparametric models such as the curse of dimensionality, difficulty of interpretation, and the lack of extrapolation capability.
+  
+\vspace{5mm} 
+
 Following Li and Racine (2007) notation, the model 
 
 \begin{eqnarray}
@@ -89,7 +94,7 @@ is a single index model.
 
 The above model is referred to as a linear single index model by Ichimura (1993). This model is semiparametric as the functional form of the linear index is specified, while $g(\cdot)$ is left unspecified and the conditional probability of $\epsilon$ conditioned on X is not specified except $ E(\epsilon|X) = 0 $. 
 
-Semiparametric single index models arise naturally in binary choice models. We now analyze binary choice models in the semiparametric single index setting proposed by Li and Racine (2007)\footnote{While focusing on binary choice, we acknowledge that Y is not strictly bound to a binary character.}. More specifically, by accepting the parametric linear index assumption governing choices while not specifying the unknown distribution of the error term, we obtain a semiparametric single index model. Thus, when considering the relationship between a binary dependent variable (Y) and some covariates (X) this relationship can be modelled as follows:
+While Y can be of either discrete or continuous character, for illustrative purposes, we now analyze binary choice models in the semiparametric single index setting proposed by Li and Racine (2007). More specifically, by accepting the parametric linear index assumption governing choices while not specifying the unknown distribution of the error term, we obtain a semiparametric single index model. Thus, when considering the relationship between a binary dependent variable (Y) and covariates (X) this relationship can be modelled as follows:
 
 \begin{eqnarray}
     Yi = 
@@ -101,7 +106,7 @@ Semiparametric single index models arise naturally in binary choice models. We n
 
 where $Y^*$ is a latent variable.
 Consider Y representing labor force participation, equal to 1 if the individual participates in the labor market and 0 otherwise. The explanatory variables can contain a series of economic factors that might influence labor participation, such as gender, age, marital status and education. Assuming a linear relationship between labor force participation and potential determinants, the empirical analysis focuses on the estimation of $\beta$.
-Parametric methods to estimate $\beta$ require assumptions on the distribution of the error term $u$. A common assumption in the parametric framework is $ u \sim N(0, \sigma^2)$. With further identification conditions such as $\sigma = 1$, $\beta_$ can be jointly identified ( see Madalla (1986)) and we can use maximum likelihood to estimate it.  Let $F_u(\cdot)$ denote the true CDF of $u$. Nevertheless, excluding the assumption of normality of the error term would in general lead to inconsistent estimates. Then we get:
+Parametric methods to estimate $\beta$ require assumptions on the distribution of the error term $u$. A common assumption in the parametric framework is $ u \sim N(0, \sigma^2)$. With further identification conditions such as $\sigma = 1$, $\beta_$ can be jointly identified (see Madalla (1986)) and we can use maximum likelihood to estimate it.  Let $F_u(\cdot)$ denote the true CDF of $u$. Nevertheless, excluding the assumption of normality of the error term would in general lead to inconsistent estimates. Then we get:
 
 
 \[ 
@@ -139,9 +144,8 @@ Generally speaking, model (1) contains many widely used parametric models that a
 
 where $\epsilon$ is an unobserved, normally distributed random variable that has mean zero and is independent of X. 
 
-In conclusion, model (1) with unknown $g(\cdot)$ leads to a more flexible version of parametric models while retaining many of its desirable features. As shown above, model (1) avoids the problem of error distribution mispecification. Further, the single index model achieves dimension reduction and avoids the curse of dimensionality: $g$ is estimated with the same convergence rate in probability as in the case when $X'\beta_0$ is observable and $\beta_0$ achieves the same convergence rate $n^{-\frac{1}{2}}$ as parametric models. Thus, the single index model is as accurate as a parametric model for estimating $X'\beta_0$. On the other hand, the assumptions are weaker than those of a parametric model and stronger than those of a fully nonparametric model.  \footnote{However, the necessary assumptions for consistent parametric estimation can be relaxed. In particular, the single index model might have weaker assumptions than a fully parameterized model for structural economic models.} % and as accurate as a one-dimensional nonparametric mean regression for $g$.
+Thereupon, model (1) with unknown $g(\cdot)$ leads to a more flexible version of parametric models while retaining many of its desirable features. As shown above, model (1) avoids the problem of error distribution mispecification. Further, the single index model achieves dimension reduction and avoids the curse of dimensionality: $g$ is estimated with the same convergence rate in probability as in the case when $X'\beta_0$ is observable and $\beta_0$ achieves the same convergence rate $n^{-\frac{1}{2}}$ as parametric models. Thus, the single index model achieves greater estimation precision than fully nonparametric estimation with multidimensional X and the same precision as a parametric model. Moreover, the assumptions of a single index model are weaker than those of a parametric model and stronger than those of a fully nonparametric model.  \footnote{However, the necessary assumptions for consistent parametric estimation can be relaxed. In particular, the single index model might have weaker assumptions than a fully parameterized model for structural economic models.} Single index models are often easy to compute and interpret. % and as accurate as a one-dimensional nonparametric mean regression for $g$.
 
-Essentially, while the risk of mispecification is reduced relative to parametric models, it also avoids inconveniences of fully nonparametric models such as the curse of dimensionality, difficulty of interpretation, and the lack of extrapolation capability. Moreover, notice that model (1) implies $E(Y|x) = g(x'\beta)$, and thus Y depends on $x$ only through the linear combination $x'\beta_0$, and this relationship is characterized by the link function $g(\cdot)$.  % exception with structural economic models
 
 % Identification Racine p 251, why \alpha is not included p.251 racine
 % Asymptotically normal!!
@@ -150,7 +154,7 @@ Essentially, while the risk of mispecification is reduced relative to parametric
 \section{Identification} % (fold)
 \label{sec:Identification}
 
-Before estimating  $\beta_0$ and $ g(\cdot)$, restrictions must be imposed to ensure identification of the  semiparametric model:
+Model (1) implies $E(Y|x) = g(x'\beta)$. Thus Y depends on $x$ only through the linear combination $x'\beta_0$, and this relationship is characterized by the link function $g(\cdot)$. Before estimating  $\beta_0$ and $ g(\cdot)$, restrictions must be imposed to ensure identification of the semiparametric model:
 
 \[E(Y|x) = g(x'\beta_0) \]
 
@@ -173,7 +177,7 @@ Identification of $\beta_0$ and $g(\cdot)$ in model (1) requires:
 
 % Proofs?
 
-\textit{Intuition}. We start with \textit(i) and by emphasizing that the elements of $x$ cannot suffer from multicollinearity, i.e., "$\beta_0$ is not identified, if $Pr(x'\alpha = c)=1$ where $\alpha$ is a constant and $c$ is a scalar. Further, the requirement that $x$ contains at least one continuous variable prevents that $x$ as well as the scalar variable $ v = x'\beta_0$ for any vector $\beta$ have a finite support. Then $E(Y|X = x) = g(x'\beta)$ would impose only a finite number of restrictions  on $g(\cdot)$, leading to a infinite number of different choices for $g(\cdot)$ and $\beta_0$ that satisfy those restrictions. \fotenote{Note however that if $g(\cdot)$ is assumed to be increasing, we can identify bounds on the components of $\beta_0$. See Horowitz (2009) for more concrete examples.} In addition, \textit{location normalization} and \textit{scale normalization} requirements are necessary. Define the function $g^*$ by the relation $g^*(\gamma + v\delta) = g(v)$ for all $v$ in the support of $x´\beta_0$. Then
+\textit{Intuition}. We start with \textit(i) and by emphasizing that the elements of $x$ cannot suffer from multicollinearity, i.e., $Pr(x'\alpha = c)=1$ where $\alpha$ is a constant and $c$ is a scalar. Further, the requirement that $x$ contains at least one continuous variable prevents that $x$ as well as the scalar variable $ v = x'\beta_0$ for any vector $\beta_0$ have a finite support. Then $E(Y|X = x) = g(x'\beta)$ would impose only a finite number of restrictions  on $g(\cdot)$, leading to a infinite number of different choices for $g(\cdot)$ and $\beta_0$ that satisfy those restrictions. \fotenote{Note however that if $g(\cdot)$ is assumed to be increasing, we can identify bounds on the components of $\beta_0$. See Horowitz (2009) for more concrete examples.} In addition, \textit{location normalization} and \textit{scale normalization} requirements are necessary. Define the function $g^*$ by the relation $g^*(\gamma + v\delta) = g(v)$ for all $v$ in the support of $x´\beta_0$. Then
 
 \begin{equation}
 E(Y|X = x) = g(x'\beta_0)
@@ -186,57 +190,16 @@ E(Y|X = x) = g^*(\gamma + x'\beta_0\delta)
 \end{equation}
 
 The models (5) and (6) are observationally equivalent. Thus, $\beta_0$ and $g$ are not identified unless restrictions are imposed to uniquely specify $\gamma$ and $\delta$. The restrition on $\gamma$ is then a \textit{location normalization} and it can be satisfied by for example requiring $x$ not to include a constant. The restriction on $\delta$ is a \textit{scale normalization}. In this case we use the approach that assumes that the vector $\beta_0$ has unit length, i.e., $\norm{ \beta_0 } = 1$ using an Euclidean norm.
-As to what concerns part (ii), $g(\cdot)$ cannot be a constant function, as otherwise $\beta_0$ is clearly not identified. What makes the identification of $E(Y|X = x)$ possible is that it remains constant if $x$ changes in a way such that $x'\beta_0$ stays constant. Then $P(x'\beta_0 = c)=0$, for $x'\beta_0$ continuosly distributed and for some constant $c$. For $g$ differentiable, the set of $x$ for which $x'\beta_0$ is within any specified nonzero distance of $c$ has nonzero probability for $c$ in the interior of the support of $x'\beta_0$ and we identify $\beta_0$ by the approximate constancy of $x'\beta_0$.
+As to what concerns part (ii), $g(\cdot)$ cannot be a constant function, as otherwise $\beta_0$ is not identified. What makes the identification of $E(Y|X = x)$ possible is that it remains constant if $x$ changes in a way such that $x'\beta_0$ stays constant. However $P(x'\beta_0 = c)=0$, for $x'\beta_0$ continuosly distributed and for some constant $c$. For $g$ differentiable, the set of $x$ for which $x'\beta_0$ is within any specified nonzero distance of $c$ has nonzero probability for $c$ in the interior of the support of $x'\beta_0$ and we identify $\beta_0$ by the approximate constancy of $x'\beta_0$.
 The violation of (iii) might for example lead to the violation of \textit{location normalization} and \textit{scale normalization}. For a concrete example see Horowitz (2009).
 
 \section{Section about quotations} % (fold)
 \label{sec:section_about_quotations}
 
-In this section, an example for a literal quotation is given. 
-
-\begin{quotation}
-	\emph{``A persona is a rich picture of an imaginary person who represents your core user group.''}
-	\citep{Dix04}
-\end{quotation}
-
-Sometimes you might want to make use of the authors name within the text. Before, we used the command \texttt{citep\{\}}, which creates the brackets around author name and year. You can also use the \texttt{cite} command like this: \\
-
-\cite{Dix04} defined the concept of persona as follows: 
-\begin{quotation}
-	\emph{``A persona is a rich picture of an imaginary person who represents your core user group.''}
-	\citep{Dix04}
-\end{quotation}
-
-You may notice, that this increases the readability of the text. \\
-
-According to APA format\footnote{ American Psychological Association (APA)} there are some rules, when and how to include page numbers, when referring to literature. 
-
-\begin{quotation}
-	\emph{``Include page numbers for any citations in the text of your paper that include direct quotations or refer to a specific part of the work you are referencing. Direct quotations must include a page number as part of the citation. The quoted material should be followed by a citation in parentheses that gives the author's name, the year in which the work was published, and the page number from which the quoted material appears.''}
-	\citep{Hall}
-\end{quotation}
-
-Check out the example and recommendations of \cite{Hall} on \url{http://www.ehow.com/how_5689799_cite-numbers-apa-format.html}. In \LaTeX you can include the pages very easy. For example: \\
-
-\citet[p. 86]{Baddeley:1974ts} stated: 
-
-\begin{quotation}
-	\emph{``We hope that our preliminary attempts to begin answering the question will convince the reader, not necessarily that our views are correct, but that the question was and is well worth asking''}
-	\citep[p. 86]{Baddeley:1974ts}
-\end{quotation}
-
-Note that in the first reference, we used \texttt{citet[]\{\}} in order to have brackets just around year and page number; later we used \texttt{citep[]\{\}}.
-
-% section section_about_quotations (end)
-
 
 \section{Section about references within the document} % (fold)
 \label{sec:section_about_references_within_the_document}
 
-If you want to refer to you own chapters, figures, tables or the like, you can make use of the \texttt{ref\{\}} command, for example:
-\begin{itemize}
-	\item section~\ref{sec:section_about_quotations} on page \pageref{sec:section_about_quotations}
-\end{itemize} 
 
 
 
