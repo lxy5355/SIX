@@ -76,14 +76,15 @@ In this section, we elaborate on the model's main features and contributions to 
 Following Li and Racine (2007) notation, the model 
 
 \begin{eqnarray}
-Y = g(X'\beta_0) + \epsilon,  % with i =1,2 ..., n?, iid?
+Y = g(X'\beta) + \epsilon,  % with i =1,2 ..., n?, iid?
 \end{eqnarray}
 
 where
 
 \begin{enumerate}
-	\item Y is the dependent variable, $X\in \mathbb{R}^{q}$ is a vector of explanatory variables, $\beta_0$ is the q $\times$ 1 vector of unknown parameters; % Y in interval from 0 to 1?
-	\item $X'\beta_0$ is a single index because it is a scalar;
+	\item (X,Y) is an i.i.d. sample; %Xi??
+	\item Y is the dependent variable, $X\in \mathbb{R}^{q}$ is a vector of explanatory variables, $\beta$ is the q $\times$ 1 vector of unknown parameters; % Y in interval from 0 to 1?
+	\item $X'\beta$ is a single index because it is a scalar;
 	\item $ E(\epsilon|x) = 0 $;
 	\item $g: \mathbb{R} \rightarrow \mathbb{R} $ is not known; % dimensions?
 \end{enumerate}
@@ -135,16 +136,16 @@ E(Y|X) = P(Y=1|x) = \frac{1}{1 + e^{\alpha + x'\beta}},
 
 From (3) and (4) we can see that different functional forms for $u$ lead to different functional forms for the conditional probability of $Y = 1$. Therefore, consistent parametric estimation of $E(Y|X) = P(Y=1|x)$ requires the \textit{correct} distribution specification of $u$. 
 
-Generally speaking, model (1) contains many widely used parametric models that assume that $g$ is known up to a finite-dimensional parameter. If $g$ is the identity function we obtain a linear model. If $g$ is the cumulative normal or logistic distribution, we obtain a binary probit or logit model. Further, assuming $g(X'\beta_0) = E(Y|X=x)$ model (1) represents a tobit model:
+Generally speaking, model (1) contains many widely used parametric models that assume that $g$ is known up to a finite-dimensional parameter. If $g$ is the identity function we obtain a linear model. If $g$ is the cumulative normal or logistic distribution, we obtain a binary probit or logit model. Further, assuming $g(X'\beta) = E(Y|X=x)$ model (1) represents a tobit model:
 
 
 \[
-    Y = max (0, g(X'\beta_0) + \epsilon),
+    Y = max (0, g(X'\beta) + \epsilon),
 \]
 
 where $\epsilon$ is an unobserved, normally distributed random variable that has mean zero and is independent of X. 
 
-Thereupon, model (1) with unknown $g(\cdot)$ leads to a more flexible version of parametric models while retaining many of its desirable features. As shown above, model (1) avoids the problem of error distribution mispecification. Further, the single index model achieves dimension reduction and avoids the curse of dimensionality: $g$ is estimated with the same convergence rate in probability as in the case when $X'\beta_0$ is observable and $\beta_0$ achieves the same convergence rate $n^{-\frac{1}{2}}$ as parametric models. Thus, the single index model achieves greater estimation precision than fully nonparametric estimation with multidimensional X and the same precision as a parametric model. Moreover, the assumptions of a single index model are weaker than those of a parametric model and stronger than those of a fully nonparametric model.  \footnote{However, the necessary assumptions for consistent parametric estimation can be relaxed. In particular, the single index model might have weaker assumptions than a fully parameterized model for structural economic models.} Single index models are often easy to compute and interpret. % and as accurate as a one-dimensional nonparametric mean regression for $g$.
+Thereupon, model (1) with unknown $g(\cdot)$ leads to a more flexible version of parametric models while retaining many of its desirable features. As shown above, model (1) avoids the problem of error distribution mispecification. Further, the single index model avoids the curse of dimensionality as there is only one nonparametric dimension: $\beta$ achieves the same convergence rate $n^{-\frac{1}{2}}$ as parametric models. Thus, the single index model achieves greater estimation precision than fully nonparametric estimation with multidimensional X and the same precision as a parametric model. Moreover, the assumptions of a single index model are weaker than those of a parametric model and stronger than those of a fully nonparametric model.  \footnote{However, the necessary assumptions for consistent parametric estimation can be relaxed. In particular, the single index model might have weaker assumptions than a fully parameterized model for structural economic models.} % and as accurate as a one-dimensional nonparametric mean regression for $g$.
 
 
 % Identification Racine p 251, why \alpha is not included p.251 racine
@@ -154,9 +155,9 @@ Thereupon, model (1) with unknown $g(\cdot)$ leads to a more flexible version of
 \section{Identification} % (fold)
 \label{sec:Identification}
 
-Model (1) implies $E(Y|x) = g(x'\beta)$. Thus Y depends on $x$ only through the linear combination $x'\beta_0$, and this relationship is characterized by the link function $g(\cdot)$. Before estimating  $\beta_0$ and $ g(\cdot)$, restrictions must be imposed to ensure identification of the semiparametric model:
+Model (1) implies $E(Y|x) = g(x'\beta)$. Thus Y depends on $x$ only through the linear combination $x'\beta$, and this relationship is characterized by the link function $g(\cdot)$. Before estimating  $\beta$ and $ g(\cdot)$, restrictions must be imposed to ensure identification of the semiparametric model:
 
-\[E(Y|x) = g(x'\beta_0) \]
+\[E(Y|x) = g(x'\beta) \]
 
 \vspace{5mm} 
 
@@ -167,31 +168,37 @@ For the discussion of the identification strategy we follow Li and Racine (2007)
 
 \begin{prop}
 (Identification of a Single Index Model). 
-Identification of $\beta_0$ and $g(\cdot)$ in model (1) requires:
+Identification of $\beta$ and $g(\cdot)$ in model (1) requires:
 \begin{enumerate}[label=(\roman*)]
-\item x should not contain a constant and it must contain at least one continuous variable. Furthermore, $\norm{ \beta_0 } = 1$.
-\item $g(\cdot)$ is differentiable and it is not a constant function on the support of $x'\beta_0$.
-\item For the discrete components of $x$, varying the values of the discrete variables will not divide the support of $x'\beta_0$ into disjoint subsets.
+\item x should not contain a constant and it must contain at least one continuous variable with nonzero coefficient. Furthermore, $\norm{ \beta} = 1$. % or one component of \beta =1
+\item $g(\cdot)$ is differentiable and it is not a constant function on the support of $x'\beta$.
+\item For the discrete components of $x$, varying the values of the discrete variables will not divide the support of $x'\beta$ into disjoint subsets.
 \end{enumerate}
 \end{prop}
 
 % Proofs?
 
-\textit{Intuition}. We start with \textit(i) and by emphasizing that the elements of $x$ cannot suffer from multicollinearity, i.e., $Pr(x'\alpha = c)=1$ where $\alpha$ is a constant and $c$ is a scalar. Further, the requirement that $x$ contains at least one continuous variable prevents that $x$ as well as the scalar variable $ v = x'\beta_0$ for any vector $\beta_0$ have a finite support. Then $E(Y|X = x) = g(x'\beta)$ would impose only a finite number of restrictions  on $g(\cdot)$, leading to a infinite number of different choices for $g(\cdot)$ and $\beta_0$ that satisfy those restrictions. \fotenote{Note however that if $g(\cdot)$ is assumed to be increasing, we can identify bounds on the components of $\beta_0$. See Horowitz (2009) for more concrete examples.} In addition, \textit{location normalization} and \textit{scale normalization} requirements are necessary. Define the function $g^*$ by the relation $g^*(\gamma + v\delta) = g(v)$ for all $v$ in the support of $x´\beta_0$. Then
+\textit{Intuition}. We start with \textit(i) and by emphasizing that the elements of $x$ cannot suffer from multicollinearity, i.e., $Pr(x'\alpha = c)=1$ where $\alpha$ is a constant and $c$ is a scalar. Further, the requirement that $x$ contains at least one continuous variable with nonzero coefficient prevents that $x$ as well as the scalar variable $ v = x'\beta$ for any vector $\beta$ have a finite support. Then $E(Y|X = x) = g(x'\beta)$ would impose only a finite number of restrictions  on $g(\cdot)$, leading to a infinite number of different choices for $g(\cdot)$ and $\beta$ that satisfy those restrictions. \fotenote{Note however that if $g(\cdot)$ is assumed to be increasing, we can identify bounds on the components of $\beta$. See Horowitz (1998) for more concrete examples.} In addition, \textit{location normalization} and \textit{scale normalization} requirements are necessary. Define the function $g^*$ by the relation $g^*(\gamma + v\delta) = g(v)$ for all $v$ in the support of $x´\beta$. Then
 
 \begin{equation}
-E(Y|X = x) = g(x'\beta_0)
+E(Y|X = x) = g(x'\beta)
 \end{equation}
 
 and
 
 \begin{equation}
-E(Y|X = x) = g^*(\gamma + x'\beta_0\delta)
+E(Y|X = x) = g^*(\gamma + x'\beta\delta)
 \end{equation}
 
-The models (5) and (6) are observationally equivalent. Thus, $\beta_0$ and $g$ are not identified unless restrictions are imposed to uniquely specify $\gamma$ and $\delta$. The restriction on $\gamma$ is then a \textit{location normalization} and it can be satisfied by for example requiring $x$ not to include a constant. The restriction on $\delta$ is a \textit{scale normalization}. In this case we use the approach that assumes that the vector $\beta_0$ has unit length, i.e., $\norm{ \beta_0 } = 1$ using an Euclidean norm.
-As to what concerns part (ii), $g(\cdot)$ cannot be a constant function, as otherwise $\beta_0$ is not identified. What makes the identification of $E(Y|X = x)$ possible is that it remains constant if $x$ changes in a way such that $x'\beta_0$ stays constant. However $P(x'\beta_0 = c)=0$, for $x'\beta_0$ continuously distributed and for some constant $c$. For $g$ differentiable, the set of $x$ for which $x'\beta_0$ is within any specified nonzero distance of $c$ has nonzero probability for $c$ in the interior of the support of $x'\beta_0$ and we identify $\beta_0$ by the approximate constancy of $x'\beta_0$.
-The violation of (iii) might for example lead to the violation of \textit{location normalization} and \textit{scale normalization}. For a concrete example see Horowitz (2009).
+The models (5) and (6) are observationally equivalent. Thus, $\beta$ and $g$ are not identified unless restrictions are imposed to uniquely specify $\gamma$ and $\delta$. The restriction on $\gamma$ is then a \textit{location normalization} and it can be satisfied by for example requiring $x$ not to include a constant. The restriction on $\delta$ is a \textit{scale normalization}. In this case we use the approach that assumes that the vector $\beta$ has unit length, i.e., $\norm{ \beta } = 1$ using an Euclidean norm. % or one component of \beta =1 in Bruce
+As to what concerns part (ii), $g(\cdot)$ cannot be a constant function, as otherwise $\beta$ is not identified. What makes the identification of $E(Y|X = x)$ possible is that it remains constant if $x$ changes in a way such that $x'\beta$ stays constant. However $P(x'\beta = c)=0$, for $x'\beta$ continuously distributed and for some constant $c$. For $g$ differentiable, the set of $x$ for which $x'\beta$ is within any specified nonzero distance of $c$ has nonzero probability for $c$ in the interior of the support of $x'\beta$ and we identify $\beta$ by the approximate constancy of $x'\beta$.
+To understand why condition (iii) it is necessary consider a Single Index Model in which X as a continuous component $\X_1$ with support $\big[0,1\big]$, and one discrete component $X_2$ whose support is $\big{0,1}\big$. Assume $X_1$ and $X_2$ are independent, g is strictly increasing and non periodic and $\beta_1$ as a \textit{scale normalization}. Then $E(Y|(x_1,0)) = g(x1)$ and $E(Y|(x_1,1)) = g(x1 + \beta_2)$. If $\beta_2 > 1$ the support of $ X1 + \beta_2$ is disjoint from $\big[0,1\big]$ and $\beta_2$ becomes an intercept in the model $E(Y|(x_1,1))$. As an intercept term is not identified in the model, $\beta_2$ is not identified. However for $beta_2 >1$ the support of $X_1$ and $X_1 + \beta_2$. The $\beta_2$ can be identified by solving
+
+\begin{equation}
+E[Y| X = (x_1,0)] = g( x1 + \beta_2),
+\end{equation}
+
+for $x_1 \in \big[\beta_2,1\big]$. \footnote{Note that if g was periodic on $\big[\beta_2,1\big]$, (7) would have at least two solutions and $\beta_2$ would not be identified.}
 
 \section{Section about quotations} % (fold)
 \label{sec:section_about_quotations}
