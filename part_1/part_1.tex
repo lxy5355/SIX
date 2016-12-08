@@ -13,11 +13,8 @@
 % package for expectation signs
 \usepackage{amsmath,amssymb,mathtools,bm,etoolbox}
 %\documentclass[a4paper,11pt]{report} 
-<<<<<<< HEAD
-=======
 \usepackage{breqn}
 \usepackage{amsmath}
->>>>>>> isammarques
 \usepackage{enumitem} 
 \usepackage{amsmath, amsthm, amssymb}
 \usepackage{amsmath}
@@ -30,10 +27,7 @@
 \ohead[]{\today}
 \cfoot[]{\pagemark} 
 \setheadsepline[122mm]{0.3mm}
-<<<<<<< HEAD
-=======
 
->>>>>>> isammarques
 \begin{document}
 	\title{
 	%\begin{figure}[!ht]
@@ -79,46 +73,26 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 
 Semiparametric single index models are widely used in applied econometrics and applied to a variety of settings.
 In this section, we elaborate on the model's main features and contributions to the class of semiparametric models. Essentially, while the risk of mispecification is reduced relative to parametric models, it also avoids inconveniences of fully nonparametric models such as the curse of dimensionality, difficulty of interpretation, and the lack of extrapolation capability.
-<<<<<<< HEAD
-  
-\vspace{5mm} 
-
-Following Li and Racine (2007) notation, the model 
-
-\begin{eqnarray}
-Y = g(X'\beta_0) + \epsilon,  % with i =1,2 ..., n?, iid?
-=======
  
 \vspace{2mm} 
 Following Li and Racine (2007) notation, the model
  
 \begin{eqnarray}
 Y = g(X'\beta) + \epsilon,  % with i =1,2 ..., n?, iid?
->>>>>>> isammarques
 \end{eqnarray}
 
 where
 
 \begin{enumerate}
-<<<<<<< HEAD
-	\item Y is the dependent variable, $X\in \mathbb{R}^{q}$ is a vector of explanatory variables, $\beta_0$ is the q $\times$ 1 vector of unknown parameters; % Y in interval from 0 to 1?
-	\item $X'\beta_0$ is a single index because it is a scalar;
-=======
 	\item (X,Y) is an i.i.d. sample; %Xi??
 	\item Y is the dependent variable, $X\in \mathbb{R}^{q}$ is a vector of explanatory variables, $\beta$ is the q $\times$ 1 vector of unknown parameters; % Y in interval from 0 to 1?
 	\item $X'\beta$ is a single index because it is a scalar;
->>>>>>> isammarques
 	\item $ E(\epsilon|x) = 0 $;
 	\item $g: \mathbb{R} \rightarrow \mathbb{R} $ is not known; % dimensions?
 \end{enumerate}
 
 is a single index model.
-<<<<<<< HEAD
-
-\vspace{5mm} 
-=======
 \vspace{2mm}
->>>>>>> isammarques
 
 The above model is referred to as a linear single index model by Ichimura (1993). This model is semiparametric as the functional form of the linear index is specified, while $g(\cdot)$ is left unspecified and the conditional probability of $\epsilon$ conditioned on X is not specified except $ E(\epsilon|X) = 0 $. 
 
@@ -139,18 +113,9 @@ Parametric methods to estimate $\beta$ require assumptions on the distribution o
 
 \[ 
 \begin{split}
-<<<<<<< HEAD
-E(Y|x) & = \sum_{y=0,1} yP(y|x) \\
- & = 1 \times P(Y=1|x) + 0 \times P(Y=0|x) \\
- & = P(Y=1|x) \\ 
- & = P(\alpha + x'\beta + u_i > 0) \\
- & = P(u_i > -(\alpha + x'\beta)) \\
- & = 1 - P(u_i \leq -(\alpha + x'\beta)) \\
-=======
 E(Y|x) & = \sum_{y=0,1} yP(y|x) = 1 \times P(Y=1|x) + 0 \times P(Y=0|x) \\
  & = P(Y=1|x) = P(\alpha + x'\beta + u_i > 0) \\
  & = P(u_i > -(\alpha + x'\beta)) = 1 - P(u_i \leq -(\alpha + x'\beta)) \\
->>>>>>> isammarques
  & = 1 - F(-(\alpha + x'\beta))
 \end{split}
 \]
@@ -169,18 +134,6 @@ E(Y|X) = P(Y=1|x) = \frac{1}{1 + e^{\alpha + x'\beta}},
 
 From (3) and (4) we can see that different functional forms for $u$ lead to different functional forms for the conditional probability of $Y = 1$. Therefore, consistent parametric estimation of $E(Y|X) = P(Y=1|x)$ requires the \textit{correct} distribution specification of $u$. 
 
-<<<<<<< HEAD
-Generally speaking, model (1) contains many widely used parametric models that assume that $g$ is known up to a finite-dimensional parameter. If $g$ is the identity function we obtain a linear model. If $g$ is the cumulative normal or logistic distribution, we obtain a binary probit or logit model. Further, assuming $g(X'\beta_0) = E(Y|X=x)$ model (1) represents a tobit model:
-
-
-\[
-    Y = max (0, g(X'\beta_0) + \epsilon),
-\]
-
-where $\epsilon$ is an unobserved, normally distributed random variable that has mean zero and is independent of X. 
-
-Thereupon, model (1) with unknown $g(\cdot)$ leads to a more flexible version of parametric models while retaining many of its desirable features. As shown above, model (1) avoids the problem of error distribution mispecification. Further, the single index model achieves dimension reduction and avoids the curse of dimensionality: $g$ is estimated with the same convergence rate in probability as in the case when $X'\beta_0$ is observable and $\beta_0$ achieves the same convergence rate $n^{-\frac{1}{2}}$ as parametric models. Thus, the single index model achieves greater estimation precision than fully nonparametric estimation with multidimensional X and the same precision as a parametric model. Moreover, the assumptions of a single index model are weaker than those of a parametric model and stronger than those of a fully nonparametric model.  \footnote{However, the necessary assumptions for consistent parametric estimation can be relaxed. In particular, the single index model might have weaker assumptions than a fully parameterized model for structural economic models.} Single index models are often easy to compute and interpret. % and as accurate as a one-dimensional nonparametric mean regression for $g$.
-=======
 Generally speaking, model (1) contains many widely used parametric models that assume that $g$ is known up to a finite-dimensional parameter. Apart from the probit and logic model, if $g$ is the identity function we obtain a linear model. If $g(X'\beta) = E(Y|X=x)$ model (1) represents a tobit model with $Y = max (0, g(X'\beta) + \epsilon)$, where $\epsilon$ is an unobserved, normally distributed random variable that has mean zero and is independent of X. 
 
 %Further, assuming $g(X'\beta) = E(Y|X=x)$ model (1) represents a tobit model:
@@ -191,7 +144,6 @@ Generally speaking, model (1) contains many widely used parametric models that a
 %where $\epsilon$ is an unobserved, normally distributed random variable that has mean zero and is independent of X. 
 
 Hence, model (1) with unknown $g(\cdot)$ leads to a more flexible version of parametric models while retaining many of its desirable features. As shown above, model (1) avoids the problem of error distribution mispecification. Further, the single index model avoids the curse of dimensionality as there is only one nonparametric dimension: $\beta$ achieves the same convergence rate $n^{-\frac{1}{2}}$ as parametric models. Thus, the single index model achieves greater estimation precision than fully nonparametric estimation with multidimensional X and the same precision as a parametric model. Moreover, the assumptions of a single index model are weaker than those of a parametric model and stronger than those of a fully nonparametric model.  \footnote{However, the necessary assumptions for consistent parametric estimation can be relaxed. In particular, the single index model might have weaker assumptions than a fully parameterized model for structural economic models.} % and as accurate as a one-dimensional nonparametric mean regression for $g$.
->>>>>>> isammarques
 
 
 % Identification Racine p 251, why \alpha is not included p.251 racine
@@ -201,79 +153,37 @@ Hence, model (1) with unknown $g(\cdot)$ leads to a more flexible version of par
 \section{Identification} % (fold)
 \label{sec:Identification}
 
-<<<<<<< HEAD
-Model (1) implies $E(Y|x) = g(x'\beta)$. Thus Y depends on $x$ only through the linear combination $x'\beta_0$, and this relationship is characterized by the link function $g(\cdot)$. Before estimating  $\beta_0$ and $ g(\cdot)$, restrictions must be imposed to ensure identification of the semiparametric model:
-
-\[E(Y|x) = g(x'\beta_0) \]
-
-\vspace{5mm} 
-=======
 Model (1) implies $E(Y|x) = g(x'\beta)$. Thus Y depends on $x$ only through the linear combination $x'\beta$, and this relationship is characterized by the link function $g(\cdot)$. Before estimating  $\beta$ and $ g(\cdot)$, restrictions must be imposed to ensure identification of the semiparametric model:
 
 \[E(Y|x) = g(x'\beta) \]
 
 \vspace{2mm} 
->>>>>>> isammarques
 
 For the discussion of the identification strategy we follow Li and Racine (2007).
 
 
 \newtheorem{prop}{Proposition}
 
-<<<<<<< HEAD
-\begin{prop}
-(Identification of a Single Index Model). 
-Identification of $\beta_0$ and $g(\cdot)$ in model (1) requires:
-\begin{enumerate}[label=(\roman*)]
-\item x should not contain a constant and it must contain at least one continuous variable. Furthermore, $\norm{ \beta_0 } = 1$.
-\item $g(\cdot)$ is differentiable and it is not a constant function on the support of $x'\beta_0$.
-\item For the discrete components of $x$, varying the values of the discrete variables will not divide the support of $x'\beta_0$ into disjoint subsets.
-=======
 \begin{prop}[Identification of a Single Index Model] 
 Identification of $\beta$ and $g(\cdot)$ in model (1) requires:
 \begin{enumerate}[label=(\roman*)]
 \item x should not contain a constant and it must contain at least one continuous variable with nonzero coefficient. Furthermore, $\norm{ \beta} = 1$. % or one component of \beta =1
 \item $g(\cdot)$ is differentiable and it is not a constant function on the support of $x'\beta$.
 \item For the discrete components of $x$, varying the values of the discrete variables will not divide the support of $x'\beta$ into disjoint subsets.
->>>>>>> isammarques
 \end{enumerate}
 \end{prop}
 
 % Proofs?
 
-<<<<<<< HEAD
-\textit{Intuition}. We start with \textit(i) and by emphasizing that the elements of $x$ cannot suffer from multicollinearity, i.e., $Pr(x'\alpha = c)=1$ where $\alpha$ is a constant and $c$ is a scalar. Further, the requirement that $x$ contains at least one continuous variable prevents that $x$ as well as the scalar variable $ v = x'\beta_0$ for any vector $\beta_0$ have a finite support. Then $E(Y|X = x) = g(x'\beta)$ would impose only a finite number of restrictions  on $g(\cdot)$, leading to a infinite number of different choices for $g(\cdot)$ and $\beta_0$ that satisfy those restrictions. \fotenote{Note however that if $g(\cdot)$ is assumed to be increasing, we can identify bounds on the components of $\beta_0$. See Horowitz (2009) for more concrete examples.} In addition, \textit{location normalization} and \textit{scale normalization} requirements are necessary. Define the function $g^*$ by the relation $g^*(\gamma + v\delta) = g(v)$ for all $v$ in the support of $x´\beta_0$. Then
-
-\begin{equation}
-E(Y|X = x) = g(x'\beta_0)
-=======
 \textit{Intuition}. We start with \textit(i) and by emphasizing that the elements of $x$ cannot suffer from multicollinearity, i.e., $Pr(x'\alpha = c)=1$ where $\alpha$ is a constant and $c$ is a scalar. Further, the requirement that $x$ contains at least one continuous variable with nonzero coefficient prevents that $x$ as well as the scalar variable $ v = x'\beta$ for any vector $\beta$ have a finite support. Then $E(Y|X = x) = g(x'\beta)$ would impose only a finite number of restrictions  on $g(\cdot)$, leading to a infinite number of different choices for $g(\cdot)$ and $\beta$ that satisfy those restrictions. \fotenote{Note however that if $g(\cdot)$ is assumed to be increasing, we can identify bounds on the components of $\beta$. See Horowitz (1998) for more concrete examples.} In addition, \textit{location normalization} and \textit{scale normalization} requirements are necessary. Define the function $g^*$ by the relation $g^*(\gamma + v\delta) = g(v)$ for all $v$ in the support of $x´\beta$. Then
 
 \begin{equation}
 E(Y|X = x) = g(x'\beta)
->>>>>>> isammarques
 \end{equation}
 
 and
 
 \begin{equation}
-<<<<<<< HEAD
-E(Y|X = x) = g^*(\gamma + x'\beta_0\delta)
-\end{equation}
-
-The models (5) and (6) are observationally equivalent. Thus, $\beta_0$ and $g$ are not identified unless restrictions are imposed to uniquely specify $\gamma$ and $\delta$. The restriction on $\gamma$ is then a \textit{location normalization} and it can be satisfied by for example requiring $x$ not to include a constant. The restriction on $\delta$ is a \textit{scale normalization}. In this case we use the approach that assumes that the vector $\beta_0$ has unit length, i.e., $\norm{ \beta_0 } = 1$ using an Euclidean norm.
-As to what concerns part (ii), $g(\cdot)$ cannot be a constant function, as otherwise $\beta_0$ is not identified. What makes the identification of $E(Y|X = x)$ possible is that it remains constant if $x$ changes in a way such that $x'\beta_0$ stays constant. However $P(x'\beta_0 = c)=0$, for $x'\beta_0$ continuously distributed and for some constant $c$. For $g$ differentiable, the set of $x$ for which $x'\beta_0$ is within any specified nonzero distance of $c$ has nonzero probability for $c$ in the interior of the support of $x'\beta_0$ and we identify $\beta_0$ by the approximate constancy of $x'\beta_0$.
-The violation of (iii) might for example lead to the violation of \textit{location normalization} and \textit{scale normalization}. For a concrete example see Horowitz (2009).
-
-\section{Section about quotations} % (fold)
-\label{sec:section_about_quotations}
-
-
-\section{Section about references within the document} % (fold)
-\label{sec:section_about_references_within_the_document}
-
-
-=======
 E(Y|X = x) = g^*(\gamma + x'\beta\delta)
 \end{equation}
 
@@ -437,27 +347,18 @@ For $g_{i0}^{(1)} = g^{(1)}(X_i'\beta_0)$ and $v_{i0} = X_i - E[X_i'|X_i'\beta_0
 
 \section{Section about references within the document} % (fold)
 \label{sec:section_about_references_within_the_document}
->>>>>>> isammarques
 
 
 % section section_about_references_within_the_document (end)
 
 \subsection{Subsection within Foundations} % (fold)
 \label{sub:subsection_within_foundations}
-<<<<<<< HEAD
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-=======
 
->>>>>>> isammarques
 % subsection subsection_within_foundations (end)
 
 \subsection{Another subsection within Foundations} % (fold)
 \label{sub:another_subsection_within_foundations}
-<<<<<<< HEAD
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-=======
 
->>>>>>> isammarques
 % subsection another_subsection_within_foundations (end)
 
 
@@ -465,29 +366,17 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 
 \section{Methodology} % (fold)
 \label{sec:methodology}
-<<<<<<< HEAD
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua \citep{Dix04}. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-=======
 
->>>>>>> isammarques
 % section methodology (end)
 
 \section{Results} % (fold)
 \label{sec:results}
-<<<<<<< HEAD
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua \citep[p. 48]{Baddeley:1974ts}. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-=======
 
->>>>>>> isammarques
 % section results (end)
 
 \section{Conclusion} % (fold)
 \label{sec:conclusion}
-<<<<<<< HEAD
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-=======
 
->>>>>>> isammarques
 % section conclusion (end)
 
 
