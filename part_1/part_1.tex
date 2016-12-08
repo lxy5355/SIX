@@ -13,6 +13,8 @@
 % package for expectation signs
 \usepackage{amsmath,amssymb,mathtools,bm,etoolbox}
 %\documentclass[a4paper,11pt]{report} 
+\usepackage{breqn}
+\usepackage{amsmath}
 \usepackage{enumitem} 
 \usepackage{amsmath, amsthm, amssymb}
 \usepackage{amsmath}
@@ -71,11 +73,10 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 
 Semiparametric single index models are widely used in applied econometrics and applied to a variety of settings.
 In this section, we elaborate on the model's main features and contributions to the class of semiparametric models. Essentially, while the risk of mispecification is reduced relative to parametric models, it also avoids inconveniences of fully nonparametric models such as the curse of dimensionality, difficulty of interpretation, and the lack of extrapolation capability.
-  
-\vspace{5mm} 
-
-Following Li and Racine (2007) notation, the model 
-
+ 
+\vspace{2mm} 
+Following Li and Racine (2007) notation, the model
+ 
 \begin{eqnarray}
 Y = g(X'\beta) + \epsilon,  % with i =1,2 ..., n?, iid?
 \end{eqnarray}
@@ -91,8 +92,7 @@ where
 \end{enumerate}
 
 is a single index model.
-
-\vspace{5mm} 
+\vspace{2mm}
 
 The above model is referred to as a linear single index model by Ichimura (1993). This model is semiparametric as the functional form of the linear index is specified, while $g(\cdot)$ is left unspecified and the conditional probability of $\epsilon$ conditioned on X is not specified except $ E(\epsilon|X) = 0 $. 
 
@@ -113,12 +113,9 @@ Parametric methods to estimate $\beta$ require assumptions on the distribution o
 
 \[ 
 \begin{split}
-E(Y|x) & = \sum_{y=0,1} yP(y|x) \\
- & = 1 \times P(Y=1|x) + 0 \times P(Y=0|x) \\
- & = P(Y=1|x) \\ 
- & = P(\alpha + x'\beta + u_i > 0) \\
- & = P(u_i > -(\alpha + x'\beta)) \\
- & = 1 - P(u_i \leq -(\alpha + x'\beta)) \\
+E(Y|x) & = \sum_{y=0,1} yP(y|x) = 1 \times P(Y=1|x) + 0 \times P(Y=0|x) \\
+ & = P(Y=1|x) = P(\alpha + x'\beta + u_i > 0) \\
+ & = P(u_i > -(\alpha + x'\beta)) = 1 - P(u_i \leq -(\alpha + x'\beta)) \\
  & = 1 - F(-(\alpha + x'\beta))
 \end{split}
 \]
@@ -160,7 +157,7 @@ Model (1) implies $E(Y|x) = g(x'\beta)$. Thus Y depends on $x$ only through the 
 
 \[E(Y|x) = g(x'\beta) \]
 
-\vspace{5mm} 
+\vspace{2mm} 
 
 For the discussion of the identification strategy we follow Li and Racine (2007).
 
@@ -192,10 +189,10 @@ E(Y|X = x) = g^*(\gamma + x'\beta\delta)
 
 The models (5) and (6) are observationally equivalent. Thus, $\beta$ and $g$ are not identified unless restrictions are imposed to uniquely specify $\gamma$ and $\delta$. The restriction on $\gamma$ is then a \textit{location normalization} and it can be satisfied by for example requiring $x$ not to include a constant. The restriction on $\delta$ is a \textit{scale normalization}. In this case we use the approach that assumes that the vector $\beta$ has unit length, i.e., $\norm{ \beta } = 1$ using an Euclidean norm. % or one component of \beta =1 in Bruce
 As to what concerns part (ii), $g(\cdot)$ cannot be a constant function, as otherwise $\beta$ is not identified. What makes the identification of $E(Y|X = x)$ possible is that it remains constant if $x$ changes in a way such that $x'\beta$ stays constant. However $P(x'\beta = c)=0$, for $x'\beta$ continuously distributed and for some constant $c$. For $g$ differentiable, the set of $x$ for which $x'\beta$ is within any specified nonzero distance of $c$ has nonzero probability for $c$ in the interior of the support of $x'\beta$ and we identify $\beta$ by the approximate constancy of $x'\beta$.
-To understand why condition (iii) it is necessary consider a Single Index Model in which X as a continuous component $\X_1$ with support $\big[0,1\big]$, and one discrete component $X_2$ whose support is $\big{0,1}\big$. Assume $X_1$ and $X_2$ are independent, g is strictly increasing and non periodic and $\beta_1$ as a \textit{scale normalization}. Then $E(Y|(x_1,0)) = g(x1)$ and $E(Y|(x_1,1)) = g(x1 + \beta_2)$. If $\beta_2 > 1$ the support of $ X1 + \beta_2$ is disjoint from $\big[0,1\big]$ and $\beta_2$ becomes an intercept in the model $E(Y|(x_1,1))$. As an intercept term is not identified in the model, $\beta_2$ is not identified. However for $beta_2 >1$ the support of $X_1$ and $X_1 + \beta_2$. The $\beta_2$ can be identified by solving
+To understand why condition (iii) it is necessary consider a Single Index Model in which X as a continuous component $X_1$ with support $\big[0,1\big]$, and one discrete component $X_2$ whose support is $\{0,1\}$. Assume $X_1$ and $X_2$ are independent, g is strictly increasing and non periodic and $\beta_1$ as a \textit{scale normalization}. Then $E(Y|(x_1,0)) = g(x_1)$ and $E(Y|(x_1,1)) = g(x_1 + \beta_2)$. If $\beta_2 > 1$ the support of $ X_1 + \beta_2$ is disjoint from $\big[0,1\big]$ and $\beta_2$ becomes an intercept in the model $E(Y|(x_1,1))$. As an intercept term is not identified in the model, $\beta_2$ is not identified. However for $beta_2 >1$ the support of $X_1$ and $X_1 + \beta_2$. The $\beta_2$ can be identified by solving
 
 \begin{equation}
-E[Y| X = (x_1,0)] = g( x1 + \beta_2),
+E[Y| X = (x_1,0)] = g( x_1 + \beta_2),
 \end{equation}
 
 for $x_1 \in \big[\beta_2,1\big]$. \footnote{Note that if g was periodic on $\big[\beta_2,1\big]$, (7) would have at least two solutions and $\beta_2$ would not be identified.}
@@ -204,7 +201,7 @@ for $x_1 \in \big[\beta_2,1\big]$. \footnote{Note that if g was periodic on $\bi
 \section{Ichimura's estimation model} % (fold)
 \label{sec:Ichimura's estimation model}
 
-In this section we analyze Ichimura's (1993) estimation method for semiparametric models. Were $g(\cdot)$ to be known and a nonlinear least squares method could be used to estimate $\beta_0$ y minimizing:
+In this section we analyze Ichimura's (1993) estimation method for semiparametric models. Were $g(\cdot)$ to be known and a nonlinear least squares method could be used to estimate $\beta_0$ by minimizing:
 
 \begin{equation}
 \sum_{i = 1}\big[Y_i - g(X_i'\beta)\big]^2
@@ -222,7 +219,7 @@ G(X_i'\beta) \stackrel{def}{=} E(Yi|X_i'\beta) = E[g(X_i'\beta_0)|X_i'\beta]
 \hat{G}_{-i}(X_i'\beta) \equiv \hat{E}_{-i}(Yi|X_i'\beta) = \frac{(nh)^{-1}\sum_{j=1, j &\neqi }^{n}  Y_jK(\frac{X_j'\beta - X_i'\beta}{h})}{\hat{p}_{-i}(X_i'\beta)},
 \end{equation}
 
-where $\hat{p}_{-i}(X_i'\beta) = (nh)^{-1}\sum_{j=1,j &\neq i}^{n}  Y_jK(\frac{X_j'\beta - X_i'\beta}{h})}$.  The denominator $\hat{p}(X_i'\beta)$ is random and it becomes necessary to trim out small values. Let $p(x'\beta)$ denote de probability density function (PDF) of $X_i'\beta$ and $A_\delta$ and $A_n$ be the following sets:
+where $\hat{p}_{-i}(X_i'\beta) = (nh)^{-1}\sum_{j=1,j &\neq i}^{n}  Y_jK(\frac{X_j'\beta - X_i'\beta}{h})}$.  The denominator $\hat{p}(X_i'\beta)$ is random and it becomes necessary to trim out small values. Let $p(x'\beta)$ denote the probability density function (PDF) of $X_i'\beta$ and $A_\delta$ and $A_n$ be the following sets:
 
 \[ A_\delta = \{ x : p(x'\beta) \geq \delta, \text{ for all }  \beta \in \mathcal{B} \}
 \]
@@ -232,10 +229,10 @@ where $\delta > 0$ is a constant, $\mathcal{B} \in \mathbb{R}^q$, and
 \[ A_n = \{ x : \norm{x - x^*} \geq 2h \text{ for some } x^* \in A_\delta \}
 \]
 
-Then for $x \in A_\delta$ the denominator does not get too close to zero. The set $A_n$ where $\norm{\cdot}$ is a Euclidean norm is larger than $A_\delta$ but as $ n \rightarrow \infty $, $h \rightarrow 0$, $A_n$ shrinks to $A_\delta$. With this in mind choose $\beta$ by minimizing the objective function:
+Then for $x \in A_\delta$ the denominator does not get too close to zero. The set $A_n$ where $\norm{\cdot}$ is a Euclidean norm, is larger than $A_\delta$ but as $ n \rightarrow \infty $, $h \rightarrow 0$, $A_n$ shrinks to $A_\delta$. With this in mind it is possible to choose $\beta$ by minimizing the objective function:
 
 \begin{equation}
-S_n(\beta) = \sum_{i=1}^{n}  [Yi - \hat{G}_{-i}(X_i'\beta)]^2w(xi)\mathbf{1}{(Xi \in A_n)}
+S_n(\beta) = \sum_{i=1}^{n}  [Y_i - \hat{G}_{-i}(X_i'\beta)]^2w(x_i)\mathbf{1}{(X_i \in A_n)}
 \end{equation}
 
 where $\mathbf{1}{(Xi \in A_n)$ is a trimming function that ensures that the random denominator is positive with high probability, and $w(xi)$ is a nonnegative weighting function.
@@ -248,7 +245,7 @@ According to Li and Racine (2007), to derive the assymptotic distribution of $\h
 According to Ichimura (1993), under the assumptions:
 
 \begin{enumerate}
-	\item The set $A_\delta$ is compact, and the weight function $w(\cdot)$ is bounded and positive on $A_\delta$. Define the set $D_z = \{ z : z = x'\beta. \beta \in \mathcal{B}, x \in A_\delta}$. Letting $p(\cdot)$ denote the PDF of $z \in D_z$, $p(\cdot)$ is bounded below by a positive constant for all $z \in D_z$.
+	\item The set $A_\delta$ is compact, and the weight function $w(\cdot)$ is bounded and positive on $A_\delta$. Define the set $D_z = \{ z : z = x'\beta. \beta \in \mathcal{B}, x \in A_\delta\}$. Letting $p(\cdot)$ denote the PDF of $z \in D_z$, $p(\cdot)$ is bounded below by a positive constant for all $z \in D_z$.
 	\item $g(\cdot)$ and $p(\cdot)$ are three times differentiable with respect to $z = x´\beta$. The third derivatives are Lipschitz continuous uniformly over \mathcal{B} for all $z \in D_z$.
 	\item The kernel function is a bounded second order kernel having bounded support, is twice differentiable, and its second derivative is Lipschitz continuous.
 	\item $E|Y^m| < \infty$ for some $m \geq 3$. cov(Y|x) is bounded and bounded away from zero for all $x \in A_\delta$. $ln(h)/[nh^{3 + \frac{3}{m-1}}] \rightarrow 0$ and $nh^8 \rightarrow 0$ as $n \rightarrow \infty $ .
@@ -257,9 +254,7 @@ According to Ichimura (1993), under the assumptions:
 
 we have
 
-\[ \sqrt{n}(\hat{\beta} - \beta_0}) \rightarrow N(0,\Omega_I) \] in ditribution,
-
-where $\Omega_I = V^{-1}\Sigma V^{-1}$, and where
+\[ \sqrt{n}(\hat{\beta} - \beta_0}) \rightarrow N(0,\Omega_I) \] in ditribution, where $\Omega_I = V^{-1}\Sigma V^{-1}$, and
 
 \[\Sigma = E\{w(X_i)\sigma^2(X_i)(g_i^{(1)})^2(X_i - E_A(X_i|X_i'\beta_0)) \times (X_i - E_A(X_i|X_i'\beta_0))'\},\]
 
@@ -274,37 +269,79 @@ A consistent estimator of $\Omega_I$ is given by
 
 \[ \hat{\Omega}_I = \hat{V}^{-1}\hat{\Sigma}\hat{V}^{-1}, \]
 
-where $\hat{V} = n^{-1}\sum_{i} w(X_i)\hat{g}^{(1)}(X_i'\hat{\beta})(X_i - \hat{E}(X_i|X_i'\beta))(X_i - \hat{E}(X_i|X_i'\beta))'$, $\hat{\Sigma} = n^{-1}\sum_{i} w(X_i)\hat{u}_{i}^{2}\hat{g}^{(1)}(X_i'\hat{\beta})(X_i - \hat{E}(X_i|X_i'\beta))'$, $\hat{u}_i = Y_i - \hat{g}(X_i'\beta)$, $\hat{g}^{(1)}(X_i'\beta) = [\partial \hat{g}_{-i}/\partial \beta]|_{\beta=\hat{\beta}$, $\hat{g}_(-i)(X_i'\beta)$ is defined in (10), $\hat{E}(X_i|X_i'\beta)' = \sum_{j} X_jK((X_i - X_j')'\hat{\beta})/ \sum_{j}K((X_i - X_j)'\hat{\beta})$.
+where $\hat{V} = n^{-1}\sum_{i} w(X_i)\hat{g}^{(1)}(X_i'\hat{\beta})(X_i - \hat{E}(X_i|X_i'\beta))(X_i - \hat{E}(X_i|X_i'\beta))'$, $\hat{\Sigma} = n^{-1}\sum_{i} w(X_i)\hat{u}_{i}^{2}\hat{g}^{(1)}(X_i'\hat{\beta})(X_i - \hat{E}(X_i|X_i'\beta))'$, $\hat{u}_i = Y_i - \hat{g}(X_i'\beta)$, $\hat{g}^{(1)}(X_i'\beta) = [\partial \hat{g}_{-i}/\partial \beta]|_{\beta=\hat{\beta}$, $\hat{g}_(-i)(X_i'\beta)$ is defined in (10), $\hat{E}(X_i|X_i'\beta)' = \sum_{j} X_jK((X_i - X_j')'\hat{\beta})/ \sum_{j}K((X_i - X_j)'\hat{\beta}).$
 
-For what follows ignore the trimming set $A_\delta$, $w(\cdot)$ and assume that the minimization over $\beta$ is done over the shrinking set $\mathcal{B}_n = \{ \beta : \norm{\beta - \beta_0} \geq Cn^{-1/2}$ for some constant C > 0. This follows H\"ardle, Hall and Ichimura (1993). Further, according to Ichimura (1993) $\beta - \beta_0 = O(n^{-\frac{1}{2})$. With this in mind and $ h \in \{h : C_1n^{-\frac{1}{5}} \geq h \geq C_2n^{-\frac{1}{5}}$ for some $C_2 > C_1 > 0$ we can establish a proof for Theorem 1. First,
+For what follows ignore the trimming set $A_\delta$, $w(\cdot)$ and assume that the minimization over $\beta$ is done over the shrinking set $\mathcal{B}_n = \{ \beta : \norm{\beta - \beta_0} \geq Cn^{-1/2}$ for some constant $ C > 0$. This follows H\"ardle, Hall and Ichimura (1993). Further, according to Ichimura (1993) $\beta - \beta_0 = O(n^{-\frac{1}{2}})$. With this in mind and $ h \in \{h : C_1n^{-\frac{1}{5}} \geq h \geq C_2n^{-\frac{1}{5}}\}$ for some $C_2 > C_1 > 0$ we can establish a proof for Theorem 1. First,
 
-\[ S_n(\beta) = n^{-1} \sum_i[Y_i - \hat{G}_{-i}(X_i'\beta)]^2 = S_n(\beta) + T_n + o_p(1), \]
+\begin{equation}
+S_n(\beta) = n^{-1} \sum_i[Y_i - \hat{G}_{-i}(X_i'\beta)]^2 = S_n(\beta) + T_n + o_p(1),
+\end{equation}  
 
-where $S(\beta) = n^{-1} \sum_i [Y_i - G(X_i'\beta)]^2$, where
+where $S(\beta) = n^{-1} \sum_i [Y_i - G(X_i'\beta)]^2$, and
 
 \[ T_n = \sum_{i=1}^{n}[\hat{G}_{-i}(X_i'\beta_0) - g(X_i'\beta_0)]^2 \]
 
-is a term that is independent of $\beta$. In section 1 of the appendix we show that $S(\beta) = O(1)$. Thus minimizing $S_n(\beta)$ with respect to $\beta$ is asymptotically equivalent to minimizing $S(\beta)$. There we show that $\bar{\beta}$ satisfies the followinf first order condition:
+is a term that is independent of $\beta$. It can be shown that $S(\beta) = O(1)$. Thus minimizing $S_n(\beta)$ with respect to $\beta$ is asymptotically equivalent to minimizing $S(\beta)$. It can also be shown that $\hat{E}[Y_i|X_i'\beta]$ can be replaced with $E[g(X_i'\beta)|X_i'\beta]$. Then,
 
-\begin{equation}
-W_0(\bar{\beta} - \beta_0) = V_0 + (s.o.),
-\end{equation}
 
-where 
+\begin{align*}
+S_{n}(\beta) & =\frac{1}{n}\sum_{i}\{Y_i - \hat{G}_{-i}(X_i'\beta)\}^2 = \frac{1}{n}\sum_{i} \{g(X_i'\beta_0) + \epsilon_i - E[g(X_i'\beta_0)|X_i'\beta)]\}^2 \\
+		     & = \frac{1}{n}\sum_{i}\{g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta)]\}^2 \\
+		     & + 2\frac{1}{n}\sum_i\epsilon_i\{ X_i'\beta_0 - E[g(X_i'\beta_0)|X_i'\beta)]\} + \{ terms\: independent\:of\:\beta \} \\
+		     & + o_p(1)
+\end{align*}
 
-\[  W_0 = \sum_{i=1}^{n} u_i[f^{(1)}(X_i'\beta_0)]^2[X_i - E(X_i|X_i'\bet_0][X_i - E(X_i|X_i'\beta_0)]' \]
+Using a Taylor expansion at $\beta = \beta_0$ and with Ichimura's (1993) result that $\beta_0 - \beta = O(n^{-\frac{1}{2}})$:
 
-and
+\begin{align*}
+g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta)] & = g(X_i'\beta_0) - g(X_i'\beta) \\
+											 & - g^{(1)}(X_i'\beta)E[(\beta_0 - \beta)X_i'|X_i'\beta] + O(n^{-1}) \\
+				                              & = g^{(1)}(X_i'\beta)( X_i - E[X_i'|X_i'\beta])(\beta_0 - \beta) + O(n^{-1})
+\end{align*}
 
-\[ V_0 = \sum_{i=1}^{n} u_if^{(1)}(X_i'\beta_0)[X_i - E(X_i|X_i'\beta_0)\].
+Hence, for $g_{i}^{(1)} = g^{(1)}(X_i'\beta)$ and $v_i = X_i - E[X_i'|X_i'\beta]$:
 
-Then, by the standard law of large numbers and a central limit theorem (CLT) argument, we have
+\begin{align*}
+S_{n}(\beta) & = (\beta_0 - \beta)'[\frac{1}{n}\sum_i(g_{i}^{(1)})^2v_iv_i'](\beta_0 - \beta)+ 2\frac{1}{n}\sum_i\epsilon_ig_{i}^{(1)}v_i'(\beta_0 - \beta) \\
+			 & + \{terms\:independent\:of \:\beta\} + o_p(n^{-1}) 
+\end{align*}
 
-\begin{equation}
-\sqrt{n}(\bar{\beta} - \beta_0) = (W_0/n)^{-1}n^{-\frac{1}{2}}V_0 + o_p(1) \overset{d}{\to} N(0,\Sigma_0),
-\end{equation}
+Minimizing in order to $\beta$ and ignoring terms independent of $\beta$ and $o_p(n^{-1})$:
 
-where $\Sigma_0$ is the same as $\Sigma_I$, except that for the former $W(X_i) = 1$.
+\begin{align*}
+\sqrt{n}(\beta_0 - \beta) & = (\frac{1}{n}\sum_i(g_{i}^{(1)})^2v_iv_i')^{-1}\frac{1}{\sqrt{n}}\sum_i\epsilon_i g_{i}^{(1)}v_i \\
+     					  & = (\frac{1}{n}\sum_i(g_{i}^{(1)})^2v_{i0}v_{i0}')^{-1}\frac{1}{\sqrt{n}}\sum_i\epsilon_i g_{i0}^{(1)}v_{i0} + o_p(1)
+\end{align*}
+
+For $g_{i0}^{(1)} = g^{(1)}(X_i'\beta_0)$ and $v_{i0} = X_i - E[X_i'|X_i'\beta_0]$. With this in mind, the Central Limit Theorem (CLT) and Law of Large Numbers (LLN) we obtain the result from Theorem 1 if we replace $w(X_i) = 1$ there.
+
+
+
+
+
+
+
+
+
+
+%\begin{equation}
+%W_0(\bar{\beta} - \beta_0) = V_0 + (s.o.),
+%\end{equation}
+
+
+%\[  W_0 = \sum_{i=1}^{n} [g^{(1)}(X_i'\beta_0)]^2[X_i - E(X_i|X_i'\bet_0][X_i - E(X_i|X_i'\beta_0)]' \]
+
+%and
+
+%\[ V_0 = \sum_{i=1}^{n} u_ig^{(1)}(X_i'\beta_0)[X_i - E(X_i|X_i'\beta_0).\]
+
+%Then, by the standard law of large numbers and a central limit theorem (CLT) argument, we have
+
+%\begin{equation}
+%\sqrt{n}(\bar{\beta} - \beta_0) = (W_0/n)^{-1}n^{-\frac{1}{2}}V_0 + o_p(1) \overset{d}{\to} N(0,\Sigma_0),
+%\end{equation}
+
+%where $\Sigma_0$ is the same as $\Sigma_I$, except that for the former $W(X_i) = 1$.
 
 
 
