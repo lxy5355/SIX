@@ -46,7 +46,10 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/master
 .*
 *.aux
 *.bbl
