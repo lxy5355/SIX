@@ -296,25 +296,21 @@ Hence, for $g_{i}^{(1)} = g^{(1)}(X_i'\beta)$ and $v_i = X_i - E[X_i'|X_i'\beta]
 
 \begin{align*}
 S_{n}(\beta) & = (\beta_0 - \beta)'[\frac{1}{n}\sum_i(g_{i}^{(1)})^2v_iv_i'](\beta_0 - \beta)+ 2\frac{1}{n}\sum_i\epsilon_ig_{i}^{(1)}v_i'(\beta_0 - \beta) \\
-			 & + \{terms\:independent\:of \:\beta\} + o_p(n^{-1}) 
+			 & + \{terms\:independent\:of \:\beta\} + o_p(n^{-1}). 
 \end{align*}
 
 Minimizing in order to $\beta$ and ignoring terms independent of $\beta$ and $o_p(n^{-1})$:
 
 \begin{align*}
 \sqrt{n}(\beta_0 - \beta) & = (\frac{1}{n}\sum_i(g_{i}^{(1)})^2v_iv_i')^{-1}\frac{1}{\sqrt{n}}\sum_i\epsilon_i g_{i}^{(1)}v_i \\
-     					  & = (\frac{1}{n}\sum_i(g_{i}^{(1)})^2v_{i0}v_{i0}')^{-1}\frac{1}{\sqrt{n}}\sum_i\epsilon_i g_{i0}^{(1)}v_{i0} + o_p(1)
+     					  & = (\frac{1}{n}\sum_i(g_{i}^{(1)})^2v_{i0}v_{i0}')^{-1}\frac{1}{\sqrt{n}}\sum_i\epsilon_i g_{i0}^{(1)}v_{i0} + o_p(1).
 \end{align*}
 
 For $g_{i0}^{(1)} = g^{(1)}(X_i'\beta_0)$ and $v_{i0} = X_i - E[X_i'|X_i'\beta_0]$. With this in mind, the Central Limit Theorem (CLT) and Law of Large Numbers (LLN) we obtain the result from Theorem 1 if we replace $w(X_i) = 1$ there.
 
 
 %Recall when we described identiÖcation that we required the dimension of Xi to be 2 or larger.
-Suppose that Xi is one-dimensional.
-
-
-
-
+%Suppose that Xi is one-dimensional.
 
 
 
@@ -352,12 +348,11 @@ For a WNLS estimator of $\beta_0$ with weight function $w(x) = \frac{1}{\sigma^2
 \end{equation}
 
 
-This bound is achieved by the semiparametric WNLS estimator if $\sigma^2(X)$ is known or independent of X. The assumption that $X \in A_{\delta}$ can be replaced by the assumption that $A_{\delta}$ grows very slowly as $n$ increases. When $\sigma^2(X)$ is unknown it can be replaced by a consistent estimator, say $s_{n}^{2}(x)$. If $w(X) = \frac{1}{s_{n}^{2}(x)}$ in the semiparametric WNLS estimator, the asymptotic efficiency bound will be reached. Thus, an asymptotic efficient estimator of $\beta_0$ is obtained even when $\sigma^2(X)$ is unknown. This consistent estimator can be obtained with a two-step procedure. First, estimate $\beta_0$ by using semiparametric WNLS with $w(x) = 1$. We obtain an estimator that is $n^{\frac{1}{2}}$-consistent and asymptotically normal but inefficient. The second step uses $\hat{w}_i(x) = \frac{1}{\hat{\sigma}_{i}^{2}}$, where $\hat{\epsilon}_i = y_i - \hat{g}(x_i'\hat{\beta_0}$ and $\hat{\beta_0}$ is obtained from semiparametric WNLS on the first step and  $\hat{\sigma}_{i}^{2}$ is defined by Robinson (1987) as $\hat{\sigma}_{i}^{2} = \frac{1}{k}\sum_{j=1}^{N} \mathbf{1}{(x_j \in N_k(x_i))}\hat{\epsilon}_{j}^{2}$.
+This bound is achieved by the semiparametric WNLS estimator if $\sigma^2(X)$ is known or independent of X. The assumption that $X \in A_{\delta}$ can be replaced by the assumption that $A_{\delta}$ grows very slowly as $n$ increases. When $\sigma^2(X)$ is unknown it can be replaced by a consistent estimator, say $s_{n}^{2}(x)$. If $w(X) = \frac{1}{s_{n}^{2}(x)}$ in the semiparametric WNLS estimator, the asymptotic efficiency bound will be reached. Thus, an asymptotic efficient estimator of $\beta_0$ is obtained even when $\sigma^2(X)$ is unknown. This consistent estimator can be obtained with a two-step procedure. First, estimate $\beta_0$ by using semiparametric WNLS with $w(x) = 1$. We obtain an estimator that is $n^{\frac{1}{2}}$-consistent and asymptotically normal but inefficient. The second step uses $\hat{w}_i(x) = \frac{1}{\hat{\sigma}_{i}^{2}}$, where  $\hat{\sigma}_{i}^{2}$ is defined by Robinson (1987) as 
+\[\hat{\sigma}_{i}^{2} = \frac{1}{k}\sum_{j=1}^{N} \mathbf{1}{(x_j \in N_k(x_i))}\hat{\epsilon}_{j}^{2} ,\]
 
+and $\hat{\epsilon}_i = y_i - \hat{g}(x_i'\hat{\beta_0})$, with $\hat{\beta_0}$ obtained from semiparametric WNLS on the first step.
 
-
-\subsection{Bandwidth Selection} % (fold)
-\label{sub:Bandwidth Selection}
 
 
 \section{Klein and Spady's Binary Choice Estimator} % (fold)
@@ -367,7 +362,7 @@ In this section we analyze Klein and Spady's (1993) semiparametric binary choice
 \begin{equation}
 Y_i =  \mathbf{1}{(X_i'\beta \geq \epsilon_i)}
 \end{equation}
-Assume $\epsilon_i$ is an error with distribution function $g$ and independent of $X_i$. For known $g$, the asymptotically efficient estimator of $\beta$ suggested is a maximum likelihood estimator (MLE). The estimated $log-likelihood$ function is
+Assume $\epsilon_i$ is an error with distribution function $g$ and independent of $X_i$. For known $g$, the asymptotically efficient estimator of $\beta$ is a maximum likelihood estimator (MLE). The estimated $log-likelihood$ function is
 
 \begin{equation}
 \mathcal{L}(\beta) = \sum_i (1 - Y_i)ln( 1 - g(X_i'\beta)) + \sum Y_iln[g(X_i'\beta)],
@@ -377,16 +372,16 @@ where
 
 \begin{enumerate}
 		\item X is a vector of exogenous variables, $\beta$ is an unknown paramenter vector and $\epsilon$ is a random disturbance;
-		\item Observations $\{x_i,y_i\}$ are i.i.d.
+		\item Observations $\{x_i,y_i\}$ are i.i.d..
 \end{enumerate}
 
-The function $\mathcal{L}(\beta)$ is analogous to $S_n(\beta,g)$. Similiarty to Ichimura's method, Klein and Spady suggest replacing $g$ with the leave-one-out NW from equation (8). With this in mind, we get obtain instead
+The function $\mathcal{L}(\beta)$ is analogous to $S_n(\beta,g)$. Similiarly to Ichimura's method, Klein and Spady suggest replacing $g$ with the leave-one-out NW from equation (8). With this in mind, we get obtain instead
 
 \begin{equation}
 \mathcal{L}_n(\beta) = \sum_i \{ (1 - Y_i)ln( 1 - \hat{g}_{-i}(X_i'\beta)) + \sum Y_iln[\hat{g}_{-i}(X_i'\beta)]\}\tau_{i},
 \end{equation}
 
-where the trimming function satisfies
+where the trimming function satisfies Proposition 4.1.:
 
 \newtheorem{proposition}{Proposition}[section]
 \begin{prop}[Trimming function for Klein and Spady's model]
@@ -400,11 +395,11 @@ For a binary choice model, it is known that $Var(Y|X = x) = g(x'\beta)[1 - g(x'\
 
 \[ \frac{\partial g(z,\beta)}{\partial \beta} = g^{(1)}(z)\{x - E[X|X'\beta = z, X \in A_{\delta}]\}.\]
 
-By substituting this result in equation (11) and $\Omega_I$ in Theorem 3.1. we can see that the covariance matrix of the matrix of the asymptotic distribution of the semiparametric WNLS estimator of $\beta$ is the same whether the estimator of $g$ is weighted or not. One can easily show that 
+By substituting this result in equation (11) and $\Omega_I$ in Theorem 3.1., we can see that the covariance matrix of the matrix of the asymptotic distribution of the semiparametric WNLS estimator of $\beta$ is the same whether the estimator of $g$ is weighted or not. One can easily show that 
 
-\[ P \left\{ \frac{1}{n} \sum_i \tau_{i} \frac{Y_i - \hat{g}_{-i}(X_i'\beta, \beta)}{\hat{g}_{-i}(X_i'\beta)(1 - \hat{g}_{-i}(X_i'\beta))} \frac{\partial\hat{g}_{-i}(X_i'\beta)}{\partial \beta} \right \} = 0  \text{ as } n \rightarrow \infty \]
+\[ \frac{1}{n} \sum_i \tau_{i} \frac{Y_i - \hat{g}_{-i}(X_i'\beta, \beta)}{\hat{g}_{-i}(X_i'\beta)(1 - \hat{g}_{-i}(X_i'\beta))} \frac{\partial\hat{g}_{-i}(X_i'\beta)}{\partial \beta} = 0 \]
 
-This is the same as the first-order condition for semiparametric WNLS estimaton of $\beta$ with the estimated weight function
+with probability approaching 1 as $n \rightarrow \infty$.This is the same as the first-order condition for semiparametric WNLS estimaton of $\beta$ with the estimated weight function
 \begin{align*}
 w(x) & = \{ \hat{g}_{-i}(X_i'\beta, \beta)[ 1 - \hat{g}_{-i}(X_i'\beta, \beta)]\}^{-1} = \{ \hat{g}(X_i'\beta, \beta)[ 1 - \hat{g}(X_i'\beta, \beta)]^{-1} \\
 	 & + o_p(1) = [Var(Y|X = x)]^{-1} + o_p(1)
@@ -421,33 +416,8 @@ where \[ \Omega_{KS} = \left[ E \left\{ \frac{\partial P}{\partial \beta}\left(\
 where $ P = P( \epsilon < x'\beta) = F_{\epsilon|x}(x'\beta)$, where $F_{\epsilon|x}(\cdot)$ is the CDF of $\epsilon_i$ conditional on $X_i = x$. This semiparametric estimator is therefore asymptotically as efficient as the parametric NLS estimator based on the known true functional form $g(\cdot)$.\footnote{This is only true for "first order efficiency", i.e., when $E(X_i|X_i'\beta)$ is linear in $X_i'\beta$.}
 % section section_about_references_within_the_document (end)
 
-\subsection{Subsection within Foundations} % (fold)
-\label{sub:subsection_within_foundations}
-
-% subsection subsection_within_foundations (end)
-
-\subsection{Another subsection within Foundations} % (fold)
-\label{sub:another_subsection_within_foundations}
-
-% subsection another_subsection_within_foundations (end)
-
-
-% section foundations (end)
-
-\section{Methodology} % (fold)
-\label{sec:methodology}
-
-% section methodology (end)
-
-\section{Results} % (fold)
-\label{sec:results}
-
-% section results (end)
-
-\section{Conclusion} % (fold)
-\label{sec:conclusion}
-
-% section conclusion (end)
+\section{Bandwidth Selection} % (fold)
+\label{sec:Bandwidth Selection}
 
 
 \newpage 
