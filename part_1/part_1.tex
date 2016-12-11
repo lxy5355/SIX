@@ -395,11 +395,11 @@ For a binary choice model, it is known that $Var(Y|X = x) = g(x'\beta)[1 - g(x'\
 
 \[ \frac{\partial g(z,\beta)}{\partial \beta} = g^{(1)}(z)\{x - E[X|X'\beta = z, X \in A_{\delta}]\}.\]
 
-By substituting this result in equation (11) and $\Omega_I$ in Theorem 3.1., we can see that the covariance matrix of the matrix of the asymptotic distribution of the semiparametric WNLS estimator of $\beta$ is the same whether the estimator of $g$ is weighted or not. One can easily show that 
+By substituting this result in equation (11) and $\Omega_I$ in Theorem 3.1., it becomes clear that the covariance matrix of the asymptotic distribution of the semiparametric WNLS estimator of $\beta$ is the same whether the estimator of $g$ is weighted or not. Futhermore, by differentiating the right-hand side of equation (14) we get 
 
 \[ \frac{1}{n} \sum_i \tau_{i} \frac{Y_i - \hat{g}_{-i}(X_i'\beta, \beta)}{\hat{g}_{-i}(X_i'\beta)(1 - \hat{g}_{-i}(X_i'\beta))} \frac{\partial\hat{g}_{-i}(X_i'\beta)}{\partial \beta} = 0 \]
 
-with probability approaching 1 as $n \rightarrow \infty$.This is the same as the first-order condition for semiparametric WNLS estimaton of $\beta$ with the estimated weight function
+with probability approaching 1 as $n \rightarrow \infty$. This is the same as the first-order condition for semiparametric WNLS estimaton of $\beta$ with the estimated weight function
 \begin{align*}
 w(x) & = \{ \hat{g}_{-i}(X_i'\beta, \beta)[ 1 - \hat{g}_{-i}(X_i'\beta, \beta)]\}^{-1} = \{ \hat{g}(X_i'\beta, \beta)[ 1 - \hat{g}(X_i'\beta, \beta)]^{-1} \\
 	 & + o_p(1) = [Var(Y|X = x)]^{-1} + o_p(1)
