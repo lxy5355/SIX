@@ -179,12 +179,12 @@ and
 E(Y|X = x) = g^*(\gamma + x'\beta_0\delta)
 \end{equation}
 
-The models (3) and (4) are observationally equivalent. Thus, $\beta_0$ and $g$ are not identified unless restrictions are imposed to uniquely specify $\gamma$ and $\delta$. The restriction on $\gamma$ is then a \textit{location normalization} and it can be satisfied by for example requiring $x$ not to include a constant. The restriction on $\delta$ is a \textit{scale normalization}. In this case we use the approach that assumes that the vector $\beta_0$ has unit length, i.e., $\norm{ \beta_0 } = 1$ using an Euclidean norm. \footnote{This implies that X must have at least 2 dimensions. Otherwise $\beta$ is simply normalized to 1 and a one-dimensional nonparametric model $E(y|x) = g(x)$ with no semiparametric part is obtained instead.} % or one component of \beta =1 in Bruce
+The models (3) and (4) are observationally equivalent. Thus, $\beta_0$ and $g$ are not identified unless restrictions are imposed to uniquely specify $\gamma$ and $\delta$. The restriction on $\gamma$ is then a \textit{location normalization} and it can be satisfied by for example requiring $x$ not to include a constant. The restriction on $\delta$ is a \textit{scale normalization}. In this case we use the approach that assumes that the vector $\beta_0$ has unit length, i.e., $\norm{ \beta_0 } = 1$ using an Euclidean norm. \footnote{This implies that X must have at least 2 dimensions. Otherwise $\beta$ is simply normalized to 1 and a one-dimensional nonparametric model $E(y|x) = g(x)$ with no semiparametric part is obtained instead.}. Alternatively, we could set one component of $\beta$ to 1. % or one component of \beta =1 in Bruce
 As to what concerns part (ii), $g(\cdot)$ cannot be a constant function, as otherwise $\beta_0$ is not identified. What makes the identification of $E(Y|X = x)$ possible is that it remains constant if $x$ changes in a way such that $x'\beta_0$ stays constant. However $P(x'\beta_0 = c)=0$, for $x_0'\beta$ continuously distributed and for some constant $c$. For $g$ differentiable, the set of $x$ for which $x'\beta_0$ is within any specified nonzero distance of $c$ has nonzero probability for $c$ in the interior of the support of $x'\beta_0$ and we identify $\beta_0$ by the approximate constancy of $x'\beta_0$.
-To understand why condition (iii) it is necessary consider a Single Index Model in which X as a continuous component $X_1$ with support $\big[0,1\big]$, and one discrete component $X_2$ whose support is $\{0,1\}$. Assume $X_1$ and $X_2$ are independent, g is strictly increasing and non periodic and $\beta_1$ as a \textit{scale normalization}. Then $E(Y|(x_1,0)) = g(x_1)$ and $E(Y|(x_1,1)) = g(x_1 + \beta_2)$. If $\beta_2 > 1$ the support of $ X_1 + \beta_2$ is disjoint from $\big[0,1\big]$ and $\beta_2$ becomes an intercept in the model $E(Y|(x_1,1))$. As an intercept term is not identified in the model, $\beta_2$ is not identified. However for $\beta_2 >1$ the support of $X_1$ and $X_1 + \beta_2$. The $\beta_2$ can be identified by solving
+To understand why condition (iii) it is necessary consider a Single Index Model in which X as a continuous component $X_1$ with support $\big[0,1\big]$, and one discrete component $X_2$ whose support is $\{0,1\}$. Assume $X_1$ and $X_2$ are independent, g is strictly increasing and non periodic and set $\beta_1 = 1$ as a \textit{scale normalization}. Then $E(Y|(x_1,0)) = g(x_1)$ and $E(Y|(x_1,1)) = g(x_1 + \beta_2)$. For the first case where $X_2 = 0$ the function g is identified on $\big[0,1\big]$. However, for $\beta_2 > 1$ the support of $ X_1 + \beta_2$ is disjoint from $\big[0,1\big]$ and $\beta_2$ is an intercept in the model for $E(Y|(x_1,1))$. Thus, it is not possible to identify $\beta_2$. However, for $\beta_2 < 1$ the support of $X_1$ and $X_1 + \beta_2$ overlap. In particular for the subset $\{X: X_1 \in [ \beta_2, 1] \wedge X_2 = 0\}$, $g(x_1 + \beta_2) = g(v)$ for some $v \in [0,1]$. Then, $g(v)$ can be identified for $v \in [\beta_2, 1]$ by observations of $X_1$ for which $X_2 = 0$. Therefore, $\beta_2$ can be identified by solving
 
 \begin{equation}
-E[Y| X = (x_1,0)] = g( x_1 + \beta_2),
+E[Y| X = (x_1,0)] = g(x_1 + \beta_2),
 \end{equation}
 
 for $x_1 \in \big[\beta_2,1\big]$. \footnote{Note that if g was periodic on $\big[\beta_2,1\big]$, (7) would have at least two solutions and $\beta_2$ would not be identified.}
@@ -237,7 +237,7 @@ According to Li and Racine (2007), to derive the assymptotic distribution of $\h
 According to Ichimura (1993), under the assumptions:
 
 \begin{enumerate}
-	\item The set $A_\delta$ is compact, and the weight function $w(\cdot)$ is bounded and positive on $A_\delta$. Define the set $D_z = \{ z : z = x'\beta. \beta \in \mathcal{B}$,$ x \in A_\delta\}$. Letting $p(\cdot)$ denote the PDF of $z \in D_z$, $p(\cdot)$ is bounded below by a positive constant for all $z \in D_z$.
+	\item The set $A_\delta$ is compact, and the weight function $w(\cdot)$ is bounded and positive on $A_\delta$. Define the set $D_z = \{ z : z = x'\beta, \beta \in \mathcal{B}$,$ x \in A_\delta\}$. Letting $p(\cdot)$ denote the PDF of $z \in D_z$, $p(\cdot)$ is bounded below by a positive constant for all $z \in D_z$.
 	\item $g(\cdot)$ and $p(\cdot)$ are three times differentiable with respect to $z = x'\beta$. The third derivatives are Lipschitz continuous uniformly over $\mathcal{B}$ for all $z \in D_z$.
 	\item The kernel function is a bounded second order kernel having bounded support, is twice differentiable, and its second derivative is Lipschitz continuous.
 	\item $E|Y^m| < \infty$ for some $m \geq 3$. cov(Y|x) is bounded and bounded away from zero for all $x \in A_\delta$. $ln(h)/[nh^{3 + \frac{3}{m-1}}] \rightarrow 0$ and $nh^8 \rightarrow 0$ as $n \rightarrow \infty $ .
@@ -262,26 +262,15 @@ A consistent estimator of $\Omega_I$ is given by
 \[ \hat{\Omega}_I = \hat{V}^{-1}\hat{\Sigma}\hat{V}^{-1}, \]
 
 where $\hat{V} = n^{-1}\sum_{i} w(X_i)\hat{g}^{(1)}(X_i'\hat{\beta})(X_i - \hat{E}(X_i|X_i'\beta))(X_i - \hat{E}(X_i|X_i'\beta))', \hat{\Sigma} = n^{-1}\sum_{i} w(X_i)\hat{\epsilon}_{i}^{2}\hat{g}^{(1)}(X_i'\hat{\beta})(X_i - \hat{E}(X_i|X_i'\beta))', \hat{\epsilon}_i = Y_i - \hat{g}(X_i'\beta), \hat{g}^{(1)}(X_i'\beta) \linebreak
-= [\partial \hat{g}_{-i}/\partial \beta]|_{\beta=\hat{\beta}}$, $\hat{g}_{-i}(X_i'\beta)$ is defined in (10), $\hat{E}(X_i|X_i'\beta)' = \sum_{j} X_jK((X_i - X_j')'\hat{\beta})/ \sum_{j}K((X_i - X_j)'\hat{\beta}).$
+= [\partial \hat{g}_{-i}/\partial \beta]|_{\beta=\hat{\beta}}$, $\hat{g}_{-i}(X_i'\beta)$ is defined in (10), $\hat{E}(X_i|X_i'\beta)' = \sum_{j} X_jK((X_i - X_j')'\hat{\beta})/ .\sum_{j}K((X_i - X_j)'\hat{\beta}).$
 
-For what follows ignore the trimming set $A_\delta$, $w(\cdot)$ and assume that the minimization over $\beta$ is done over the shrinking set $\mathcal{B}_n = \{ \beta : \norm{\beta - \beta_0} \geq Cn^{-1/2}$ for some constant $ C > 0$. This follows H\"ardle, Hall and Ichimura (1993). Further, according to Ichimura (1993) $\beta - \beta_0 = O(n^{-\frac{1}{2}})$. With this in mind and $ h \in \{h : C_1n^{-\frac{1}{5}} \geq h \geq C_2n^{-\frac{1}{5}}\}$ for some $C_2 > C_1 > 0$ we can establish a proof for Theorem 1. First,
+For what follows ignore the trimming set $A_\delta$ and $w(\cdot)$, Further, according to Ichimura (1993) $\beta - \beta_0 = O(n^{-\frac{1}{2}})$. 
 
-\begin{equation}
-S_n(\beta) = n^{-1} \sum_i[Y_i - \hat{G}_{-i}(X_i'\beta)]^2 = S_n(\beta) + T_n + o_p(1),
-\end{equation}  
 
-where $S(\beta) = n^{-1} \sum_i [Y_i - G(X_i'\beta)]^2$, and
-
-\[ T_n = \sum_{i=1}^{n}[\hat{G}_{-i}(X_i'\beta_0) - g(X_i'\beta_0)]^2 \]
-
-is a term that is independent of $\beta$. It can be shown that $S(\beta) = O(1)$. Thus minimizing $S_n(\beta)$ with respect to $\beta$ is asymptotically equivalent to minimizing $S(\beta)$. It can also be shown that $\hat{E}[Y_i|X_i'\beta]$ can be replaced with $E[g(X_i'\beta)|X_i'\beta]$. Then,
-
+%and assume that the minimization over $\beta$ is done over the shrinking set $\mathcal{B}_n = \{ \beta : \norm{\beta - \beta_0} \geq Cn^{-1/2}$ for some constant $ C > 0$. This follows H\"ardle, Hall and Ichimura (1993). With this in mind and $ h \in \{h : C_1n^{-\frac{1}{5}} \geq h \geq C_2n^{-\frac{1}{5}}\}$ for some $C_2 > C_1 > 0$ we can establish a proof for Theorem 1. First,
 
 \begin{align*}
-S_{n}(\beta) & =\frac{1}{n}\sum_{i}\{Y_i - \hat{G}_{-i}(X_i'\beta)\}^2 = \frac{1}{n}\sum_{i} \{g(X_i'\beta_0) + \epsilon_i - E[g(X_i'\beta_0)|X_i'\beta)]\}^2 \\
-		     & = \frac{1}{n}\sum_{i}\{g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta)]\}^2 \\
-		     & + 2\frac{1}{n}\sum_i\epsilon_i\{ X_i'\beta_0 - E[g(X_i'\beta_0)|X_i'\beta)]\} + \{ terms\: independent\:of\:\beta \} \\
-		     & + o_p(1)
+S_{n}(\beta) & = \frac{1}{n}\sum_i \{ Y_i - \hat{G}_i(X_i'\beta)\}^2 = \frac{1}{n}\sum_i\{Y_i - \hat{G}_i(X_i'\beta) + \hat{G}_i(X_i'\beta_0) - \hat{G}_i(X_i'\beta_0) \}^2 = \frac{1}{n} \sum_i \{Y_i - G(X_i'\beta) + o_p(1) + \hat{G}_i(X_i'\beta_0) - \hat{G}_i(X_i'\beta_0) \}^2 = \sum_i \{ Y_i - G(X_i'\beta) + \hat{G}_i(X_i'\beta_0) - g(X_i'\beta_0) + o_p(1) \}^2 = \frac{1}{n} \sum_i \{ g(X_i'\beta_0) + \epsilon_i - G(X_i'\beta) + \hat{G}_i(X_i'\beta_0) - g(X_i'\beta_0) + o_p(1) \}^2 = \frac{1}{n} \sum_i \{ \epsilon_i + \hat{G}_i(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta] + o_p(1) \}^2 = \sum_i \{epsilon_i + g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta] + o_p(1)\}^2 = 
 \end{align*}
 
 Using a Taylor expansion at $\beta = \beta_0$ and with Ichimura's (1993) result that $\beta_0 - \beta = O(n^{-\frac{1}{2}})$:
@@ -395,11 +384,11 @@ For a binary choice model, it is known that $Var(Y|X = x) = g(x'\beta)[1 - g(x'\
 
 \[ \frac{\partial g(z,\beta)}{\partial \beta} = g^{(1)}(z)\{x - E[X|X'\beta = z, X \in A_{\delta}]\}.\]
 
-By substituting this result in equation (11) and $\Omega_I$ in Theorem 3.1., we can see that the covariance matrix of the matrix of the asymptotic distribution of the semiparametric WNLS estimator of $\beta$ is the same whether the estimator of $g$ is weighted or not. One can easily show that 
+By substituting this result in equation (11) and $\Omega_I$ in Theorem 3.1., it becomes clear that the covariance matrix of the asymptotic distribution of the semiparametric WNLS estimator of $\beta$ is the same whether the estimator of $g$ is weighted or not. Futhermore, by differentiating the right-hand side of equation (14) we get 
 
 \[ \frac{1}{n} \sum_i \tau_{i} \frac{Y_i - \hat{g}_{-i}(X_i'\beta, \beta)}{\hat{g}_{-i}(X_i'\beta)(1 - \hat{g}_{-i}(X_i'\beta))} \frac{\partial\hat{g}_{-i}(X_i'\beta)}{\partial \beta} = 0 \]
 
-with probability approaching 1 as $n \rightarrow \infty$.This is the same as the first-order condition for semiparametric WNLS estimaton of $\beta$ with the estimated weight function
+with probability approaching 1 as $n \rightarrow \infty$. This is the same as the first-order condition for semiparametric WNLS estimaton of $\beta$ with the estimated weight function
 \begin{align*}
 w(x) & = \{ \hat{g}_{-i}(X_i'\beta, \beta)[ 1 - \hat{g}_{-i}(X_i'\beta, \beta)]\}^{-1} = \{ \hat{g}(X_i'\beta, \beta)[ 1 - \hat{g}(X_i'\beta, \beta)]^{-1} \\
 	 & + o_p(1) = [Var(Y|X = x)]^{-1} + o_p(1)
