@@ -7,7 +7,7 @@ beta_true =[1;5;2];
 beta0 = [1;0;2]; %set initial value for minimization
 y_sim = (x_sim*beta_true) + error_terms;
 h = 20; 
-beta = KS_XL (x_sim,y_sim,h,beta0) %use ichimura estimator
+%beta = KS_XL (x_sim,y_sim,h,beta0) %use ichimura estimator
 beta = Ichimura_XL (x_sim,y_sim,h,beta0) %use klein spady estimator
 
 
