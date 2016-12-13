@@ -262,33 +262,39 @@ A consistent estimator of $\Omega_I$ is given by
 \[ \hat{\Omega}_I = \hat{V}^{-1}\hat{\Sigma}\hat{V}^{-1}, \]
 
 where $\hat{V} = n^{-1}\sum_{i} w(X_i)\hat{g}^{(1)}(X_i'\hat{\beta})(X_i - \hat{E}(X_i|X_i'\beta))(X_i - \hat{E}(X_i|X_i'\beta))', \hat{\Sigma} = n^{-1}\sum_{i} w(X_i)\hat{\epsilon}_{i}^{2}\hat{g}^{(1)}(X_i'\hat{\beta})(X_i - \hat{E}(X_i|X_i'\beta))', \hat{\epsilon}_i = Y_i - \hat{g}(X_i'\beta), \hat{g}^{(1)}(X_i'\beta) \linebreak
-= [\partial \hat{g}_{-i}/\partial \beta]|_{\beta=\hat{\beta}}$, $\hat{g}_{-i}(X_i'\beta)$ is defined in (10), $\hat{E}(X_i|X_i'\beta)' = \sum_{j} X_jK((X_i - X_j')'\hat{\beta})/ .\sum_{j}K((X_i - X_j)'\hat{\beta}).$
+= [\partial \hat{g}_{-i}/\partial \beta]|_{\beta=\hat{\beta}}$, $\hat{g}_{-i}(X_i'\beta)$ is defined in (10), $\hat{E}(X_i|X_i'\beta)' = \sum_{j} X_jK((X_i - X_j')'\hat{\beta})/ \sum_{j}K((X_i - X_j)'\hat{\beta}).$
 
-For what follows ignore the trimming set $A_\delta$ and $w(\cdot)$, Further, according to Ichimura (1993) $\beta - \beta_0 = O(n^{-\frac{1}{2}})$. 
+For what follows ignore the trimming set $A_\delta$ is ignored and $w(\cdot)$ is set to 1. Furthermore, according to Ichimura (1993) $\beta - \beta_0 = O(n^{-\frac{1}{2}})$. 
 
 
 %and assume that the minimization over $\beta$ is done over the shrinking set $\mathcal{B}_n = \{ \beta : \norm{\beta - \beta_0} \geq Cn^{-1/2}$ for some constant $ C > 0$. This follows H\"ardle, Hall and Ichimura (1993). With this in mind and $ h \in \{h : C_1n^{-\frac{1}{5}} \geq h \geq C_2n^{-\frac{1}{5}}\}$ for some $C_2 > C_1 > 0$ we can establish a proof for Theorem 1. First,
 
 \begin{align*}
-S_{n}(\beta) & = \frac{1}{n}\sum_i \{ Y_i - \hat{G}_i(X_i'\beta)\}^2 = \frac{1}{n}\sum_i\{Y_i - \hat{G}_i(X_i'\beta) + \hat{G}_i(X_i'\beta_0) - \hat{G}_i(X_i'\beta_0) \}^2 = \frac{1}{n} \sum_i \{Y_i - G(X_i'\beta) + o_p(1) + \hat{G}_i(X_i'\beta_0) - \hat{G}_i(X_i'\beta_0) \}^2 = \sum_i \{ Y_i - G(X_i'\beta) + \hat{G}_i(X_i'\beta_0) - g(X_i'\beta_0) + o_p(1) \}^2 = \frac{1}{n} \sum_i \{ g(X_i'\beta_0) + \epsilon_i - G(X_i'\beta) + \hat{G}_i(X_i'\beta_0) - g(X_i'\beta_0) + o_p(1) \}^2 = \frac{1}{n} \sum_i \{ \epsilon_i + \hat{G}_i(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta] + o_p(1) \}^2 = \sum_i \{epsilon_i + g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta] + o_p(1)\}^2 = 
+S_{n}(\beta) & = \frac{1}{n}\sum_i \{ Y_i - \hat{G}_{-i}(X_i'\beta)\}^2 = \frac{1}{n}\sum_i\{Y_i - \hat{G}_{-i}(X_i'\beta) +  \hat{G}_{-i}(X_i'\beta_0) \\
+			 & - \hat{G}_{-i}(X_i'\beta_0) \}^2 = \frac{1}{n} \sum_i \{Y_i - G(X_i'\beta) + o_p(1) + \hat{G}_{-i}(X_i'\beta_0) \\
+			 & - \hat{G}_{-i}(X_i'\beta_0) \}^2 = \frac{1}{n}\sum_i \{ Y_i - G(X_i'\beta) + \hat{G}_{-i}(X_i'\beta_0) \\
+			 & - g(X_i'\beta_0) + o_p(1) \}^2 = \frac{1}{n} \sum_i \{ g(X_i'\beta_0) + \epsilon_i - G(X_i'\beta) + \hat{G}_{-i}(X_i'\beta_0) \\
+			 & - g(X_i'\beta_0) + o_p(1) \}^2 = \frac{1}{n} \sum_i \{ \epsilon_i + \hat{G}_{-i}(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta] \\
+			 & + o_p(1) \}^2 = \sum_i \{ g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta] +  \epsilon_i + o_p(1)\}^2 
 \end{align*}
 
-Using a Taylor expansion at $\beta = \beta_0$ and with Ichimura's (1993) result that $\beta_0 - \beta = O(n^{-\frac{1}{2}})$:
+Using a Taylor expansion at $\beta = \beta_0$:
 
 \begin{align*}
 g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta)] & = g(X_i'\beta_0) - g(X_i'\beta) \\
 											 & - g^{(1)}(X_i'\beta)E[(\beta_0 - \beta)X_i'|X_i'\beta] + O(n^{-1}) \\
-				                              & = g^{(1)}(X_i'\beta)( X_i - E[X_i'|X_i'\beta])(\beta_0 - \beta) + O(n^{-1})
+				                              & = g^{(1)}(X_i'\beta)( X_i - E[X_i'|X_i'\beta])(\beta_0 - \beta) + O_p(n^{-1})
 \end{align*}
 
-Hence, for $g_{i}^{(1)} = g^{(1)}(X_i'\beta)$ and $v_i = X_i - E[X_i'|X_i'\beta]$:
+
+Note $O_p(n^{-2}) = n^{-2}O_p(1) = o_p(1)$ and thus $O_p(n^{-1}) = o_p(1)$. Also, considering $E(\epsilon) = 0$ and the Chebyshev's Inequality, we have $\sum_i\epsilon_io_p(1) = o_p(1)$. Hence, for $g_{i}^{(1)} = g^{(1)}(X_i'\beta)$ and $v_i = X_i - E[X_i'|X_i'\beta]$:
 
 \begin{align*}
-S_{n}(\beta) & = (\beta_0 - \beta)'[\frac{1}{n}\sum_i(g_{i}^{(1)})^2v_iv_i'](\beta_0 - \beta)+ 2\frac{1}{n}\sum_i\epsilon_ig_{i}^{(1)}v_i'(\beta_0 - \beta) \\
-			 & + \{terms\:independent\:of \:\beta\} + o_p(n^{-1}). 
+S_{n}(\beta) & = \frac{1}{n}\sum_i (\beta_0 - \beta)'[\frac{1}{n}\sum_i (g_i^{(1)})^2v_iv_i'](\beta_0 - \beta) \\
+             & + 2\frac{1}{n}\sum_i\epsilon_ig_i^{(1)}v_i'(\beta_0 - \beta) + \frac{1}{n}\sum_i \epsilon_i^2 + o_p(1)
 \end{align*}
 
-Minimizing in order to $\beta$ and ignoring terms independent of $\beta$ and $o_p(n^{-1})$:
+Minimizing in order to $\beta$ and ignoring terms independent of $\beta$ and $o_p(1)$:
 
 \begin{align*}
 \sqrt{n}(\beta_0 - \beta) & = (\frac{1}{n}\sum_i(g_{i}^{(1)})^2v_iv_i')^{-1}\frac{1}{\sqrt{n}}\sum_i\epsilon_i g_{i}^{(1)}v_i \\
@@ -337,10 +343,10 @@ For a WNLS estimator of $\beta_0$ with weight function $w(x) = \frac{1}{\sigma^2
 \end{equation}
 
 
-This bound is achieved by the semiparametric WNLS estimator if $\sigma^2(X)$ is known or independent of X. The assumption that $X \in A_{\delta}$ can be replaced by the assumption that $A_{\delta}$ grows very slowly as $n$ increases. When $\sigma^2(X)$ is unknown it can be replaced by a consistent estimator, say $s_{n}^{2}(x)$. If $w(X) = \frac{1}{s_{n}^{2}(x)}$ in the semiparametric WNLS estimator, the asymptotic efficiency bound will be reached. Thus, an asymptotic efficient estimator of $\beta_0$ is obtained even when $\sigma^2(X)$ is unknown. This consistent estimator can be obtained with a two-step procedure. First, estimate $\beta_0$ by using semiparametric WNLS with $w(x) = 1$. We obtain an estimator that is $n^{\frac{1}{2}}$-consistent and asymptotically normal but inefficient. The second step uses $\hat{w}_i(x) = \frac{1}{\hat{\sigma}_{i}^{2}}$, where  $\hat{\sigma}_{i}^{2}$ is defined by Robinson (1987) as 
+This bound is achieved by the semiparametric WNLS estimator if $\sigma^2(X)$ is known or independent of X. The assumption that $X \in A_{\delta}$ can be replaced by the assumption that $A_{\delta}$ grows very slowly as $n$ increases. When $\sigma^2(X)$ is unknown it can be replaced by a consistent estimator, say $s_{n}^{2}(x)$. If $w(X) = \frac{1}{s_{n}^{2}(x)}$ in the semiparametric WNLS estimator, the asymptotic efficiency bound will be reached. Thus, an asymptotic efficient estimator of $\beta_0$ is obtained even when $\sigma^2(X)$ is unknown. This consistent estimator can be obtained with a two-step procedure. First, estimate $\beta_0$ by minimizing function (9) for $w(x) = 1$. We obtain an estimator that is $n^{\frac{1}{2}}$-consistent and asymptotically normal but inefficient. The second step uses $\hat{w}_i(x) = \frac{1}{\hat{\sigma}_{i}^{2}}$, where  $\hat{\sigma}_{i}^{2}$ is defined by Robinson (1987) as 
 \[\hat{\sigma}_{i}^{2} = \frac{1}{k}\sum_{j=1}^{N} \mathbf{1}{(x_j \in N_k(x_i))}\hat{\epsilon}_{j}^{2} ,\]
 
-and $\hat{\epsilon}_i = y_i - \hat{g}(x_i'\hat{\beta_0})$, with $\hat{\beta_0}$ obtained from semiparametric WNLS on the first step.
+and $\hat{\epsilon}_i = y_i - \hat{g}(x_i'\hat{\beta_0})$, with $\hat{\beta_0}$ obtained on the first step.
 
 
 
