@@ -275,7 +275,8 @@ S_{n}(\beta) & = \frac{1}{n}\sum_i \{ Y_i - \hat{G}_{-i}(X_i'\beta)\}^2 = \frac{
 			 & - \hat{G}_{-i}(X_i'\beta_0) \}^2 = \frac{1}{n}\sum_i \{ Y_i - G(X_i'\beta) + \hat{G}_{-i}(X_i'\beta_0) \\
 			 & - g(X_i'\beta_0) + o_p(1) \}^2 = \frac{1}{n} \sum_i \{ g(X_i'\beta_0) + \epsilon_i - G(X_i'\beta) + \hat{G}_{-i}(X_i'\beta_0) \\
 			 & - g(X_i'\beta_0) + o_p(1) \}^2 = \frac{1}{n} \sum_i \{ \epsilon_i + \hat{G}_{-i}(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta] \\
-			 & + o_p(1) \}^2 = \sum_i \{ g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta] +  \epsilon_i + o_p(1)\}^2 
+			 & + o_p(1) \}^2 = \frac{1}{n}\sum_i \{ g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta] +  \epsilon_i + o_p(1)\}^2 \\
+			 & = \frac{1}{n}\sum_i \{ g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta] +  \epsilon_i\}^2 + o_p(1)
 \end{align*}
 
 Using a Taylor expansion at $\beta = \beta_0$:
@@ -287,7 +288,7 @@ g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta)] & = g(X_i'\beta_0) - g(X_i'\beta) 
 \end{align*}
 
 
-Note $O_p(n^{-2}) = n^{-2}O_p(1) = o_p(1)$ and thus $O_p(n^{-1}) = o_p(1)$. Also, considering $E(\epsilon) = 0$ and the Chebyshev's Inequality, we have $\sum_i\epsilon_io_p(1) = o_p(1)$. Hence, for $g_{i}^{(1)} = g^{(1)}(X_i'\beta)$ and $v_i = X_i - E[X_i'|X_i'\beta]$:
+It is known that $O_p(n^{-2}) = n^{-2}O_p(1) = o_p(1)$ and thus $O_p(n^{-1}) = o_p(1)$ and $O_p(n^{-\frac{1}{2}}) = o_p(1)$. Also, considering $E(\epsilon) = 0$, the mean of of $\epsilon_i$ is $O_p(n^{-\frac{1}{2}})$. Then, $\sum_i\epsilon_io_p(1) = o_p(1)$. Hence, for $g_{i}^{(1)} = g^{(1)}(X_i'\beta)$ and $v_i = X_i - E[X_i'|X_i'\beta]$:
 
 \begin{align*}
 S_{n}(\beta) & = \frac{1}{n}\sum_i (\beta_0 - \beta)'[\frac{1}{n}\sum_i (g_i^{(1)})^2v_iv_i'](\beta_0 - \beta) \\
