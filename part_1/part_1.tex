@@ -207,14 +207,14 @@ G(X_i'\beta) \stackrel{def}{=} E(Yi|X_i'\beta) = E[g(X_i'\beta_0)|X_i'\beta]
 \hat{G}_{-i}(X_i'\beta) \equiv \hat{E}_{-i}(Yi|X_i'\beta) = \frac{(nh)^{-1}\sum_{j=1, j \neq i }^{n}  Y_jK(\frac{X_j'\beta - X_i'\beta}{h})}{\hat{p}_{-i}(X_i'\beta)},
 \end{equation}
 
-where $\hat{p}_{-i}(X_i'\beta) = \frac{1}{nh}\sum_{j=1,j \neq i}^{n}Y_{j}K(\frac{X_j'\beta - X_i'\beta}{h})$.  The denominator $\hat{p}(X_i'\beta)$ is random and it becomes necessary to trim out small values. Let $p(x'\beta)$ denote the probability density function (PDF) of $X_i'\beta$ and $A_\delta$ and $A_n$ be the following sets:
+where $\hat{p}_{-i}(X_i'\beta) = \frac{1}{nh}\sum_{j=1,j \neq i}^{n}Y_{j}K(\frac{X_j'\beta - X_i'\beta}{h})$.  The denominator $\hat{p}(X_i'\beta)$ is random and it becomes necessary to trim out small values. Let $p(x'\beta)$ denote the probability density function (PDF) of $X_i'\beta$ and $A_\delta$ and $A_n$ be the sets
 
 \[ A_\delta = \{ x : p(x'\beta) \geq \delta, \text{ for all }  \beta \in \mathcal{B} \}
 \]
 
 where $\delta > 0$ is a constant, $\mathcal{B} \in \mathbb{R}^q$, and
 
-\[ A_n = \{ x : \norm{x - x^*} \geq 2h \text{ for some } x^* \in A_\delta \}
+\[ A_n = \{ x : \norm{x - x^*} \geq 2h \text{ for some } x^* \in A_\delta\}.
 \]
 
 Then for $x \in A_\delta$ the denominator does not get too close to zero. The set $A_n$ where $\norm{\cdot}$ is a Euclidean norm, is larger than $A_\delta$ but as $ n \rightarrow \infty $, $h \rightarrow 0$, $A_n$ shrinks to $A_\delta$. With this in mind it is possible to choose $\beta$ by minimizing the objective function:
@@ -223,9 +223,9 @@ Then for $x \in A_\delta$ the denominator does not get too close to zero. The se
 S_n(\beta) = \sum_{i=1}^{n}  [Y_i - \hat{G}_{-i}(X_i'\beta)]^2w(x_i)\mathbf{1}{(X_i \in A_n)}
 \end{equation}
 
-where $\mathbf{1}{(Xi \in A_n)}$ is a trimming function that ensures that the random denominator is positive with high probability, and $w(x_i)$ is an appropriate nonnegative weighting function for possible heteroskedasticity. This might be hard to compute as optimization of a nonlinear potentially multimonal and nonconvex objective function is required.
+where $\mathbf{1}{(Xi \in A_n)}$ is a trimming function that ensures that the random denominator is positive with high probability, and $w(x_i)$ is an appropriate nonnegative weighting function for possible heteroskedasticity. This might be hard to compute as optimization of a nonlinear potentially multimodal or nonconvex objective function is required.
 
-According to Li and Racine (2007), to derive the assymptotic distribution of $\hat{\beta}$ we need the following assumptions:
+According to Li and Racine (2007), to derive the asymptotic distribution of $\hat{\beta}$ we need the following assumptions:
 
 \newtheorem{theorem}{Theorem}[section]
 
@@ -236,15 +236,15 @@ According to Ichimura (1993), under the assumptions:
 	\item The set $A_\delta$ is compact, and the weight function $w(\cdot)$ is bounded and positive on $A_\delta$. Define the set $D_z = \{ z : z = x'\beta, \beta \in \mathcal{B}$,$ x \in A_\delta\}$. Letting $p(\cdot)$ denote the PDF of $z \in D_z$, $p(\cdot)$ is bounded below by a positive constant for all $z \in D_z$.
 	\item $g(\cdot)$ and $p(\cdot)$ are three times differentiable with respect to $z = x'\beta$. The third derivatives are Lipschitz continuous uniformly over $\mathcal{B}$ for all $z \in D_z$.
 	\item The kernel function is a bounded second order kernel having bounded support, is twice differentiable, and its second derivative is Lipschitz continuous.
-	\item $E|Y^m| < \infty$ for some $m \geq 3$. cov(Y|x) is bounded and bounded away from zero for all $x \in A_\delta$. $ln(h)/[nh^{3 + \frac{3}{m-1}}] \rightarrow 0$ and $nh^8 \rightarrow 0$ as $n \rightarrow \infty $ .
+	\item $E|Y^m| < \infty$ for some $m \geq 3$. $cov(Y|x)$ is bounded and bounded away from zero for all $x \in A_\delta$. $ln(h)/[nh^{3 + \frac{3}{m-1}}] \rightarrow 0$ and $nh^8 \rightarrow 0$ as $n \rightarrow \infty $ .
 	
 \end{enumerate}
 
 we have
 
-\[ \sqrt{n}(\hat{\beta} - \beta_0) \rightarrow N(0,\Omega_I) \] in distribution, where $\Omega_I = V^{-1}\Sigma V^{-1}$, and
+\[ \sqrt{n}(\hat{\beta} - \beta_0) \stackrel{d}{\rightarrow} N(0,\Omega_I) \] , where $\Omega_I = V^{-1}\Sigma V^{-1}$, and
 
-\[\Sigma = E\{w(X_i)\sigma^2(X_i)(g_i^{(1)})^2(X_i - E_A(X_i|X_i'\beta_0)) \times (X_i - E_A(X_i|X_i'\beta_0))'\},\]
+\[\Sigma = E\{w(X_i)^2\sigma^2(X_i)(g_i^{(1)})^2(X_i - E_A(X_i|X_i'\beta_0)) \times (X_i - E_A(X_i|X_i'\beta_0))'\},\]
 
 with $g_i^{(1)} = [\partial g(v)/\partial v]|_{v = X_i'\beta_0}, E_A(X_i|v) = E(X_i|x_A'\beta_0 = v)$ with $x_A$ having the distribution of X, conditional on $Xi \in A_\delta$, and
 
@@ -330,21 +330,28 @@ For $g_{i0}^{(1)} = g^{(1)}(X_i'\beta_0)$ and $v_{i0} = X_i - E[X_i'|X_i'\beta_0
 \subsection{Weight Function} % (fold)
 \label{sub:Weight Function}
 
-The weight function, $w$, is chosen so as to maximize the asymptotic efficiency of the estimator. Within the class of weighted nonlinear least squares (WNLS) estimators, an estimator is asymptotically efficient given the covariance matrix $\Omega$ of its asymptotic distributions and the covariance matrix $\Omega^*$ of any WNLS estimator, if $\Omega^* - \Omega$ is positive semidefinite. Even though the class of all regular estimators of single index models may include estimators that are not semiparametric WNLS estimators, the definition of asymptotically efficient estimator remains the same. Chamberlain (1987) investigated the case for nonlinear regression model (not necessarily a single index model) in which $g$ is known. The model is $E(Y|X = x) = g(x, \beta_0)$. The variance function, $\sigma^2(x) = E\{[Y - g(x, \beta_0)]^2| X = x\}$, is unknown. Chamberlain (1986) showed that the efficiency bound is 
+The weight function, $w$, is chosen so as to maximize the asymptotic efficiency of the estimator. Within the class of weighted nonlinear least squares (WNLS) estimators, an estimator is asymptotically efficient given the covariance matrix $\Omega$ of its asymptotic distributions and the covariance matrix $\Omega^*$ of the other WNLS estimators, if $\Omega^* - \Omega$ is positive semidefinite. Even though the class of all regular estimators of single index models may include estimators that are not semiparametric WNLS estimators, the definition of asymptotically efficient estimator remains the same. 
 
-\[ \Omega_{NLR} = \left\{E\left[\frac{1}{\sigma^2}\frac{\partial g(X, \beta_0)}{\partial \beta} \frac{\partial g(X, \beta_0)}{\partial \beta'}\right]\right\}^{-1}. \]
+%Chamberlain (1987) investigated the case for nonlinear regression model (not necessarily a single index model) in which $g$ is known. 
 
-For a WNLS estimator of $\beta_0$ with weight function $w(x) = \frac{1}{\sigma^2(x)}$. The problem of efficient estimation of $\beta_0$ in a single index model with unknown $g$ has been investigated by Hall and Ichimura (1991) and Newey and Stocker (1993). Under certain regularity conditions, for $X \in A_{\delta}$ and $w(x) = \frac{1}{\sigma^2(x)}$, the efficiency bound is
+%The model is $E(Y|X = x) = g(x, \beta_0)$. The variance function, $\sigma^2(x) = E\{[Y - g(x, \beta_0)]^2| X = x\}$, is unknown. Chamberlain (1986) showed that the efficiency bound is 
+
+%\[ \Omega_{NLR} = \left\{E\left[\frac{1}{\sigma^2}\frac{\partial g(X, \beta_0)}{\partial \beta} \frac{\partial g(X, \beta_0)}{\partial \beta'}\right]\right\}^{-1} \]
+
+%for a WNLS estimator of $\beta_0$ with weight function $w(x) = \frac{1}{\sigma^2(x)}$. 
+The problem of efficient estimation of $\beta_0$ in a single index model with unknown $g$ has been investigated by Hall and Ichimura (1991) and Newey and Stocker (1993). Under certain regularity conditions, for $X \in A_{\delta}$ and $w(x) = \frac{1}{\sigma^2(x)}$, the efficiency bound is
 
 \begin{equation}
-\Omega_{SI} = \left\{ E\left[\frac{I(X \in A_{\delta})}{\sigma^2(x)}\frac{\partial g(X'\beta_0, \beta_0)}{\partial \beta}\frac{\partial g(X'\beta_0, \beta_0)}{\partial \beta'}\right] \right\}^{-1}.
+\Omega_{SI} = \left\{ E\left[\frac{1}{\sigma^2(x)}\frac{\partial}{\partial \beta}
+ G(X'\beta,\beta)\frac{\partial}{\partial \beta} G(X'\beta,\beta) \right] \right\}^{-1}.
 \end{equation}
 
+%\I(X \in A_{\delta})}???
 
-This bound is achieved by the semiparametric WNLS estimator if $\sigma^2(X)$ is known or independent of X. The assumption that $X \in A_{\delta}$ can be replaced by the assumption that $A_{\delta}$ grows very slowly as $n$ increases. When $\sigma^2(X)$ is unknown it can be replaced by a consistent estimator, say $s_{n}^{2}(x)$. If $w(X) = \frac{1}{s_{n}^{2}(x)}$ in the semiparametric WNLS estimator, the asymptotic efficiency bound will be reached. Thus, an asymptotic efficient estimator of $\beta_0$ is obtained even when $\sigma^2(X)$ is unknown. This consistent estimator can be obtained with a two-step procedure. First, estimate $\beta_0$ by minimizing function (9) for $w(x) = 1$. We obtain an estimator that is $n^{\frac{1}{2}}$-consistent and asymptotically normal but inefficient. The second step uses $\hat{w}_i(x) = \frac{1}{\hat{\sigma}_{i}^{2}}$, where  $\hat{\sigma}_{i}^{2}$ is defined by Robinson (1987) as 
+This bound is achieved by the semiparametric WNLS estimator if $\sigma^2(X)$ is known or independent of X. When $\sigma^2(X)$ is unknown it can be replaced by a consistent estimator, say $s_{n}^{2}(x)$. If $w(X) = \frac{1}{s_{n}^{2}(x)}$ in the semiparametric WNLS estimator, the asymptotic efficiency bound will be reached. Thus, an asymptotic efficient estimator of $\beta_0$ is obtained even when $\sigma^2(X)$ is unknown. This consistent estimator can be obtained with a two-step procedure. First, estimate $\beta_0$ by minimizing function (9) with $w(x) = 1$. We obtain an estimator that is $n^{\frac{1}{2}}$-consistent and asymptotically normal but inefficient. The second step is a nonparametric estimation of the mean of the squared first-step resilduals conditional on X. More specifically, it uses the estimated weight function $\hat{w}_i(x) = \frac{1}{\hat{\sigma}_{i}^{2}}$, where  $\hat{\sigma}_{i}^{2}$ is defined by Robinson (1987) as 
 \[\hat{\sigma}_{i}^{2} = \frac{1}{k}\sum_{j=1}^{N} \mathbf{1}{(x_j \in N_k(x_i))}\hat{\epsilon}_{j}^{2} ,\]
-
-and $\hat{\epsilon}_i = y_i - \hat{g}(x_i'\hat{\beta_0})$, with $\hat{\beta_0}$ obtained on the first step.
+%The assumption that $X \in A_{\delta}$ can be replaced by the assumption that $A_{\delta}$ grows very slowly as $n$ increases.
+and $\hat{\epsilon}_i = y_i - \hat{g}(x_i'\hat{\beta_0})$, for $\hat{\beta_0}$ obtained on the first step.
 
 
 
@@ -355,23 +362,23 @@ In this section we analyze Klein and Spady's (1993) semiparametric binary choice
 \begin{equation}
 Y_i =  \mathbf{1}{(X_i'\beta \geq \epsilon_i)}.
 \end{equation}
-Assume $\epsilon_i$ is an error with distribution function $g$ and independent of $X_i$. For known $g$, the asymptotically efficient estimator of $\beta$ is a maximum likelihood estimator (MLE). The estimated $log-likelihood$ function is
+Similarly to Ichimura, let $g$ denote the distribution of $\epsilon_i$. Then $G(X_i'\beta) = E(g(X_i'\beta_0)|X_i'\beta)$. Additionaly, assume $\epsilon_i$ is independent of $X_i$. For known $g$, the asymptotically efficient estimator of $\beta_0$ is a maximum likelihood estimator (MLE). The estimated $log-likelihood$ function is
 
 \begin{equation}
-\mathcal{L}(\beta) = \sum_i \left\{ (1 - Y_i)ln( 1 - g(X_i'\beta)) + Y_iln[g(X_i'\beta)] \right\},
+\mathcal{L}(\beta) = \sum_i \left\{ (1 - Y_i)ln[ 1 - g(X_i'\beta_0)] + Y_iln[g(X_i'\beta)] \right\},
 \end{equation}
 
 where
 
 \begin{enumerate}[label=(\roman*)]
-		\item Y is binomial with realizations 1 and 0, X is a vector of exogenous variables, $\beta$ is an unknown paramenter vector and $\epsilon$ is a random disturbance;
+		\item Y is binomial with realizations 1 and 0, X is a vector of exogenous variables, $\beta$ is an unknown parameter vector and $\epsilon$ is a random disturbance;
 		\item Observations $\{x_i,y_i\}$ are i.i.d..
 \end{enumerate}
 
 The function $\mathcal{L}(\beta)$ is analogous to $S_n(\beta,g)$. Similarly to Ichimura's method, Klein and Spady suggest replacing $g$ with the leave-one-out NW from equation (8). With this in mind, we obtain instead
 
 \begin{equation}
-\mathcal{L}_n(\beta) = \sum_i \{ (1 - Y_i)ln( 1 - \hat{g}_{-i}(X_i'\beta)) +  Y_iln[\hat{g}_{-i}(X_i'\beta)]\}\tau_{i},
+\mathcal{L}_n(\beta) = \sum_i \{ (1 - Y_i)ln[ 1 - \hat{G}_{-i}(X_i'\beta)] +  Y_iln[\hat{G}_{-i}(X_i'\beta)]\}\tau_{i},
 \end{equation}
 
 The function $\tau$ is defined in Proposition 4.1.. Furthermore, unlike Ichimura's model, this model is more strict in terms of bandwidth and kernel choice.
@@ -390,30 +397,45 @@ where $\epsilon > 0$ and $t$ is to be interpreted as a density estimate.
 \end{prop}
 
 With $t$ above replaced by an estimated density, the function downweights observations for which the corresponding densities are small.
-For a binary choice model, it is known that $Var(Y|X = x) = g(x'\beta)[1 - g(x'\beta)]$ and $\sigma^2(x)$ depends only on the single index $z = x'\beta$. One can show that %%Proof????
 
-\[ \frac{\partial g(z,\beta)}{\partial \beta} = g^{(1)}(z)\{x - E[X|X'\beta = z, X \in A_{\delta}]\}.\]
-
-By substituting this result in equation (11) and $\Omega_I$ in Theorem 3.1., it becomes clear that the covariance matrix of the asymptotic distribution of the semiparametric WNLS estimator of $\beta$ is the same whether the estimator of $g$ is weighted or not. Futhermore, by differentiating the right-hand side of equation (13) we get 
-
-\[ \frac{1}{n} \sum_i \tau_{i} \frac{Y_i - \hat{g}_{-i}(X_i'\beta, \beta)}{\hat{g}_{-i}(X_i'\beta)(1 - \hat{g}_{-i}(X_i'\beta))} \frac{\partial\hat{g}_{-i}(X_i'\beta)}{\partial \beta} = 0 \]
-
-with probability approaching 1 as $n \rightarrow \infty$. This is the same as the first-order condition for semiparametric WNLS estimaton of $\beta$ with the estimated weight function
+For a binary choice model, $Var(Y|X = x) = g(x'\beta_0)[1 - g(x'\beta_0)]$ and $\sigma^2(x)$ depends only on the single index $x'\beta_0$. Then, considering the result shown above
 \begin{align*}
-w(x) & = \{ \hat{g}_{-i}(X_i'\beta, \beta)[ 1 - \hat{g}_{-i}(X_i'\beta, \beta)]\}^{-1} = \{ \hat{g}(X_i'\beta, \beta)[ 1 - \hat{g}(X_i'\beta, \beta)]^{-1} \\
+g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta)] & = g^{(1)}(X_i'\beta)( X_i - E[X_i'|X_i'\beta])(\beta_0 - \beta) + O_p(n^{-1})
+\end{align*}
+we obtain
+\[ \frac{\partial}{\partial \beta} G(X'\beta) = g^{(1)}(X_i'\beta)( X_i - E[X_i'|X_i'\beta]) + o_p(1).\]
+
+By substituting this result in equation (10) and $\Omega_I$ in Theorem 3.1., it becomes clear that the covariance matrix of the asymptotic distribution of the semiparametric WNLS estimator of $\beta_0$ is the same whether the estimator of $g$ is weighted or not. Moreover, the asymptotically efficient bound $\Omega_{SI}$ is reached without using the weight function. 
+
+%\[S_n(\beta) = -\frac{1}{2n}[ y - g]'\hat{\Sigma}^{-1}[Y - g], \]
+
+%where $\Sigma$ is the error variance matrix. Consider the model for heteroskedasticty $\sigma_i^2 = E[u_i^2|x_i] = exp(z_i'\gamma_0)$, where $z$ is a specified function of $x$. Then $\Sigma = Diag[exp(z_i'\gamma_0)]$ and $\hat{\Sigma} = Diag[exp(z_i'\hat{\gamma})]$, where $\hat{\gamma}$ can be obtained by nonlinear regression of squares NLS residuals $(y_i - g(x_i,\hat{\beta_{NLS}}))^2$ on $exp(z_i'\gamma_0)$. For diagonal $\Sigma$, $\Sigma^{-1} = Diag\left[\frac{1}{\sigma_i^2}\right]$. Then the objective function for the semiparametric WNLS simplifies to
+
+%\[S_n(\beta) = - \frac{1}{2n}\sum_{i-1}^{n}\frac{(y_i - \hat{G}_{-i}(X_i,\beta))^2}{\hat{\sigma_i^2}}.\]
+
+This can be more easily seen by considering a semiparametric WNLS estimator such as the one in equation (9), ignoring for simplicity the trimming function. Differentiate the right-hand side of equation (13) with respect to $\beta$. Then, we obtain
+\begin{equation}
+\frac{1}{n} \sum_i \frac{Y_i - \hat{G}_{-i}(X_i'\beta)}{\hat{G}_{-i}(X_i'\beta)(1 - \hat{G}_{-i}(X_i'\beta))} \frac{\partial\hat{G}_{-i}(X_i'\beta)}{\partial \beta} = 0
+\end{equation} 
+
+with probability approaching 1 as $n \rightarrow \infty$. This is the same as the first-order condition for semiparametric WNLS estimation of $\beta_0$ with the weight function
+
+\begin{align*}
+w(x) & = \{ \hat{G}_{-i}(X_i'\beta, \beta)[ 1 - \hat{G}_{-i}(X_i'\beta, \beta)]\}^{-1} = \{ g(X_i'\beta_0)[ 1 - g(X_i'\beta_0)]\}^{-1} \\
 	 & + o_p(1) = [Var(Y|X = x)]^{-1} + o_p(1)
 \end{align*}
 
-It follows that semiparametric maximum-likelihood estimator of $\beta$ in Klein and Spady's model achieves $\Omega_{NLR}$. 
 
-Under additional assumptions, in particular Proposition 4.1., Klein and Spady (1993) show that $\hat{\beta}_{KS}$ is $n^{-\frac{1}{2}}$ and has asymptotic normal distribution given by
+Considering section 3.1., it follows that semiparametric maximum-likelihood estimator of $\beta$ in Klein and Spady's model is asymptotically efficient.\footnote{This is only true for "first order efficiency", i.e., when $E(X_i|X_i'\beta)$ is linear in $X_i'\beta$.}
+
+Under certain assumptions, in particular Proposition 4.1., Klein and Spady (1993) show that $\hat{\beta}_{KS}$ is $n^{-\frac{1}{2}}$ and has asymptotic normal distribution given by
 
 \begin{equation}
-\sqrt{n}(\hat{\beta}_{KS} - \beta) \rightarrow N(0,\Omega_{KS}),
+\sqrt{n}(\hat{\beta}_{KS} - \beta_0) \stackrel{d}{\rightarrow} N(0,\Omega_{KS}),
 \end{equation}
-where \[ \Omega_{KS} = \left[ E \left\{ \frac{\partial P}{\partial \beta}\left(\frac{\partial P}{\partial \beta}\right)'\left[\frac{1}{P(1 - P)}\right]\right\}\right] \]
+where \[ \Omega_{KS} = \left\{ E\left[\frac{\partial}{\partial \beta}
+ G(X'\beta)\frac{\partial}{\partial \beta} G(X'\beta)'\frac{1}{g(X_i'\beta_0)(1 - g(X_i'\beta_0)} \right]\right\}^{-1}. \]
 
-where $ P = P( \epsilon < x'\beta) = F_{\epsilon|x}(x'\beta) = F_{\epsilon}(x'\beta)$, where $F_{\epsilon|x}(\cdot)$ is the CDF of $\epsilon_i$ conditional on $X_i = x$. This semiparametric estimator is therefore asymptotically as efficient as the parametric NLS estimator based on the known true functional form $g(\cdot)$.\footnote{This is only true for "first order efficiency", i.e., when $E(X_i|X_i'\beta)$ is linear in $X_i'\beta$.}
 % section section_about_references_within_the_document (end)
 
 \section{Bandwidth Selection} % (fold)
