@@ -192,7 +192,7 @@ for $x_1 \in \big[\beta_2,1\big]$. \footnote{Note that if g was periodic on $\bi
 In this section Ichimura's (1993) estimation method for semiparametric models is analyzed. This method exhibits $n^{-\frac{1}{2}}$ efficiency and asymptotic normality. A weighting matrix that reaches the semiparametric efficiency bound is investigated. Nonetheless, multiple local minima may result. Let $\beta_0$ denote the true value of $\beta$. Were $g(\cdot)$ to be known and a nonlinear least squares method could be used to estimate $\beta_0$ by minimizing:
 
 \begin{equation}
-\sum_{i = 1}\big[Y_i - g(X_i'\beta)\big]^2
+S_n(\beta) = \frac{1}{n}\sum_{i = 1}^n\big[Y_i - g(X_i'\beta)\big]^2
 \end{equation}
 
 with respect to $\beta$.
@@ -220,7 +220,7 @@ where $\delta > 0$ is a constant, $\mathcal{B} \in \mathbb{R}^q$, and
 Then for $x \in A_\delta$ the denominator does not get too close to zero. The set $A_n$ where $\norm{\cdot}$ is a Euclidean norm, is larger than $A_\delta$ but as $ n \rightarrow \infty $, $h \rightarrow 0$, $A_n$ shrinks to $A_\delta$. With this in mind it is possible to choose $\beta$ by minimizing the objective function:
 
 \begin{equation}
-S_n(\beta) = \sum_{i=1}^{n}  [Y_i - \hat{G}_{-i}(X_i'\beta)]^2w(x_i)\mathbf{1}{(X_i \in A_n)}
+S_n(\beta) = \frac{1}{n} \sum_{i=1}^{n}  [Y_i - \hat{G}_{-i}(X_i'\beta)]^2w(x_i)\mathbf{1}{(X_i \in A_n)}
 \end{equation}
 
 where $\mathbf{1}{(Xi \in A_n)}$ is a trimming function that ensures that the random denominator is positive with high probability, and $w(x_i)$ is an appropriate nonnegative weighting function for possible heteroskedasticity. This might be hard to compute as optimization of a nonlinear potentially multimodal or nonconvex objective function is required.
@@ -292,14 +292,14 @@ S_{n}(\beta) & = (\beta_0 - \beta)'\left[\frac{1}{n}\sum_i (g_i^{(1)})^2v_iv_i'\
 \end{align*}
 
 Minimizing in order to $\beta$ and ignoring terms independent of $\beta$ and $o_p(1)$:
-\[2(\beta_0 - \beta)\sum_i(g_{i}^{(1)})^2v_iv_i' - 2\frac{1}{n}\sum_i\epsilon_ig_i^{(1)}v_i' = 0 \]
+\[2\frac{1}{n}(\beta_0 - \beta)\sum_i(g_{i}^{(1)})^2v_iv_i' - 2\frac{1}{n}\sum_i\epsilon_ig_i^{(1)}v_i' = 0 \]
 Then, 
 \begin{align*}
 \sqrt{n}(\beta_0 - \beta) & = (\frac{1}{n}\sum_i(g_{i}^{(1)})^2v_iv_i')^{-1}\frac{1}{\sqrt{n}}\sum_i\epsilon_i g_{i}^{(1)}v_i \\
      					  & = (\frac{1}{n}\sum_i(g_{i}^{(1)})^2v_{i0}v_{i0}')^{-1}\frac{1}{\sqrt{n}}\sum_i\epsilon_i g_{i0}^{(1)}v_{i0} + o_p(1).
 \end{align*}
 
-For $g_{i0}^{(1)} = g^{(1)}(X_i'\beta_0)$ and $v_{i0} = X_i - E[X_i'|X_i'\beta_0]$. With this in mind, the Central Limit Theorem (CLT) and Law of Large Numbers (LLN) we obtain the result from Theorem 3.1 if we replace $w(X_i) = 1$ there.
+For $g_{i0}^{(1)} = g^{(1)}(X_i'\beta_0)$ and $v_{i0} = X_i - E[X_i'|X_i'\beta_0]$. With this in mind, the Central Limit Theorem (CLT) and Law of Large Numbers (LLN) we obtain the result from Theorem 3.1 if we set $w(X_i) = 1$.
 
 
 %Recall when we described identiÖcation that we required the dimension of Xi to be 2 or larger.
@@ -348,11 +348,10 @@ The problem of efficient estimation of $\beta_0$ in a single index model with un
 
 %\I(X \in A_{\delta})}???
 
-This bound is achieved by the semiparametric WNLS estimator if $\sigma^2(X)$ is known or independent of X. When $\sigma^2(X)$ is unknown it can be replaced by a consistent estimator, say $s_{n}^{2}(x)$. If $w(X) = \frac{1}{s_{n}^{2}(x)}$ in the semiparametric WNLS estimator, the asymptotic efficiency bound will be reached. Thus, an asymptotic efficient estimator of $\beta_0$ is obtained even when $\sigma^2(X)$ is unknown. This consistent estimator can be obtained with a two-step procedure. First, estimate $\beta_0$ by minimizing function (9) with $w(x) = 1$. We obtain an estimator that is $n^{\frac{1}{2}}$-consistent and asymptotically normal but inefficient. The second step is a nonparametric estimation of the mean of the squared first-step resilduals conditional on X. More specifically, it uses the estimated weight function $\hat{w}_i(x) = \frac{1}{\hat{\sigma}_{i}^{2}}$, where  $\hat{\sigma}_{i}^{2}$ is defined by Robinson (1987) as 
-\[\hat{\sigma}_{i}^{2} = \frac{1}{k}\sum_{j=1}^{N} \mathbf{1}{(x_j \in N_k(x_i))}\hat{\epsilon}_{j}^{2} ,\]
+This bound is achieved by the semiparametric WNLS estimator if $\sigma^2(X)$ is known or independent of X. When $\sigma^2(X)$ is unknown it can be replaced by a consistent estimator, say $s_{n}^{2}(x)$. If $w(X) = \frac{1}{s_{n}^{2}(x)}$ in the semiparametric WNLS estimator, the asymptotic efficiency bound will be reached. Thus, an asymptotic efficient estimator of $\beta_0$ is obtained even when $\sigma^2(X)$ is unknown. This consistent estimator can be obtained with a two-step procedure. First, estimate $\beta_0$ by minimizing function (9) with $w(x) = 1$. We obtain an estimator that is $n^{\frac{1}{2}}$-consistent and asymptotically normal but inefficient. The second step is a nonparametric estimation of the mean of the squared first-step residuals conditional on X. More specifically, it uses the estimated weight function $\hat{w}_i(x) = \frac{1}{\hat{\sigma}_{i}^{2}}$, where  $\hat{\sigma}_{i}^{2}$ is defined by Robinson (1987) as 
+\[\hat{\sigma}_{i}^{2} = \frac{1}{k}\sum_{j=1}^{n} \mathbf{1}{(x_j \in N_k(x_i))}\hat{\epsilon}_{j}^{2} ,\]
 %The assumption that $X \in A_{\delta}$ can be replaced by the assumption that $A_{\delta}$ grows very slowly as $n$ increases.
-and $\hat{\epsilon}_i = y_i - \hat{g}(x_i'\hat{\beta_0})$, for $\hat{\beta_0}$ obtained on the first step.
-
+and $\hat{\epsilon}_i = y_i - \hat{g}(x_i'\hat{\beta_0})$, for $\hat{\beta_0}$ obtained on the first step. Further, $N_k(x_i)$ is the set of $k$ observations of $x_j$ closest to $x_i$ in weighted Euclidean norm.
 
 
 \section{Klein and Spady's Binary Choice Estimator} % (fold)
@@ -365,7 +364,7 @@ Y_i =  \mathbf{1}{(X_i'\beta \geq \epsilon_i)}.
 Similarly to Ichimura, let $g$ denote the distribution of $\epsilon_i$. Then $G(X_i'\beta) = E(g(X_i'\beta_0)|X_i'\beta)$. Additionaly, assume $\epsilon_i$ is independent of $X_i$. For known $g$, the asymptotically efficient estimator of $\beta_0$ is a maximum likelihood estimator (MLE). The estimated $log-likelihood$ function is
 
 \begin{equation}
-\mathcal{L}(\beta) = \sum_i \left\{ (1 - Y_i)ln[ 1 - g(X_i'\beta_0)] + Y_iln[g(X_i'\beta)] \right\},
+\mathcal{L}(\beta) = \frac{1}{n}\sum_{i=1}^n \left\{ (1 - Y_i)ln[ 1 - g(X_i'\beta)] + Y_iln[g(X_i'\beta)] \right\},
 \end{equation}
 
 where
@@ -378,10 +377,10 @@ where
 The function $\mathcal{L}(\beta)$ is analogous to $S_n(\beta,g)$. Similarly to Ichimura's method, Klein and Spady suggest replacing $g$ with the leave-one-out NW from equation (8). With this in mind, we obtain instead
 
 \begin{equation}
-\mathcal{L}_n(\beta) = \sum_i \{ (1 - Y_i)ln[ 1 - \hat{G}_{-i}(X_i'\beta)] +  Y_iln[\hat{G}_{-i}(X_i'\beta)]\}\tau_{i},
+\mathcal{L}_n(\beta) = \frac{1}{n}\sum_{i=1}^n \tau_{i}\{ (1 - Y_i)ln[ 1 - \hat{G}_{-i}(X_i'\beta)] +  Y_iln[\hat{G}_{-i}(X_i'\beta)]\}.
 \end{equation}
 
-The function $\tau$ is defined in Proposition 4.1.. Furthermore, unlike Ichimura's model, this model is more strict in terms of bandwidth and kernel choice.
+The function $\tau$ is defined in Proposition 4.1.. Furthermore, unlike Ichimura's approach, this model is more strict in terms of bandwidth and kernel choice.
 
 \newtheorem{proposition}{Proposition}[section]
 \begin{prop}[Trimming function/ kernel and bandwidth choice]
@@ -390,15 +389,33 @@ Klein and Spady's model requires:
 		\item With $h_N \rightarrow 0$, the trimming function employed to downweight observations has the form
 \[ \tau(t \text{;}\epsilon) \equiv \{(1 + exp[h_{N}^{\frac{\epsilon}{5}} - t)/h_{N}^{\frac{\epsilon}{4}}]\}^{-1}, \]
 where $\epsilon > 0$ and $t$ is to be interpreted as a density estimate.
-		\item Kernel $K$ must be of fourth-order by, for example, being bias-reducing. That is,
-\[\int z^{2}K(z)dz = 0;\]		
-		\item The bandwidth must satisfy the rate $ n^{-\frac{1}{6}} < h < n^{-\frac{1}{8}}$, which is smaller than the optimal rate $n^{-\frac{1}{9}}$ for the fourth-order kernel.
+		\item The kernel $K$ must be of fourth-order.		
+		\item The bandwidth must satisfy the rate $ n^{-\frac{1}{6}} < h < n^{-\frac{1}{8}}$.
 	\end{enumerate}
 \end{prop}
 
-With $t$ above replaced by an estimated density, the function downweights observations for which the corresponding densities are small.
+By replacing $t$ by an estimated density in part $(i)$, observations for which the corresponding densities are small are downweighted.
+Part $(ii)$ can be satisfied by, for example,  having a bias-reducing kernel. That is,
+\[\int z^{2}K(z)dz = 0.\]
+Furthermore, the rate required for $h$ in $(iii)$ is smaller than the optimal rate $n^{-\frac{1}{9}}$ for the fourth-order kernel.
 
-For a binary choice model, $Var(Y|X = x) = g(x'\beta_0)[1 - g(x'\beta_0)]$ and $\sigma^2(x)$ depends only on the single index $x'\beta_0$. Then, considering the result shown above
+
+Under certain assumptions, in particular Proposition 4.1., Theorem 4.1. gives as the following result:
+
+
+\begin{theorem}
+According to Klein and Spady (1993), $\hat{\beta}_{KS}$ is $n^{-\frac{1}{2}}$ and has asymptotic normal distribution given by
+
+\[\sqrt{n}(\hat{\beta}_{KS} - \beta_0) \stackrel{d}{\rightarrow} N(0,\Omega_{KS}),
+\]
+where \[ \Omega_{KS} = \left\{ E\left[\frac{\partial}{\partial \beta}
+ G(X'\beta)\frac{\partial}{\partial \beta} G(X'\beta)'\frac{1}{g(X_i'\beta_0)(1 - g(X_i'\beta_0)} \right]\right\}^{-1} \]
+ 
+and $\Omega_{KS} = \Omega_{SI}$, i.e., the estimator is asymptotically efficient.
+
+\end{theorem}
+
+It now becomes necessary to elaborate on the last stament of Theorem 4.1. For a binary choice model, $Var(Y|X = x) = g(x'\beta_0)[1 - g(x'\beta_0)]$ and $\sigma^2(x)$ depends only on the single index $x'\beta_0$. Then, considering the result shown above
 \begin{align*}
 g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta)] & = g^{(1)}(X_i'\beta)( X_i - E[X_i'|X_i'\beta])(\beta_0 - \beta) + O_p(n^{-1})
 \end{align*}
@@ -415,26 +432,19 @@ By substituting this result in equation (10) and $\Omega_I$ in Theorem 3.1., it 
 
 This can be more easily seen by considering a semiparametric WNLS estimator such as the one in equation (9), ignoring for simplicity the trimming function. Differentiate the right-hand side of equation (13) with respect to $\beta$. Then, we obtain
 \begin{equation}
-\frac{1}{n} \sum_i \frac{Y_i - \hat{G}_{-i}(X_i'\beta)}{\hat{G}_{-i}(X_i'\beta)(1 - \hat{G}_{-i}(X_i'\beta))} \frac{\partial\hat{G}_{-i}(X_i'\beta)}{\partial \beta} = 0
+\frac{1}{n} \sum_{i=1}^n \frac{Y_i - \hat{G}_{-i}(X_i'\beta)}{\hat{G}_{-i}(X_i'\beta)(1 - \hat{G}_{-i}(X_i'\beta))} \frac{\partial\hat{G}_{-i}(X_i'\beta)}{\partial \beta} = 0
 \end{equation} 
 
 with probability approaching 1 as $n \rightarrow \infty$. This is the same as the first-order condition for semiparametric WNLS estimation of $\beta_0$ with the weight function
 
 \begin{align*}
 w(x) & = \{ \hat{G}_{-i}(X_i'\beta, \beta)[ 1 - \hat{G}_{-i}(X_i'\beta, \beta)]\}^{-1} = \{ g(X_i'\beta_0)[ 1 - g(X_i'\beta_0)]\}^{-1} \\
-	 & + o_p(1) = [Var(Y|X = x)]^{-1} + o_p(1)
+	 & + o_p(1) = [Var(Y|X = x)]^{-1} + o_p(1).
 \end{align*}
 
 
-Considering section 3.1., it follows that semiparametric maximum-likelihood estimator of $\beta$ in Klein and Spady's model is asymptotically efficient.\footnote{This is only true for "first order efficiency", i.e., when $E(X_i|X_i'\beta)$ is linear in $X_i'\beta$.}
+Considering section 3.1., it follows that semiparametric maximum-likelihood estimator of $\beta_0$ in Klein and Spady's model is asymptotically efficient.\footnote{This is only true for "first order efficiency", i.e., when $E(X_i|X_i'\beta)$ is linear in $X_i'\beta$.}
 
-Under certain assumptions, in particular Proposition 4.1., Klein and Spady (1993) show that $\hat{\beta}_{KS}$ is $n^{-\frac{1}{2}}$ and has asymptotic normal distribution given by
-
-\begin{equation}
-\sqrt{n}(\hat{\beta}_{KS} - \beta_0) \stackrel{d}{\rightarrow} N(0,\Omega_{KS}),
-\end{equation}
-where \[ \Omega_{KS} = \left\{ E\left[\frac{\partial}{\partial \beta}
- G(X'\beta)\frac{\partial}{\partial \beta} G(X'\beta)'\frac{1}{g(X_i'\beta_0)(1 - g(X_i'\beta_0)} \right]\right\}^{-1}. \]
 
 % section section_about_references_within_the_document (end)
 
