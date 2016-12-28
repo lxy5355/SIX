@@ -9,8 +9,9 @@ set.seed(109)
 N<-300
 x_1<-rnorm(N,mean=-7,sd=2.5)
 x_2<-rnorm(N,mean=1,sd=.5)
-X<-cbind(x_1,x_2)
-beta.true<-c(1,7.6)
+x_3<- rnorm(N,mean=2,sd=.5)
+X<-cbind(x_1,x_2,x_3)
+beta.true<-c(1,7.6,5)
 
 # assume true distribution function g of the error is normal
 e<- rnorm(N,mean=0,sd=1)

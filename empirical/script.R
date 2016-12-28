@@ -1,8 +1,9 @@
 library(caTools)
 #library(rpart)
 #library(rpart.plot)
+source ("ichimura_functions.R")
 
-data <- read.csv('c:/Users/lxy53/Desktop/voice.csv')
+data <- read.csv('C:/Users/lxy53/Documents/GitHub/SIX/empirical part/voice.csv')
 
 # Create a train and test set.
 set.seed(777)
@@ -45,4 +46,4 @@ table(test$label, predictLog2 >= 0.5)
 ##################################
 #ichimura methods
 ##################################
-
+genderLog <- ichimura
