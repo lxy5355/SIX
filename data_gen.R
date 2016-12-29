@@ -9,9 +9,8 @@ set.seed(109)
 N<-300
 x_1<-rnorm(N,mean=-7,sd=2.5)
 x_2<-rnorm(N,mean=1,sd=.5)
-x_3<- rnorm(N,mean=2,sd=.5)
-X<-cbind(x_1,x_2,x_3)
-beta.true<-c(1,7.6,5)
+X<-cbind(x_1,x_2)
+beta.true<-c(1,7)
 
 # assume true distribution function g of the error is normal
 e<- rnorm(N,mean=0,sd=1)
@@ -36,39 +35,76 @@ beta.hat.KS = estimates.KS$beta.hat
 ####################################################################
 #plot results 
 
-m.grid<- seq(min(X %*% beta.hat.ichimura), max(X %*% beta.hat.ichimura), len=500)
+par(mfrow=c(2,1))
 
-plot( m.grid,m.grid>0,col="red",main=c("true (red) data and y from estimated g function (black)"), 
-  ylim=range(sin(m.grid),g.hat.ichimura(m.grid)),type="p")
+m.grid<- seq(min(X %*% beta.hat.ichimura), max(X %*% beta.hat.ichimura), len=500)
+plot( m.grid,m.grid>0,col="red",main=c("Ichimura: true (red) data and y from estimated g function (black)"), 
+      ylim=range(m.grid>0,g.hat.ichimura(m.grid)),type="p")
 points(m[order(m)],g.hat.ichimura(m[order(m)]), type="p")
 
+m.grid<- seq(min(X %*% beta.hat.KS), max(X %*% beta.hat.KS), len=500)
+plot( m.grid,m.grid>0,col="red",main=c("KS: true (red) data and y from estimated g function (black)"), 
+      ylim=range(m.grid>0,g.hat.KS(m.grid)),type="p")
+points(m[order(m)],g.hat.KS(m[order(m)]), type="p")
 
 ####################################################################
 #define loss function and compare ichimura and KS
 
-sum((sin(m[order(m)]/4) -  g.hat(m[order(m)]) )^2)
+e.ichimura = na.omit((m[order(m)]>0) -  g.hat.ichimura(m[order(m)]))
+loss.ichimura = sum((e.ichimura)^2)/length(e.ichimura)
+
+e.KS = na.omit((m[order(m)]>0) -  g.hat.KS(m[order(m)]))
+loss.KS = sum((e.KS)^2)/length(e.KS)
 
 #########################################################################
-#monte carlo
-M = 100   #number of monte carlo simulation
+#monte carlo simulation
+
+M = 50 #number of monte carlo simulation
 n = 30    # Sample Size
-z <- rep(NA,M)
-beta_vec<-c(1,7.6) #true beta
+mc.beta.ichimura <- rep(NA,M)
+mc.beta.KS <- rep(NA,M)
+beta.true<-c(1,7.6) #true beta
 
 
-## MC-Experiments:
+#ichimura:
 for(j in 1:M){
 ##Generate x and y sample:
   x_1<-rnorm(N,mean=10,sd=1.5)
   x_2<-rnorm(N,mean=5,sd=1)
   X<-cbind(x_1,x_2)
-  m<-X %*% beta_vec
-  y<-sin(m)+runif(N,-1,1)
-## Compute jth realization of Z:
-  estimates=nlm(min_SSE_Gaussian,c(1,1),X=X,y=y,h=bandwidth)$estimate
-  estimates_norm = estimates/estimates[1]
-  z[j] <- estimates_norm[2] 
+  e<-rnorm(N,mean=0,sd=1)
+  m<-X %*% beta.true + e 
+  y<-m>0         
+## Compute jth realization of mc.beta.ichimura:
+  mc.beta.ichimura[j] <- ichimura_calc (X,y,h)$beta.hat[2]
 }
 
-#plot histogram
-hist(z,breaks = 25)
+#KS:
+for(j in 1:M){
+##Generate x and y sample:
+  x_1<-rnorm(N,mean=10,sd=1.5)
+  x_2<-rnorm(N,mean=5,sd=1)
+  X<-cbind(x_1,x_2)
+  e<-rnorm(N,mean=0,sd=1)
+  m<-X %*% beta.true + e 
+  y<-m>0         
+## Compute jth realization of mc.beta.ichimura:
+  mc.beta.KS[j] <- KS_calc (X,y,h)$beta.hat[2]
+}
+
+###########################################################################
+#plot histogram of monte carlo simulation
+
+par(mfrow=c(2,1))
+hist(mc.beta.ichimura,breaks = 25)
+hist(mc.beta.KS,breaks = 25)
+
+###########################################################################
+#define loss function from monte carlo and compare ichimura and KS
+
+mc.e.ichimura<-mc.beta.ichimura-beta.true
+mc.loss.ichimura<-sum((mc.e.ichimura)^2)/M
+
+mc.e.KS<-mc.beta.KS-beta.true
+mc.loss.KS<-sum((mc.e.KS)^2)/M
+
