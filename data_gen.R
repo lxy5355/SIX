@@ -75,22 +75,11 @@ for(j in 1:M){
   e<-rnorm(N,mean=0,sd=1)
   m<-X %*% beta.true + e 
   y<-m>0         
-## Compute jth realization of mc.beta.ichimura:
+## Compute jth realization of mc.beta.ichimura and mc.beta.KS:
   mc.beta.ichimura[j] <- ichimura_calc (X,y,h)$beta.hat[2]
-}
-
-#KS:
-for(j in 1:M){
-##Generate x and y sample:
-  x_1<-rnorm(N,mean=10,sd=1.5)
-  x_2<-rnorm(N,mean=5,sd=1)
-  X<-cbind(x_1,x_2)
-  e<-rnorm(N,mean=0,sd=1)
-  m<-X %*% beta.true + e 
-  y<-m>0         
-## Compute jth realization of mc.beta.ichimura:
   mc.beta.KS[j] <- KS_calc (X,y,h)$beta.hat[2]
 }
+
 
 ###########################################################################
 #plot histogram of monte carlo simulation
