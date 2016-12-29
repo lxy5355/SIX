@@ -144,12 +144,8 @@ Hence, model (1) with unknown $g(\cdot)$ leads to a more flexible version of par
 Model (1) implies $E(Y|x) = g(x'\beta_0)$. Thus Y depends on $x$ only through the linear combination $x'\beta_0$, and this relationship is characterized by the link function $g(\cdot)$. Before estimating  $\beta$ and $ g(\cdot)$, restrictions must be imposed to ensure identification of the semiparametric model
 
 \begin{equation}
-E(Y|x) = g(x'\beta_0)
+E(Y|x) = g(x'\beta_0).
 \end{equation}
-
-
-\vspace{2mm} 
-
 
 \newtheorem{prop}{Proposition}[section]
 
@@ -259,7 +255,7 @@ A consistent estimator of $\Omega_I$ is given by
 where $\hat{V} = n^{-1}\sum_{i} w(X_i)\hat{g}^{(1)}(X_i'\hat{\beta})(X_i - \hat{E}(X_i|X_i'\beta))(X_i - \hat{E}(X_i|X_i'\beta))', \hat{\Sigma} = n^{-1}\sum_{i} w(X_i)^2\hat{\epsilon}_{i}^{2}\hat{g}^{(1)}(X_i'\hat{\beta})(X_i - \hat{E}(X_i|X_i'\beta))', \hat{\epsilon}_i = Y_i - \hat{g}(X_i'\beta), \hat{g}^{(1)}(X_i'\beta) \linebreak
 = [\partial \hat{g}_{-i}/\partial \beta]|_{\beta=\hat{\beta}}$, $\hat{g}_{-i}(X_i'\beta)$ is defined in (10), $\hat{E}(X_i|X_i'\beta)' = \sum_{j} X_jK((X_i - X_j')'\hat{\beta})/ \sum_{j}K((X_i - X_j)'\hat{\beta}).$
 
-For what follows the trimming set $A_\delta$ is ignored and $w(\cdot)$ is set to 1. Furthermore, assume $\beta - \beta_0 = O(n^{-\frac{1}{2}})$. Then, 
+For what follows the trimming set $A_\delta$ is ignored and $w(\cdot)$ is set to 1. Furthermore, assume $\beta_n - \beta_0 = O(n^{-\frac{1}{2}})$. Then, 
 
 
 %and assume that the minimization over $\beta$ is done over the shrinking set $\mathcal{B}_n = \{ \beta : \norm{\beta - \beta_0} \geq Cn^{-1/2}$ for some constant $ C > 0$. This follows H\"ardle, Hall and Ichimura (1993). With this in mind and $ h \in \{h : C_1n^{-\frac{1}{5}} \geq h \geq C_2n^{-\frac{1}{5}}\}$ for some $C_2 > C_1 > 0$ we can establish a proof for Theorem 1. First,
@@ -375,9 +371,7 @@ where
 		\item $\{x_i,y_i\}$ for i = 1, ..., n is an i.i.d. sample.
 \end{enumerate}
 
-The function $\mathcal{L}(\beta)$ is analogous to $S_n(\beta,g)$. It is clear from equation (12) that restrictions must be imposed such that any estimate of $g$ is kept sufficiently far away from 0 and 1. With this in mind, Klein and Spady (1993) use a trimming function $\tau$ such that with $h_N \rightarrow 0$, the function $\tau$ employed to downweight observations has the form
-\[ \tau(t \text{;}\epsilon) \equiv \{(1 + exp[h_{N}^{\frac{\epsilon}{5}} - t)/h_{N}^{\frac{\epsilon}{4}}]\}^{-1}, \]
-where $\epsilon > 0$ and $t$ is to be interpreted as a density estimate. By replacing $t$ for an estimated density, observations for which the corresponding densities are small are downweighted. However, Klein and Spady (1993) find that $\tau$ has little effect on the numerical performance of the estimator. Thus, the original trimming function can be replaced by a simplified trimming function $\tau_i = \mathbf{1}{(Xi \in A_\delta)}$, which causes little efficiency loss. The latter will be used in the remainder of this section.
+The function $\mathcal{L}(\beta)$ is analogous to $S_n(\beta,g)$. It is clear from equation (12) that restrictions must be imposed such that any estimate of $g$ is kept sufficiently far away from 0 and 1. With this in mind, Klein and Spady (1993) use a given trimming function $\tau$ employed to downweight observations for which the corresponding densities are small. However, Klein and Spady (1993) find that $\tau$ has little effect on the numerical performance of the estimator. Thus, the original trimming function can be replaced by a simplified trimming function $\tau_i = \mathbf{1}{(Xi \in A_\delta)}$, which causes little efficiency loss. The latter will be used in the remainder of this section.
 
 Similarly to Ichimura's method, Klein and Spady suggest replacing $g$ with the leave-one-out NW from equation (8). With this in mind, we obtain instead
 
@@ -385,23 +379,9 @@ Similarly to Ichimura's method, Klein and Spady suggest replacing $g$ with the l
 \mathcal{L}_n(\beta) = \frac{1}{n}\sum_{i=1}^n \tau_{i}\{ (1 - Y_i)ln[ 1 - \hat{G}_{-i}(X_i'\beta)] +  Y_iln[\hat{G}_{-i}(X_i'\beta)]\}.
 \end{equation}
 
-Unlike Ichimura's approach, this model is stricter in terms of bandwidth and kernel choice. This becomes clear with Proposition 4.1..
-
-\newtheorem{proposition}{Proposition}[section]
-\begin{prop}[Kernel and bandwidth choice]
-Klein and Spady's model requires:
-	\begin{enumerate}[label=(\roman*)]
-		\item The kernel $K$ must be of fourth-order.		
-		\item The bandwidth must satisfy the rate $ n^{-\frac{1}{6}} < h < n^{-\frac{1}{8}}$.
-	\end{enumerate}
-\end{prop}
-
-Part $(i)$ can be satisfied by, for example,  having a bias-reducing kernel. In particular,
+Unlike Ichimura's approach, this model is stricter in terms of bandwidth and kernel choice. Klein and Spady (1993) use an higher order kernel. For example, by requiring
 \[\int z^{2}K(z)dz = 0.\]
-Furthermore, the rate required for $h$ in $(ii)$ is smaller than the optimal rate $n^{-\frac{1}{9}}$ for the fourth-order kernel.
-
-
-Under certain assumptions, in particular Proposition 4.1., Theorem 4.1. gives as the following result:
+Furthermore, the bandwidth must satisfy the rate $ n^{-\frac{1}{6}} < h < n^{-\frac{1}{8}}$. Given these restrictions, we obtain Theorem 4.1.
 
 
 \begin{theorem}
@@ -416,7 +396,7 @@ and $\Omega_{KS} = \Omega_{SI}$, i.e., the estimator is asymptotically efficient
 
 \end{theorem}
 
-It now becomes necessary to elaborate on the last stament of Theorem 4.1. For a binary choice model, $Var(Y|X = x) = P(Y = 1|X = x)[1 - P(Y = 1|X = x)] = E[\mathbf{1}{(X_i'\beta_0 \geq \epsilon_i)}]\{1 - E[\mathbf{1}{(X_i'\beta_0 \geq \epsilon_i)}]\} = g(x'\beta_0)[1 - g(x'\beta_0)]$ and $\sigma^2(x)$ depends only on the single index $x'\beta_0$. Assume $\beta - \beta_0 = O_p(n^{-\frac{1}{2}})$ and consider the result shown above
+It now becomes necessary to elaborate on the last stament of Theorem 4.1. For a binary choice model, $Var(Y|X = x) = P(Y = 1|X = x)[1 - P(Y = 1|X = x)] = E[\mathbf{1}{(X_i'\beta_0 \geq \epsilon_i)}]\{1 - E[\mathbf{1}{(X_i'\beta_0 \geq \epsilon_i)}]\} = g(x'\beta_0)[1 - g(x'\beta_0)]$ and $\sigma^2(x)$ depends only on the single index $x'\beta_0$. Assume $\beta_n - \beta_0 = O(n^{-\frac{1}{2}})$ and consider the result shown above
 \begin{align*}
 g(X_i'\beta_0) - E_A[g(X_i'\beta_0)|X_i'\beta)] & = g^{(1)}(X_i'\beta)( X_i - E_A[X_i'|X_i'\beta])(\beta_0 - \beta) \\
 											   & + O_p(n^{-1})
