@@ -323,6 +323,18 @@ It is important to however realize that the minimization of a nonlinear objectiv
 
 %where $\Sigma_0$ is the same as $\Sigma_I$, except that for the former $W(X_i) = 1$.
 
+\subsection{Bandwidth Selection} % (fold)
+\label{sub:Bandwidth Selection}
+
+Ichimura (1993) suggests that the smoothing parameter $h$ should be chosen so as to satisfy
+ $ln(h)/[nh^{3 + \frac{3}{v-1}}] \rightarrow 0$ and $nh^8 \rightarrow 0$ as $n \rightarrow \infty $, where $v \geq 3$ is a posititive integer whose specific values depend on the existence of a number of finite moments  of $Y$ along with the smoothness of the unknown function $g(\cdot)$. The range of permissible smoothing parameters allows for optimal smoothing. That is, $h_n = O(n^{-\frac{1}{5}})$.
+Alternatively, H{\"a}rdle et al. (1993) suggest selecting $h_n$ and $\beta$ simultaneously by minimizing
+
+\begin{equation}
+M(\beta, h_n) = \sum_i \left[ Y_i - \hat{G}_{-i}(X_i'\beta, h_n) \right]^2\mathbf{1}{(X_i \in A_\delta)},
+\end{equation}
+
+where $\hat{G}_{-i}(X_i'\beta, h_n) = \hat{G}_{-i}(X_i'\beta)$ and $A_\delta$ is the trimming set.	
 
 \subsection{Weight Function} % (fold)
 \label{sub:Weight Function}
@@ -381,7 +393,7 @@ Similarly to Ichimura's method, Klein and Spady suggest replacing $g$ with the l
 
 In what follows, certain assumptions are required in terms of bandwidth and kernel choice to obtain. In particular, Klein and Spady (1993) use an higher order kernel. For example, by requiring
 \[\int z^{2}K(z)dz = 0.\]
-Furthermore, the bandwidth must satisfy the rate $ n^{-\frac{1}{6}} < h < n^{-\frac{1}{8}}$. Given these restrictions, we obtain Theorem 4.1.
+Furthermore, the bandwidth must satisfy the rate $ n^{-\frac{1}{6}} < h_n < n^{-\frac{1}{8}}$. Given these restrictions, we obtain Theorem 4.1.
 
 
 \begin{theorem}
@@ -428,23 +440,26 @@ w(x) & = \{ \hat{G}_{-i}(x'\hat{\beta})[ 1 - \hat{G}_{-i}(x'\hat{\beta})]\}^{-1}
 \end{align*}
 
 
-Considering section 3.1., it follows that semiparametric maximum-likelihood estimator of $\beta_0$ in Klein and Spady's model is asymptotically efficient.\footnote{This is only true for "first order efficiency", i.e., when $E(X_i|X_i'\beta)$ is linear in $X_i'\beta$.}
+Considering section 3.2., it follows that semiparametric maximum-likelihood estimator of $\beta_0$ in Klein and Spady's model is asymptotically efficient.\footnote{This is only true for "first order efficiency", i.e., when $E(X_i|X_i'\beta)$ is linear in $X_i'\beta$.}
 
 As with Ichimura's model, optimization of the maximum likelihood function might become difficult. Apart from computational difficulties, optimization could lead to multiple local minima because the objective function might not be unimode or convex. \footnote{Zhou and Lang (1995) provide an alternative using an ``easy to compute'' semiparametric estimator.}
 % section section_about_references_within_the_document (end)
 
-\section{Bandwidth Selection} % (fold)
-\label{sec:Bandwidth Selection}
+\subsection{Bandwidth Selection} % (fold)
+\label{sub:Bandwidth Selection}
 
-Ichimura (1993) suggests that the smoothing parameter $h$ should be chosen so as to satisfy
- $ln(h)/[nh^{3 + \frac{3}{v-1}}] \rightarrow 0$ and $nh^8 \rightarrow 0$ as $n \rightarrow \infty $, where $v \geq 3$ is a posititive integer whose specific values depend on the existence of a number of finite moments  of $Y$ along with the smoothness of the unknown function $g(\cdot)$. The range of permissible smoothing parameters allows for optimal smoothing. That is, $h_n = O(n^{-\frac{1}{5}})$.
-Alternatively, H{\"a}rdle et al. (1993) suggest selecting $h_n$ and $\beta$ simultaneously by minimizing
-
+Klein and Spady (1993) do not discuss how to choose the bandwidth, appart from the requirement that $ n^{-\frac{1}{6}} < h_n < n^{-\frac{1}{8}}$. It can be conjectured, following H{\"a}rdle et al. (1993) that it can be chosen jointly with $\beta$ when minimizing
 \begin{equation}
-M(\beta, h_n) = \sum_i \left[ Y_i - \hat{G}_{-i}(X_i'\beta, h_n) \right]^2\mathbf{1}{(X_i \in A_\delta)},
+M_n(\beta, h_n) = \frac{1}{n}\sum_{i=1}^n \tau_{i}\{ (1 - Y_i)ln[ 1 - \hat{G}_{-i}(X_i'\beta, h_n)] +  Y_iln[\hat{G}_{-i}(X_i'\beta, h_n)]\}.
 \end{equation}
 
-where $\hat{G}_{-i}(X_i'\beta, h_n) = \hat{G}_{-i}(X_i'\beta)$ and $A_\delta$ is the trimming set.	
+
+\section{Comparing Ichimura's and Klein and Spady's model} % (fold)
+\label{sec:Comparing Ichimura's and Klein and Spady's model}
+
+Klein and Spady's model seems more approriate than Ichimura's for the binary choice model case. Ichimura's model is heteroskedastic. However, for Klein and Spady's model the $log-likelihood$ function has ``natural'' weighting, thus avoiding the problem of heteroskedasticy. Therefore, it does not become necessary to use a weight function and consequently it is also not necessary to use the two-step procedure described in section 3.2. to reach the asymptotic efficiency bound. 
+
+
 \newpage 
 
 \bibliographystyle{natdin}
