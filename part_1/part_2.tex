@@ -73,16 +73,85 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 \label{sec:introduction}
 
 Regression function tells the relationship between dependent variable Y and independent variable X. 
-Given an arbitrary data sample ${\{x_i,y_i\}_{i=1}}^n$, the dependency can be illustrated as
+Given an arbitrary data sample $\{X_i,Y_i\}_{i=1}^n$, the dependency can be illustrated as
+\begin{equation}
+	Y_i = m(X_i) + \epsilon_i, i=1,2 ...,n.
+\end{equation}
+Härdle(1990) defines the concept smoothing as conditional expectation of $Y_i$ on certain value of $X_i$:
+\begin{equation}
+	E(Y_i|X_i) = m(X_i), i=1,2 ...,n.
+\end{equation}
+He emphasized that by excluding error term interpretation can be concentrated on the important details of the mean dependence of Y on X.
+Straightforwardly there are two approaches to achieve this aim. 
+The classical parametric approach prespecifies on the mean curve m a functional form, which is assumed to be fully described by a finite set of parameters.
+On the contrary, a nonparametric approach doesn't force observed data to be projected into a fixed parameterization thorough prespecifed functional form or error distribution.
+While both approaches have their own significant limits, semiparametric approach is developed to mainly avoid misspecification issue faced by parametric approach and  inconveniences of fully nonparametric models such as the curse of dimensionality, difficulty of interpretation, and the lack of extrapolation capability.
+In this paper, we will focus on one widely used model of semiparametric approach, the semiparametric single index model.
+
+Before providing the definition of this semiparametric single index regression model, we will firstly use the binary choice model to shed some light on the intuition of this model. 
+Herein the necessity of introducing a weight function into estimation of parameters will also be illustrated, since heteroskedasticity of error distribution is commonly inevitable in empirical studies. 
+Subsequently the generalized definition semiparametric single index model will be given, with the laid-out structure of this paper.
+
+\vspace{2mm}
+Regarding to Sönderbom(2009), if dependent variable $Y$ is binary, it is typically equal to one for all observations in the data for which the event of interest happens and zero for the remaining observations. Providing a random sample of $\{Y,X\}$, the probability that the event of interest happens for certain $X$ turns out to be the conditional expectation of $Y$. A class of binary response model between dependent variable ($Y$) and covariates ($X$) is then considered as follows:
+
+\begin{eqnarray}
+    Pr(Y=1|X) = E(Y|X) \\    
+    Pr(Y=1|X) = G(X'\beta),
+\end{eqnarray}
+
+where $G$ is a function taking on values strictly between 0 and 1: $0<G(z)<1$, for all real numbers $z$. $G$ is usually taken as a cumulative density function (cdf), monotonically increasing in $z$(i.e. $x'\beta$). Record that a variety of parametric binary choice models are founded on different choice of $G$. For example, if $G$ is prespecified as cdf of standard normal distribution, yielding a Probit model, while a logistic distribution yielding a Logit model. 
+
+Model (4) can also be interpreted with a latent variable framework suggested by Sönderbom(2009):
+\begin{eqnarray}
+	Y^* = \alpha + X'\beta + u, \nonumber \\
+	Y = 1\ if\ Y^* > 0, \nonumber \\
+	Y = 0\ if\ Y^* \leq 0.
+\end{eqnarray}	
+In order to further demonstrate the powerful strength of a semiparametric single index model compared to classical parametric ones, here we elaborate more with an example from labor force participation. 
+
+Consider $Y$ representing labor force participation, equal to 1 if the individual participates in the labor market and 0 otherwise. The explanatory variables vector $X$ can contain a series of economic factors that might influence labor participation, such as gender, age, marital status and education. Assuming a linear relationship between labor force participation and potential determinants, the empirical analysis focuses on the estimation of $\beta$.
+Parametric methods to estimate $\beta$ require assumptions on the distribution of the error term $u$. A common assumption in the parametric framework is $ u \sim N(0, \sigma^{2})$. With further identification conditions such as $\sigma = 1$, $\beta$ can be jointly identified (see Madalla (1986)) and we can use maximum likelihood to estimate it. Following equation (3) we get:
+\begin{equation} 
+\begin{split}
+E(Y|X=x) & = \sum_{y=0,1} yPr(y|x) = 1 \times Pr(y=1|x) + 0 \times Pr(y=0|x) \\
+ & = Pr(y=1|x) = Pr(\alpha + x'\beta + u_i > 0) \\
+ & = Pr(u_i > -(\alpha + x'\beta)) = 1 - Pr(u_i \leq -(\alpha + x'\beta)) \\
+ & = 1 - \Phi(-(\alpha + x'\beta)) \\
+ & = \Phi(\alpha + x'\beta)\ (exploit\ symmetry),
+\end{split}
+\end{equation}
+where $\Phi(\cdot)$ is the cdf of standard normal distribution. Under this specification model (4) is commonly referred to as a Probit:
 \[
-	Y_i = m(X_i) + \epsilon_i, with i=1,2 ...,n
+Pr(Y=1|x) = \Phi(\alpha + x'\beta) \equiv G(\alpha + x'\beta).
 \]
-Semiparametric single index models are widely used in a variety of settings.
-In this section, we elaborate on the model's main features and contributions to the class of semiparametric models.  
-Essentially, while the risk of mispecification is reduced relative to the overly restrictive but interpretable parametric models, it also avoids inconveniences of fully nonparametric models such as the curse of dimensionality, difficulty of interpretation, and the lack of extrapolation capability.
+Now we take a closer look at the distribution assumption on $u$: $ u \sim N(0, 1)$. We firstly come to the issue of heteroskedasticity. Estimates of $\beta$ will be inconsistent once the variability of $u$ depends on the level of some components in $X$. Intuitively we assume 
+\[
+	u_i = e_i \cdot \abs{X_{1i}}\ and\ 
+	e_i \sim N(0, 1).
+\]
+Recording the assumption that $X_i$ is i.i.d, we get
+\[
+	u_i \sim N(0, X_{i1}^2).
+\]
+Compared to calculation in (6), now we get
+\begin{equation} 
+\begin{split}
+Pr(y=1|x) & = Pr(\alpha + x'\beta + e \cdot \abs{x_{1}} > 0) \\
+ & = Pr(e > -\frac{1}{\abs{x_{1}}}(\alpha + x'\beta)) \\
+ & = 1 - Pr(e \leq -\frac{1}{\abs{x_{1}}}(\alpha + x'\beta)) \\
+ & = \Phi(\alpha \frac{1}{\abs{x_{1}}} + \beta_1 + \frac{1}{\abs{x_{1}}}x_{-1}'\beta_{-1})\ .
+\end{split}
+\end{equation}
+
+Notice the altered functional form inside cdf of Probit model in (7) in comparison with (6), we can see that estimation of parameters $\beta$ will be inconsistent in presence of heteroskedasticity. This point will be further discussed later on in this paper when a weight function constructed on $X$ is introduced into Ichimura's estimation method on single index model. 
+
+Furthermore, instead of $u$ satisfying a normal distribution, a symmetric logistic distribution will lead to a logit model, and a tobit model can be obtained with $G$ being the identity function and $Y = max (0, G(X'\beta) + \epsilon)$, where $\epsilon$ is an unobserved, normally distributed random variable with mean zero and independent of X. 
+Again, different assumption on the distribution of $u$ leads to different functional forms for the conditional probability of $Y = 1$. Therefore, consistent parametric estimation of $E(Y|X=x) = Pr(Y=1|x)$ requires the $correct$ distribution specification of $u$.
+% Generally speaking, model (1) contains many widely used parametric models that assume that $g$ is known up to a finite-dimensional parameter. 
 
 \vspace{2mm} 
-Following Li and Racine (2007) notation, the model
+While $Y$ can be either discrete or continuous and function $G$ in (4) is a variation of function $m$ in (2) to satisfy the binary choice model setting, we can generalize the model above. If the a priori specification on the functional form of $m$ is abandoned and the linear parametric relationship between $X$ and $\beta$ maintained, we then get a semiparametric single index model. To define it formally, we follow Li and Racine (2007) notation. The model:
  
 \begin{eqnarray}
 Y = g(X'\beta) + \epsilon,  % with i =1,2 ..., n?, iid?
@@ -101,44 +170,10 @@ where
 is a single index model.
 \vspace{2mm}
 
-The above model is referred to as a linear single index model by Ichimura (1993). This model is semiparametric as the functional form of the linear index is specified, while $g(\cdot)$ is left unspecified and the conditional probability of $\epsilon$ conditioned on X is not specified except $ E(\epsilon|X) = 0 $. 
-
-While Y can be of either discrete or continuous character, for illustrative purposes, we now analyze binary choice models in the semiparametric single index setting proposed by Li and Racine (2007). More specifically, by accepting the parametric linear index assumption governing choices while not specifying the unknown distribution of the error term, we obtain a semiparametric single index model. Thus, when considering the relationship between a binary dependent variable (Y) and covariates (X) this relationship can be modelled as follows:
-
-\[
-    Yi = 
-    \begin{cases}
-      1, & \text{if}\ Y_i^* \stackrel{def}{=} \alpha + X_i'\beta + u_i > 0 \\
-      0, & \text{if}\ Y_i^* = \alpha + X_i'\beta + u_i \leq 0
-    \end{cases}
-\]
-
-where $Y^{*}$ is a latent variable.
-Consider Y representing labor force participation, equal to 1 if the individual participates in the labor market and 0 otherwise. The explanatory variables can contain a series of economic factors that might influence labor participation, such as gender, age, marital status and education. Assuming a linear relationship between labor force participation and potential determinants, the empirical analysis focuses on the estimation of $\beta$.
-Parametric methods to estimate $\beta$ require assumptions on the distribution of the error term \textit{u}. A common assumption in the parametric framework is $ u \sim N(0, \sigma^{2})$. With further identification conditions such as $\sigma = 1$, $\beta$ can be jointly identified (see Madalla (1986)) and we can use maximum likelihood to estimate it.  Let $F_u(\cdot)$ denote the true CDF of \textit{u}. Nevertheless, excluding the assumption of normality of the error term would in general lead to inconsistent estimates. Then we get:
+This model is referred to as a linear single index model by Ichimura (1993). It is semiparametric as the functional form of the linear index is specified, while $g(\cdot)$ is left unspecified and the conditional probability of $\epsilon$ conditioned on X is not specified except $ E(\epsilon|X) = 0 $. 
 
 
-\[ 
-\begin{split}
-E(Y|x) & = \sum_{y=0,1} yP(y|x) = 1 \times P(Y=1|x) + 0 \times P(Y=0|x) \\
- & = P(Y=1|x) = P(\alpha + x'\beta + u_i > 0) \\
- & = P(u_i > -(\alpha + x'\beta)) = 1 - P(u_i \leq -(\alpha + x'\beta)) \\
- & = 1 - F(-(\alpha + x'\beta)) \equiv m(\alpha + x'\beta),
-\end{split}
-\]
-
-
-where $F(\cdot)$ is the cummulative distribution function (CDF) of $u$. If $ u \sim N(0,1)$ is true, then $u$ has a symmetric distribution and $1 - F(-(\alpha + x'\beta)) = F(\alpha + x'\beta)$. Then model (2) is commonly referred to as a Probit:
-
-\[
-E(Y|X) = P(Y=1|x) = \Phi(\alpha + x'\beta),
-\]
-
-where $\Phi$ is the CDF of a standard normal variable. Alternatively, for $u$ having a symmetric logistic distribution a logit model is obtained. Furthermore, for $g$ being the identity function we get linear model and if $g(X'\beta) = E(Y|X=x)$ model (1) represents a tobit model with $Y = max (0, g(X'\beta) + \epsilon)$, where $\epsilon$ is an unobserved, normally distributed random variable with mean zero and independent of X. 
-Thus, different functional forms for $u$ lead to different functional forms for the conditional probability of $Y = 1$. Therefore, consistent parametric estimation of $E(Y|X) = P(Y=1|x)$ requires the \textit{correct} distribution specification of $u$.
-% Generally speaking, model (1) contains many widely used parametric models that assume that $g$ is known up to a finite-dimensional parameter. 
-
-Hence, model (1) with unknown $g(\cdot)$ leads to a more flexible version of parametric models while retaining many of its desirable features. As shown above, model (1) avoids the problem of error distribution mispecification. Furthermore, the model avoids the curse of dimensionality by reducing the p-dimensional predictor to a univariate single-index. Then $\beta$ achieves the same convergence rate $n^{-\frac{1}{2}}$ as parametric models. Thus, the single index model reaches greater estimation precision than fully nonparametric estimation with multidimensional X and the same precision as a parametric model. Moreover, the assumptions of a single index model are weaker than those of a parametric model and stronger than those of a fully nonparametric model.  \footnote{However, the necessary assumptions for consistent parametric estimation can be relaxed. In particular, the single index model might have weaker assumptions than a fully parameterized model for structural economic models.} However, semiparametric models have two important disavantages. First, they are hard to compute. Second, they may generate multiple local minima as they require optimizing nonlinear objective functions that might be multimodal or nonconvex. \footnote{Noncave in the case of the maximum likelihood estimator.} These problems seem to be exarcebated for increasing sample sizes or number of explanatory variables (Manski, 1975, 1985; Manski and Thompson, 1986; Cosslett, 1983; Ichimura, 1993; Horowitz, 1992; and Klein and Spady, 1993).\footnote{H{\"a}rdle and Stoker (1989) suggest a direct estimation method that does not require solving an optimization problem involving iterative solutions. This method becomes less attractive than Ichimura (1993) for small-sample settings as the curse of dimensionality inherited from the first stage might not disappear on the second stage. }
+Hence, model (8) with unknown $g(\cdot)$ leads to a more flexible version of parametric models while retaining many of its desirable features. As shown above, model (8) avoids the problem of error distribution misspecification. Furthermore, the model avoids the curse of dimensionality by reducing the p-dimensional predictor to a univariate single-index. Then $\beta$ achieves the same convergence rate $n^{-\frac{1}{2}}$ as parametric models. Thus, the single index model reaches greater estimation precision than fully nonparametric estimation with multidimensional X and the same precision as a parametric model. Moreover, the assumptions of a single index model are weaker than those of a parametric model and stronger than those of a fully nonparametric model.  \footnote{However, the necessary assumptions for consistent parametric estimation can be relaxed. In particular, the single index model might have weaker assumptions than a fully parameterized model for structural economic models.} However, semiparametric models have two important disavantages. First, they are hard to compute. Second, they may generate multiple local minima as they require optimizing nonlinear objective functions that might be multimodal or nonconvex. \footnote{Noncave in the case of the maximum likelihood estimator.} These problems seem to be exarcebated for increasing sample sizes or number of explanatory variables (Manski, 1975, 1985; Manski and Thompson, 1986; Cosslett, 1983; Ichimura, 1993; Horowitz, 1992; and Klein and Spady, 1993).\footnote{H{\"a}rdle and Stoker (1989) suggest a direct estimation method that does not require solving an optimization problem involving iterative solutions. This method becomes less attractive than Ichimura (1993) for small-sample settings as the curse of dimensionality inherited from the first stage might not disappear on the second stage. }
 % and as accurate as a one-dimensional nonparametric mean regression for $g$.
 
 % section introduction (end)
