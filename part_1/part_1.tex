@@ -101,7 +101,7 @@ The above model is referred to as a linear single index model by Ichimura (1993)
 While Y can be of either discrete or continuous character, for illustrative purposes, we now analyze binary choice models in the semiparametric single index setting proposed by Li and Racine (2007). More specifically, by accepting the parametric linear index assumption governing choices while not specifying the unknown distribution of the error term, we obtain a semiparametric single index model. Thus, when considering the relationship between a binary dependent variable (Y) and covariates (X) this relationship can be modelled as follows:
 
 \[
-    Yi = 
+    Y_i = 
     \begin{cases}
       1, & \text{if}\ Y_i^* \stackrel{def}{=} \alpha + X_i'\beta + u_i > 0 \\
       0, & \text{if}\ Y_i^* = \alpha + X_i'\beta + u_i \leq 0
@@ -137,6 +137,7 @@ Hence, model (1) with unknown $g(\cdot)$ leads to a more flexible version of par
 % and as accurate as a one-dimensional nonparametric mean regression for $g$.
 
 % section introduction (end)
+The main focus of this paper is Ichimura's semiparametric model. In section 2 the identification conditions necessary for uniquely determining $\beta$ and $g(\cdot)$ in semiparametric models are presented.  Furthermore, Ichimura's solution will be analyzed in detail in section 3. The latter section briefly explains bandwidth selection. As a comparison to Ichimura's method, Klein and Spady's (1993) semiparametric binary choice model will be explained concisely in section 4. Finally, in section 5 the two models are compared in both a theoretical and applied perspective.
 
 \section{Identification} % (fold)
 \label{sec:Identification}
@@ -172,7 +173,16 @@ E(Y|X = x) = g^*(\gamma + x'\beta_0\delta)
 
 The models (3) and (4) are observationally equivalent. Thus, $\beta_0$ and $g$ are not identified unless restrictions are imposed to uniquely specify $\gamma$ and $\delta$. The restriction on $\gamma$ is then a \textit{location normalization} and it can be satisfied by for example requiring $x$ not to include a constant. The restriction on $\delta$ is a \textit{scale normalization}. In this case we use the approach that assumes that the vector $\beta_0$ has one of its components set to 1. \footnote{This implies that X must have at least 2 dimensions. Otherwise $\beta_0$ is simply normalized to 1 and a one-dimensional nonparametric model $E(y|x) = g(x)$ with no semiparametric part is obtained instead.}
 As to what concerns part (ii), $g(\cdot)$ cannot be a constant function, as otherwise $\beta_0$ is not identified. Furthermore, what makes the identification of $E(Y|X = x)$ possible is that it remains constant if $x$ changes in a way such that $x'\beta_0$ stays constant. However $P(x'\beta_0 = c)=0$, for $x_0'\beta$ continuously distributed and for some constant $c$, thus impossibilitating identification. By adding the assumption that $g$ is differentiable, $g(x'\beta_0)$ is close to $g(c)$ whenever $x'\beta_0$ is close enough to $c$. Then, the set of $x$ for which $x'\beta_0$ is within any specified nonzero distance of $c$ has nonzero probability for $c$ in the interior of the support of $x'\beta_0$. Therefore, we identify $\beta_0$ by the approximate constancy of $x'\beta_0$. In fact, Wei Lin and Kulasekera (2007) show that the weaker assumption that $g$ is only continuous is sufficient for identification. However, assuming differentiability will become useful when analyzing Ichimura's and Klein and Spady's methods.
-To understand why condition (iii) it is necessary consider a Single Index Model in which X as a continuous component $X_1$ with support $\big[0,1\big]$, and one discrete component $X_2$ whose support is $\{0,1\}$. Assume $X_1$ and $X_2$ are independent, g is strictly increasing and non periodic and set $\beta_1 = 1$ as a \textit{scale normalization}. Then $E(Y|(x_1,0)) = g(x_1)$ and $E(Y|(x_1,1)) = g(x_1 + \beta_2)$. For the first case where $X_2 = 0$ the function g is identified on $\big[0,1\big]$. However, for $\beta_2 > 1$ the support of $ X_1 + \beta_2$ is disjoint from $\big[0,1\big]$ and $\beta_2$ is an intercept in the model for $E(Y|(x_1,1))$. Thus, it is not possible to identify $\beta_2$. However, for $\beta_2 < 1$ the support of $X_1$ and $X_1 + \beta_2$ overlap. In particular for the subset $\{X: X_1 \in [ \beta_2, 1] \wedge X_2 = 1\}$, $g(x_1 + \beta_2) = g(v)$ for some $v \in [0,1]$. Then, $g(v)$ can be identified for $v \in [\beta_2, 1]$ by observations of $X_1$ for which $X_2 = 0$. Therefore, $\beta_2$ can be identified by solving
+To understand why condition (iii) it is necessary consider a Single Index Model in which X as a continuous component $X_1$ with support $\big[0,1\big]$, and one discrete component $X_2$ whose support is $\{0,1\}$. Assume $X_1$ and $X_2$ are independent, g is strictly increasing and non periodic and set $\beta_1 = 1$ as a \textit{scale normalization}. The following model is obtained:
+
+\[
+\begin{split}
+E[Y| X = (x_1,0)]& = g(x_1), \text{support\ of } g(\cdot): [0,1];  \\
+E[Y| X = (x_1,1)]& = g(x_1+\beta_2), \text{support\ of } g(\cdot): [\beta_2,1+\beta_2].
+\end{split}
+\]
+
+For the first case where $X_2 = 0$ the function g is identified on $\big[0,1\big]$. However, for $\beta_2 > 1$ the support of $ X_1 + \beta_2$ is disjoint from $\big[0,1\big]$ and $\beta_2$ is an intercept in the model for $E(Y|(x_1,1))$. Thus, it is not possible to identify $\beta_2$. However, for $\beta_2 < 1$ the support of $X_1$ and $X_1 + \beta_2$ overlap. In particular, for $\beta_2$ positive and the subset $\{X: X_1 \in [ 0, 1 - \beta_2] \wedge X_2 = 1\}$, $g(x_1 + \beta_2) = g(v)$ for some $v \in [0,1]$. \footnote{For $\beta_2$ negative one can consider $\{X: X_1 \in [ - \beta_2, 1 + \beta_2] \wedge X_2 = 1\}$} Then, $g(v)$ can be identified for $v \in [\beta_2, 1]$ by observations of $X_1$ for which $X_2 = 0$. Therefore, $\beta_2$ can be identified by solving
 
 \begin{equation}
 E[Y| X = (x_1,0)] = g(x_1 + \beta_2),
