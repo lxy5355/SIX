@@ -62,7 +62,7 @@
 
 \vspace{2cm}
 \begin{abstract}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
 
 \end{abstract}
 	\newpage
@@ -206,13 +206,13 @@ In this case as $g(\cdot)$ is not know we need to estimate it. However, this can
 \begin{equation}
 G(X_i'\beta) \stackrel{def}{=} E(Yi|X_i'\beta) = E[g(X_i'\beta_0)|X_i'\beta]
 \end{equation}
- by the kernel method. Ichimura (1993) proposes modifications of the usual kernel estimation to estimate $G(X_i'\beta)$. First, observation $i$ is excluded from the calculation of $G(X_i'\beta)$. Second, the denominator contain a term $\hat{p}_{-i}(X_i'\beta)$. This is a leave-one-out Nadaraya-Watson (NW) kernel estimator and is given by:
+ by the kernel method. Ichimura (1993) proposes modifications of the usual kernel estimation to estimate $G(X_i'\beta)$. Observation $i$ is excluded from the calculation of $G(X_i'\beta)$. To understand why this is necessary, suppose a relatively small bandwidth is used. Then the estimates will be quite close to the observation values. Thus, equation 6 will be aproximately zero. By leaving one observation out, this problem is countered. Thus a leave-one-out Nadaraya-Watson (NW) kernel estimator is obtained:
 
 \begin{equation}
 \hat{G}_{-i}(X_i'\beta) \equiv \hat{E}_{-i}(Yi|X_i'\beta) = \frac{(nh)^{-1}\sum_{j=1, j \neq i }^{n}  Y_jK(\frac{X_j'\beta - X_i'\beta}{h})}{\hat{p}_{-i}(X_i'\beta)},
 \end{equation}
 
-where $\hat{p}_{-i}(X_i'\beta) = \frac{1}{nh}\sum_{j=1,j \neq i}^{n}Y_{j}K(\frac{X_j'\beta - X_i'\beta}{h})$.  The denominator $\hat{p}(X_i'\beta)$ is random and it becomes necessary to trim out small values. Let $p(x'\beta)$ denote the probability density function (PDF) of $X_i'\beta$ and $A_\delta$ and $A_n$ be the sets
+where $\hat{p}_{-i}(X_i'\beta) = \frac{1}{nh}\sum_{j=1,j \neq i}^{n}K(\frac{X_j'\beta - X_i'\beta}{h})$.  The denominator $\hat{p}(X_i'\beta)$ is random and it becomes necessary to trim out small values. Let $p(x'\beta)$ denote the probability density function (PDF) of $X_i'\beta$ and $A_\delta$ and $A_n$ be the sets
 
 \[ A_\delta = \{ x : p(x'\beta) \geq \delta, \text{ for all }  \beta \in \mathcal{B} \}
 \]
@@ -235,7 +235,7 @@ In what follows, certain conditions are necessary to derive the asymptotic distr
 \newtheorem{theorem}{Theorem}[section]
 
 \begin{theorem}
-According to Ichimura (1993)
+According to Ichimura (1993) we have
 
 %\begin{enumerate}[label=(\roman*)]
 	%\item The set $A_\delta$ is compact, and the weight function $w(\cdot)$ is bounded and positive on $A_\delta$. Define the set $D_z = \{ z : z = x'\beta, \beta \in \mathcal{B}$,$ x \in A_\delta\}$. Letting $p(\cdot)$ denote the PDF of $z \in D_z$, $p(\cdot)$ is bounded below by a positive constant for all $z \in D_z$.
@@ -245,7 +245,6 @@ According to Ichimura (1993)
 	
 %\end{enumerate}
 
-we have
 
 \[ \sqrt{n}(\hat{\beta}_n - \beta_0) \stackrel{d}{\rightarrow} N(0,\Omega_I), \] where $\Omega_I = V^{-1}\Sigma V^{-1}$, and
 
@@ -349,7 +348,9 @@ where $\hat{G}_{-i}(X_i'\beta, h_n) = \hat{G}_{-i}(X_i'\beta)$ and $A_\delta$ is
 \subsection{Weight Function} % (fold)
 \label{sub:Weight Function}
 
-The weight function, $w$, is chosen so as to maximize the asymptotic efficiency of the estimator. Within the class of weighted nonlinear least squares (WNLS) estimators, an estimator is asymptotically efficient given the covariance matrix $\Omega$ of its asymptotic distributions and the covariance matrix $\Omega^*$ of the other WNLS estimators, if $\Omega^* - \Omega$ is positive semidefinite. Even though the class of all regular estimators of single index models may include estimators that are not semiparametric WNLS estimators, the definition of asymptotically efficient estimator remains the same. 
+In case heteroskedastic data is used, that is if different errors do not have the same variance, the model must be changed as it is no longer efficient and standard errors and $t$-statistics are biased. Following the idea of Generalized Least Squares (GLS), the model must be transformed in order to achieve efficiency. Furthermore, analogously to GLS, in case the transformation depends upon unknown parameters, these need to be estimate and an analogue of Feasible GLS (FGLS) is obtained instead. On the latter case a weight function is used that assumes a general form of heroskedasticy. This weight function, $w$, is chosen so as to maximize the asymptotic efficiency of the estimator. 
+
+%Within the class of weighted nonlinear least squares (WNLS) estimators, an estimator is asymptotically efficient given the covariance matrix $\Omega$ of its asymptotic distributions and the covariance matrix $\Omega^*$ of the other WNLS estimators, if $\Omega^* - \Omega$ is positive semidefinite. Even though the class of all regular estimators of single index models may include estimators that are not semiparametric WNLS estimators, the definition of asymptotically efficient estimator remains the same. 
 
 %Chamberlain (1987) investigated the case for nonlinear regression model (not necessarily a single index model) in which $g$ is known. 
 
@@ -358,7 +359,8 @@ The weight function, $w$, is chosen so as to maximize the asymptotic efficiency 
 %\[ \Omega_{NLR} = \left\{E\left[\frac{1}{\sigma^2}\frac{\partial g(X, \beta_0)}{\partial \beta} \frac{\partial g(X, \beta_0)}{\partial \beta'}\right]\right\}^{-1} \]
 
 %for a WNLS estimator of $\beta_0$ with weight function $w(x) = \frac{1}{\sigma^2(x)}$. 
-The problem of efficient estimation of $\beta_0$ in a single index model with unknown $g$ is analyzed by Hall and Ichimura (1991) and Newey and Stocker (1993). Under certain regularity conditions, the efficiency bound for the single index model with unknown $g$ and using only data for which $X \in A_{\delta}$ is $\Omega_I$ in Theorem 3.1. with $w(x) = \frac{1}{\sigma^2(x)}$. Then, the efficiency bound is
+
+The problem of efficient estimation of $\beta_0$ in a single index model with unknown $g$ is analyzed by Hall and Ichimura (1991) and Newey and Stocker (1993). Under certain regularity conditions, the efficiency bound for the single index model with unknown $g$ and using only data for which $X \in A_{\delta}$ is $\Omega_I$ in Theorem 3.1. with $w(x) = \frac{1}{\sigma^2(x)}$.\footnote{The assumption that only data where  $X \in A_{\delta}$ is used can be relaxed by letting $A_\delta$ grow very slowly as $n$ increases} Thus, the weight function allows us to weight each observation by a factor proportional to the error variance. Moreover, observations with higher variance get a smaller weight. The efficiency bound is then
 
 \begin{equation}
 \Omega_{SI} = \left\{ E\left[\frac{1}{\sigma^2(x)}\frac{\partial}{\partial \beta}
@@ -367,7 +369,7 @@ The problem of efficient estimation of $\beta_0$ in a single index model with un
 
 %\I(X \in A_{\delta})}???
 
-This bound is achieved by the semiparametric WNLS estimator if $\sigma^2(X)$ is known or independent of X. The assumption that only data where  $X \in A_{\delta}$ is used can be relaxed by letting $A_\delta$ grow very slowly as $n$ increases. When $\sigma^2(X)$ is unknown it can be replaced by a consistent estimator, say $s_{n}^{2}(x)$. If $w(X) = \frac{1}{s_{n}^{2}(x)}$ in the semiparametric WNLS estimator, the asymptotic efficiency bound will be reached. Thus, an asymptotic efficient estimator of $\beta_0$ is obtained even when $\sigma^2(X)$ is unknown. This consistent estimator can be obtained with a two-step procedure. First, estimate $\beta_0$ by minimizing function (9) with $w(x) = 1$. We obtain an estimator that is $n^{\frac{1}{2}}$-consistent and asymptotically normal but inefficient. The second step is a nonparametric estimation of the mean of the squared first-step residuals conditional on X. This uses the estimated weight function $\hat{w}_i(x) = \frac{1}{\hat{\sigma}_{i}^{2}}$, where  $\hat{\sigma}_{i}^{2}$ is defined by Robinson (1987) as 
+This bound is achieved by the semiparametric WNLS estimator if $\sigma^2(X)$ is known or independent of X. When $\sigma^2(X)$ is unknown the most efficient estimator is an analogue of FGLS.  Consider a given consistent estimator, say $s_{n}^{2}(x)$. If $w(X) = \frac{1}{s_{n}^{2}(x)}$ in the semiparametric WNLS estimator, the asymptotic efficiency bound will be reached. Thus, an asymptotic efficient estimator of $\beta_0$ is obtained even when $\sigma^2(X)$ is unknown. This consistent estimator uses a two-step procedure. First, estimate $\beta_0$ by minimizing function (9) with $w(x) = 1$. We obtain an estimator that is $n^{\frac{1}{2}}$-consistent and asymptotically normal but inefficient. The second step is a nonparametric estimation of the mean of the squared first-step residuals conditional on X. This uses the estimated weight function $\hat{w}_i(x) = \frac{1}{\hat{\sigma}_{i}^{2}}$, where  $\hat{\sigma}_{i}^{2}$ is defined by Robinson (1987) as 
 \[\hat{\sigma}_{i}^{2} = \frac{1}{k}\sum_{j=1}^{n} \mathbf{1}{(x_j \in N_k(x_i))}\hat{\epsilon}_{j}^{2} ,\]
 %The assumption that $X \in A_{\delta}$ can be replaced by the assumption that $A_{\delta}$ grows very slowly as $n$ increases.
 and $\hat{\epsilon}_i = y_i - \hat{g}(x_i'\hat{\beta_0})$, for $\hat{\beta_0}$ obtained on the first step. Further, $N_k(x_i)$ is the set of $k$ observations of $x_j$ closest to $x_i$ in weighted Euclidean norm.
@@ -467,7 +469,7 @@ M_n(\beta, h_n) = \frac{1}{n}\sum_{i=1}^n \tau_{i}\{ (1 - Y_i)ln[ 1 - \hat{G}_{-
 \section{Comparing Ichimura's and Klein and Spady's model} % (fold)
 \label{sec:Comparing Ichimura's and Klein and Spady's model}
 
-Klein and Spady's model seems more approriate than Ichimura's for the binary choice model case. Ichimura's model is heteroskedastic. However, Klein and Spady's model is semiparametrically efficient.  The $log-likelihood$ function has ``natural'' weighting, thus avoiding the problem of heteroskedasticy and the use a weight function.  Consequently, it is not necessary to use the two-step procedure described in section 3.2. to reach the asymptotic efficiency bound. 
+Klein and Spady's model seems more approriate than Ichimura's for the binary choice model case. Ichimura's model uses a weight function as described in section 3.2. to correct for heteroskedasticity. However, Klein and Spady's model is semiparametrically efficient.  The $log-likelihood$ function has ``natural'' weighting, thus avoiding the problem of heteroskedasticity and the use a weight function.  Consequently, a clearer and more easily applied model is obtained that avoids the use of the two-step procedure described in section 3.2. to reach the asymptotic efficiency bound. 
 
 \newpage 
 
