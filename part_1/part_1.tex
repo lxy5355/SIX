@@ -181,12 +181,12 @@ To understand why condition (iii) is necessary consider a Single Index Model in 
 
 \[
 \begin{split}
-E[Y| X = (x_1,0)]& = g(x_1), \text{support\ of } g(\cdot): [0,1];  \\
-E[Y| X = (x_1,1)]& = g(x_1+\beta_2), \text{support\ of } g(\cdot): [\beta_2,1+\beta_2].
+E[Y| X = (X_1,0)]& = g(X_1), \text{support\ of } g(\cdot): [0,1];  \\
+E[Y| X = (X_1,1)]& = g(X_1+\beta_2), \text{support\ of } g(\cdot): [\beta_2,1+\beta_2].
 \end{split}
 \]
 
-For the case where $X_2 = 0$ the function $g$ is identified on $\big[0,1\big]$. However, for $\beta_2 > 1$ the support of $ X_1 + \beta_2$ is disjoint from $\big[0,1\big]$ and $\beta_2$ is an intercept in the model for $E(Y|(x_1,1))$. Thus, it is not possible to identify $\beta_2$. However, for $\beta_2 < 1$ the support of $X_1$ and $X_1 + \beta_2$ overlap. In particular, for $\beta_2$ positive and the subset $\{X: X_1 \in [ 0, 1 - \beta_2] \wedge X_2 = 1\}$, $g(x_1 + \beta_2) = g(v)$ for some $v \in [0,1]$. \footnote{For $\beta_2$ negative one can consider $\{X: X_1 \in [ - \beta_2, 1] \wedge X_2 = 1\}$} Then, $g(v)$ can be identified for $v \in [\beta_2, 1]$ by observations of $X_1$ for which $X_2 = 0$. Therefore, $\beta_2$ can be identified by solving
+For the case where $X_2 = 0$ the function $g$ is identified on $\big[0,1\big]$. However, for $\beta_2 > 1$ the support of $ X_1 + \beta_2$ is disjoint from $\big[0,1\big]$ and $\beta_2$ is an intercept in the model for $E(Y|(x_1,1))$. Thus, it is not possible to identify $\beta_2$. However, for $\beta_2 < 1$ the support of $X_1$ and $X_1 + \beta_2$ overlap. In particular, for $\beta_2$ positive and the subset $\{X: X_1 \in [ 0, 1 - \beta_2] \wedge X_2 = 1\}$, $g(x_1 + \beta_2) = g(v)$ for some $v \in [0,1]$. \footnote{For $\beta_2$ strictly negative, one can consider $\{X: X_1 \in [ - \beta_2, 1] \wedge X_2 = 1\}$} Then, $g(v)$ can be identified for $v \in [\beta_2, 1]$ by observations of $X_1$ for which $X_2 = 0$. Therefore, $\beta_2$ can be identified by solving
 
 \begin{equation}
 E[Y| X = (x_1,0)] = g(x_1 + \beta_2),
@@ -276,21 +276,21 @@ For what follows the trimming set $A_\delta$ is ignored and $w(\cdot)$ is set to
 %and assume that the minimization over $\beta$ is done over the shrinking set $\mathcal{B}_n = \{ \beta : \norm{\beta - \beta_0} \geq Cn^{-1/2}$ for some constant $ C > 0$. This follows H\"ardle, Hall and Ichimura (1993). With this in mind and $ h \in \{h : C_1n^{-\frac{1}{5}} \geq h \geq C_2n^{-\frac{1}{5}}\}$ for some $C_2 > C_1 > 0$ we can establish a proof for Theorem 1. First,
 
 \begin{align*}
-S_{n}(\beta) & = \frac{1}{n}\sum_i \{ Y_i - \hat{G}_{-i}(X_i'\beta)\}^2 = \frac{1}{n}\sum_i\{Y_i - \hat{G}_{-i}(X_i'\beta) +  \hat{G}_{-i}(X_i'\beta_0) \\
-			 & - \hat{G}_{-i}(X_i'\beta_0) \}^2 = \frac{1}{n} \sum_i \{Y_i - G(X_i'\beta) + o_p(1) + \hat{G}_{-i}(X_i'\beta_0) \\
-			 & - \hat{G}_{-i}(X_i'\beta_0) \}^2 = \frac{1}{n}\sum_i \{ Y_i - G(X_i'\beta) + \hat{G}_{-i}(X_i'\beta_0) \\
-			 & - g(X_i'\beta_0) + o_p(1) \}^2 = \frac{1}{n} \sum_i \{ g(X_i'\beta_0) + \epsilon_i - G(X_i'\beta) + \hat{G}_{-i}(X_i'\beta_0) \\
-			 & - g(X_i'\beta_0) + o_p(1) \}^2 = \frac{1}{n} \sum_i \{ \epsilon_i + \hat{G}_{-i}(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta] \\
-			 & + o_p(1) \}^2 = \frac{1}{n}\sum_i \{ g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta] +  \epsilon_i + o_p(1)\}^2 \\
-			 & = \frac{1}{n}\sum_i \{ g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta] +  \epsilon_i\}^2 + o_p(1)
+S_{n}(\beta_n) & = \frac{1}{n}\sum_i \{ Y_i - \hat{G}_{-i}(X_i'\beta_n)\}^2 = \frac{1}{n}\sum_i\{Y_i - \hat{G}_{-i}(X_i'\beta_n) +  \hat{G}_{-i}(X_i'\beta_0) \\
+			 & - \hat{G}_{-i}(X_i'\beta_0) \}^2 = \frac{1}{n} \sum_i \{Y_i - G(X_i'\beta_n) + o_p(1) + \hat{G}_{-i}(X_i'\beta_0) \\
+			 & - \hat{G}_{-i}(X_i'\beta_0) \}^2 = \frac{1}{n}\sum_i \{ Y_i - G(X_i'\beta_n) + \hat{G}_{-i}(X_i'\beta_0) \\
+			 & - g(X_i'\beta_0) + o_p(1) \}^2 = \frac{1}{n} \sum_i \{ g(X_i'\beta_0) + \epsilon_i - G(X_i'\beta_n) + \hat{G}_{-i}(X_i'\beta_0) \\
+			 & - g(X_i'\beta_0) + o_p(1) \}^2 = \frac{1}{n} \sum_i \{ \epsilon_i + \hat{G}_{-i}(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta_n] \\
+			 & + o_p(1) \}^2 = \frac{1}{n}\sum_i \{ g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta_n] +  \epsilon_i + o_p(1)\}^2 \\
+			 & = \frac{1}{n}\sum_i \{ g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta_n] +  \epsilon_i\}^2 + o_p(1)
 \end{align*}
 
 Using a Taylor expansion:
 
 \begin{align*}
-g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta)] & = g(X_i'\beta_0) - g(X_i'\beta) \\
-											 & - g^{(1)}(X_i'\beta)E[(\beta_0 - \beta)X_i'|X_i'\beta] + o_p(1) \\
-				                              & = g^{(1)}(X_i'\beta)( X_i - E[X_i'|X_i'\beta)(\beta_0 - \beta) + o_p(1)
+g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta_n)] & = g(X_i'\beta_0) - g(X_i'\beta_n) \\
+											 & - g^{(1)}(X_i'\beta_n)E[(\beta_0 - \beta)X_i'|X_i'\beta_n] + o_p(1) \\
+				                              & = g^{(1)}(X_i'\beta_n)( X_i - E[X_i'|X_i'\beta_n)(\beta_0 - \beta_n) + o_p(1)
 \end{align*}
 
 
@@ -447,13 +447,13 @@ By substituting this result in equation (11) and $\Omega_I$ in Theorem 3.1., it 
 
 This can be more easily understood by considering a semiparametric WNLS estimation of $\beta_0$ such as with Ichimura's method. First, replace $\beta$ by $ \hat{\beta}_n$ in equation (14) and differentiate its right-hand side with respect to $\hat{\beta}_n$. Then, we obtain
 \begin{equation}
-\frac{1}{n} \sum_{i=1}^n \frac{\frac{\partial\hat{G}_{-i}(X_i'\hat{\beta}_n)}{\partial \hat{\beta}_n}}{\hat{G}_{-i}(X_i'\hat{\beta}_n)(1 - \hat{G}_{-i}(X_i'\hat{\beta}_n))} (Y_i - \hat{G}_{-i}(X_i'\hat{\beta}_n))\tau_i X_i  = 0
+\frac{1}{n} \sum_{i=1}^n \frac{\frac{\partial\hat{G}_{-i}(X_i'\beta_n)}{\partial \beta_n}}{\hat{G}_{-i}(X_i'\beta_n)(1 - \hat{G}_{-i}(X_i'\beta_n))} (Y_i - \hat{G}_{-i}(X_i'\beta_n))\tau_i X_i  = 0
 \end{equation} 
 
 with probability approaching 1 as $n \rightarrow \infty$. This is the same as the first-order condition for semiparametric WNLS estimation of $\beta_0$ with the weight function
 
 \begin{align*}
-w_i & = \{ \hat{G}_{-i}(X_i'\hat{\beta}_n)[ 1 - \hat{G}_{-i}(X_i'\hat{\beta}_n)]\}^{-1} = \{ G(X_i'\hat{\beta}_n)[ 1 - G(X_i'\hat{\beta}_n)]\}^{-1} + o_p(1) \\
+w_i & = \{ \hat{G}_{-i}(X_i'\beta_n)[ 1 - \hat{G}_{-i}(X_i'\beta_n)]\}^{-1} = \{ G(X_i'\beta_n)[ 1 - G(X_i'\beta_n)]\}^{-1} + o_p(1) \\
      & = \{ G(X_i'\beta_0)[ 1 - G(X_i'\beta_0)]\}^{-1} + o_p(1).
 \end{align*}
 
