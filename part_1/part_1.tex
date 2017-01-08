@@ -194,10 +194,10 @@ for $x_1 \in \big[\beta_2,1\big]$. \footnote{Note that if g was periodic on $\bi
 \section{Ichimura's estimation model} % (fold)
 \label{sec:Ichimura's estimation model}
 
-In this section Ichimura's (1993) estimation method for semiparametric models is analyzed. This method exhibits $n^{-\frac{1}{2}}$ efficiency and asymptotic normality. A weighting matrix that reaches the semiparametric efficiency bound is investigated. Nonetheless, multiple local minima may result. Let $\beta_0$ denote the true value of $\beta$. Were $g(\cdot)$ to be known and a nonlinear least squares method could be used to estimate $\beta_0$ by minimizing:
+In this section Ichimura's (1993) estimation method for semiparametric models is analyzed. This method exhibits $n^{-\frac{1}{2}}$ efficiency and asymptotic normality. A weighting matrix that reaches the semiparametric efficiency bound is investigated. Nonetheless, multiple local minima may result. Let $\beta_0$ denote the true value of $\beta$. Were $g(\cdot)$ to be known and a nonlinear least squares (NLS) method could be used to estimate $\beta_0$ by minimizing:
 
 \begin{equation}
-S_n(\beta) = \frac{1}{n}\sum_{i = 1}^n\big[Y_i - g(X_i'\beta)\big]^2
+\frac{1}{n}\sum_{i = 1}^n\big[Y_i - g(X_i'\beta)\big]^2
 \end{equation}
 
 with respect to $\beta$.
@@ -206,13 +206,13 @@ In this case as $g(\cdot)$ is not know we need to estimate it. However, this can
 \begin{equation}
 G(X_i'\beta) \stackrel{def}{=} E(Yi|X_i'\beta) = E[g(X_i'\beta_0)|X_i'\beta]
 \end{equation}
- by the kernel method. Ichimura (1993) proposes modifications of the usual kernel estimation to estimate $G(X_i'\beta)$. Observation $i$ is excluded from the calculation of $G(X_i'\beta)$. To understand why this is necessary, suppose a relatively small bandwidth is used. Then the estimates will be quite close to the observation values. Thus, equation 6 will be aproximately zero. By leaving one observation out, this problem is countered. Thus a leave-one-out Nadaraya-Watson (NW) kernel estimator is obtained:
+ by the kernel method. Ichimura (1993) proposes modifications of the usual kernel estimation to estimate $G(X_i'\beta)$. Observation $i$ is excluded from the calculation of $G(X_i'\beta)$. To understand why this is necessary, suppose a relatively small bandwidth is used. Then $S_n(\beta)$ would be trivially minimized when $\hat{G(X_i'\beta)} = Y_i$. By leaving one observation out, this problem is countered. Also, this validates the ability to predict the $i$th observation using the remaining observations in the sample. Therefore, outside the sample prediction is improved. Thus a leave-one-out Nadaraya-Watson (NW) kernel estimator is obtained:
 
 \begin{equation}
 \hat{G}_{-i}(X_i'\beta) \equiv \hat{E}_{-i}(Yi|X_i'\beta) = \frac{(nh)^{-1}\sum_{j=1, j \neq i }^{n}  Y_jK(\frac{X_j'\beta - X_i'\beta}{h})}{\hat{p}_{-i}(X_i'\beta)},
 \end{equation}
 
-where $\hat{p}_{-i}(X_i'\beta) = \frac{1}{nh}\sum_{j=1,j \neq i}^{n}K(\frac{X_j'\beta - X_i'\beta}{h})$.  The denominator $\hat{p}(X_i'\beta)$ is random and it becomes necessary to trim out small values. Let $p(x'\beta)$ denote the probability density function (PDF) of $X_i'\beta$ and $A_\delta$ and $A_n$ be the sets
+where $\hat{p}_{-i}(X_i'\beta) = \frac{1}{nh}\sum_{j=1,j \neq i}^{n}K(\frac{X_j'\beta - X_i'\beta}{h})$.  The denominator $\hat{p}(X_i'\beta)$ is random and it becomes necessary to trim out small values, particularly at the tails of the distribution. Let $p(x'\beta)$ denote the probability density function (PDF) of $X_i'\beta$ and $A_\delta$ and $A_n$ be the sets
 
 \[ A_\delta = \{ x : p(x'\beta) \geq \delta, \text{ for all }  \beta \in \mathcal{B} \}
 \]
@@ -222,7 +222,7 @@ where $\delta > 0$ is a constant, $\mathcal{B} \in \mathbb{R}^q$, and
 \[ A_n = \{ x : \norm{x - x^*} \leq 2h_n \text{ for some } x^* \in A_\delta\}.
 \]
 
-Then for $x \in A_\delta$ the denominator does not get too close to zero. The set $A_n$ where $\norm{\cdot}$ is a Euclidean norm, is larger than $A_\delta$ but as $ n \rightarrow \infty $, $h_n \rightarrow 0$, $A_n$ shrinks to $A_\delta$. With this in mind it is possible to choose $\beta$ by minimizing the objective function:
+Then for $x \in A_\delta$ the denominator does not get too close to zero. The set $A_n$ where $\norm{\cdot}$ is a Euclidean norm, is larger than $A_\delta$ but as $ n \rightarrow \infty $, $h_n \rightarrow 0$, $A_n$ shrinks to $A_\delta$. With this in mind it is possible to choose $\beta$ by using a weighted NLS (WNLS) method:
 
 \begin{equation}
 S_n(\beta) = \frac{1}{n} \sum_{i=1}^{n}  [Y_i - \hat{G}_{-i}(X_i'\beta)]^2w(x_i)\mathbf{1}{(X_i \in A_n)}
@@ -305,7 +305,7 @@ Then,
 
 For $g_{i0}^{(1)} = g^{(1)}(X_i'\beta_0)$ and $v_{i0} = X_i - E[X_i'|X_i'\beta_0]$. With this in mind, the Central Limit Theorem (CLT) and Law of Large Numbers (LLN) we obtain the result from Theorem 3.1 if we set $w(X_i) = 1$.
 
-It is important to however realize that the minimization of a nonlinear objective function such as equation (9) might be computationally costly. Furthermore, there might be multiple local minima because the objective function is multimodal or nonconvex. Direct estimation methods that do not require optimization of problems involving iterative solutions have been developed to counter this problem, such as in H{\"a}rdle and Stoker (1989).
+It is important to however realize that the minimization of a nonlinear objective function such as equation (9) might be computationally costly. The WNLS estimator is computed by iterative methods. Start with an initial estimator $\hat{\beta}_n^{1}$ such as $\hat{\beta}_n^{1} = - \frac{1}{n}\sum_i y_i\hat{f'}(x_i)$ where $f'$ is the derivative of the density of $x_i$ and $\hat{\beta}_n^{1}$ follows the restrictions from section 2.\footnote{This estimator is a density weighted average derivative estimator such as in Stoker (1986)} Attain the kernel estimate $\hat{G}_{-i}(X_i'\hat{\beta}_n^{1})$ and thus $S_n(\hat{\beta}_n^{1})$. Perturb $\hat{\beta}_n^{1}$ to obtain $\frac{\partial S_n(\beta)}{\partial\beta} |_{\hat{\beta}_n^{1}}$ and update $\hat{\beta}_n^{2} = \hat{\beta}_n^{1} + A_n  \frac{ \partial S_n(\beta)}{\partial\beta}|_{\hat{\beta}_n^{1}}$ where $A_n$ is the size of the disturbance, and so on. This is computationally difficult, specially because there might be multiple local minima as the objective function is multimodal or nonconvex. Direct estimation methods that do not require optimization of problems involving iterative solutions have been developed to counter this problem, such as in H{\"a}rdle and Stoker (1989).
 
 
 %Recall when we described identiÖcation that we required the dimension of Xi to be 2 or larger.
@@ -385,7 +385,7 @@ Y_i =  \mathbf{1}{(X_i'\beta \geq \epsilon_i)},
 where $\epsilon$ is a random disturbance. Similarly to Ichimura, let $g$ denote the distribution of $\epsilon_i$. Then, $G(X_i'\beta) = E(g(X_i'\beta_0)|X_i'\beta)$. Additionaly, assume $\epsilon_i$ is independent of $X_i$. For known $g$, the asymptotically efficient estimator of $\beta_0$ is a maximum likelihood estimator (MLE). The estimated $log-likelihood$ function is
 
 \begin{equation}
-\mathcal{L}_n(\beta) = \frac{1}{n}\sum_{i=1}^n \left\{ (1 - Y_i)ln[ 1 - g(X_i'\beta)] + Y_iln[g(X_i'\beta)] \right\},
+\frac{1}{n}\sum_{i=1}^n \left\{ (1 - Y_i)ln[ 1 - g(X_i'\beta)] + Y_iln[g(X_i'\beta)] \right\},
 \end{equation}
 
 where
@@ -395,7 +395,7 @@ where
 		\item $\{x_i,y_i\}$ for i = 1, ..., n is an i.i.d. sample.
 \end{enumerate}
 
-The function $\mathcal{L}(\beta)$ is analogous to $S_n(\beta,g)$. It is clear from equation (12) that restrictions must be imposed such that any estimate of $g$ is kept sufficiently far away from 0 and 1. With this in mind, Klein and Spady (1993) use a given trimming function $\tau$ employed to downweight observations for which the corresponding densities are small. However, Klein and Spady (1993) find that $\tau$ has little effect on the numerical performance of the estimator. Thus, the original trimming function can be replaced by a simplified trimming function $\tau_i = \mathbf{1}{(Xi \in A_\delta)}$, which causes little efficiency loss. The latter will be used in the remainder of this section.
+It is clear from equation (13) that restrictions must be imposed such that any estimate of $g$ is kept sufficiently far away from 0 and 1. With this in mind, Klein and Spady (1993) use a given trimming function $\tau$ employed to downweight observations for which the corresponding densities are small. However, Klein and Spady (1993) find that $\tau$ has little effect on the numerical performance of the estimator. Thus, the original trimming function can be replaced by a simplified trimming function $\tau_i = \mathbf{1}{(Xi \in A_\delta)}$, which causes little efficiency loss. The latter will be used in the remainder of this section.
 
 Similarly to Ichimura's method, Klein and Spady suggest replacing $g$ with the leave-one-out NW from equation (8). With this in mind, we obtain instead
 
@@ -420,7 +420,7 @@ and $\Omega_{KS} = \Omega_{SI}$, i.e., the estimator is asymptotically efficient
 
 \end{theorem}
 
-It now becomes necessary to elaborate on the last stament of Theorem 4.1. For a binary choice model, $Var(Y|X = x) = P(Y = 1|X = x)[1 - P(Y = 1|X = x)] = E[\mathbf{1}{(X_i'\beta_0 \geq \epsilon_i)}]\{1 - E[\mathbf{1}{(X_i'\beta_0 \geq \epsilon_i)}]\} = g(x'\beta_0)[1 - g(x'\beta_0)]$ and $\sigma^2(x)$ depends only on the single index $x'\beta_0$. Assume $\beta_n - \beta_0 = O(n^{-\frac{1}{2}})$, $\hat{\beta}_n - \beta_0 = O_p(n^{-\frac{1}{2}})$ and consider the result shown above
+It now becomes necessary to elaborate on the last stament of Theorem 4.1. For a binary choice model, $Var(Y|X = x) = P(Y = 1|X = x)[1 - P(Y = 1|X = x)] = E[\mathbf{1}{(x'\beta_0 \geq \epsilon)}]\{1 - E[\mathbf{1}{(x'\beta_0 \geq \epsilon)}]\} = g(x'\beta_0)[1 - g(x'\beta_0)]$ and $\sigma^2(x)$ depends only on the single index $x'\beta_0$. Assume $\beta_n - \beta_0 = O(n^{-\frac{1}{2}})$, $\hat{\beta}_n - \beta_0 = O_p(n^{-\frac{1}{2}})$ and consider the result shown above
 \begin{align*}
 g(X_i'\beta_0) - E_A[g(X_i'\beta_0)|X_i'\beta)] & = g^{(1)}(X_i'\beta)( X_i - E_A[X_i'|X_i'\beta])(\beta_0 - \hat{\beta}) \\
 											   & + O(n^{-1})
@@ -441,20 +441,20 @@ By substituting this result in equation (10) and $\Omega_I$ in Theorem 3.1., it 
 
 This can be more easily understood by considering a semiparametric WNLS estimation of $\beta_0$ such as with Ichimura's method. Differentiate the right-hand side of equation (13) with respect to $\hat{\beta}_n$. Then, we obtain
 \begin{equation}
-\frac{1}{n} \sum_{i=1}^n \tau_i \frac{Y_i - \hat{G}_{-i}(X_i'\hat{\beta}_n)}{\hat{G}_{-i}(X_i'\hat{\beta}_n)(1 - \hat{G}_{-i}(X_i'\hat{\beta}_n))} \frac{\partial\hat{G}_{-i}(X_i'\hat{\beta}_n)}{\partial \hat{\beta}_n} = 0
+\frac{1}{n} \sum_{i=1}^n \frac{\frac{\partial\hat{G}_{-i}(X_i'\hat{\beta}_n)}{\partial \hat{\beta}_n}}{\hat{G}_{-i}(X_i'\hat{\beta}_n)(1 - \hat{G}_{-i}(X_i'\hat{\beta}_n))} (Y_i - \hat{G}_{-i}(X_i'\hat{\beta}_n))\tau_i X_i  = 0
 \end{equation} 
 
 with probability approaching 1 as $n \rightarrow \infty$. This is the same as the first-order condition for semiparametric WNLS estimation of $\beta_0$ with the weight function
 
 \begin{align*}
-w(x) & = \{ \hat{G}_{-i}(x'\hat{\beta}_n)[ 1 - \hat{G}_{-i}(x'\hat{\beta}_n)]\}^{-1} = \{ G(x'\hat{\beta}_n)[ 1 - G(x'\hat{\beta}_n)]\}^{-1} + o_p(1) \\
-     & = \{ G(x'\beta_0)[ 1 - G(x'\beta_0)]\}^{-1} + o_p(1) = [Var(Y|X = x)]^{-1} + o_p(1).
+w_i & = \{ \hat{G}_{-i}(X_i'\hat{\beta}_n)[ 1 - \hat{G}_{-i}(X_i'\hat{\beta}_n)]\}^{-1} = \{ G(X_i'\hat{\beta}_n)[ 1 - G(X_i'\hat{\beta}_n)]\}^{-1} + o_p(1) \\
+     & = \{ G(X_i'\beta_0)[ 1 - G(X_i'\beta_0)]\}^{-1} + o_p(1).
 \end{align*}
 
 
 Considering section 3.2., it follows that semiparametric maximum-likelihood estimator of $\beta_0$ in Klein and Spady's model is asymptotically efficient.\footnote{This is only true for "first order efficiency", i.e., when $E(X_i|X_i'\beta)$ is linear in $X_i'\beta$.}
 
-As with Ichimura's model, optimization of the maximum likelihood function might become difficult. Apart from computational difficulties, optimization could lead to multiple local minima because the objective function might not be unimode or convex. \footnote{Zhou and Lang (1995) provide an alternative using an ``easy to compute'' semiparametric estimator.}
+As with Ichimura's model, optimization of the maximum likelihood function using iterative methods might become difficult.  Particularly because optimization could lead to multiple local minima if the objective function is multimodal or convex. \footnote{Zhou and Lang (1995) provide an alternative using an ``easy to compute'' semiparametric estimator.}
 % section section_about_references_within_the_document (end)
 
 \subsection{Bandwidth Selection} % (fold)
@@ -469,7 +469,7 @@ M_n(\beta, h_n) = \frac{1}{n}\sum_{i=1}^n \tau_{i}\{ (1 - Y_i)ln[ 1 - \hat{G}_{-
 \section{Comparing Ichimura's and Klein and Spady's model} % (fold)
 \label{sec:Comparing Ichimura's and Klein and Spady's model}
 
-Klein and Spady's model seems more approriate than Ichimura's for the binary choice model case. Ichimura's model uses a weight function as described in section 3.2. to correct for heteroskedasticity. However, Klein and Spady's model is semiparametrically efficient.  The $log-likelihood$ function has ``natural'' weighting, thus avoiding the problem of heteroskedasticity and the use a weight function.  Consequently, a clearer and more easily applied model is obtained that avoids the use of the two-step procedure described in section 3.2. to reach the asymptotic efficiency bound. 
+Klein and Spady's model seems more approriate than Ichimura's for the binary choice model case. Ichimura's model uses a weight function as described in section 3.2. to correct for heteroskedasticity. However, Klein and Spady's model is fully efficient in the sense that it reaches the semiparametric efficiency bound.  The $log-likelihood$ function has ``natural'' weighting, thus avoiding the problem of heteroskedasticity and the use a weight function.  Consequently, a model is attained that avoids the use of the two-step procedure described in section 3.2. to reach the asymptotic efficiency bound. 
 
 \newpage 
 
