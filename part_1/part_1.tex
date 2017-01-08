@@ -189,10 +189,10 @@ E[Y| X = (x_1,1)]& = g(x_1+\beta_2), \text{support\ of } g(\cdot): [\beta_2,1+\b
 For the case where $X_2 = 0$ the function $g$ is identified on $\big[0,1\big]$. However, for $\beta_2 > 1$ the support of $ X_1 + \beta_2$ is disjoint from $\big[0,1\big]$ and $\beta_2$ is an intercept in the model for $E(Y|(x_1,1))$. Thus, it is not possible to identify $\beta_2$. However, for $\beta_2 < 1$ the support of $X_1$ and $X_1 + \beta_2$ overlap. In particular, for $\beta_2$ positive and the subset $\{X: X_1 \in [ 0, 1 - \beta_2] \wedge X_2 = 1\}$, $g(x_1 + \beta_2) = g(v)$ for some $v \in [0,1]$. \footnote{For $\beta_2$ strictly negative, one can consider $\{X: X_1 \in [ - \beta_2, 1] \wedge X_2 = 1\}$} Then, $g(v)$ can be identified for $v \in [\beta_2, 1]$ by observations of $X_1$ for which $X_2 = 0$. Therefore, $\beta_2$ can be identified by solving
 
 \begin{equation}
-E[Y| X = (x_1,0)] = g(x_1 + \beta_2),
+E[Y| X = (x_1,1)] = g(x_1 + \beta_2),
 \end{equation}
 
-for $x_1 \in \big[\beta_2,1\big]$. \footnote{Note that if g was periodic on $\big[\beta_2,1\big]$, (7) would have at least two solutions and $\beta_2$ would not be identified.}
+for $x_1 \in \big[0, 1 -\beta_2\big]$. \footnote{Note that if g was periodic on $\big[0, 1 - \beta_2 \big]$, (7) would have at least two solutions and $\beta_2$ would not be identified.}
 
 
 \section{Ichimura's estimation model} % (fold)
