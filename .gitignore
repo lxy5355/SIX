@@ -60,3 +60,4 @@ Temporary Items
 *latexmk
 *synctex.gz
 *.toc
+*.dvi
