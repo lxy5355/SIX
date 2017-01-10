@@ -138,7 +138,7 @@ Consider now the fully nonparametric models
 with smooth $g$ and given sampling,  or  
 \[Y = g(X) + \epsilon\]
 that additionally assumes the additivity of the error. These models typically suffer from the curse of dimensionality, that is, as the dimensions of the model increase, the convergence rate of the estimator decreases.
-The single index model avoids the curse of dimensionality by reducing the p-dimensional predictor to a univariate single-index. Then $\beta$ achieves the same convergence rate $n^{-\frac{1}{2}}$ as parametric models. Thus, the single index model reaches greater estimation precision than fully nonparametric estimator with multidimensional X and the same precision as a parametric model.
+The single index model avoids the curse of dimensionality by reducing the p-dimensional predictor to a univariate single-index. Then the estimator achieves the same convergence rate $n^{-\frac{1}{2}}$ as parametric models. Thus, the single index model reaches greater estimation precision than fully nonparametric estimator with multidimensional X and the same precision as a parametric model.
 
 Moreover, the assumptions of a single index model are weaker than those of a parametric model and stronger than those of a fully nonparametric model.  \footnote{However, the necessary assumptions for consistent parametric estimation can be relaxed. In particular, the single index model might have weaker assumptions than a fully parameterized model for structural economic models.} However, semiparametric models have two important disavantages. First, they are hard to compute. Second, they may generate multiple local minima as they require optimizing nonlinear objective functions that might be multimodal or nonconvex. \footnote{Noncave in the case of the maximum likelihood estimator.} These problems seem to be exarcebated for increasing sample sizes or number of explanatory variables (Manski, 1975, 1985; Manski and Thompson, 1986; Cosslett, 1983; Ichimura, 1993; Horowitz, 1992; and Klein and Spady, 1993).\footnote{H{\"a}rdle and Stoker (1989) suggest a direct estimation method that does not require solving an optimization problem involving iterative solutions. This method becomes less attractive than Ichimura (1993) for small-sample settings as the curse of dimensionality inherited from the first stage might not disappear on the second stage. }
 % and as accurate as a one-dimensional nonparametric mean regression for $g$.
@@ -271,7 +271,7 @@ with $g_i^{(1)} = [\partial g(v)/\partial v]|_{v = X_i'\beta_0}, E_A(X_i|v) = E(
 
 \end{theorem}
 
-Therefore, $\beta$ converges in pobability to $\beta_0$ at rate $n^{-\frac{1}{2}}$, i.e., the same rate as when $g$ is known. Also, $h = O(n^{-\frac{1}{5}})$, which is the standard rate in nonparametric density.
+Therefore, $\hat{\beta}_n$ has rate of convergence $n^{-\frac{1}{2}}$, that is, the same rate as for parametric models. Also, $h_n = O(n^{-\frac{1}{5}})$, which is the optimal smoothing for a  nonparametric density.
 A consistent estimator of $\Omega_I$ is given by
 
 \[ \hat{\Omega}_I = \hat{V}^{-1}\hat{\Sigma}\hat{V}^{-1}, \]
