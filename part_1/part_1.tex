@@ -221,7 +221,7 @@ In this case as $g(\cdot)$ is not know we need to estimate it. However, this can
 \begin{equation}
 G(X_i'\beta) \stackrel{def}{=} E(Yi|X_i'\beta) = E[g(X_i'\beta_0)|X_i'\beta]
 \end{equation}
- by the kernel method. Ichimura (1993) proposes modifications of the usual kernel estimation to estimate $G(X_i'\beta)$. Observation $i$ is excluded from the calculation of $G(X_i'\beta)$. To understand why this is necessary, suppose a relatively small bandwidth is used. Then $S_n(\beta)$ would be trivially minimized when $\hat{G(X_i'\beta)} = Y_i$. By leaving one observation out, this problem is countered. Also, this validates the ability to predict the $i$th observation using the remaining observations in the sample. Therefore, outside the sample prediction is improved. Thus a leave-one-out Nadaraya-Watson (NW) kernel estimator is obtained:
+ by the kernel method. Ichimura (1993) proposes modifications of the usual kernel estimation to estimate $G(X_i'\beta)$. Observation $i$ is excluded from the calculation of $G(X_i'\beta)$. To understand why this is necessary, suppose a relatively small bandwidth is used. Then $S_n(\beta)$ would be trivially minimized when $\hat{G}(X_i'\beta) = Y_i$. By leaving one observation out, this problem is countered. Also, this validates the ability to predict the $i$th observation using the remaining observations in the sample. Therefore, outside the sample prediction is improved. Thus a leave-one-out Nadaraya-Watson (NW) kernel estimator is obtained:
 
 \begin{equation}
 \hat{G}_{-i}(X_i'\beta) \equiv \hat{E}_{-i}(Yi|X_i'\beta) = \frac{(nh)^{-1}\sum_{j=1, j \neq i }^{n}  Y_jK(\frac{X_j'\beta - X_i'\beta}{h})}{\hat{p}_{-i}(X_i'\beta)},
