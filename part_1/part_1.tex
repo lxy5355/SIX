@@ -475,7 +475,7 @@ As with Ichimura's model, optimization of the maximum likelihood function using 
 \subsection{Bandwidth Selection} % (fold)
 \label{sub:Bandwidth Selection}
 
-Klein and Spady (1993) do not discuss how to choose the bandwidth, apart from the requirement that $ n^{-\frac{1}{6}} < h_n < n^{-\frac{1}{8}}$. However, similarly to Ichimura's method and following H{\"a}rdle et al. (1993), an empirical way of selecting the bandwidth for optimal smoothing of both $g$ and $\beta$ can be conjectured. This is attained by choosing $h_n$ jointly with $\beta$ when minimizing
+Klein and Spady (1993) do not discuss how to choose the bandwidth, apart from the requirement that $ n^{-\frac{1}{6}} < h_n < n^{-\frac{1}{8}}$. However, similarly to Ichimura's method and following H{\"a}rdle et al. (1993), an empirical way of selecting the bandwidth for optimal smoothing of both $g$ and $\beta$ can be conjectured. This is attained by choosing $h_n$ jointly with $\beta$ when maximizing
 \begin{equation}
 M_n(\beta, h_n) = \frac{1}{n}\sum_{i=1}^n \tau_{i}\{ (1 - Y_i)ln[ 1 - \hat{G}_{-i}(X_i'\beta, h_n)] +  Y_iln[\hat{G}_{-i}(X_i'\beta, h_n)]\}.
 \end{equation}

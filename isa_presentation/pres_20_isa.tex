@@ -62,12 +62,17 @@ where $\hat{G}_{-i}(X_i'\beta)$ is a leave-one-out Nadaraya-Watson kernel estima
 
 \end{frame}
 
+
+
 \begin{frame}[t]
     \frametitle{Ichimura's (1993) method}
-
+    
 \begin{theorem}
-According to Ichimura (1993),
-\[ \sqrt{n}(\hat{\beta}_n - \beta_0) \stackrel{d}{\rightarrow} N(0,\Omega_I), \] where $\Omega_I = V^{-1}\Sigma V^{-1}$, with
+According to Ichimura (1993) we have,
+
+
+
+\[ \sqrt{n}(\hat{\beta}_n - \beta_0) \stackrel{d}{\rightarrow} N(0,\Omega_I), \] where $\Omega_I = V^{-1}\Sigma V^{-1}$, and
 
 \[\Sigma = E\{w(X_i)^2\sigma^2(X_i)(g_i^{(1)})^2(X_i - E_A(X_i|X_i'\beta_0)) \times (X_i - E_A(X_i|X_i'\beta_0))'\},\]
 
@@ -76,24 +81,40 @@ with $g_i^{(1)} = [\partial g(v)/\partial v]|_{v = X_i'\beta_0}, E_A(X_i|v) = E(
 \[ V = E[w(X_i)(g_i^{(1)})^2(X_i - E_A(X_i|X_i'\beta_0))(X_i - E_A(X_i|X_i'\beta_0))'].\]
 
 \end{theorem}
+\end{frame}
+
+
+\begin{frame}[t]
+    \frametitle{Ichimura's (1993) method}
+
+\textbf{Intuition}: Assume $\beta_n - \beta_0 = O(n^{-\frac{1}{2}})$, $\hat{\beta}_n - \beta_0 = O_p(n^{-\frac{1}{2}})$, $ \hat{G}_{-i}(X_i'\beta_n) = G(X_i'\beta_n) + o_p(1)$ and $\hat{G}_{-i}(X_i'\beta_0) = g(X_i'\beta_0) + o_p(1)$. 
+\begin{itemize}
+
+	\item It can be shown $ S_{n}(\beta_n) = \frac{1}{n}\sum_i \{ g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta_n] +  \epsilon_i\}^2 + o_p(1)$.
+	
+	\item With two Taylor expansions we have $g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta_n)] = g^{(1)}(X_i'\beta_n)( X_i - E[X_i'|X_i'\beta_n)(\beta_0 - \beta_n) + o_p(1)$.
+	
+	\item Minimize $S_n$ in order to $\hat{\beta}_n$ .
+
+\end{itemize}
 
 \end{frame}
 
 \begin{frame}[t]
     \frametitle{Ichimura's (1993) method}
-    
+  
 	\begin{enumerate}
+
 		\item \textbf{Bandwidth Selection}:
 Ichimura requires $h_n=O(n^{-\frac{1}{5}})$. H{\"a}rdle et al. (1993) suggest an empirical way of selecting the bandwidth for optimal smoothing of both $g$ and $\beta$.
 		\item \textbf{Weight Function}:
-	In case data is heroskedastic, use analogue of Feasible Generalized Least Squares with $w(x) = \frac{1}{\sigma^2(x)}$. The efficiency bound is then
+	In case data is heroskedastic, use analogue of Feasible Generalized Least Squares. Under certain regularity conditions, the efficiency bound for the single index model with unknown $g$ and using only data for which $X \in A_{\delta}$ is $\Omega_I$ with $w(x) = \frac{1}{\sigma^2(x)}$. The efficiency bound is then
 		\begin{equation}
 \Omega_{SI} = \left\{ E\left[\frac{1}{\sigma^2(x)}\frac{\partial}{\partial \beta}
  G(X'\beta,\beta)\frac{\partial}{\partial \beta} G(X'\beta,\beta) \right] \right\}^{-1}.
 		\end{equation}
 For unknown $\sigma^2(x)$, a consistent estimator is used that follows a two-step procedure.
-		\item \textbf{Main Problem}:
-The WNLS estimator is computed by iterative methods, which becomes particularly difficult if  the objective function is multimodal or nonconvex.
+		\item \textbf{Main Problem}: Uses iterative method, particularly difficult if the objective function is multimodal or nonconvex.
 
 	\end{enumerate}
 
@@ -102,16 +123,12 @@ The WNLS estimator is computed by iterative methods, which becomes particularly 
 \begin{frame}[t]
     \frametitle{Klein and Spady's (1993) method}
 The model is defined as $Y_i =  \mathbf{1}{(X_i'\beta \geq \epsilon_i)}$, where $\epsilon$ is a random disturbance.
-
 Thus, the maximum-likelihood problem is as follows:
-
 \begin{equation}
 \mathcal{L}_n(\beta) = \frac{1}{n}\sum_{i=1}^n \tau_{i}\{ (1 - Y_i)ln[ 1 - \hat{G}_{-i}(X_i'\beta)] +  Y_iln[\hat{G}_{-i}(X_i'\beta)]\}.
 \end{equation}
-
 \begin{theorem}
 According to Klein and Spady (1993),
-
 \[\sqrt{n}(\hat{\beta}_{n} - \beta_0) \stackrel{d}{\rightarrow} N(0,\Omega_{KS}),
 \]
 where $ \Omega_{KS} = \left\{ E\left[\frac{\partial}{\partial \beta}
@@ -123,16 +140,13 @@ where $ \Omega_{KS} = \left\{ E\left[\frac{\partial}{\partial \beta}
 
 \begin{frame}[t]
     \frametitle{Klein and Spady's (1993) method}
-Assume $\beta_n - \beta_0 = O(n^{-\frac{1}{2}})$, $\hat{\beta}_n - \beta_0 = O_p(n^{-\frac{1}{2}})$. By first using a Taylor expansion of $g(X_i'\beta_0) - E_A[g(X_i'\beta_0)|X_i'\beta)]$ it can be shown:
-\begin{align*}
- \frac{\partial}{\partial \beta} G(X_i'\beta) & = 
- 										 g^{(1)}(X_i'\beta_0)( X_i - E_A[X_i'|X_i'\beta]) + o_p(1).
-\end{align*}
+%Assume $\beta_n - \beta_0 = O(n^{-\frac{1}{2}})$, $\hat{\beta}_n - \beta_0 = O_p(n^{-\frac{1}{2}})$. By first using a Taylor expansion of $g(X_i'\beta_0) - E_A[g(X_i'\beta_0)|X_i'\beta)]$ it can be shown:
+
 \begin{enumerate}
 	\item \textbf{Bandwidth Selection}: Klein and Spady require $ n^{-\frac{1}{6}} < h_n < n^{-\frac{1}{8}}$. H{\"a}rdle et al.'s (1993) solution can potentially be applied here as well.
 	\item \textbf{Main Problem}: Same as for Ichimura's method.
 	\item \textbf{Comparison between Ichimura's and Klein and Spady's model}:
-	Klein and Spady's model seems more appropriate for the binary choice model case, from a theoretical perspective.
+	Klein and Spady's model seems more appropriate for the binary choice model case, from a theoretical perspective. Ichimura's model uses a weight function as described in section 3.2. to correct for heteroskedasticity. However, Klein and Spady's model is fully efficient in the sense that it reaches the semiparametric efficiency bound.
 \end{enumerate}
 \end{frame}
 % Print black screen only in presentation mode for finishing up.
