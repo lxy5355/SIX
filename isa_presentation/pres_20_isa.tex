@@ -52,7 +52,7 @@ S_n(\beta) = \frac{1}{n}\sum_{i = 1}^n\big[Y_i - g(X_i'\beta)\big]^2
 \end{equation}
 with respect to $\beta$. However, for $g$ unknown and for a given $\beta$ we can estimate:
 \begin{equation}
-G(X_i'\beta) \stackrel{def}{=} E(Yi|X_i'\beta) = E[g(X_i'\beta_0)|X_i'\beta]
+G(X_i'\beta) \stackrel{def}{=} E(Yi|X_i'\beta) = E[g(X_i'\beta_0)|X_i'\beta].
 \end{equation}
 Given this, the weighted NLS problem is as follows:
 \begin{equation}
@@ -146,7 +146,7 @@ where $ \Omega_{KS} = \left\{ E\left[\frac{\partial}{\partial \beta}
 	\item \textbf{Bandwidth Selection}: Klein and Spady require $ n^{-\frac{1}{6}} < h_n < n^{-\frac{1}{8}}$. H{\"a}rdle et al.'s (1993) solution can potentially be applied here as well.
 	\item \textbf{Main Problem}: Same as for Ichimura's method.
 	\item \textbf{Comparison between Ichimura's and Klein and Spady's model}:
-	Klein and Spady's model seems more appropriate for the binary choice model case, from a theoretical perspective. Ichimura's model uses a weight function as described in section 3.2. to correct for heteroskedasticity. However, Klein and Spady's model is fully efficient in the sense that it reaches the semiparametric efficiency bound.
+	Klein and Spady's model seems more appropriate for the binary choice model case, from a theoretical perspective. Ichimura's model uses a weight function to correct for heteroskedasticity. However, Klein and Spady's model is fully efficient in the sense that it reaches the semiparametric efficiency bound.
 \end{enumerate}
 \end{frame}
 % Print black screen only in presentation mode for finishing up.
