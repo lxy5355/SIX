@@ -88,14 +88,19 @@ with $g_i^{(1)} = [\partial g(v)/\partial v]|_{v = X_i'\beta_0}, E_A(X_i|v) = E(
     \frametitle{Ichimura's (1993) method}
 
 \textbf{Intuition}: Assume $\beta_n - \beta_0 = O(n^{-\frac{1}{2}})$, $\hat{\beta}_n - \beta_0 = O_p(n^{-\frac{1}{2}})$, $ \hat{G}_{-i}(X_i'\beta_n) = G(X_i'\beta_n) + o_p(1)$ and $\hat{G}_{-i}(X_i'\beta_0) = g(X_i'\beta_0) + o_p(1)$. 
-\begin{itemize}
+	\begin{itemize}
+	\setlength\itemsep{1.5em}
 
-	\item It can be shown $ S_{n}(\beta_n) = \frac{1}{n}\sum_i \{ g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta_n] +  \epsilon_i\}^2 + o_p(1)$.
+		\item It can be shown $ S_{n}(\beta_n) = \frac{1}{n}\sum_i \{ g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta_n] +  \epsilon_i\}^2 + o_p(1)$.	
 	
-	\item With two Taylor expansions we have $g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta_n)] = g^{(1)}(X_i'\beta_n)( X_i - E[X_i'|X_i'\beta_n)(\beta_0 - \beta_n) + o_p(1)$.
-	
-	\item Minimize $S_n$ in order to $\hat{\beta}_n$ .
+		\item With two Taylor expansions we have
 
+
+$g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta_n)] 
+ = g^{(1)}(X_i'\beta_n)( X_i - E[X_i'|X_i'\beta_n)(\beta_0 - \beta_n) + o_p(1)$
+
+		\item Minimize $S_n$ in order to $\hat{\beta}_n$ .
+		
 \end{itemize}
 
 \end{frame}
