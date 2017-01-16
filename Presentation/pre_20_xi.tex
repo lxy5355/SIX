@@ -1,0 +1,153 @@
+\documentclass[11pt]{beamer}
+% \documentclass[11pt,handout]{beamer}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{float, afterpage, rotating, graphicx}
+\usepackage{epstopdf}
+\usepackage{longtable, booktabs, tabularx}
+\usepackage{fancyvrb, moreverb, relsize}
+\usepackage{eurosym, calc, chngcntr}
+\usepackage{amsmath, amssymb, amsfonts, amsthm, bm} 
+
+\usepackage[backend=bibtex, natbib=true, bibencoding=inputenc, bibstyle=authoryear-ibid, citestyle=authoryear-comp, maxcitenames=3, maxbibnames=10]{biblatex}
+\setlength{\bibitemsep}{1.5ex}
+\addbibresource{project_refs.bib}
+
+\hypersetup{colorlinks=true, linkcolor=black, anchorcolor=black, citecolor=black, filecolor=black, menucolor=black, runcolor=black, urlcolor=black}
+
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{frametitle}{\centering\vspace{1ex}\insertframetitle\par}
+
+
+\begin{document}
+
+\title{Topic 7: SEMIPARAMETRIC SINGLE INDEX MODELS: ICHIMURA'S METHOD}
+
+\author[Isa Marques, Xi Sun, Xueying Liu] % \& others]
+{
+{\bf Project Module Econometrics and Statistics}\\
+{\small Isa Marques, Xi Sun, Xueying Liu}\\[1ex]
+%{\small UUU}\\[1ex]
+%{\bf Add other authors}\\
+%{\small and affilitations}\\[1ex]
+}
+
+\date{
+{\small Bonn, Germany}\\
+{\small \today}
+}
+
+
+\begin{frame}
+    \titlepage
+    \note{~}
+\end{frame}
+
+\begin{frame}[t]
+    \frametitle{Structure}
+    \begin{itemize}
+        \item Introduction
+        \item Identification
+        \item Ichimura's (1993) method
+        \item Klein and Spady's (1993) method
+        \item Monte Carlo simulation
+    \end{itemize}
+    \note{~}
+\end{frame}
+
+
+\begin{frame}[t]
+    \frametitle{Introduction}
+	 \textbf{Definition of Single Index Model:} 
+	 (following notation in \citet{LiRacine07})
+ 
+	 \begin{eqnarray}
+		Y = g(X'\beta) + \epsilon,  % with i =1,2 ..., n?, iid?
+ 	 \end{eqnarray}
+
+		\begin{enumerate}
+			\item $\{x_i,y_i\}$ for i = 1, ..., n is an i.i.d. sample;
+			\item Y is the dependent variable, $X\in \mathbb{R}^{q}$ is a vector of explanatory variables, $\beta$ is the q $\times$ 1 						vector of unknown parameters; 
+			\item The functional form of the linear index, $X'\beta$ is specified and it is a single index because it is a scalar;
+			\item $g: \mathbb{R} \rightarrow \mathbb{R} $ is unspecified; % dimensions?
+			\item The conditional probability of $\epsilon$ conditioned on X is not specified except $ E(\epsilon|x) = 0 $;
+	   \end{enumerate}
+
+\note{~}      
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{Introduction}
+	\textbf{Advantage of Single Index Model vs. Parametric and Nonparametric Models}
+	\begin{itemize}
+	\item Parametric model: prespecifies functional forms which is assumed to be fully described by a finite set of parameters.
+			
+			eg, Binary choice model: 
+			\[E(Y|x) = 1 - F(-(\alpha + x'\beta))\]
+			Misspecification of error distribution leads to inconsistent estimation of parameters.
+			
+	\item Fully nonparametric models: \[Y = g(X, \epsilon)\ or\ Y = g(X) + \epsilon\].
+	      Curse of dimensionality: as the dimensions of the model increase, the convergence rate of the estimator decreases.
+	
+	\end{itemize}
+	
+
+\note{~}
+\end{frame}
+
+
+\begin{frame}[t]
+    \frametitle{Identification}
+	  Identification(\citet{Horowitz09}): $\beta$ and $ g(\cdot)$ must be uniquely determined by sample data.
+     \begin{equation}
+		E(Y|x) = g(x'\beta_0).
+	  \end{equation}
+    \newtheorem{prop1}{Proposition}[section]   
+	  \begin{prop1}[Identification of a Single Index Model] 
+		
+		\begin{itemize}
+        \item 1. x should not contain a constant and it must contain at least one continuous variable with nonzero coefficient. Furthermore, one component of $\beta_0$ is set to 1.
+        \item 2. The support of $x'\beta_0$ is bounded convex set with at least one interior point. $g$ is differentiable and it is not a constant function on the support of $x'\beta_0$.		
+		\end{itemize}
+    
+    \end{prop1}
+	Intuition:
+\note{~}
+\end{frame}
+
+
+\begin{frame}[t]
+    \frametitle{Identification}
+     %here \citet{Horowitz09}
+     \begin{equation}
+		E(Y|x) = g(x'\beta_0).
+	  \end{equation}
+    \newtheorem{prop2}{Proposition}[section]   
+	  \begin{prop2}[Identification of a Single Index Model] 
+		\begin{itemize}
+		  \item 3. For the discrete components of $x$, varying the values of the discrete variables will not divide the support of $x'\beta_0$ into disjoint subsets, and $g$ must be nonperiodic.
+		\end{itemize}
+    \end{prop2}
+    Intuition:
+
+\note{~}
+\end{frame}
+
+% Print black screen only in presentation mode for finishing up.
+\mode<beamer> {
+    \beamersetaveragebackground{black}
+    \begin{frame}
+        \frametitle{}
+    \end{frame}
+
+    \beamersetaveragebackground{white}
+}
+
+\begin{frame}[allowframebreaks]
+    \frametitle{References}
+    \renewcommand{\bibfont}{\normalfont\footnotesize}
+    \printbibliography
+\end{frame}
+
+\end{document}
