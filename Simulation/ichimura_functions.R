@@ -1,4 +1,7 @@
+#install.packages("NMOF")
 library("NMOF")
+
+#########################################################################
 
 # Define Gaussian kernel function.
 normal_kde <- function(u,h){
@@ -6,16 +9,15 @@ normal_kde <- function(u,h){
   return(res)
 }
 
-# Define leave-one-out estimator g,
-# Use Gaussian kernel function.
+# Define leave-one-out estimator g
 g_i <- function(X,y,b_vec,h) {
-  g_i <- (1:N)*NA
-  for (i in 1:N){
-    u        <- sweep(X,2,X[i,])[-i,]%*%b_vec
-    kde      <- normal_kde(u,h)
+  g_i <- (1:nrow(X))*NA
+  for (i in 1:nrow(X)){
+    u <- sweep(X,2,X[i,])[-i,]%*%b_vec
+    kde <- normal_kde(u,h)
     estimate <- y[-i]%*%kde / sum(kde)
-    g_i[i]   <- estimate
-    }
+    g_i[i] <- estimate
+  }
   return(g_i)
 }
 
@@ -23,8 +25,8 @@ g_i <- function(X,y,b_vec,h) {
 # Define the objective minimizing function of sum-of-squared errors,
 # Use Gaussian kernel function.
 min_SSE_Gaussian <- function(X,y,b_vec,h) {
-  g_i <- (1:N)*NA
-  for (i in 1:N){
+  g_i <- (1:nrow(X))*NA
+  for (i in 1:nrow(X)){
     u <- sweep(X,2,X[i,])[-i,]%*%b_vec
     kde=normal_kde(u,h)
     estimate <- y[-i]%*%kde / sum(kde)
@@ -45,3 +47,4 @@ ichimura_calc <- function(X,y,h) {
   g.hat <-approxfun(X%*%beta.hat, g_i(X,y,beta.hat,h), method = "linear", rule = 1, ties = mean)
   returnlist <- list(g.hat=g.hat,beta.hat=beta.hat)
 }
+

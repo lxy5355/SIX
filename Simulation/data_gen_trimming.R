@@ -30,22 +30,23 @@ h <- .5
 #keep the term p_n(X_i%*%b_vec) from arbitrarily getting close to zero.
 b_2<-seq(0.1,10,len=20)
 b_3<-seq(0.1,10,len=20)
-
 for (b2 in b_2){
   for (b3 in b_3){
     b_vec <- c(1,b2,b3)
-    X_new <- double()
-    y_new <- double()
-    for (i in 1:nrow(X)){
+    n <- nrow(X)
+    i <- 1
+    while (i<=n){
       u <- sweep(X,2,X[i,])[-i,] %*% b_vec
       kde <- normal_kde(u,h)
-      if (sum(kde)>1){
-        X_new <- rbind(X_new,X[i,])
-        y_new <- rbind(y_new,y[i])
+      if (sum(kde)<1){
+        X <- X[-i,]
+        y <- y[-i]
+        n <- n - 1
+        print(i)
+      }else{
+        i <- i + 1
       }
     }
-    X <- X_new
-    y <- y_new
   }
 }
 
@@ -65,20 +66,22 @@ beta.hat.KS = estimates.KS$beta.hat
 ####################################################################
 #plot results 
 
-m.grid<- seq(min(X %*% beta.hat.ichimura), max(X %*% beta.hat.ichimura), len=500)
+m_new <- X %*% beta.hat.ichimura
 
-plot(m.grid,exp(m.grid),col="red",main=c("true (red) data and y from estimated g function (black)"), 
-      ylim=range((exp(40)), exp(80)), type="p")
-points(m[order(m)],g.hat.ichimura(m[order(m)]), type="p")
+m.grid <- seq(min(X %*% beta.hat.ichimura), max(X %*% beta.hat.ichimura), len=500)
 
-###################################################################
-
+plot(m.grid,(m.grid)^2,col="red",main=c("true (red) data and y from estimated g function (black)"), 
+     ylim=range((min(m.grid))^2, (max(m.grid))^2), type="p")
+points(m_new[order(m_new)],g.hat.ichimura(m_new[order(m_new)]), type="p")
 
 
 ####################################################################
 #define loss function and compare ichimura and KS
 
-sum((sin(m[order(m)]/4) -  g.hat(m[order(m)]) )^2)
+
+SSE.ichimura <- sum((m^2 - g.hat.ichimura(m_new))^2)
+SSE.KS <- sum((m^2 - g.hat.KS(X%*%beta.hat.KS))^2)
+
 
 #########################################################################
 #monte carlo

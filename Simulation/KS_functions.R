@@ -7,8 +7,8 @@ normal_kde <- function(u,h){
 # Define leave-one-out estimator g,
 # Use Gaussian kernel function.
 g_i <- function(X,y,b_vec,h) {
-  g_i <- (1:N)*NA
-  for (i in 1:N){
+  g_i <- (1:nrow(X))*NA
+  for (i in 1:nrow(X)){
     u <- sweep(X,2,X[i,])[-i,]%*%b_vec
     kde=normal_kde(u,h)
     estimate <- y[-i]%*%kde / sum(kde)
@@ -30,8 +30,8 @@ f.hat.fun(55)
 # Define the objective minimizing function of sum-of-squared errors,
 # Use Gaussian kernel function.
 loglike <- function(X,y,b_vec,h) {
-  g_i <- (1:N)*NA
-  for (i in 1:N){
+  g_i <- (1:nrow(X))*NA
+  for (i in 1:nrow(X)){
     u <- sweep(X,2,X[i,])[-i,]%*%b_vec
     kde=normal_kde(u,h)
     estimate <- y[-i]%*%kde / sum(kde)
