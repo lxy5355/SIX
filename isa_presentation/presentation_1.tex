@@ -152,7 +152,7 @@ where $\hat{G}_{-i}(X_i'\beta)$ is a leave-one-out Nadaraya-Watson kernel estima
 	\item With two Taylor expansions we have
 $g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta_n)] 
  = g^{(1)}(X_i'\beta_n)( X_i - E[X_i'|X_i'\beta_n)(\beta_0 - \beta_n) + o_p(1)$
-	\item Minimize $S_n$ in order to $\hat{\beta}_n$.
+	\item Minimize $S_n$ in order to $\beta_n$.
 \end{enumerate}
 
 \end{frame}
@@ -184,7 +184,7 @@ For unknown $\sigma^2(x)$, a consistent estimator is used that follows a two-ste
 \frametitle{Klein and Spady's (1993) method}
 
 The model is defined as $Y_i =  \mathbf{1}{(X_i'\beta \geq \epsilon_i)}$. Let $g$ denote the distribution of $\epsilon_i$.
-Thus, the maximum-likelihood problem is as follows:
+Thus, the maximum-likelihood objective function is as follows:
 \begin{equation}
 \mathcal{L}_n(\beta) = \frac{1}{n}\sum_{i=1}^n \tau_{i}\{ (1 - Y_i)ln[ 1 - \hat{G}_{-i}(X_i'\beta)] +  Y_iln[\hat{G}_{-i}(X_i'\beta)]\}
 \end{equation}
