@@ -1,33 +1,99 @@
-\documentclass[11pt]{beamer}
-% \documentclass[11pt,handout]{beamer}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage{float, afterpage, rotating, graphicx}
-\usepackage{epstopdf}
-\usepackage{longtable, booktabs, tabularx}
-\usepackage{fancyvrb, moreverb, relsize}
-\usepackage{eurosym, calc, chngcntr}
-\usepackage{amsmath, amssymb, amsfonts, amsthm, bm} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass{beamer}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+%\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+%\usecolortheme{albatross}
+%\usecolortheme{beaver}
+%\usecolortheme{beetle}
+%\usecolortheme{crane}
+%\usecolortheme{dolphin}
+%\usecolortheme{dove}
+%\usecolortheme{fly}
+%\usecolortheme{lily}
+%\usecolortheme{orchid}
+%\usecolortheme{rose}
+%\usecolortheme{seagull}
+%\usecolortheme{seahorse}
+%\usecolortheme{whale}
+%\usecolortheme{wolverine}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
 \usepackage[backend=bibtex, natbib=true, bibencoding=inputenc, bibstyle=authoryear-ibid, citestyle=authoryear-comp, maxcitenames=3, maxbibnames=10]{biblatex}
 \setlength{\bibitemsep}{1.5ex}
 \addbibresource{project_refs.bib}
 
-\hypersetup{colorlinks=true, linkcolor=black, anchorcolor=black, citecolor=black, filecolor=black, menucolor=black, runcolor=black, urlcolor=black}
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
 
-\setbeamertemplate{footline}[frame number]
-\setbeamertemplate{navigation symbols}{}
-\setbeamertemplate{frametitle}{\centering\vspace{1ex}\insertframetitle\par}
 
+\title[Ichimura's and Klein and Spady's methods]{Semiparametric Single Index Models: Ichimura and Klein and Spady's methods} % The short title appears at the bottom of every slide, the full title is only on the title page
 
 \begin{document}
 
-\title{Topic 7: SEMIPARAMETRIC SINGLE INDEX MODELS: ICHIMURA'S METHOD}
 
-\author[Isa Marques, Xi Sun, Xueying Liu] % \& others]
+\author{Isa Marques, Xi Sun, Xueying Liu} % Your name
 {
-{\bf Project Module Econometrics and Statistics}\\
-{\small Isa Marques, Xi Sun, Xueying Liu}\\[1ex]
 %{\small UUU}\\[1ex]
 %{\bf Add other authors}\\
 %{\small and affilitations}\\[1ex]
@@ -38,14 +104,24 @@
 {\small \today}
 }
 
-
 \begin{frame}
-    \titlepage
-    \note{~}
+\titlepage % Print the title page as the first slide
 \end{frame}
 
+
+%----------------------------------------------------------------------------------------
+%	PRESENTATION SLIDES
+%----------------------------------------------------------------------------------------
+
+%------------------------------------------------
+\section{First Section} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+%------------------------------------------------
+
+\subsection{Subsection Example} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+
 \begin{frame}[t]
-    \frametitle{Structure}
+    \frametitle{Outline}
+    
     \begin{itemize}
         \item Introduction
         \item Identification
@@ -134,6 +210,8 @@
 \note{~}
 \end{frame}
 
+%------------------------------------------------
+
 % Print black screen only in presentation mode for finishing up.
 \mode<beamer> {
     \beamersetaveragebackground{black}
@@ -150,4 +228,12 @@
     \printbibliography
 \end{frame}
 
-\end{document}
+%------------------------------------------------
+
+\begin{frame}
+\Huge{\centerline{The End}}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document} 
