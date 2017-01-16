@@ -435,7 +435,7 @@ and $\Omega_{KS} = \Omega_{SI}$, i.e., the estimator is asymptotically efficient
 
 \end{theorem}
 
-It now becomes necessary to elaborate on the last stament of Theorem 4.1. For a binary choice model, $Var(Y|X = x) = P(Y = 1|X = x)[1 - P(Y = 1|X = x)] = E[\mathbf{1}{(x'\beta_0 \geq \epsilon)}]\{1 - E[\mathbf{1}{(x'\beta_0 \geq \epsilon)}]\} = g(x'\beta_0)[1 - g(x'\beta_0)]$ and $\sigma^2(x)$ depends only on the single index $x'\beta_0$. Assume $\beta_n - \beta_0 = O(n^{-\frac{1}{2}})$, $\hat{\beta}_n - \beta_0 = O_p(n^{-\frac{1}{2}})$ and consider the result shown above
+It now becomes necessary to elaborate on the last stament of Theorem 4.1. For a binary choice model, $Var(Y|X = x) = P(Y = 1|X = x)[1 - P(Y = 1|X = x)] = E[\mathbf{1}{(x'\beta_0 \geq \epsilon)|X = x}]\{1 - E[\mathbf{1}{(x'\beta_0 \geq \epsilon)|X = x}]\} = g(x'\beta_0)[1 - g(x'\beta_0)]$ and $\sigma^2(x)$ depends only on the single index $x'\beta_0$. Assume $\beta_n - \beta_0 = O(n^{-\frac{1}{2}})$, $\hat{\beta}_n - \beta_0 = O_p(n^{-\frac{1}{2}})$ and consider the result shown above
 \begin{align*}
 g(X_i'\beta_0) - E_A[g(X_i'\beta_0)|X_i'\beta)] & = g^{(1)}(X_i'\beta)( X_i - E_A[X_i'|X_i'\beta])(\beta_0 - \beta) \\
 											   & + O(n^{-1})

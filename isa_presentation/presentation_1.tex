@@ -85,8 +85,8 @@
 
 \title[Semiparametrics Single Index Models]{Semiparametrics Single Index Models: Ichimura and Klein and Spady's methods} % The short title appears at the bottom of every slide, the full title is only on the title page
 
-\author{Isa Marques, Xi Sun, Xueying Liu} % Your name
-\institute[UCLA] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+\author{Isa, Xi, Xueying} % Your name
+\institute[University of Bonn] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
 Project Module Econometrics and Statistics \\ % Your institution for the title page
 \medskip
@@ -183,7 +183,7 @@ For unknown $\sigma^2(x)$, a consistent estimator is used that follows a two-ste
 \begin{frame}
 \frametitle{Klein and Spady's (1993) method}
 
-The model is defined as $Y_i =  \mathbf{1}{(X_i'\beta \geq \epsilon_i)}$. Let $g$ denote the distribution of $\epsilon_i$. Additionaly, assume $\epsilon_i$ is independent of $X_i$.
+The model is defined as $Y_i =  \mathbf{1}{(X_i'\beta \geq \epsilon_i)}$. Let $g$ denote the distribution of $\epsilon_i$.
 Thus, the maximum-likelihood problem is as follows:
 \begin{equation}
 \mathcal{L}_n(\beta) = \frac{1}{n}\sum_{i=1}^n \tau_{i}\{ (1 - Y_i)ln[ 1 - \hat{G}_{-i}(X_i'\beta)] +  Y_iln[\hat{G}_{-i}(X_i'\beta)]\}
@@ -238,7 +238,7 @@ where $\tau_i$ is a simplified trimming function $\tau_i = \mathbf{1}{(X_i \in A
 
 \footnotesize{
 \begin{thebibliography}{99} % Beamer does not support BibTeX so references must be inserted manually as below
-\bibitem[Li, Q. and Racine, J. S, 2007]{p1} Horowitz (2007)
+\bibitem[Li, Q. and Racine, J. S, 2007]{p1} Li, Q. and Racine, J. S, 2007 (2007)
 \newblock Nonparametric Econometrics: Theory and Practice.
 \newblock \emph{Princeton University Press}.
 \end{thebibliography}
@@ -252,6 +252,28 @@ where $\tau_i$ is a simplified trimming function $\tau_i = \mathbf{1}{(X_i \in A
 \end{thebibliography}
 }
 
+\footnotesize{
+\begin{thebibliography}{99} % Beamer does not support BibTeX so references must be inserted manually as below
+\bibitem[Hardle, Hall and Ichimura, 1993]{p1} Hardle, Hall and Ichimura (1993)
+\newblock Optimal Smoothing in Single Index Models
+\newblock \emph{The Annals of Statistics}. 1, 175-178
+\end{thebibliography}
+}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+
+
+\footnotesize{
+\begin{thebibliography}{99} % Beamer does not support BibTeX so references must be inserted manually as below
+\bibitem[Klein and Spady, 1993]{p1} Klein and Spady (1993)
+\newblock An Efficient Semiparameteric Estimator For Binary Response Models
+\newblock \emph{The Annals of Statistics}. 2, 387-421
+\end{thebibliography}
+}
 \end{frame}
 
 %------------------------------------------------
