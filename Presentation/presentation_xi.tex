@@ -40,14 +40,14 @@
 %\usetheme{Ilmenau}
 %\usetheme{JuanLesPins}
 %\usetheme{Luebeck}
-%\usetheme{Madrid}
+\usetheme{Madrid}
 %\usetheme{Malmoe}
 %\usetheme{Marburg}
 %\usetheme{Montpellier}
 %\usetheme{PaloAlto}
 %\usetheme{Pittsburgh}
 %\usetheme{Rochester}
-\usetheme{Singapore}
+%\usetheme{Singapore}
 %\usetheme{Szeged}
 %\usetheme{Warsaw}
 
@@ -125,8 +125,8 @@
     \begin{itemize}
         \item Introduction
         \item Identification
-        \item Ichimura's (1993) method
-        \item Klein and Spady's (1993) method
+        \item \citet{Ichimura93} method
+        \item \citet{KleinSpady93} method
         \item Monte Carlo simulation
     \end{itemize}
     \note{~}
@@ -147,7 +147,7 @@
 			\item Y is the dependent variable, $X\in \mathbb{R}^{q}$ is a vector of explanatory variables, $\beta$ is the q $\times$ 1 						vector of unknown parameters; 
 			\item The functional form of the linear index, $X'\beta$ is specified and it is a single index because it is a scalar;
 			\item $g: \mathbb{R} \rightarrow \mathbb{R} $ is unspecified; % dimensions?
-			\item The conditional probability of $\epsilon$ conditioned on X is not specified except $ E(\epsilon|x) = 0 $;
+			\item The distribution of $\epsilon$ is not specified except $ E(\epsilon|x) = 0 $.
 	   \end{enumerate}
 
 \note{~}      
@@ -248,16 +248,243 @@ E[Y| X = (x_1,1)]& = g(x_1+\beta_2), \text{support\ of } g(\cdot): [\beta_2,1+\b
 \note{~}
 \end{frame}
 
+\begin{frame}
+\frametitle{Ichimura's (1993) method}
+For known $g$, a nonlinear least squares (NLS) method can be used to estimate $\beta_0$ by minimizing:
+\begin{equation}
+S_n(\beta) = \frac{1}{n}\sum_{i = 1}^n\big[Y_i - g(X_i'\beta)\big]^2
+\end{equation}
+with respect to $\beta$. 
+However, both $g$ and $\beta_0$ are unknown. For a given $\beta$ we estimate instead:
+\begin{equation}
+G(X_i'\beta) \stackrel{def}{=} E(Yi|X_i'\beta) = E[g(X_i'\beta_0)|X_i'\beta].
+\end{equation}
+Given this, the weighted NLS problem is as follows:
+\begin{equation}
+S_n(\beta) = \frac{1}{n} \sum_{i=1}^{n}  [Y_i - \hat{G}_{-i}(X_i'\beta)]^2w(x_i)\mathbf{1}{(X_i \in A_n)}
+\end{equation}
+where $\hat{G}_{-i}(X_i'\beta)$ is a leave-one-out Nadaraya-Watson kernel estimator,  $\mathbf{1}{(Xi \in A_n)}$ is a trimming function and $w(x_i)$ is a weighting function.
+\end{frame}
 
-% Print black screen only in presentation mode for finishing up.
-\mode<beamer> {
-    \beamersetaveragebackground{black}
-    \begin{frame}
-        \frametitle{}
-    \end{frame}
 
-    \beamersetaveragebackground{white}
-}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Ichimura's (1993) method}
+\begin{block}{Theorem Ichimura}
+{\footnotesize \[ \sqrt{n}(\hat{\beta}_n - \beta_0) \stackrel{d}{\rightarrow} N(0,\Omega_I), \] where $\Omega_I = V^{-1}\Sigma V^{-1}$, and \[\Sigma = E\{w(X_i)^2\sigma^2(X_i)(g_i^{(1)})^2(X_i - E_A(X_i|X_i'\beta_0)) \times (X_i - E_A(X_i|X_i'\beta_0))'\},\] with $g_i^{(1)} = [\partial g(v)/\partial v]|_{v = X_i'\beta_0}, E_A(X_i|v) = E(X_i|x_A'\beta_0 = v)$ with $x_A$ having the distribution of $X_i$ conditional on $Xi \in A_\delta$, and \[ V = E[w(X_i)(g_i^{(1)})^2(X_i - E_A(X_i|X_i'\beta_0))(X_i - E_A(X_i|X_i'\beta_0))'].\] \par}
+\end{block}
+
+{\footnotesize \textbf{Assumptions:} $\beta_n - \beta_0 = O(n^{-\frac{1}{2}})$, $\hat{\beta}_n - \beta_0 = O_p(n^{-\frac{1}{2}})$; $ \hat{G}_{-i}(X_i'\beta_n) = G(X_i'\beta_n) + o_p(1)$; $\hat{G}_{-i}(X_i'\beta_0) = g(X_i'\beta_0) + o_p(1)$. \par}
+\begin{enumerate}
+	\item It can be shown $ S_{n}(\beta_n) = \frac{1}{n}\sum_i \{ g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta_n] +  \epsilon_i\}^2 + o_p(1)$.	
+	\item With two Taylor expansions we have
+$g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta_n)] 
+ = g^{(1)}(X_i'\beta_n)( X_i - E[X_i'|X_i'\beta_n)(\beta_0 - \beta_n) + o_p(1)$
+	\item Minimize $S_n$ in order to $\beta_n$.
+
+\end{enumerate}
+
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Ichimura's (1993) method}
+\begin{itemize}
+		\item \textbf{Bandwidth Selection}:
+Ichimura requires $h_n=O(n^{-\frac{1}{5}})$. Haerdle et al.(1993) suggest an empirical way of selecting the bandwidth for optimal smoothing of both $g$ and $\beta$.
+		\item \textbf{Weight Function}:
+	In case data is heteroskedastic, use analogue of Feasible Generalized Least Squares. Under certain regularity conditions, the efficiency bound for the single index model with unknown $g$ and using only data for which $X \in A_{\delta}$ is $\Omega_I$ with $w(x) = \frac{1}{\sigma^2(x)}$. The efficiency bound is then
+		\begin{equation}
+\Omega_{SI} = \left\{ E\left[\frac{1}{\sigma^2(x)}\frac{\partial}{\partial \beta}
+ G(X'\beta,\beta)\frac{\partial}{\partial \beta} G(X'\beta,\beta) \right] \right\}^{-1}.
+		\end{equation}
+For unknown $\sigma^2(x)$, a consistent estimator is used that follows a two-step procedure.
+		\item \textbf{Main Problem}: Uses iterative method, particularly difficult if the objective function is multimodal or nonconvex.
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+
+
+
+
+\begin{frame}
+\frametitle{Klein and Spady's (1993) method}
+
+The model is defined as $Y_i =  \mathbf{1}{(X_i'\beta \geq \epsilon_i)}$. Let $g$ denote the distribution of $\epsilon_i$.
+Thus, the $log-likelihood$ objective function is as follows:
+\begin{equation}
+\mathcal{L}_n(\beta) = \frac{1}{n}\sum_{i=1}^n \tau_{i}\{ (1 - Y_i)ln[ 1 - \hat{G}_{-i}(X_i'\beta)] +  Y_iln[\hat{G}_{-i}(X_i'\beta)]\}
+\end{equation}
+where $\tau_i$ is a simplified trimming function $\tau_i = \mathbf{1}{(X_i \in A_\delta)}$.
+\begin{block}{Theorem Klein and Spady}
+{\footnotesize \[\sqrt{n}(\hat{\beta}_{n} - \beta_0) \stackrel{d}{\rightarrow} N(0,\Omega_{KS}),
+\] where $ \Omega_{KS} = \left\{ E\left[\frac{\partial}{\partial \beta}
+ G(X_i'\beta)\frac{\partial}{\partial \beta} G(X_i'\beta)'\frac{1}{g(X_i'\beta_0)(1 - g(X_i'\beta_0))} \right]\right\}^{-1} $
+ and $\Omega_{KS} = \Omega_{SI}$, i.e., the estimator is asymptotically efficient.\par}
+\end{block}
+
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
+\frametitle{Klein and Spady's (1993) method}
+\begin{itemize}
+	\setlength\itemsep{1.5em}
+
+	\item \textbf{Bandwidth Selection}: Klein and Spady require $ n^{-\frac{1}{6}} < h_n < n^{-\frac{1}{8}}$. H{\"a}rdle et al.'s (1993) solution can potentially be applied here.
+	
+
+	\item \textbf{Main Problem}: Computation is difficult.
+	
+	
+	\item \textbf{Comparison between Ichimura's and Klein and Spady's model}:
+	Klein and Spady's model seems more appropriate for the binary choice model case, from a theoretical perspective. Ichimura's model uses a weight function to correct for heteroskedasticity. However, Klein and Spady's model is efficient in the sense that it reaches the semiparametric efficiency bound.
+	
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{Implementation}
+
+	\textbf{What we have done}
+	\begin{itemize}
+		\item Klein and Spady function, Ichimura function 
+		\begin{itemize}\item Kernel (arbitrary choice: Gaussian) 
+			\item function of $\hat{G}_{i}$ and loss function $S_n$ and $\mathcal{L}_n$
+			\item Minimisation using grid-search  
+			      \item state size of the grid \\
+				\begin{center}(start, end, width, ... $\rightarrow$ This is arbitrary) 
+				\end{center} 
+		\end{itemize}
+	\end{itemize}
+	\note{~}
+\end{frame}
+
+
+
+\begin{frame}[t]
+	\frametitle{Implementation}
+
+	\textbf{What we have done}
+	\begin{itemize}
+		\item Klein and Spady function, Ichimura function 
+		\begin{itemize}\item Kernel (arbitrary choice: Gaussian) 
+			\item function of $\hat{G}_{i}$ and loss function $S_n$ and $\mathcal{L}_n$
+			\item Minimisation using grid-search  (arbitrary choice of grid
+		\end{itemize}
+	\end{itemize}
+          \textbf{What we are going to do}
+	\begin{itemize}
+		\item Trimming Function in the minimization process $\mathbf{1}{(X_i \in A_n)}$
+		\item Weighing fuction for heteroskedasticity: $w(x_i)$
+	\end{itemize}
+
+	\smallskip
+
+	\textbf{What we leave out}
+	\begin{itemize}
+		\item Bandwidth selection, computationally difficult
+		\begin{itemize}
+			\item Candidate for bandwidth: $0.2$
+		\end{itemize}
+	\end{itemize}
+	\note{~}
+\end{frame}
+
+
+
+
+
+\begin{frame}[t]
+	\frametitle{Monte Carlo Simulation}
+
+	\textbf{What we have done}
+	\begin{itemize}
+		\item Generated binary dataset, specifying true function $g$: $ e \overset{i.i.d.}{\sim} N(0, 1)$
+		\item Define loss function $ \frac{1}{m}\sum_{i=1}^{m}(\hat{\beta}_i - \beta_0)^2 $
+		\item Vary $n$ (sample size), m (number of Monte Carlo simulation) is set to 1000
+     \end{itemize}
+\end{frame}
+
+ \begin{frame}[t]
+	\frametitle{Monte Carlo Simulation: visualization}
+\begin{itemize}
+
+\item  $n = 30$
+%graph here
+
+\item  $n = 50$
+%graph here
+\end{itemize}
+	\note{~}
+\end{frame}
+
+
+ \begin{frame}[t]
+	\frametitle{Monte Carlo Simulation: comparison based on loss function}
+
+\frametitle{Table}
+\begin{table}
+\begin{tabular}{l l l}
+\toprule
+\textbf{Number observations} & \textbf{Ichimura} & \textbf{Klein and Spady}\\
+\midrule
+30 & 68.16583 & 38.60356 \\
+50 & 67.99048 & 38.59288 \\
+\bottomrule
+\end{tabular}
+\caption{Table caption}
+\end{table}
+	\note{~}
+\end{frame}
+
+
+\begin{frame}[t]
+	\frametitle{Monte Carlo Simulation}
+
+	\textbf{What we are going to do}
+	\begin{itemize}
+		\item Continuous data (for comparison of Ichimura vs OLS )
+		\item Binary data (for comparison of Probit, Ichimura, Klein and Spady)
+           \item Vary the true distribution $g$(for comparison of Ichimura and Klein and Spady)
+	\end{itemize}
+	\textbf{What we leave out}
+	\begin{itemize}
+		\item Comparsion between $g$ and $ \hat{G}_{-i} $
+	\end{itemize}
+	\note{~}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Application on Real Data}
+	
+	\textbf{Data Features}
+	\begin{itemize}
+		\item Binary outcome: (Male or Female Voice)
+		\item Include at least one continuous variable
+		\item Features of voice: frequency,spectral flatness, peak frequency etc
+	\end{itemize}
+	\textbf{Steps in Estimation}
+	\begin{itemize}
+		\item Separate data into:
+		\begin{itemize}
+			\item Training sample
+			\item Prediction sample
+		\end{itemize}
+		\item Same range of independent variable 
+		\item Training sample to estimate $\hat{\beta}$ and $\hat{G_{-i}}$
+		\item Use those estimates on prediction sample
+		\item Define accuracy rate for evaluation
+	\end{itemize}
+	\note{~}
+\end{frame}
+
 
 \begin{frame}[allowframebreaks]
     \frametitle{References}
@@ -265,12 +492,6 @@ E[Y| X = (x_1,1)]& = g(x_1+\beta_2), \text{support\ of } g(\cdot): [\beta_2,1+\b
     \printbibliography
 \end{frame}
 
-%------------------------------------------------
 
-\begin{frame}
-\Huge{\centerline{The End}}
-\end{frame}
-
-%----------------------------------------------------------------------------------------
 
 \end{document} 

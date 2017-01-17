@@ -38,7 +38,7 @@ for (b2 in b_2){
     while (i<=n){
       u <- sweep(X,2,X[i,])[-i,] %*% b_vec
       kde <- normal_kde(u,h)
-      if (sum(kde)<1){
+      if (sum(kde)<0.01){
         X <- X[-i,]
         y <- y[-i]
         n <- n - 1
@@ -54,7 +54,7 @@ m<-X %*% beta.true
 ##################################################################
 #estimations
 
-estimates.ichimura = ichimura_calc (X_new,y_new,h)
+estimates.ichimura = ichimura_calc (X,y,h)
 g.hat.ichimura = estimates.ichimura$g.hat
 beta.hat.ichimura = estimates.ichimura$beta.hat
 
