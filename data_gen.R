@@ -59,7 +59,7 @@ loss.KS = sum((e.KS)^2)/length(e.KS)
 #########################################################################
 #monte carlo simulation
 
-M = 50 #number of monte carlo simulation
+M = 1000 #number of monte carlo simulation
 n = 30    # Sample Size
 mc.beta.ichimura <- rep(NA,M)
 mc.beta.KS <- rep(NA,M)
@@ -85,8 +85,8 @@ for(j in 1:M){
 #plot histogram of monte carlo simulation
 
 par(mfrow=c(2,1))
-hist(mc.beta.ichimura,breaks = 25)
-hist(mc.beta.KS,breaks = 25)
+hist(mc.beta.ichimura,breaks = 50)
+hist(mc.beta.KS,breaks = 50)
 
 ###########################################################################
 #define loss function from monte carlo and compare ichimura and KS
@@ -96,4 +96,7 @@ mc.loss.ichimura<-sum((mc.e.ichimura)^2)/M
 
 mc.e.KS<-mc.beta.KS-beta.true
 mc.loss.KS<-sum((mc.e.KS)^2)/M
+
+save(mc.beta.KS, file = "mc_beta_KS_1000m_30n")
+save(mc.beta.ichimura, file = "mc_beta_ichimura_1000m_30n")
 

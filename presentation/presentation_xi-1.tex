@@ -1,0 +1,347 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass{beamer}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+%\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+%\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+%\usecolortheme{albatross}
+%\usecolortheme{beaver}
+%\usecolortheme{beetle}
+%\usecolortheme{crane}
+%\usecolortheme{dolphin}
+%\usecolortheme{dove}
+%\usecolortheme{fly}
+%\usecolortheme{lily}
+%\usecolortheme{orchid}
+%\usecolortheme{rose}
+%\usecolortheme{seagull}
+%\usecolortheme{seahorse}
+%\usecolortheme{whale}
+%\usecolortheme{wolverine}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+\usepackage{tikz} % Allows the use of checkmarks
+\usepackage{euscript} % Allows nice curly symbols
+\usepackage{amsmath} % For beautiful Math typesetting
+\usepackage[backend=bibtex, natbib=true, bibencoding=inputenc, bibstyle=authoryear-ibid, citestyle=authoryear-comp, maxcitenames=3, maxbibnames=10]{biblatex}
+\setlength{\bibitemsep}{1.5ex}
+\addbibresource{project_refs.bib}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+
+\title[Ichimura's and Klein and Spady's methods]{Semiparametric Single Index Models: Ichimura and Klein and Spady's methods} % The short title appears at the bottom of every slide, the full title is only on the title page
+
+\begin{document}
+
+
+\author{Isa Marques, Xi Sun, Xueying Liu} % Your name
+{
+%{\small UUU}\\[1ex]
+%{\bf Add other authors}\\
+%{\small and affilitations}\\[1ex]
+}
+
+\date{
+{\small Bonn, Germany}\\
+{\small \today}
+}
+
+\begin{frame}
+\titlepage % Print the title page as the first slide
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+%	PRESENTATION SLIDES
+%----------------------------------------------------------------------------------------
+
+%------------------------------------------------
+%\section{First Section} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+%------------------------------------------------
+
+%\subsection{Subsection Example} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+
+\begin{frame}[t]
+    \frametitle{Outline}
+    
+    \begin{itemize}
+        \item Introduction
+        \item Identification
+        \item Ichimura's (1993) method
+        \item Klein and Spady's (1993) method
+        \item Monte Carlo simulation
+    \end{itemize}
+    \note{~}
+\end{frame}
+
+
+\begin{frame}[t]
+    \frametitle{Introduction}
+	 \textbf{Definition of Single Index Model:} 
+	 (following notation in \citet{LiRacine07})
+ 
+	 \begin{eqnarray}
+		Y = g(X'\beta) + \epsilon,  % with i =1,2 ..., n?, iid?
+ 	 \end{eqnarray}
+
+		\begin{enumerate}
+			\item $\{x_i,y_i\}$ for i = 1, ..., n is an i.i.d. sample;
+			\item Y is the dependent variable, $X\in \mathbb{R}^{q}$ is a vector of explanatory variables, $\beta$ is the q $\times$ 1 						vector of unknown parameters; 
+			\item The functional form of the linear index, $X'\beta$ is specified and it is a single index because it is a scalar;
+			\item $g: \mathbb{R} \rightarrow \mathbb{R} $ is unspecified; % dimensions?
+			\item The conditional probability of $\epsilon$ conditioned on X is not specified except $ E(\epsilon|x) = 0 $;
+	   \end{enumerate}
+
+\note{~}      
+\end{frame}
+
+\begin{frame}[t]
+	\frametitle{Introduction}
+	\textbf{Advantage of Single Index Model vs. Parametric and Nonparametric Models}
+	\begin{itemize}
+	\item Parametric model: prespecifies functional forms which is assumed to be fully described by a finite set of parameters.
+			
+			eg, Binary choice model: 
+			\[E(Y|x) = 1 - F(-(\alpha + x'\beta))\]
+			Misspecification of error distribution leads to inconsistent estimation of parameters.
+			
+	\item Fully nonparametric models: \[Y = g(X, \epsilon)\ or\ Y = g(X) + \epsilon\].
+	      Curse of dimensionality: as the dimensions of the model increase, the convergence rate of the estimator decreases.
+	
+	\end{itemize}
+	
+
+\note{~}
+\end{frame}
+
+
+\begin{frame}[t]
+    \frametitle{Identification}
+	  Identification(\citet{Horowitz09}): $\beta$ and $ g(\cdot)$ must be uniquely determined by sample data.
+     \begin{equation}
+		E(Y|x) = g(x'\beta_0).
+	  \end{equation}
+    \newtheorem{prop1}{Proposition}[section]   
+	  \begin{prop1}[Identification of a Single Index Model] 
+		
+		\begin{itemize}
+        \item 1. x should not contain a constant and it must contain at least one continuous variable with nonzero coefficient. Furthermore, one component of $\beta_0$ is set to 1.
+        \item 2. The support of $x'\beta_0$ is bounded convex set with at least one interior point. $g$ is differentiable and it is not a constant function on the support of $x'\beta_0$.		
+		\end{itemize}
+    
+    \end{prop1}
+	Intuition:
+\note{~}
+\end{frame}
+
+
+\begin{frame}[t]
+    \frametitle{Identification}
+     %here \citet{Horowitz09}
+     \begin{equation}
+		E(Y|x) = g(x'\beta_0).
+	  \end{equation}
+    \newtheorem{prop2}{Proposition}[section]   
+	  \begin{prop2}[Identification of a Single Index Model] 
+		\begin{itemize}
+		  \item 3. For the discrete components of $x$, varying the values of the discrete variables will not divide the support of $x'\beta_0$ into disjoint subsets, and $g$ must be nonperiodic.
+		\end{itemize}
+    \end{prop2}
+    Intuition:
+
+\note{~}
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This is Xueying's part
+
+
+\begin{frame}[t]
+	\frametitle{Implementation}
+
+	\textbf{What we have done}
+	\begin{itemize}
+		\item KS Ichimura Function 
+		\begin{itemize}\item Kernel (Gaussian) 
+			\item estimation of $\hat{g}_{i}$ 
+			\item Minimisation (sum of squares vs. log-likelihood) 
+			\item grid-search (stable compared to e.g. NLM) 
+			\item state size of the grid \\
+				\begin{center}(start, end, width, ... $\rightarrow$ This is arbitrary) 
+				\end{center} 
+		\end{itemize}
+	\end{itemize}
+	\note{~}
+\end{frame}
+
+
+
+\begin{frame}[t]
+	\frametitle{Implementation}
+
+	\textbf{What we are going to do}
+	\begin{itemize}
+		\item Trimming Function, especially for KS to avoid negative values
+		\item Heteroskedasticity with weighting function
+	\end{itemize}
+
+	\smallskip
+
+	\textbf{What we leave out}
+	\begin{itemize}
+		\item Bandwidth
+		\begin{itemize}
+			\item Potential Candidate: $0.2$
+		\end{itemize}
+	\end{itemize}
+	\note{~}
+\end{frame}
+
+
+
+\begin{frame}[t]
+	\frametitle{Simulation}
+
+	\textbf{What we have done}
+	\begin{itemize}
+		\item $ e \overset{i.i.d.}{\sim} \EuScript{N}(0, 1)$
+		\item Generating data: binary with Ichimura vs. KS
+		\item Define loss function $ \sum_{m} {\frac{\hat{\beta} - \beta_{true}}{m}} $
+		\item Vary $n$ (sample size) and $m$ (number of simulations)
+	\end{itemize}
+	\textbf{What we are going to do}
+	\begin{itemize}
+		\item Continuous data (Ichimura vs KS)
+		\item Discrete data (Probit, Ichimura, KS)
+	\end{itemize}
+	\textbf{What we leave out}
+	\begin{itemize}
+		\item MSE on $g_{i}$ and $ \hat{g_{-i}} $
+		\item Care about $\beta$ estimation
+	\end{itemize}
+	\note{~}
+\end{frame}
+
+
+
+\begin{frame}
+	\frametitle{Real Data}
+	
+	\textbf{Data Features}
+	\begin{itemize}
+		\item Binary outcome:  (Male or Female Voice)
+		\item Include at least one continuous variable
+		\item Features of voice: (Frequency, etc.)
+	\end{itemize}
+	\textbf{Steps in Estimation}
+	\begin{itemize}
+		\item Separate data into:
+		\begin{itemize}
+			\item Training sample
+			\item Prediction sample
+		\end{itemize}
+		\item $\rightarrow$ Same range of independent variable
+		\item Training sample to estimate $\hat{\beta}$ and $\hat{g_{-i}}$
+		\item Use those estimates on prediction sample
+		\item Define accuracy rate
+	\end{itemize}
+	\note{~}
+\end{frame}
+
+
+%End of Xueying's part
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+	
+
+
+
+%------------------------------------------------
+
+% Print black screen only in presentation mode for finishing up.
+\mode<beamer> {
+    \beamersetaveragebackground{black}
+    \begin{frame}
+        \frametitle{}
+    \end{frame}
+
+    \beamersetaveragebackground{white}
+}
+
+\begin{frame}[allowframebreaks]
+    \frametitle{References}
+    \renewcommand{\bibfont}{\normalfont\footnotesize}
+    \printbibliography
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\Huge{\centerline{The End}}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document} 
