@@ -311,10 +311,10 @@ S_{n}(\hat{\beta}_n) & = (\beta_0 - \hat{\beta}_n)'\left[\frac{1}{n}\sum_i (g_i^
 \end{align*}
 
 Minimizing in order to $\hat{\beta}_n$ and ignoring terms independent of $\hat{\beta}_n$ and $o_p(1)$:
-\[2\frac{1}{n}(\beta_0 - \hat{\beta}_n)\sum_i(g_{i}^{(1)})^2v_iv_i' - 2\frac{1}{n}\sum_i\epsilon_ig_i^{(1)}v_i' = 0 \]
+\[2\frac{1}{n}(\hat{\beta}_n - \beta_0)\sum_i(g_{i}^{(1)})^2v_iv_i' - 2\frac{1}{n}\sum_i\epsilon_ig_i^{(1)}v_i' = 0 \]
 Then, 
 \begin{align*}
-\sqrt{n}(\beta_0 - \hat{\beta}_n) & = (\frac{1}{n}\sum_i(g_{i}^{(1)})^2v_iv_i')^{-1}\frac{1}{\sqrt{n}}\sum_i\epsilon_i g_{i}^{(1)}v_i \\
+\sqrt{n}(\hat{\beta}_n - \beta_0) & = (\frac{1}{n}\sum_i(g_{i}^{(1)})^2v_iv_i')^{-1}\frac{1}{\sqrt{n}}\sum_i\epsilon_i g_{i}^{(1)}v_i \\
      					  & = (\frac{1}{n}\sum_i(g_{i0}^{(1)})^2v_{i0}v_{i0}')^{-1}\frac{1}{\sqrt{n}}\sum_i\epsilon_i g_{i0}^{(1)}v_{i0} + o_p(1).
 \end{align*}
 
@@ -363,7 +363,7 @@ where $\hat{G}_{-i}(X_i'\beta, h_n) = \hat{G}_{-i}(X_i'\beta)$ and $A_\delta$ is
 \subsection{Weight Function} % (fold)
 \label{sub:Weight Function}
 
-In case heteroskedastic data is used, that is, if different errors do not have the same variance, the model must be changed as it is no longer efficient and standard errors and $t$-statistics are biased. Following the idea of Generalized Least Squares (GLS), the model must be transformed in order to achieve efficiency. Furthermore, analogously to GLS, in case the transformation depends upon unknown parameters, these need to be estimate and an analogue of Feasible GLS (FGLS) is obtained instead. On the latter case a weight function is used that assumes a general form of heroskedasticy. This weight function, $w$, is chosen so as to maximize the asymptotic efficiency of the estimator. 
+In case heteroskedastic data is used, that is, if different errors do not have the same variance, the model must be changed as it is no longer efficient and standard errors and $t$-statistics are biased. Following the idea of Generalized Least Squares (GLS), the model must be transformed in order to achieve efficiency. Furthermore, analogously to GLS, in case the transformation depends upon unknown parameters, these need to be estimate and an analogue of Feasible GLS (FGLS) is obtained instead. On the latter case a weight function is used that assumes a general form of heteroskedasticy. This weight function, $w$, is chosen so as to maximize the asymptotic efficiency of the estimator. 
 
 %Within the class of weighted nonlinear least squares (WNLS) estimators, an estimator is asymptotically efficient given the covariance matrix $\Omega$ of its asymptotic distributions and the covariance matrix $\Omega^*$ of the other WNLS estimators, if $\Omega^* - \Omega$ is positive semidefinite. Even though the class of all regular estimators of single index models may include estimators that are not semiparametric WNLS estimators, the definition of asymptotically efficient estimator remains the same. 
 
