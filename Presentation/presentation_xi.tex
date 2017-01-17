@@ -163,7 +163,7 @@
 			\[E(Y|x) = 1 - F(-(\alpha + x'\beta))\]
 			Misspecification of error distribution leads to inconsistent estimation of parameters.
 			
-	\item Fully nonparametric models: \[Y = g(X, \epsilon)\ or\ Y = g(X) + \epsilon\].
+	\item Fully nonparametric models: \[Y = g(X, \epsilon)\ or\ Y = g(X) + \epsilon\]
 	      Curse of dimensionality: as the dimensions of the model increase, the convergence rate of the estimator decreases.
 	
 	\end{itemize}
@@ -182,13 +182,14 @@
     \newtheorem{prop1}{Proposition}[section]   
 	  \begin{prop1}[Identification of a Single Index Model] 
 		
-		\begin{itemize}
-        \item 1. x should not contain a constant and it must contain at least one continuous variable with nonzero coefficient. Furthermore, one component of $\beta_0$ is set to 1.
-        \item 2. The support of $x'\beta_0$ is bounded convex set with at least one interior point. $g$ is differentiable and it is not a constant function on the support of $x'\beta_0$.		
-		\end{itemize}
+		\begin{enumerate}
+        \item  x should not contain a constant and it must contain at least one continuous variable with nonzero coefficient. Furthermore, one component of $\beta_0$ is set to 1.
+        \item  The support of $x'\beta_0$ is bounded convex set with at least one interior point. $g$ is differentiable and it is not a constant function on the support of $x'\beta_0$.
+        \item  For the discrete components of $x$, varying the values of the discrete variables will not divide the support of $x'\beta_0$ into disjoint subsets, and $g$ must be nonperiodic.		
+		\end{enumerate}
     
     \end{prop1}
-	Intuition:
+
 \note{~}
 \end{frame}
 
@@ -196,21 +197,57 @@
 \begin{frame}[t]
     \frametitle{Identification}
      %here \citet{Horowitz09}
-     \begin{equation}
+     \begin{equation*}
 		E(Y|x) = g(x'\beta_0).
-	  \end{equation}
+	  \end{equation*}
     \newtheorem{prop2}{Proposition}[section]   
 	  \begin{prop2}[Identification of a Single Index Model] 
 		\begin{itemize}
-		  \item 3. For the discrete components of $x$, varying the values of the discrete variables will not divide the support of $x'\beta_0$ into disjoint subsets, and $g$ must be nonperiodic.
+		  \item 1. x should not contain a constant and it must contain at least one continuous variable with nonzero coefficient. Furthermore, one component of $\beta_0$ is set to 1.
 		\end{itemize}
     \end{prop2}
     Intuition:
+    \begin{itemize}
+      
+      \item $g^{*}(\gamma + \delta v) = g(v)$, for all $v$ in the support of $X'\beta$.
+      
+      	 restriction on $\gamma$: location normalization,
+      	 
+      	 restriction on $\delta$: scale normalization.
+      \item Suppose finitely many v in support, there may exist infitely many satisfying $g(\cdot)$, indistinguishable from each other.
+      
+    \end{itemize}
+    
 
 \note{~}
 \end{frame}
 
 %------------------------------------------------
+
+\begin{frame}[t]
+    \frametitle{Identification}
+     %here \citet{Horowitz09}
+     \begin{equation*}
+		E(Y|x) = g(x'\beta_0).
+	  \end{equation*}
+    \newtheorem{prop3}{Proposition}[section]   
+	  \begin{prop3}[Identification of a Single Index Model] 
+		\begin{itemize}
+        \item 3. For the discrete components of $x$, varying the values of the discrete variables will not divide the support of $x'\beta_0$ into disjoint subsets, and $g$ must be nonperiodic.
+		\end{itemize}
+    \end{prop3}
+    Intuition:
+Assume a continuous $X_1$ with support $\big[0,1\big]$, and a discrete $X_2$ with support $\{0,1\}$, $g$ is strictly increasing and non periodic and set $\beta_1 = 1$ as a \textit{scale normalization}.
+    \[
+\begin{split}
+E[Y| X = (x_1,0)]& = g(x_1), \text{support\ of } g(\cdot): [0,1];  \\
+E[Y| X = (x_1,1)]& = g(x_1+\beta_2), \text{support\ of } g(\cdot): [\beta_2,1+\beta_2].
+\end{split}
+\]
+
+\note{~}
+\end{frame}
+
 
 % Print black screen only in presentation mode for finishing up.
 \mode<beamer> {
