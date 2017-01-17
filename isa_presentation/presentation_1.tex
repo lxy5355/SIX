@@ -151,13 +151,9 @@ where $\hat{G}_{-i}(X_i'\beta)$ is a leave-one-out Nadaraya-Watson kernel estima
 	\item It can be shown $ S_{n}(\beta_n) = \frac{1}{n}\sum_i \{ g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta_n] +  \epsilon_i\}^2 + o_p(1)$.	
 	\item With two Taylor expansions we have
 $g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta_n)] 
-<<<<<<< HEAD
  = g^{(1)}(X_i'\beta_n)( X_i - E[X_i'|X_i'\beta_n)(\beta_0 - \beta_n) + o_p(1)$
 	\item Minimize $S_n$ in order to $\beta_n$.
-=======
- = g^{(1)}(X_i'\beta_n)( X_i - E[X_i'|X_i'\beta_n])(\beta_0 - \beta_n) + o_p(1)$
-	\item Minimize $S_n$ in order to $\beta$.
->>>>>>> isammarques
+
 \end{enumerate}
 
 \end{frame}
@@ -169,11 +165,7 @@ $g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta_n)]
 		\item \textbf{Bandwidth Selection}:
 Ichimura requires $h_n=O(n^{-\frac{1}{5}})$. H{\"a}rdle et al. (1993) suggest an empirical way of selecting the bandwidth for optimal smoothing of both $g$ and $\beta$.
 		\item \textbf{Weight Function}:
-<<<<<<< HEAD
-	In case data is heroskedastic, use analogue of Feasible Generalized Least Squares. Under certain regularity conditions, the efficiency bound for the single index model with unknown $g$ and using only data for which $X \in A_{\delta}$ is $\Omega_I$ with $w(x) = \frac{1}{\sigma^2(x)}$. The efficiency bound is then
-=======
 	In case data is heteroskedastic, use analogue of Feasible Generalized Least Squares. Under certain regularity conditions, the efficiency bound for the single index model with unknown $g$ and using only data for which $X \in A_{\delta}$ is $\Omega_I$ with $w(x) = \frac{1}{\sigma^2(x)}$. The efficiency bound is then
->>>>>>> isammarques
 		\begin{equation}
 \Omega_{SI} = \left\{ E\left[\frac{1}{\sigma^2(x)}\frac{\partial}{\partial \beta}
  G(X'\beta,\beta)\frac{\partial}{\partial \beta} G(X'\beta,\beta) \right] \right\}^{-1}.
@@ -193,11 +185,7 @@ For unknown $\sigma^2(x)$, a consistent estimator is used that follows a two-ste
 \frametitle{Klein and Spady's (1993) method}
 
 The model is defined as $Y_i =  \mathbf{1}{(X_i'\beta \geq \epsilon_i)}$. Let $g$ denote the distribution of $\epsilon_i$.
-<<<<<<< HEAD
-Thus, the maximum-likelihood objective function is as follows:
-=======
 Thus, the $log-likelihood$ objective function is as follows:
->>>>>>> isammarques
 \begin{equation}
 \mathcal{L}_n(\beta) = \frac{1}{n}\sum_{i=1}^n \tau_{i}\{ (1 - Y_i)ln[ 1 - \hat{G}_{-i}(X_i'\beta)] +  Y_iln[\hat{G}_{-i}(X_i'\beta)]\}
 \end{equation}
@@ -220,12 +208,8 @@ where $\tau_i$ is a simplified trimming function $\tau_i = \mathbf{1}{(X_i \in A
 
 	\item \textbf{Bandwidth Selection}: Klein and Spady require $ n^{-\frac{1}{6}} < h_n < n^{-\frac{1}{8}}$. H{\"a}rdle et al.'s (1993) solution can potentially be applied here.
 	
-	
-<<<<<<< HEAD
-	\item \textbf{Main Problem}: The same as for Ichimura's method.
-=======
+
 	\item \textbf{Main Problem}: Computation is difficult.
->>>>>>> isammarques
 	
 	
 	\item \textbf{Comparison between Ichimura's and Klein and Spady's model}:
