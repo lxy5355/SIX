@@ -374,8 +374,8 @@ where $\tau_i$ is a simplified trimming function $\tau_i = \mathbf{1}{(X_i \in A
 	\begin{itemize}
 		\item Klein and Spady function, Ichimura function 
 		\begin{itemize}\item Kernel (arbitrary choice: Gaussian) 
-			\item function of $\hat{G}_{i}$ and loss function $S_n$ and $\mathcal{L}_n$
-			\item Minimisation using grid-search  (arbitrary choice of grid
+			\item function of $G_{-i}$ and loss function $S_n$ and $\mathcal{L}_n$
+			\item Minimisation using grid-search  (arbitrary choice of grid)
 		\end{itemize}
 	\end{itemize}
           \textbf{What we are going to do}
@@ -458,11 +458,11 @@ where $\tau_i$ is a simplified trimming function $\tau_i = \mathbf{1}{(X_i \in A
 	\begin{itemize}
 		\item Continuous data (for comparison of Ichimura vs OLS )
 		\item Binary data (for comparison of Probit, Ichimura, Klein and Spady)
-           \item Vary the true distribution $g$(for comparison of Ichimura and Klein and Spady)
+           \item Vary the true distribution $g$ (for comparison of Ichimura and Klein and Spady)
 	\end{itemize}
 	\textbf{What we leave out}
 	\begin{itemize}
-		\item Comparsion between $g$ and $ \hat{G}_{-i} $
+		\item Comparsion between $g$ and $ G_{-i} $
 	\end{itemize}
 	\note{~}
 \end{frame}
@@ -475,7 +475,7 @@ where $\tau_i$ is a simplified trimming function $\tau_i = \mathbf{1}{(X_i \in A
 	\begin{itemize}
 		\item Binary outcome: (Male or Female Voice)
 		\item Include at least one continuous variable
-		\item Features of voice: frequency,spectral flatness, peak frequency etc
+		\item Features of voice: frequency, spectral flatness, peak frequency etc
 	\end{itemize}
 	\textbf{Steps in Estimation}
 	\begin{itemize}
@@ -485,7 +485,7 @@ where $\tau_i$ is a simplified trimming function $\tau_i = \mathbf{1}{(X_i \in A
 			\item Prediction sample
 		\end{itemize}
 		\item Same range of independent variable 
-		\item Training sample to estimate $\hat{\beta}$ and $\hat{G_{-i}}$
+		\item Training sample to estimate $\hat{\beta}$ and $G_{-i}$
 		\item Use those estimates on prediction sample
 		\item Define accuracy rate for evaluation
 	\end{itemize}
