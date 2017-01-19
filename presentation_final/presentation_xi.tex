@@ -87,7 +87,7 @@
 %----------------------------------------------------------------------------------------
 
 
-\title[Ichimura's and Klein and Spady's methods]{Semiparametric Single Index Models: Ichimura and Klein and Spady's methods} % The short title appears at the bottom of every slide, the full title is only on the title page
+\title[Ichimura's and Klein and Spady's methods]{Semiparametric Single Index Models: Ichimura's and Klein and Spady's methods} % The short title appears at the bottom of every slide, the full title is only on the title page
 
 \begin{document}
 
@@ -139,15 +139,15 @@
 	 (following notation in \citet{LiRacine07})
  
 	 \begin{eqnarray}
-		Y = g(X'\beta) + \epsilon,  % with i =1,2 ..., n?, iid?
+		Y_i = g(X_i'\beta) + \epsilon_i,  % with i =1,2 ..., n?, iid?
  	 \end{eqnarray}
 
 		\begin{enumerate}
 			\item $\{x_i,y_i\}$ for i = 1, ..., n is an i.i.d. sample;
-			\item Y is the dependent variable, $X\in \mathbb{R}^{q}$ is a vector of explanatory variables, $\beta$ is the q $\times$ 1 						vector of unknown parameters; 
-			\item The functional form of the linear index, $X'\beta$ is specified and it is a single index because it is a scalar;
+			\item $Y_i$ is the dependent variable, $X_i\in \mathbb{R}^{q}$ is a vector of explanatory variables, $\beta$ is the q $\times$ 1 						vector of unknown parameters; 
+			\item The functional form of the linear index, $X_i'\beta$ is specified and it is a single index because it is a scalar;
 			\item $g: \mathbb{R} \rightarrow \mathbb{R} $ is unspecified; % dimensions?
-			\item The distribution of $\epsilon$ is not specified except $ E(\epsilon|x) = 0 $.
+			\item The distribution of $\epsilon_i$ is not specified except $ E(\epsilon_i|x_i) = 0 $.
 	   \end{enumerate}
 
 \note{~}      
@@ -348,23 +348,6 @@ where $\tau_i$ is a simplified trimming function $\tau_i = \mathbf{1}{(X_i \in A
 \end{itemize}
 \end{frame}
 
-\begin{frame}[t]
-	\frametitle{Implementation}
-
-	\textbf{What we have done}
-	\begin{itemize}
-		\item Klein and Spady function, Ichimura function 
-		\begin{itemize}\item Kernel (arbitrary choice: Gaussian) 
-			\item function of $\hat{G}_{i}$ and loss function $S_n$ and $\mathcal{L}_n$
-			\item Minimisation using grid-search  
-			      \item state size of the grid \\
-				\begin{center}(start, end, width, ... $\rightarrow$ This is arbitrary) 
-				\end{center} 
-		\end{itemize}
-	\end{itemize}
-	\note{~}
-\end{frame}
-
 
 
 \begin{frame}[t]
@@ -374,8 +357,8 @@ where $\tau_i$ is a simplified trimming function $\tau_i = \mathbf{1}{(X_i \in A
 	\begin{itemize}
 		\item Klein and Spady function, Ichimura function 
 		\begin{itemize}\item Kernel (arbitrary choice: Gaussian) 
-			\item function of $\hat{G}_{i}$ and loss function $S_n$ and $\mathcal{L}_n$
-			\item Minimisation using grid-search  (arbitrary choice of grid
+			\item function of $G_{-i}$ and loss function $S_n$ and $\mathcal{L}_n$
+			\item Minimisation using grid-search  (arbitrary choice of grid)
 		\end{itemize}
 	\end{itemize}
           \textbf{What we are going to do}
@@ -408,6 +391,7 @@ where $\tau_i$ is a simplified trimming function $\tau_i = \mathbf{1}{(X_i \in A
 		\item Generated binary dataset, specifying true function $g$: $ e \overset{i.i.d.}{\sim} N(0, 1)$
 		\item Define loss function $ \frac{1}{m}\sum_{i=1}^{m}(\hat{\beta}_i - \beta_0)^2 $
 		\item Vary $n$ (sample size), m (number of Monte Carlo simulation) is set to 1000
+                    \item $\beta_0 = 7.6$ (arbitrary choice)
      \end{itemize}
 \end{frame}
 
@@ -458,11 +442,11 @@ where $\tau_i$ is a simplified trimming function $\tau_i = \mathbf{1}{(X_i \in A
 	\begin{itemize}
 		\item Continuous data (for comparison of Ichimura vs OLS )
 		\item Binary data (for comparison of Probit, Ichimura, Klein and Spady)
-           \item Vary the true distribution $g$(for comparison of Ichimura and Klein and Spady)
+           \item Vary the true distribution $g$ (for comparison of Ichimura and Klein and Spady)
 	\end{itemize}
 	\textbf{What we leave out}
 	\begin{itemize}
-		\item Comparsion between $g$ and $ \hat{G}_{-i} $
+		\item Comparsion between $g$ and $ G_{-i} $
 	\end{itemize}
 	\note{~}
 \end{frame}
@@ -475,7 +459,7 @@ where $\tau_i$ is a simplified trimming function $\tau_i = \mathbf{1}{(X_i \in A
 	\begin{itemize}
 		\item Binary outcome: (Male or Female Voice)
 		\item Include at least one continuous variable
-		\item Features of voice: frequency,spectral flatness, peak frequency etc
+		\item Features of voice: frequency, spectral flatness, peak frequency etc
 	\end{itemize}
 	\textbf{Steps in Estimation}
 	\begin{itemize}
@@ -485,13 +469,12 @@ where $\tau_i$ is a simplified trimming function $\tau_i = \mathbf{1}{(X_i \in A
 			\item Prediction sample
 		\end{itemize}
 		\item Same range of independent variable 
-		\item Training sample to estimate $\hat{\beta}$ and $\hat{G_{-i}}$
+		\item Training sample to estimate $\hat{\beta}$ and $G_{-i}$
 		\item Use those estimates on prediction sample
 		\item Define accuracy rate for evaluation
 	\end{itemize}
 	\note{~}
 \end{frame}
-
 
 \begin{frame}[allowframebreaks]
     \frametitle{References}
