@@ -311,10 +311,10 @@ S_{n}(\hat{\beta}_n) & = (\beta_0 - \hat{\beta}_n)'\left[\frac{1}{n}\sum_i (g_i^
 \end{align*}
 
 Minimizing in order to $\hat{\beta}_n$ and ignoring terms independent of $\hat{\beta}_n$ and $o_p(1)$:
-\[2\frac{1}{n}(\beta_0 - \hat{\beta}_n)\sum_i(g_{i}^{(1)})^2v_iv_i' - 2\frac{1}{n}\sum_i\epsilon_ig_i^{(1)}v_i' = 0 \]
+\[2\frac{1}{n}(\hat{\beta}_n - \beta_0)\sum_i(g_{i}^{(1)})^2v_iv_i' - 2\frac{1}{n}\sum_i\epsilon_ig_i^{(1)}v_i' = 0 \]
 Then, 
 \begin{align*}
-\sqrt{n}(\beta_0 - \hat{\beta}_n) & = (\frac{1}{n}\sum_i(g_{i}^{(1)})^2v_iv_i')^{-1}\frac{1}{\sqrt{n}}\sum_i\epsilon_i g_{i}^{(1)}v_i \\
+\sqrt{n}(\hat{\beta}_n - \beta_0) & = (\frac{1}{n}\sum_i(g_{i}^{(1)})^2v_iv_i')^{-1}\frac{1}{\sqrt{n}}\sum_i\epsilon_i g_{i}^{(1)}v_i \\
      					  & = (\frac{1}{n}\sum_i(g_{i0}^{(1)})^2v_{i0}v_{i0}')^{-1}\frac{1}{\sqrt{n}}\sum_i\epsilon_i g_{i0}^{(1)}v_{i0} + o_p(1).
 \end{align*}
 
@@ -363,7 +363,7 @@ where $\hat{G}_{-i}(X_i'\beta, h_n) = \hat{G}_{-i}(X_i'\beta)$ and $A_\delta$ is
 \subsection{Weight Function} % (fold)
 \label{sub:Weight Function}
 
-In case heteroskedastic data is used, that is, if different errors do not have the same variance, the model must be changed as it is no longer efficient and standard errors and $t$-statistics are biased. Following the idea of Generalized Least Squares (GLS), the model must be transformed in order to achieve efficiency. Furthermore, analogously to GLS, in case the transformation depends upon unknown parameters, these need to be estimate and an analogue of Feasible GLS (FGLS) is obtained instead. On the latter case a weight function is used that assumes a general form of heroskedasticy. This weight function, $w$, is chosen so as to maximize the asymptotic efficiency of the estimator. 
+In case heteroskedastic data is used, that is, if different errors do not have the same variance, the model must be changed as it is no longer efficient and standard errors and $t$-statistics are biased. Following the idea of Generalized Least Squares (GLS), the model must be transformed in order to achieve efficiency. Furthermore, analogously to GLS, in case the transformation depends upon unknown parameters, these need to be estimate and an analogue of Feasible GLS (FGLS) is obtained instead. On the latter case a weight function is used that assumes a general form of heteroskedasticy. This weight function, $w$, is chosen so as to maximize the asymptotic efficiency of the estimator. 
 
 %Within the class of weighted nonlinear least squares (WNLS) estimators, an estimator is asymptotically efficient given the covariance matrix $\Omega$ of its asymptotic distributions and the covariance matrix $\Omega^*$ of the other WNLS estimators, if $\Omega^* - \Omega$ is positive semidefinite. Even though the class of all regular estimators of single index models may include estimators that are not semiparametric WNLS estimators, the definition of asymptotically efficient estimator remains the same. 
 
@@ -387,7 +387,7 @@ The problem of efficient estimation of $\beta_0$ in a single index model with un
 This bound is achieved by the semiparametric WNLS estimator if $\sigma^2(X)$ is known or independent of X. When $\sigma^2(X)$ is unknown the most efficient estimator is an analogue of FGLS as mentioned above.  Consider a given consistent estimator, say $s_{n}^{2}(x)$. If $w(X) = \frac{1}{s_{n}^{2}(x)}$ in the semiparametric WNLS estimator, the asymptotic efficiency bound will be reached. Thus, an asymptotic efficient estimator of $\beta_0$ is obtained even when $\sigma^2(X)$ is unknown. This consistent estimator uses a two-step procedure. First, estimate $\beta_0$ by minimizing function (9) with $w(x) = 1$. We obtain an estimator that is $n^{\frac{1}{2}}$-consistent and asymptotically normal but inefficient. The second step is a nonparametric estimation of the mean of the squared first-step residuals conditional on X. This uses the estimated weight function $\hat{w}_i(x) = \frac{1}{\hat{\sigma}_{i}^{2}}$, where  $\hat{\sigma}_{i}^{2}$ is defined by Robinson (1987) as 
 \[\hat{\sigma}_{i}^{2} = \frac{1}{k}\sum_{j=1}^{n} \mathbf{1}{(x_j \in N_k(x_i))}\hat{\epsilon}_{j}^{2} ,\]
 %The assumption that $X \in A_{\delta}$ can be replaced by the assumption that $A_{\delta}$ grows very slowly as $n$ increases.
-and $\hat{\epsilon}_i = y_i - \hat{g}(x_i'\hat{\beta_0})$, for $\hat{\beta_0}$ obtained on the first step. Further, $N_k(x_i)$ is the set of $k$ observations of $x_j$ closest to $x_i$ in weighted Euclidean norm.
+and $\hat{\epsilon}_i = y_i - \hat{G}_{-i}(x_i'\hat{\beta})$, for $\hat{\beta}$ obtained on the first step. Further, $N_k(x_i)$ is the set of $k$ observations of $x_j$ closest to $x_i$ in weighted Euclidean norm.
 
 
 \section{Klein and Spady's Binary Choice Estimator} % (fold)
@@ -435,7 +435,7 @@ and $\Omega_{KS} = \Omega_{SI}$, i.e., the estimator is asymptotically efficient
 
 \end{theorem}
 
-It now becomes necessary to elaborate on the last stament of Theorem 4.1. For a binary choice model, $Var(Y|X = x) = P(Y = 1|X = x)[1 - P(Y = 1|X = x)] = E[\mathbf{1}{(x'\beta_0 \geq \epsilon)}]\{1 - E[\mathbf{1}{(x'\beta_0 \geq \epsilon)}]\} = g(x'\beta_0)[1 - g(x'\beta_0)]$ and $\sigma^2(x)$ depends only on the single index $x'\beta_0$. Assume $\beta_n - \beta_0 = O(n^{-\frac{1}{2}})$, $\hat{\beta}_n - \beta_0 = O_p(n^{-\frac{1}{2}})$ and consider the result shown above
+It now becomes necessary to elaborate on the last stament of Theorem 4.1. For a binary choice model, $Var(Y|X = x) = P(Y = 1|X = x)[1 - P(Y = 1|X = x)] = E[\mathbf{1}{(x'\beta_0 \geq \epsilon)|X = x}]\{1 - E[\mathbf{1}{(x'\beta_0 \geq \epsilon)|X = x}]\} = g(x'\beta_0)[1 - g(x'\beta_0)]$ and $\sigma^2(x)$ depends only on the single index $x'\beta_0$. Assume $\beta_n - \beta_0 = O(n^{-\frac{1}{2}})$, $\hat{\beta}_n - \beta_0 = O_p(n^{-\frac{1}{2}})$ and consider the result shown above
 \begin{align*}
 g(X_i'\beta_0) - E_A[g(X_i'\beta_0)|X_i'\beta)] & = g^{(1)}(X_i'\beta)( X_i - E_A[X_i'|X_i'\beta])(\beta_0 - \beta) \\
 											   & + O(n^{-1})
