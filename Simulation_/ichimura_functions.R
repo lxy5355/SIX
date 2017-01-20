@@ -5,7 +5,7 @@ library("NMOF")
 
 # Define Gaussian kernel function.
 normal_kde <- function(u,h){
-  res <- (1/sqrt(2 *pi)) * exp(-0.5 * ((u/h)^2))
+  res <- (1/2)*(3-u^2)*((1/sqrt(2 *pi)) * exp(-0.5 * ((u/h)^2)))
   return(res)
 }
 

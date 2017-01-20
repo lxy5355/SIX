@@ -1,6 +1,6 @@
-# Gaussian kernel function.
+# fourth-order Gaussian kernel function.
 normal_kde <- function(u,h){
-  res <- (1/sqrt(2 *pi)) * exp(-0.5 * ((u/h)^2))
+  res <- (1/2)*(3-u^2)*((1/sqrt(2 *pi)) * exp(-0.5 * ((u/h)^2)))
   return(res)
 }
 
@@ -20,9 +20,9 @@ g_i <- function(X,y,b_vec,h) {
 
 
 ####################################################
-dens.est <- density(m)
-f.hat.fun<-splinefun(y=dens.est$y, x=dens.est$x) 
-f.hat.fun(55)
+#dens.est <- density(m)
+#f.hat.fun<-splinefun(y=dens.est$y, x=dens.est$x) 
+#f.hat.fun(55)
 ####################################################
 
 
