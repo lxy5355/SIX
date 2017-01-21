@@ -47,7 +47,7 @@ loglike <- function(X,y,b_vec,h) {
 # Define function to estimate beta.hat and g.hat
 KS_calc <- function(X,y,h) {
   opt.test <- gridSearch(fun=function(x){loglike(X=X,y=y,b_vec=x,h=h)},
-	                     levels=append(1,rep(list(seq(-10,10,len=100)),ncol(X)-1)) )
+	                     levels=append(1,rep(list(seq(-2,1,len=100)),ncol(X)-1)) )
   beta.hat <- opt.test$minlevels
   g.hat <-approxfun(X%*%beta.hat, g_i(X,y,beta.hat,h), method = "linear", rule = 1, ties = mean)
   returnlist <- list(g.hat=g.hat,beta.hat=beta.hat)
