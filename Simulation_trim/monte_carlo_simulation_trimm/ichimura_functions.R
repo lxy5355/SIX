@@ -44,7 +44,7 @@ ichimura_calc <- function(X,y,h) {
 	                     levels=append(1,rep(list(seq(0,20,len=40)),ncol(X)-1)) )
                                           
   beta.hat <- opt.test$minlevels
-  g.hat <-approxfun(X%*%beta.hat, g_i(X,y,beta.hat,h), method = "linear", rule = 1, ties = mean)
+  g.hat <- approxfun(X%*%beta.hat, g_i(X,y,beta.hat,h), method = "linear", rule = 1, ties = mean)
   returnlist <- list(g.hat=g.hat,beta.hat=beta.hat)
 }
 

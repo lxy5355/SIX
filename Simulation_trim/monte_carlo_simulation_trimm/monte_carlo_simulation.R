@@ -1,13 +1,13 @@
 source("ichimura_functions.R") 
 source("KS_functions.R") 
-
+source("trimming_function.R")
 #########################################################################
 #monte carlo simulation
 #true parameters
 
-M = 10 #number of monte carlo simulation
-n = 50    # Sample Size
-beta.true<-c(-2,1) #true beta
+M = 100 #number of monte carlo simulation
+n = 250    # Sample Size
+beta.true<-c(1,7) #true beta
 h=.2
 
 ######################  1  #####################
@@ -21,7 +21,11 @@ for(j in 1:M){
   X<-cbind(x_1,x_2)
   e<-rnorm(n)
   m<- X %*% beta.true + e 
-  y<-m>0         
+  y<-m>0
+##Impose a trimming function:
+  new_data <- data.trim(X,y)
+  X <- new_data[,1:2]
+  y <- new_data[,3]
 ## Compute jth realization of mc.beta.ichimura and mc.beta.KS:
   mc.beta.ichimura_1[j] <- ichimura_calc (X,y,h)$beta.hat[2]
   mc.beta.KS_1[j] <- KS_calc (X,y,h)$beta.hat[2]
@@ -41,7 +45,11 @@ for(j in 1:M){
   X<-cbind(x_1,x_2)
   e<-rnorm(n)
   m<- X %*% beta.true + e 
-  y<-m>0         
+  y<-m>0
+##Impose a trimming function:
+  new_data <- data.trim(X,y)
+  X <- new_data[,1:2]
+  y <- new_data[,3]
 ## Compute jth realization of mc.beta.ichimura and mc.beta.KS:
   mc.beta.ichimura_2[j] <- ichimura_calc (X,y,h)$beta.hat[2]
   mc.beta.KS_2[j] <- KS_calc (X,y,h)$beta.hat[2]
@@ -61,7 +69,11 @@ for(j in 1:M){
   X<-cbind(x_1,x_2)
   e<-0.75*rnorm(n)+0.25*rnorm(n,mean=0,sd=0.25)
   m<- X %*% beta.true + e 
-  y<-m>0         
+  y<-m>0
+##Impose a trimming function:
+  new_data <- data.trim(X,y)
+  X <- new_data[,1:2]
+  y <- new_data[,3]
 ## Compute jth realization of mc.beta.ichimura and mc.beta.KS:
   mc.beta.ichimura_3[j] <- ichimura_calc (X,y,h)$beta.hat[2]
   mc.beta.KS_3[j] <- KS_calc (X,y,h)$beta.hat[2]
@@ -81,7 +93,11 @@ for(j in 1:M){
   X<-cbind(x_1,x_2)
   e<-0.75*rnorm(n)+0.25*rnorm(n,mean=0,sd=0.25)
   m<- X %*% beta.true + e 
-  y<-m>0         
+  y<-m>0
+##Impose a trimming function:
+  new_data <- data.trim(X,y)
+  X <- new_data[,1:2]
+  y <- new_data[,3]
 ## Compute jth realization of mc.beta.ichimura and mc.beta.KS:
   mc.beta.ichimura_4[j] <- ichimura_calc (X,y,h)$beta.hat[2]
   mc.beta.KS_4[j] <- KS_calc (X,y,h)$beta.hat[2]
@@ -101,7 +117,11 @@ for(j in 1:M){
   X<-cbind(x_1,x_2)
   e<-0.75*rnorm(n,mean=-0.5,sd=1)+0.25*rnorm(n,mean=1.5,sd=2.5)
   m<- X %*% beta.true + e 
-  y<-m>0         
+  y<-m>0
+##Impose a trimming function:
+  new_data <- data.trim(X,y)
+  X <- new_data[,1:2]
+  y <- new_data[,3]
 ## Compute jth realization of mc.beta.ichimura and mc.beta.KS:
   mc.beta.ichimura_5[j] <- ichimura_calc (X,y,h)$beta.hat[2]
   mc.beta.KS_5[j] <- KS_calc (X,y,h)$beta.hat[2]
@@ -118,7 +138,11 @@ for(j in 1:M){
   X<-cbind(x_1,x_2)
   e<-0.75*rnorm(n,mean=-0.5,sd=1)+0.25*rnorm(n,mean=1.5,sd=2.5)
   m<- X %*% beta.true + e 
-  y<-m>0         
+  y<-m>0
+##Impose a trimming function:
+  new_data <- data.trim(X,y)
+  X <- new_data[,1:2]
+  y <- new_data[,3]
 ## Compute jth realization of mc.beta.ichimura and mc.beta.KS:
   mc.beta.ichimura_6[j] <- ichimura_calc (X,y,h)$beta.hat[2]
   mc.beta.KS_6[j] <- KS_calc (X,y,h)$beta.hat[2]
@@ -127,18 +151,40 @@ for(j in 1:M){
 ###########################################################################
 #plot histogram of monte carlo simulation
 
-par(mfrow=c(2,1))
-hist(mc.beta.ichimura_1,breaks = 50)
-hist(mc.beta.KS_1,breaks = 50)
+par(mfrow=c(2,6))
+hist(mc.beta.ichimura_1,breaks = 50, main="ichimura_1")
+hist(mc.beta.ichimura_2,breaks = 50, main="ichimura_2")
+hist(mc.beta.ichimura_3,breaks = 50, main="ichimura_3")
+hist(mc.beta.ichimura_4,breaks = 50, main="ichimura_4")
+hist(mc.beta.ichimura_5,breaks = 50, main="ichimura_5")
+hist(mc.beta.ichimura_6,breaks = 50, main="ichimura_6")
+
+
+hist(mc.beta.KS_1,breaks = 50, main="KS_1")
+hist(mc.beta.KS_2,breaks = 50, main="KS_2")
+hist(mc.beta.KS_3,breaks = 50, main="KS_3")
+hist(mc.beta.KS_4,breaks = 50, main="KS_4")
+hist(mc.beta.KS_5,breaks = 50, main="KS_5")
+hist(mc.beta.KS_6,breaks = 50, main="KS_6")
+
 
 ###########################################################################
 #define loss function from monte carlo and compare ichimura and KS
 
-mc.e.ichimura<-mc.beta.ichimura_1-beta.true
-mc.loss.ichimura<-sum((mc.e.ichimura)^2)/M
 
-mc.e.KS<-mc.beta.KS_1-beta.true
-mc.loss.KS<-sum((mc.e.KS)^2)/M
+loss_ichimura_1=sum( (mc.beta.ichimura_1-(beta.true[2]/beta.true[1]))^2  )/M
+loss_ichimura_2=sum( (mc.beta.ichimura_2-(beta.true[2]/beta.true[1]))^2  )/M
+loss_ichimura_3=sum( (mc.beta.ichimura_3-(beta.true[2]/beta.true[1]))^2  )/M
+loss_ichimura_4=sum( (mc.beta.ichimura_4-(beta.true[2]/beta.true[1]))^2  )/M
+loss_ichimura_5=sum( (mc.beta.ichimura_5-(beta.true[2]/beta.true[1]))^2  )/M
+loss_ichimura_6=sum( (mc.beta.ichimura_6-(beta.true[2]/beta.true[1]))^2  )/M
+
+loss_KS_1=sum( (mc.beta.KS_1-(beta.true[2]/beta.true[1]))^2  )/M
+loss_KS_2=sum( (mc.beta.KS_2-(beta.true[2]/beta.true[1]))^2  )/M
+loss_KS_3=sum( (mc.beta.KS_3-(beta.true[2]/beta.true[1]))^2  )/M
+loss_KS_4=sum( (mc.beta.KS_4-(beta.true[2]/beta.true[1]))^2  )/M
+loss_KS_5=sum( (mc.beta.KS_5-(beta.true[2]/beta.true[1]))^2  )/M
+loss_KS_6=sum( (mc.beta.KS_6-(beta.true[2]/beta.true[1]))^2  )/M
 
 
 
