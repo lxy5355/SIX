@@ -24,7 +24,7 @@
 % package for header
 \usepackage[automark]{scrpage2}
 \pagestyle{scrheadings}
-\ihead[]{Name of students}
+\ihead[]{Isa Marques, Xi Sun, Xueying Liu}
 \ohead[]{\today}
 \cfoot[]{\pagemark} 
 \setheadsepline[122mm]{0.3mm}
@@ -72,16 +72,25 @@
 	
 \section{Introduction} % (fold)
 \label{sec:introduction}
+TO BE WRITTEN WHEN THE APPLIED PART IS DONE.
+SAY WHO DID WHAT.
 
-Semiparametric single index models are widely used in a variety of settings.
-In this section, we elaborate on the model's main features and contributions to the class of semiparametric models.  
-Essentially, while the risk of mispecification is reduced relative to the overly restrictive but interpretable parametric models, it also avoids inconveniences of fully nonparametric models such as the curse of dimensionality, difficulty of interpretation, and the lack of extrapolation capability.
+Semiparametric single index models are widely applied in economic research. Applications range from finance to labor economics.
+
+% section introduction (end)
+The main focus of this paper is Ichimura's semiparametric model. In section 4 the identification conditions necessary for uniquely determining $\beta_0$ and $g(\cdot)$ in semiparametric models are presented.  Furthermore, Ichimura's solution will be analyzed in detail in section 5. The latter section briefly explains the weight function and bandwidth selection. As a comparison to Ichimura's method, Klein and Spady's (1993) semiparametric binary choice model will be explained concisely in section 6. Finally, in section 6 the two models are compared in both a theoretical and applied perspective.
+
+
+
+\section{Context} % (fold)
+\label{sec:context}
+In this section, we elaborate on the model's main features and contributions to the class of semiparametric models. Close at hand, a comparison with classical parametric models and nonparametrics models is provided. In essence, the risk of mispecification is reduced relative to the overly restrictive but interpretable parametric models. Additionally, it avoids inconveniences of fully nonparametric models such as the curse of dimensionality, difficulty of interpretation, and the lack of extrapolation capability. However, this does not come lightly, as computation for semiparameteric single index models is often difficult.
 
 \vspace{2mm} 
 The model
  
 \begin{eqnarray}
-Y_i = g(X_i'\beta) + \epsilon_i,
+Y_i = g(X_i'\beta) + \varepsilon_i,
 \end{eqnarray}
 
 where
@@ -97,9 +106,9 @@ where
 is a single index model.
 \vspace{2mm}
 
-This model is referred to as being semiparametric because while the conditional probability of $\varepsilon$ conditioned on X is not specified except $ E(\varepsilon|X) = 0 $ and $g(\cdot)$ is left fully unspecified,  the functional form of the linear index is stated.
+Three points become relevant when explaining why the present model is of  semiparametric nature. First, unlike fully nonparametric models, the functional form of the linear index is stated. However, as opposed to classical parametric models, the conditional probability of $\varepsilon$ conditioned on X is not specified except $ E(\varepsilon|X) = 0 $. Alongside, $g(\cdot)$ is left fully unspecified.
 
-For illustrative purposes, and even though Y can be of either discrete or continuous character, we now analyze binary choice models in the setting proposed by Li and Racine (2007). When considering the relationship between a binary dependent variable (Y) and covariates (X) this relationship can consequently be modelled as follows:
+For illustrative purposes we now analyze binary choice models in the setting proposed by Li and Racine (2007). Note that Y can be either discrete or continuous. The relationship between a binary dependent variable (Y) and covariates (X) can be modelled as follows:
 
 \[
     Y_i = 
@@ -110,8 +119,8 @@ For illustrative purposes, and even though Y can be of either discrete or contin
 \]
 
 where $Y^{*}$ is a latent variable.
-Consider Y representing labor force participation, equal to 1 if the individual participates in the labor market and 0 otherwise. The explanatory variables can contain a series of factors that might influence labor participation, such as gender, age, marital status and education. Assuming a linear relationship between labor force participation and potential determinants, the empirical analysis focuses on the estimation of $\beta$.
-Parametric methods to estimate $\beta$ require assumptions on the distribution of the error term \textit{u}. A common assumption in the parametric framework is $ u \sim N(0, 1)$. \footnote{With the identification condition $\sigma = 1$, $\beta$ can be jointly identified (Madalla (1986)) and we can use maximum likelihood to estimate it.}  Let $F_u(\cdot)$ denote the true CDF of \textit{u}. Then, the conditional expectation of Y has the form
+Assuming a linear relationship between Y and X, the empirical analysis focuses on the estimation of $\beta$.
+Parametric methods to estimate $\beta$ require assumptions on the distribution of the error term $u$. A common assumption in the parametric framework is $ u \sim N(0, 1)$. \footnote{With the identification condition $\sigma = 1$, $\beta$ can be jointly identified (Madalla (1986)) and we can use maximum likelihood.}  Let $F_u(\cdot)$ denote the true CDF of \textit{u}. Then, the conditional expectation of Y has the form
 
 \[ 
 \begin{split}
@@ -123,7 +132,7 @@ E(Y|x) & = \sum_{y=0,1} yP(y|x) = 1 \times P(Y=1|x) + 0 \times P(Y=0|x) \\
 \]
 
 
-where $F(\cdot)$ is the cummulative distribution function (CDF) of $u$. Since $u$ has a symmetric distribution the last equality can be rewritten using the result  $1 - F(-(\alpha + x'\beta)) = F(\alpha + x'\beta)$. 
+where $F(\cdot)$ is the cummulative distribution function (CDF) of $u$. Furthermore, $1 - F(-(\alpha + x'\beta) = F(\alpha + x'\beta)$, since $u$ has a symmetric distribution.
 
 Model (2) is then commonly referred to as a Probit model
 
@@ -133,29 +142,30 @@ E(Y|X) = P(Y=1|x) = \Phi(\alpha + x'\beta),
 
 where $\Phi$ is the CDF of a standard normal variable. 
 
-Alternatively, for $u$ having a symmetric logistic distribution a logit model is obtained. Generally speaking, model (1) contains many widely used parametric models that assume that $g$ is known up to a finite-dimensional parameter. Thus, different functional forms for $u$ lead to different functional forms for the conditional probability of $Y = 1$. Boiling it down, consistent parametric estimation of $E(Y|X) = P(Y=1|x)$ requires the \textit{correct} distribution specification of $u$. 
+Alternatively, for $u$ following a symmetric logistic distribution a logit model is obtained. Generally speaking, model (1) contains many widely used parametric models that assume $g$ is known up to a finite-dimensional parameter. Thus, different functional forms for $u$ lead to different functional forms for the conditional probability of $Y = 1$. Abridge, consistent parametric estimation of $E(Y|X) = P(Y=1|x)$ requires the \textit{correct} distribution specification of $u$. 
 Hence, model (1) with unknown $g(\cdot)$ is a more flexible version of parametric models which still clings to many of its desirable features. 
 
-On the other endside of the spectrum are nonparametric models such as
+Distinctively, nonparametric models can be defined as
 \[Y = g(X, \varepsilon)\]
 with smooth $g$ and given sampling,  or  
 \[Y = g(X) + \varepsilon\]
-that additionally assumes additivity of the error. Thus, the assumptions of a single index model are weaker than those of a parametric model and stronger than those of a nonparametric model.  \footnote{However, the necessary assumptions for consistent parametric estimation can be relaxed. In particular, the single index model might have weaker assumptions than a fully parameterized model for structural economic models.} 
+which additionally assumes additivity of the error. Thus, the assumptions of a single index model are weaker than those of a parametric model and stronger than those of a nonparametric model.  \footnote{However, the necessary assumptions for consistent parametric estimation can be relaxed. In particular, the single index model might have weaker assumptions than a fully parameterized model for structural economic models.} 
 
-Nonparametric models typically suffer from the curse of dimensionality, that is, as the dimensions of the model increase, the convergence rate of the estimator decreases.
-The single index model avoids the curse of dimensionality by reducing the p-dimensional predictor to a univariate single-index. In fact, the estimator achieves the same convergence rate $n^{-\frac{1}{2}}$ that is optimal for most parametric models. For nonparametric models this rate is only $n^{-\frac{2}{5}}$, if the underlying function is twice continuously differentiable.
+Nonparametric models typically suffer from the curse of dimensionality. This is defined by Gery Geenens (2011) as being caused by the sparsity of data in high-dimensional spaces, which results in a decrease in fastest achievable rates of convergence of regression function estimators toward their target curve as the dimension of the vector of independent variables increases. 
+
+The single index model avoids the curse of dimensionality by reducing the p-dimensional predictor to a univariate single-index. In fact, the estimator achieves the same convergence rate $n^{-\frac{1}{2}}$ that is optimal for most parametric models. For nonparametric models this rate is only $n^{-\frac{2}{5}}$, if the underlying function is twice continuously differentiable (Cameron and Trivedi(2005)).
 Thus, in general, single index models reach greater estimation precision than fully nonparametric estimators with multidimensional X.
 
 
 
-Nonetheless, semiparametric models have two important disavantages. First, they are hard to compute. Second, they may generate multiple local optima as they might require optimization of nonlinear objective functions that are multimodal or nonconvex. \footnote{Noncave in the case of the maximum likelihood estimator.} These problems seem to be exarcebated for increasing sample sizes or number of explanatory variables (Manski, 1975, 1985; Manski and Thompson, 1986; Cosslett, 1983; Ichimura, 1993; Horowitz, 1992; and Klein and Spady, 1993).\footnote{H{\"a}rdle and Stoker (1989) suggest a direct estimation method that does not require solving an optimization problem involving iterative solutions. This method becomes less attractive than Ichimura (1993) for small-sample settings as the curse of dimensionality inherited from the first stage might not disappear on the second stage. }
-% and as accurate as a one-dimensional nonparametric mean regression for $g$.
+Nonetheless, semiparametric models have two important disadvantages. First, they are hard to compute. Take the case of Ichimura's (1993) model, which requires nonlinear iteration procedures. In fact, iterative procedures are quite often required. Second, semiparametric models often have multiple local optima, as they require optimization of objective functions that are not unimodal. These problems seem to be exarcebated for increasing sample sizes or number of explanatory variables (Manski, 1975, 1985; Manski and Thompson, 1986; Cosslett, 1983; Ichimura, 1993; Horowitz, 1992; and Klein and Spady, 1993).
 
-% section introduction (end)
-The main focus of this paper is Ichimura's semiparametric model. In section 2 the identification conditions necessary for uniquely determining $\beta_0$ and $g(\cdot)$ in semiparametric models are presented.  Furthermore, Ichimura's solution will be analyzed in detail in section 3. The latter section briefly explains the weight function and bandwidth selection. As a comparison to Ichimura's method, Klein and Spady's (1993) semiparametric binary choice model will be explained concisely in section 4. Finally, in section 5 the two models are compared in both a theoretical and applied perspective.
 
-\section{Identification} % (fold)
-\label{sec:Identification}
+\section{Identification conditions} % (fold)
+\label{sec:Identification conditions}
+
+This section provides identification conditions for semiparametric single index models,  summarized in proposition 3.1. Brief intuitive explanations follow each of these conditions. Moreover, it is under these that $\beta_0$ and $ g(\cdot)$ are estimated in Ichimura (1993) and Klein and Spady's (1993) models, analyzed in sections 4 and 5, respectively.
+
 
 Model (1) implies
 
@@ -163,7 +173,7 @@ Model (1) implies
 E(Y|x) = g(x'\beta_0).
 \end{equation}
 
-Thus Y depends on $x$ only through the linear combination $x'\beta_0$, and this relationship is characterized by the link function $g(\cdot)$. Before estimating  $\beta_0$ and $ g(\cdot)$, restrictions must be imposed to ensure identification of the semiparametric model represented in equation (2).
+Thus $Y$ depends on $x$ only through the linear combination $x'\beta_0$, and this relationship is characterized by the link function $g(\cdot)$. Before estimating  $\beta_0$ and $ g(\cdot)$
 
 
 
@@ -174,13 +184,13 @@ Identification of $\beta_0$ and $g(\cdot)$ in model (2) requires that
 \begin{enumerate}[label=(\roman*)]
 \item The vector of independent variables x should not contain a constant and it must contain at least one continuous variable with nonzero coefficient. Furthermore, one component of $\beta_0$ is set to 1. 
 \item The support of $x'\beta_0$ is a bounded convex set with at least one interior point. Function $g$ is differentiable and it is not a constant function on the support of $x'\beta_0$;
-\item For the discrete components of $x$, varying the values of the discrete variables will not divide the support of $x'\beta_0$ into disjoint subsets.
+\item For the discrete components of $x$, changing the values of the discrete variables will not divide the support of $x'\beta_0$ into disjoint subsets.
 \end{enumerate}
 \end{prop}
 
-Some intuition is now provided for the restrictions imposed on $x$ in $(i)$. First, it is worth emphasizing that the elements of $x$ cannot suffer from multicollinearity, i.e., $Pr(x'\alpha = c) = 1$ where $\alpha$ is a constant and c is a scalar. Furthermore, the requirement that $x$ contains at least one continuous variable (with nonzero coefficient) prevents that $x$, as well as the scalar variable $ v = x'\beta_0 $ for any vector $\beta_0$, have a finite support. Otherwise, $E(Y|X = x) = g(x'\beta_0)$ would impose only a finite number of restrictions on $g(\cdot)$, leading to a infinite number of different choices for $g(\cdot)$ and $\beta_0$ that satisfy those restrictions.\footnote{However, note that even when all $x$'s components are discrete we can still identify bounds on the components of $\beta_0$, if $g$ is assumed to be increasing See Horowitz (1998) for  concrete examples.} 
+Some intuition is now provided for the restrictions imposed on $x$ in $(i)$. First, $x$ cannot suffer from multicollinearity. That is, $Pr(x'\alpha = c) = 1$ where $\alpha$ is a constant and c is a scalar. Furthermore, requiring $x$ to contain at least one continuous variable (with nonzero coefficient) prevents $x$ from having a finite support. This logic also applies to  the scalar variable $ v = x'\beta_0 $, for any vector $\beta_0$. Otherwise, $E(Y|X = x) = g(x'\beta_0)$ would impose only a finite number of restrictions on $g(\cdot)$, leading to an infinite number of different choices for $g(\cdot)$ and $\beta_0$ that satisfy those restrictions.\footnote{Note that even when all $x$ components are discrete we can still identify bounds on the components of $\beta_0$, if $g$ is assumed to be increasing See Horowitz (1998) for  concrete examples.} 
 
-Similarly, \textit{location normalization} and \textit{scale normalization} requirements are necessary. Define the function $g^{*}$ by the relation $g^{*}(\gamma + v\delta) = g(v)$ for all $v$ in the support of $x'\beta_0$. Then
+Analogously, identification requires \textit{location normalization} and \textit{scale normalization}. Define the function $g^{*}$ such that $g^{*}(\gamma + v\delta) = g(v)$, for all $v$ in the support of $x'\beta_0$. Then
 
 \begin{equation}
 E(Y|X = x) = g(x'\beta_0)
@@ -192,9 +202,9 @@ and
 E(Y|X = x) = g^*(\gamma + x'\beta_0\delta).
 \end{equation}
 
-Models (3) and (4) are observationally equivalent. Thus, $\beta_0$ and $g$ are not identified unless restrictions are imposed to uniquely specify $\gamma$ and $\delta$. Then, the restriction on $\gamma$ is a \textit{location normalization} and it can be satisfied by, for example, requiring $x$ not to include a constant. The restriction on $\delta$ is a \textit{scale normalization}. In this paper, the approach followed assumes that the vector $\beta_0$ has one of its components set to 1. \footnote{This implies that X must have at least 2 dimensions. Otherwise $\beta_0$ is simply normalized to 1 and a one-dimensional nonparametric model $E(y|x) = g(x)$ with no semiparametric part is obtained instead.}
+Models (3) and (4) are observationally equivalent. Thus, $\beta_0$ and $g$ are not identified unless restrictions are imposed to uniquely specify $\gamma$ and $\delta$. \textit{Location normalization} is obtained by restricting $\gamma$. For example, if $x$ does not include a constant. On the other hand, \textit{scale normalization} restricts $\delta$. Here, it is assumed that $\beta_0$ has one of its components set to 1. \footnote{This implies that $X$ must have at least 2 dimensions. Otherwise $\beta_0$ is simply normalized to 1 and a one-dimensional nonparametric model $E(y|x) = g(x)$ with no semiparametric part is obtained instead.}
 
-As to what concerns part (ii), restrictions are also imposed on $g(\cdot)$, even though some of these can potentially be weakened. First, $g(\cdot)$ cannot be a constant function. Otherwise, $\beta_0$ is not identified. Furthermore, what makes the identification of $E(Y|X = x)$ possible is that it remains constant if $x$ changes in such a way that $x'\beta_0$ stays constant. However, $P(x'\beta_0 = c)=0$, for $x_0'\beta$ continuously distributed and for some constant $c$, thus impossibilitating identification. By adding the assumption that $g(\cdot)$ is differentiable, $g(x'\beta_0)$ is close to $g(c)$ whenever $x'\beta_0$ is close enough to $c$. Then, the set of $x$ for which $x'\beta_0$ is within any specified nonzero distance of $c$ has nonzero probability for $c$ in the interior of the support of $x'\beta_0$. Therefore, we identify $\beta_0$ by the approximate constancy of $x'\beta_0$. In fact, Wei Lin and Kulasekera (2007) show that the weaker assumption that $g(\cdot)$ is only continuous is sufficient for identification. However, assuming differentiability will become useful when analyzing Ichimura's and Klein and Spady's methods.
+As to what concerns part (ii), restrictions are also imposed on $g(\cdot)$, even though some of these can potentially be weakened. First, $g(\cdot)$ cannot be a constant function. Otherwise, $\beta_0$ is not identified. Furthermore, what makes the identification of $E(Y|X = x)$ possible is that it remains constant if $x$ changes in such a way that $x'\beta_0$ stays constant. However, $P(x'\beta_0 = c)=0$, for $x_0'\beta$ continuously distributed and for some constant $c$. This renders identification impossible. By adding the assumption that $g(\cdot)$ is differentiable, $g(x'\beta_0)$ is close to $g(c)$ whenever $x'\beta_0$ is close enough to $c$. Then, the set of $x$ for which $x'\beta_0$ is within any specified nonzero distance of $c$ has nonzero probability for $c$ in the interior of the support of $x'\beta_0$. Therefore, we identify $\beta_0$ by the approximate constancy of $x'\beta_0$. In fact, Wei Lin and Kulasekera (2007) show that the weaker assumption that $g(\cdot)$ is continuous is sufficient for identification. However, differentiability is assumed on the remainder of the paper as it will become useful when analyzing Ichimura's (1993) and Klein and Spady's (1993) models.
 
 The need for condition (iii), that is,  the need to prevent $x'\beta_0$  from being divided into disjoint subsets, can be explained with an example inspired on Horowitz (1998). Consider a Single Index Model in which X has a continuous component $X_1$ with support $\big[0,1\big]$, and one discrete component $X_2$ whose support is $\{0,1\}$. Assume $X_1$ and $X_2$ are independent, $g(\cdot)$ is strictly increasing and non periodic and set $\beta_1 = 1$ as a \textit{scale normalization}. 
 
@@ -222,27 +232,28 @@ for $x_1 \in \big[\beta_2, 1\big]$. \footnote{Note that if g was periodic on $\b
 
 In this section Ichimura's (1993) estimation method for semiparametric models is analyzed. This method exhibits $n^{-\frac{1}{2}}$ efficiency and asymptotic normality. A weighting matrix that reaches the semiparametric efficiency bound is investigated. Nonetheless, multiple local minima may result. 
 
-Let $\beta_0$ denote the true value of $\beta$. Were $g$ to be known and $\beta_0$ would be characterized as the minimizer of the nonlinear least squares (NLS) problem
+Let $\beta_0$ denote the true value of $\beta$. For known $g$, $\beta_0$ is estimated by minimizing the nonlinear least squares (NLS) problem
 
 \[
 S(\beta) = E[Y - g(x'\beta)]^2. \]
 
-Replace $S(\beta)$ by the empirical counterpart. Instead of $S(\beta)$, minimize 
-\begin{equation}
-S_n(\beta) = \frac{1}{n}\sum_{i = 1}^n\big[Y_i - g(X_i'\beta)\big]^2
-\end{equation}
-
-with respect to $\beta$. 
-
 Exclusively as a means to understand the latter statement, assume $E[\varepsilon^2|X]=\sigma^2$. Then,
 \begin{align*}
-E[(Y - g(x'\beta))^2] & = E[(Y - g(x'\beta_0) + (g(x'\beta_0) - g(x'\beta))^2]\\
+E[(Y - g(x'\beta))^2] & = E[\{Y - g(x'\beta_0) + (g(x'\beta_0) - g(x'\beta))\}^2]\\
                    & = E[\varepsilon^2] + 2E[\varepsilon (g(x'\beta_0) - g(x'\beta)) ] + E[(g(x'\beta_0) - g(x'\beta))^2]\\                 & = \sigma^2 + E[E[\varepsilon (g(x'\beta_0) - g(x'\beta))|X] + E[(g(x'\beta_0) - g(x'\beta))^2]  \\
                    &= \sigma^2 + E[(g(x'\beta_0) - g(x'\beta))E[\varepsilon|X]] + E[(g(x'\beta_0) - g(x'\beta))^2] \\
                    &= \sigma^2 + E[(g(x'\beta_0) - g(x'\beta))^2]
 \end{align*}
 
-Where the last equality follows from the assumption $E[\varepsilon|X]=0$. Hence, given the scale and location normalization conditions from Proposition 2.1., $E[(Y - g(x'\beta))^2]$ is minimal at $\beta_0 = \beta$.
+Where the last equality follows from the assumption $E[\varepsilon|X]=0$. Hence, given the scale and location normalization conditions from Proposition 3.1., $E[(Y - g(x'\beta))^2]$ is minimal at $\beta_0 = \beta$.
+
+Replace $S(\beta)$ by the empirical counterpart 
+\begin{equation}
+S_n(\beta) = \frac{1}{n}\sum_{i = 1}^n\big[Y_i - g(X_i'\beta)\big]^2
+\end{equation}
+
+and minimize $S_n(\beta)$ instead of $S(\beta)$.
+
 
 In the present case, $g$ is in fact unknown and it must be estimated. However, this cannot be done directly with kernel estimation as $\beta_0$ is also unknown. Still, for a given $\beta$ we can estimate
 
@@ -251,13 +262,15 @@ G(X_i'\beta) \stackrel{def}{=} E(Yi|X_i'\beta) = E[g(X_i'\beta_0)|X_i'\beta]
 \end{equation}
  by the kernel method. 
 
-Ichimura (1993) proposes modifications of the usual kernel estimation to estimate $G(X_i'\beta)$. Markedly, observation $i$ is excluded from the calculation of $G(X_i'\beta)$. Otherwise, suppose a relatively small bandwidth is used. Then, $S_n(\beta)$ is trivially minimized when $\hat{G}(X_i'\beta) = Y_i$. By leaving one observation out, this problem is countered. Also, this validates the ability to predict the $i$th observation using the remaining observations in the sample. Therefore, outside the sample prediction is improved. In this way, a leave-one-out Nadaraya-Watson (NW) kernel estimator is obtained
+Ichimura (1993) proposes modifications of the usual kernel estimation to estimate $G(X_i'\beta)$. Markedly, observation $i$ is excluded from the calculation of $G(X_i'\beta)$. Otherwise, consider a relatively small bandwidth is used. Then, $S_n(\beta)$ is trivially minimized when $\hat{G}(X_i'\beta) = Y_i$. By leaving one observation out, this problem is countered. Also, this validates the ability to predict the $i$th observation using the remaining observations in the sample. Therefore, outside the sample prediction is improved. In this way, a leave-one-out Nadaraya-Watson (NW) kernel estimator is obtained
 
 \begin{equation}
 \hat{G}_{-i}(X_i'\beta) \equiv \hat{E}_{-i}(Yi|X_i'\beta) = \frac{(nh)^{-1}\sum_{j=1, j \neq i }^{n}  Y_jK(\frac{X_j'\beta - X_i'\beta}{h_n})}{\hat{p}_{-i}(X_i'\beta)},
 \end{equation}
 
-where $\hat{p}_{-i}(X_i'\beta) = \frac{1}{nh_n}\sum_{j=1,j \neq i}^{n}K(\frac{X_j'\beta - X_i'\beta}{h_n})$.  The denominator $\hat{p}(X_i'\beta)$ is random and it becomes necessary to trim out small values, particularly at the tails of the distribution. Let $p(x'\beta)$ denote the probability density function (PDF) of $X_i'\beta$ and $A_\delta$ and $A_n$ be the sets
+where $\hat{p}_{-i}(X_i'\beta) = \frac{1}{nh_n}\sum_{j=1,j \neq i}^{n}K(\frac{X_j'\beta - X_i'\beta}{h_n})$.  
+
+The denominator $\hat{p}(X_i'\beta)$ is random and it becomes necessary to trim small values, particularly at the tails of the distribution. Otherwise, the value for the NW kernel estimator explodes. Let $p(x'\beta)$ denote the probability density function (PDF) of $X_i'\beta$ and $A_\delta$ and $A_n$ be the sets
 
 \[ A_\delta = \{ x : p(x'\beta) \geq \delta, \text{ for all }  \beta \in \mathcal{B} \}
 \]
@@ -275,7 +288,7 @@ With this in mind, it is possible to choose $\beta$ by using a weighted NLS (WNL
 S_n(\beta) = \frac{1}{n} \sum_{i=1}^{n}  [Y_i - \hat{G}_{-i}(X_i'\beta)]^2w(x_i)\mathbf{1}{(X_i \in A_n)}
 \end{equation}
 
-where $\mathbf{1}{(X_i \in A_n)}$ is a trimming function that ensures that the random denominator is positive with high probability, and $w(x_i)$ is an appropriate nonnegative weighting function to correct heteroskedasticity, as explained in section 3.2. 
+where $\mathbf{1}{(X_i \in A_n)}$ is a trimming function that ensures that the random denominator is positive with high probability, and $w(x_i)$ is an appropriate nonnegative weighting function to correct heteroskedasticity, as explained in section 4.2. 
 
 To derive the asymptotic distribution of $\hat{\beta}_n$, first certain restrictions must be imposed. In particular, a bounded second order kernel with bounded support must be used and $ h_n = O(n^{-\frac{1}{5}})$.
 
@@ -293,8 +306,8 @@ According to Ichimura (1993), $\hat{\beta}_{n}$ has convergence rate $n^{-\frac{
 %\end{enumerate}
 
 
-\[ \sqrt{n}(\hat{\beta}_n - \beta_0) \stackrel{d}{\rightarrow} N(0,\Omega_I), \] where $\Omega_I = V^{-1}\Sigma V^{-1}$, and
-
+\[ \sqrt{n}(\hat{\beta}_n - \beta_0) \stackrel{d}{\rightarrow} N(0,\Omega_I), \] where $\Omega_I = V^{-1}\Sigma V^{-1}$, $I$ stands for Ichimura
+and 
 \[\Sigma = E\{w(X_i)^2\sigma^2(X_i)(g_i^{(1)})^2(X_i - E_A(X_i|X_i'\beta_0)) \times (X_i - E_A(X_i|X_i'\beta_0))'\},\]
 
 with $g_i^{(1)} = [\partial g(v)/\partial v]|_{v = X_i'\beta_0}, E_A(X_i|v) = E(X_i|x_A'\beta_0 = v)$ with $x_A$ having the distribution of $X_i$ conditional on $X_i \in A_\delta$, and
@@ -303,7 +316,7 @@ with $g_i^{(1)} = [\partial g(v)/\partial v]|_{v = X_i'\beta_0}, E_A(X_i|v) = E(
 
 \end{theorem}
 
-Therefore, root-n consistency is attained, which is the optimal rate for most parametric methods. Also, $h_n = O(n^{-\frac{1}{5}})$, which is the optimal bandwidth balancing bias and variance for a  nonparametric density.
+Note $\sqrt{n}(\hat{\beta}_n - \beta_0)=O_p(1)$ and $(\hat{\beta}_n - \beta_0) = O_p\left(\frac{1}{\sqrt{n}}\right)$. Therefore, root-n consistency is attained, which is the optimal rate for most parametric methods. Also, $h_n = O(n^{-\frac{1}{5}})$, which is the optimal bandwidth balancing bias and variance for a  nonparametric density.
 
 A consistent estimator of $\Omega_I$ is given by
 
@@ -314,8 +327,6 @@ where $\hat{V} = n^{-1}\sum_{i} w(X_i)(\hat{g}^{(1)})^2(X_i'\hat{\beta}_n)(X_i -
 
 For what follows the trimming set $A_\delta$ is ignored and $w(\cdot)$ is set to 1. Furthermore, assume $\beta_n - \beta_0 = O(n^{-\frac{1}{2}})$ and $\hat{\beta}_n - \beta_0 = O_p(n^{-\frac{1}{2}})$. Then, 
 
-
-%and assume that the minimization over $\beta$ is done over the shrinking set $\mathcal{B}_n = \{ \beta : \norm{\beta - \beta_0} \geq Cn^{-1/2}$ for some constant $ C > 0$. This follows H\"ardle, Hall and Ichimura (1993). With this in mind and $ h \in \{h : C_1n^{-\frac{1}{5}} \geq h \geq C_2n^{-\frac{1}{5}}\}$ for some $C_2 > C_1 > 0$ we can establish a proof for Theorem 1. First,
 
 \begin{align*}
 S_{n}(\beta_n) & = \frac{1}{n}\sum_i \{ Y_i - \hat{G}_{-i}(X_i'\beta_n)\}^2 = \frac{1}{n}\sum_i\{Y_i - \hat{G}_{-i}(X_i'\beta_n) +  \hat{G}_{-i}(X_i'\beta_0) \\
@@ -351,32 +362,12 @@ Then,
      					  & = (\frac{1}{n}\sum_i(g_{i0}^{(1)})^2v_{i0}v_{i0}')^{-1}\frac{1}{\sqrt{n}}\sum_i\varepsilon_i g_{i0}^{(1)}v_{i0} + o_p(1).
 \end{align*}
 
-For $g_{i0}^{(1)} = g^{(1)}(X_i'\beta_0)$ and $v_{i0} = X_i - E[X_i'|X_i'\beta_0]$. With this in mind, the Central Limit Theorem (CLT) and Law of Large Numbers (LLN) we obtain the result from Theorem 3.1 if we set $w(X_i) = 1$.
+For $g_{i0}^{(1)} = g^{(1)}(X_i'\beta_0)$ and $v_{i0} = X_i - E[X_i'|X_i'\beta_0]$. With this in mind, the Central Limit Theorem (CLT) and Law of Large Numbers (LLN) we obtain the result from Theorem 4.1 if we set $w(X_i) = 1$.
 
 
 %Recall when we described identiÖcation that we required the dimension of Xi to be 2 or larger.
 %Suppose that Xi is one-dimensional.
 
-
-
-%\begin{equation}
-%W_0(\bar{\beta} - \beta_0) = V_0 + (s.o.),
-%\end{equation}
-
-
-%\[  W_0 = \sum_{i=1}^{n} [g^{(1)}(X_i'\beta_0)]^2[X_i - E(X_i|X_i'\bet_0][X_i - E(X_i|X_i'\beta_0)]' \]
-
-%and
-
-%\[ V_0 = \sum_{i=1}^{n} u_ig^{(1)}(X_i'\beta_0)[X_i - E(X_i|X_i'\beta_0).\]
-
-%Then, by the standard law of large numbers and a central limit theorem (CLT) argument, we have
-
-%\begin{equation}
-%\sqrt{n}(\bar{\beta} - \beta_0) = (W_0/n)^{-1}n^{-\frac{1}{2}}V_0 + o_p(1) \overset{d}{\to} N(0,\Sigma_0),
-%\end{equation}
-
-%where $\Sigma_0$ is the same as $\Sigma_I$, except that for the former $W(X_i) = 1$.
 
 \subsection{Bandwidth Selection} % (fold)
 \label{sub:Bandwidth Selection}
@@ -395,7 +386,11 @@ where $\hat{G}_{-i}(X_i'\beta, h_n) = \hat{G}_{-i}(X_i'\beta)$ and $A_\delta$ is
 \subsection{Weight Function} % (fold)
 \label{sub:Weight Function}
 
-In case heteroskedastic data is used, that is, if different errors do not have the same variance, the model must be changed as it is no longer efficient and standard errors and $t$-statistics are biased. Following the idea of Generalized Least Squares (GLS), the model must be transformed in order to achieve efficiency. Furthermore, analogously to GLS, in case the transformation depends upon unknown parameters, these need to be estimated and an analogue of Feasible GLS (FGLS) is obtained instead. On the latter case, a weight function is used that assumes a general form of heteroskedasticy. This weight function, $w$, is chosen so as to maximize the asymptotic efficiency of the estimator. 
+In case heteroskedastic data is used, the model must be changed as it is no longer efficient and standard errors and $t$-statistics are biased.
+Heteroskedasticity occurs when the variance of the unobservable error $\varepsilon$, conditional on  the vector of independent variables, is not constant. That is, $Var(\varepsilon_i|X_i) = \sigma_i^2$. In particular, the variance of $\varepsilon$ might be a function of the independent variables.
+Moreover, efficiency is desirable because the more efficient an estimator is, the smaller the amount of dispersion it has around its expected value and the more precise it is as an estimator of the corresponding parameter. 
+
+Following the idea of Generalized Least Squares (GLS), the model must then be transformed in order to achieve efficiency. Also analogously to GLS, if the transformation depends upon unknown parameters, these need to be estimated and an analogue of Feasible GLS (FGLS) is obtained instead. On the latter case, a weight function is used that assumes a general form of heteroskedasticy. This weight function, $w$, is chosen so as to maximize the asymptotic efficiency of the estimator. 
 
 %Within the class of weighted nonlinear least squares (WNLS) estimators, an estimator is asymptotically efficient given the covariance matrix $\Omega$ of its asymptotic distributions and the covariance matrix $\Omega^*$ of the other WNLS estimators, if $\Omega^* - \Omega$ is positive semidefinite. Even though the class of all regular estimators of single index models may include estimators that are not semiparametric WNLS estimators, the definition of asymptotically efficient estimator remains the same. 
 
@@ -407,7 +402,7 @@ In case heteroskedastic data is used, that is, if different errors do not have t
 
 %for a WNLS estimator of $\beta_0$ with weight function $w(x) = \frac{1}{\sigma^2(x)}$. 
 
-The problem of efficient estimation of $\beta_0$ in a single index model with unknown $g(\cdot)$ is analyzed by Hall and Ichimura (1991) and Newey and Stocker (1993). Under certain regularity conditions, the efficiency bound for the single index model, with unknown $g(\cdot)$ and using only data for which $X \in A_{\delta}$, is $\Omega_I$ from Theorem 3.1., for $w(x) = \frac{1}{\sigma^2(x)}$.\footnote{The assumption that only data where  $X \in A_{\delta}$ is used can be relaxed by letting $A_\delta$ grow very slowly as $n$ increases} Thus, the weight function allows us to weight each observation by a factor proportional to the error variance. Moreover, observations with higher variance get a smaller weight. 
+The problem of efficient estimation of $\beta_0$ in a single index model with unknown $g(\cdot)$ is analyzed by Hall and Ichimura (1991) and Newey and Stocker (1993). Under certain regularity conditions, the efficiency bound for the single index model, with unknown $g(\cdot)$ and using only data for which $X \in A_{\delta}$, is $\Omega_I$ from Theorem 4.1., for $w(x) = \frac{1}{\sigma^2(x)}$.\footnote{The assumption that only data where  $X \in A_{\delta}$ is used can be relaxed by letting $A_\delta$ grow very slowly as $n$ increases} Thus, the weight function allows us to weight each observation by a factor proportional to the error variance. Moreover, observations with higher variance get a smaller weight. 
 
 The efficiency bound is then
 
@@ -416,7 +411,7 @@ The efficiency bound is then
  G(X'\beta,\beta)\frac{\partial}{\partial \beta} G(X'\beta,\beta) \right] \right\}^{-1}
 \end{equation}
 
-where, considering the result shown above, we have
+where $SI$ stands for single index and, considering the result shown above, we have
 \begin{align*}
 g(X_i'\beta_0) - E_A[g(X_i'\beta_0)|X_i'\beta)] & = g^{(1)}(X_i'\beta)( X_i - E_A[X_i'|X_i'\beta])(\beta_0 - \beta) \\
 											   & + O(n^{-1})
@@ -440,10 +435,9 @@ and $\hat{\varepsilon}_i = Y_i - \hat{G}_{-i}(X_i'\hat{\beta_n})$. Further, $N_k
 \label{sub:Model's disadvantages}
 
 
-it is important to realize that the minimization of a nonlinear objective function such as equation (9) might be computationally costly. The WNLS estimator is computed by iterative methods. Start with an initial random guess for the for estimator $\hat{\beta}_n^{1}$ such as $\hat{\beta}_n^{1} = - \frac{1}{n}\sum_i y_i\hat{f'}(x_i)$ where $f'$ is the derivative of the density of $x_i$ and $\hat{\beta}_n^{1}$ follows the restrictions from section 2.\footnote{This estimator is a density weighted average derivative estimator such as in Stoker (1986).} Attain the kernel estimate $\hat{G}_{-i}(X_i'\hat{\beta}_n^{1})$ and thus $S_n(\hat{\beta}_n^{1})$. Perturb $\hat{\beta}_n^{1}$ to obtain $\frac{\partial S_n(\beta)}{\partial\beta} |_{\hat{\beta}_n^{1}}$ and update $\hat{\beta}_n^{2} = \hat{\beta}_n^{1} + A_n  \frac{ \partial S_n(\beta)}{\partial\beta}|_{\hat{\beta}_n^{1}}$ where $A_n$ is the size of the random disturbance. This process should be repeated several times, until convergence is reached. Yet, this is computationally difficult, specially because there might be multiple local minima, in case, for example, the objective function is multimodal or nonconvex. 
+it is important to realize that the minimization of a nonlinear objective function such as equation (9) might be computationally costly. The WNLS estimator is computed by iterative methods. Start with an initial random guess for the estimator $\hat{\beta}_n^{1}$ such as $\hat{\beta}_n^{1} = - \frac{1}{n}\sum_i y_i\hat{f'}(x_i)$ where $f'$ is the derivative of the density of $x_i$ and $\hat{\beta}_n^{1}$ follows the restrictions from section 3.\footnote{This estimator is a density weighted average derivative estimator such as in Stoker (1986).} Attain the kernel estimate $\hat{G}_{-i}(X_i'\hat{\beta}_n^{1})$ and thus $S_n(\hat{\beta}_n^{1})$. Perturb $\hat{\beta}_n^{1}$ to obtain $\frac{\partial S_n(\beta)}{\partial\beta} |_{\hat{\beta}_n^{1}}$ and update $\hat{\beta}_n^{2} = \hat{\beta}_n^{1} + A_n  \frac{ \partial S_n(\beta)}{\partial\beta}|_{\hat{\beta}_n^{1}}$ where $A_n$ is the size of the random disturbance. This process should be repeated until convergence. Yet, this is computationally difficult, specially because there might be multiple local minima, in case, for example, the objective function is multimodal or nonconvex. 
 
-One may consider  as an alternative a direct estimation method that does not require optimization of problems involving iterative solutions.  H{\"a}rdle and Stoker (1989) provide such an method. However, according to Racine and Li (2007), for small sample settings, H{\"a}rdle and Stoker's (1989) direct method may be less appealing than Ichimura's iterative method.
-
+One may consider  as an alternative a direct estimation method that does not require optimization of problems involving iterative solutions.  H{\"a}rdle and Stoker (1989) provide such a method. However, according to Racine and Li (2007), for small sample settings, H{\"a}rdle and Stoker's (1989) direct method may be less appealing than Ichimura's (1993) iterative method, as the curse of dimensionality inherited from its first stage might not disappear on the second stage.
 
 \section{Klein and Spady's binary estimation model} % (fold)
 \label{sec:section_about_references_within_the_document}
@@ -471,7 +465,7 @@ where
 
 It is clear from equation (13) that restrictions must be imposed such that any estimate of $g(\cdot)$ is kept sufficiently far away from 0 and 1. This can be achieved by using a simplified trimming function $\tau_i = \mathbf{1}{(X_i \in A_\delta)}$ that restricts X to a fixed set $A_\delta$ on which $G$ is bounded away from 0 and 1.
 
-Similarly to Ichimura's method, Klein and Spady suggest replacing $g(\cdot)$ with the leave-one-out NW from equation (8). Again, we leave one observation out as otherwise, for a relatively small bandwidth, the objective function would be maximized by setting $G(X_i'\beta)=0$ when $Y_i=0$ and $G(X_i'\beta)=1$ when $Y_i=1$. That is, the objective function would take the value zero. By leaving one observation out, outside the sample prediction is improved. 
+Similarly to Ichimura's method, Klein and Spady (1993) suggest replacing $g(\cdot)$ with the leave-one-out NW from equation (8). Again, we leave one observation out as otherwise, for a relatively small bandwidth, the objective function would be maximized by setting $G(X_i'\beta)=0$ when $Y_i=0$ and $G(X_i'\beta)=1$ when $Y_i=1$. That is, the objective function would take the value zero. By leaving one observation out, outside the sample prediction is improved. 
 
 With this in mind, the maximization problem takes the form
 
@@ -479,7 +473,7 @@ With this in mind, the maximization problem takes the form
 \mathcal{L}_n(\beta) = \frac{1}{n}\sum_{i=1}^n \tau_{i}\{ (1 - Y_i)ln[ 1 - \hat{G}_{-i}(X_i'\beta)] +  Y_iln[\hat{G}_{-i}(X_i'\beta)]\}.
 \end{equation}
 
-To derive the asymptotic distribution of $\hat{\beta}_n$, certain assumptions are required in terms of bandwidth and kernel choice. In particular, Klein and Spady (1993) use an higher order kernel. Higher order kernels allow for increased smoothness and faster rates of convergence. However, for these desirable properties to ``kick in'', a high number of observations might be necessary. \footnote{Marron (1992) gives a particular example in which at least 10 000 observations are necessary for the a fourth order kernel to become decidedly dominant relatively to a nonnegative second order kernel.} An example of an higher order kernel is
+To derive the asymptotic distribution of $\hat{\beta}_n$, certain assumptions are required in terms of bandwidth and kernel choice. In particular, Klein and Spady (1993) use an higher order kernel. Higher order kernels allow for increased smoothness and faster rates of convergence. However, for these desirable properties to ``kick in'', a high number of observations might be necessary. \footnote{Marron (1992) gives a particular example in which at least 10 000 observations are necessary for the a fourth order kernel to become decidedly dominant relatively to a nonnegative second order kernel.} An example of a higher order kernel is
 \[\int z^{2}K(z)dz = 0.\]
 Furthermore, the bandwidth must satisfy the rate $ n^{-\frac{1}{6}} < h_n < n^{-\frac{1}{8}}$.
 
@@ -490,9 +484,9 @@ According to Klein and Spady (1993), $\hat{\beta}_{n}$ is $n^{-\frac{1}{2}}$ and
 \[\sqrt{n}(\hat{\beta}_{n} - \beta_0) \stackrel{d}{\rightarrow} N(0,\Omega_{KS}),
 \]
 where \[ \Omega_{KS} = \left\{ E\left[\frac{\partial}{\partial \beta}
- G(X_i'\beta)\frac{\partial}{\partial \beta} G(X_i'\beta)'\frac{1}{g(X_i'\beta_0)(1 - g(X_i'\beta_0))} \right]\right\}^{-1} \]
+ G(X_i'\beta)\frac{\partial}{\partial \beta} G(X_i'\beta)'\frac{1}{g(X_i'\beta_0)(1 - g(X_i'\beta_0))} \right]\right\}^{-1}. \]
  
-and $\Omega_{KS} = \Omega_{SI}$, i.e., the estimator is asymptotically efficient.
+$KS$ stands for Klein and Spady and $\Omega_{KS} = \Omega_{SI}$, i.e., the estimator is asymptotically efficient.
 
 \end{theorem}
 
@@ -509,7 +503,7 @@ Var(Y|X = x) & = E[\mathbf{1}{(Y = 1)}|X = x]\{1 - E[\mathbf{1}{(Y = 1)}|X = x]\
 
 where the last equality follows from the assumption $E[\varepsilon|X]=0$.
 
-Consider now a semiparametric WNLS estimation of $\beta_0$ such as in Ichimura's model. Differentiate the right-hand side of equation (14) with respect to $\beta_n$. Then, the first order condition is
+Consider now a semiparametric WNLS estimation of $\beta_0$ such as in Ichimura's (1993) model. Differentiate the right-hand side of equation (14) with respect to $\beta_n$. Then, the first order condition is
 \begin{equation}
 \frac{1}{n} \sum_{i=1}^n \frac{\frac{\partial\hat{G}_{-i}(X_i'\beta_n)}{\partial \beta_n}}{\hat{G}_{-i}(X_i'\beta_n)(1 - \hat{G}_{-i}(X_i'\beta_n))} (Y_i - \hat{G}_{-i}(X_i'\beta_n)) X_i \tau_i = 0
 \end{equation} 
@@ -522,12 +516,12 @@ w_i & = \{ \hat{G}_{-i}(X_i'\beta_n)[ 1 - \hat{G}_{-i}(X_i'\beta_n)]\}^{-1} = \{
 \end{align*}
 
 
-Seeing to section 3.2., it follows that semiparametric maximum-likelihood estimator of $\beta_0$ in Klein and Spady's model is asymptotically efficient.\footnote{This is only true for ``first order efficiency'', i.e., when $E(X_i|X_i'\beta)$ is linear in $X_i'\beta$.}
+Seeing to section 4.2., it follows that semiparametric maximum-likelihood estimator of $\beta_0$ in Klein and Spady's model is asymptotically efficient.\footnote{This is only true for ``first order efficiency'', i.e., when $E(X_i|X_i'\beta)$ is linear in $X_i'\beta$.}
 
 \subsection{Bandwidth Selection} % (fold)
 \label{sub:Bandwidth Selection}
 
-Klein and Spady (1993) do not discuss the choice of bandwidth, apart from the requirement that $ n^{-\frac{1}{6}} < h_n < n^{-\frac{1}{8}}$. However, similarly to Ichimura's method and following H{\"a}rdle et al. (1993), an empirical way of selecting the bandwidth for optimal smoothing of both $g(\cdot)$ and $\beta$ can be conjectured. This is attained by choosing $h_n$ jointly with $\beta$ when maximizing
+Klein and Spady (1993) do not discuss the choice of bandwidth, apart from the requirement that $ n^{-\frac{1}{6}} < h_n < n^{-\frac{1}{8}}$. However, similarly to Ichimura's (1993) method and following H{\"a}rdle et al. (1993), an empirical way of selecting the bandwidth for optimal smoothing of both $g(\cdot)$ and $\beta$ can be conjectured. This is attained by choosing $h_n$ jointly with $\beta$ when maximizing
 \begin{equation}
 M_n(\beta, h_n) = \frac{1}{n}\sum_{i=1}^n \tau_{i}\{ (1 - Y_i)ln[ 1 - \hat{G}_{-i}(X_i'\beta, h_n)] +  Y_iln[\hat{G}_{-i}(X_i'\beta, h_n)]\}.
 \end{equation}
@@ -535,16 +529,15 @@ M_n(\beta, h_n) = \frac{1}{n}\sum_{i=1}^n \tau_{i}\{ (1 - Y_i)ln[ 1 - \hat{G}_{-
 \subsection{Model's disadvantages} % (fold)
 \label{sub:Model's disadvantages}
 
-Analogously to Ichimura's model, optimization of the maximum likelihood function, using the iteration between the computation of $\hat{\beta}_n$ given $\hat{G}_{-i}$ and the computation of $\hat{G}_{-i}$ given $\hat{\beta}_n$, is recurrently difficult.  Particularly so when the optimization leads to multiple local maxima. Such an event could be explained by an objective function that is either multimodal or nonconcave. 
+Analogously to Ichimura's (1993) model, optimization of the maximum likelihood function, using the iteration between the computation of $\hat{\beta}_n$ given $\hat{G}_{-i}$ and the computation of $\hat{G}_{-i}$ given $\hat{\beta}_n$, is recurrently difficult.  Especially so when the optimization leads to multiple local maxima. Such an event could be explained by an objective function that is either multimodal or nonconcave. 
 
-Zhou and Lang (1995) provide an alternative using an ``easy to compute'' semiparametric estimator for binary choice models. The method is based on a semiparametric interpretation of the Expectation and Maximization (EM) principle (Dempster et al (1977)) and the least squares approach. It preserves root-n consistency and asymptotically normally, but has the novelty of being fast and easy to compute.
+Zhou and Lang (1995) provide an alternative using an ``easy to compute'' semiparametric estimator for binary choice models. The method is based on a semiparametric interpretation of the Expectation and Maximization (EM) principle (Dempster et al (1977)) and the least squares approach. It preserves root-n consistency and is asymptotically normally distributed, but has the novelty of being fast and easy to compute.
 % section section_about_references_within_the_document (end)
 
 \section{Comparing Ichimura's and Klein and Spady's model: a theoretical perspective} % (fold)
 \label{sec:Comparing Ichimura's and Klein and Spady's model: a theoretical perspective}
 
-Klein and Spady's model seems more adequate than Ichimura's for the binary choice model case. Ichimura's model uses a weight function as described in section 3.2. to correct for heteroskedasticity. However, Klein and Spady's model is fully efficient in the sense that it reaches the semiparametric efficiency bound.  The $log-likelihood$ function has ``natural'' weighting, thus avoiding the problem of heteroskedasticity and the use of a weight function.  Consequently, a model is attained that prevents the use of the two-step procedure described in section 3.2. to reach the asymptotic efficiency bound. 
-
+Klein and Spady's (1993) model seems more adequate than Ichimura's (1993) for the binary choice model case. Klein and Spady's (1993) model is fully efficient in the sense that it reaches the semiparametric efficiency bound. In fact, under certain assumptions, such as asymptotic normality and root-n consistency, if the maximum likelihood solution exists, the maximum likelihood estimate is the most efficient estimator of $\beta_0$ (Eliason (1993)). As Ichimura's (1993) and Klein and Spady's models (1993) satisfy both these conditions, the previous statement seems to give support to our claim. Maximum-likelihood functions have ``natural'' weighting. On the other hand, Ichimura's (1993) model requires a weight function, and potentially the two-step procedure described in section 4.2., to reach the asymptotic bound. Thus, much is saved in terms of simplicity and efficiency is in general improved by using Klein and Spady's (1993) model for the binary case.
 \newpage 
 
 \bibliographystyle{natdin}
