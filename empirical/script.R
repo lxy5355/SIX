@@ -3,7 +3,8 @@ library(caTools)
 #library(rpart.plot)
 source ("ichimura_functions.R")
 source ("KS_functions.R")
-
+########remember to normaliye the x data to have variance eqauls to 1#######
+######plot g hat estimate and logistic######
 data <- read.csv('C:/Users/lxy53/Documents/GitHub/SIX/empirical/voice.csv')
 
 # Create a train and test set.
