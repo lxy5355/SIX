@@ -297,7 +297,7 @@ To derive the asymptotic distribution of $\hat{\beta}_n$, first certain restrict
 \newtheorem{theorem}{Theorem}[section]
 
 \begin{theorem}
-According to Ichimura (1993), $\hat{\beta}_{n}$ has convergence rate $n^{-\frac{1}{2}}$ and asymptotic normal distribution as in
+According to Ichimura (1993), 
 
 %\begin{enumerate}[label=(\roman*)]
 	%\item The set $A_\delta$ is compact, and the weight function $w(\cdot)$ is bounded and positive on $A_\delta$. Define the set $D_z = \{ z : z = x'\beta, \beta \in \mathcal{B}$,$ x \in A_\delta\}$. Letting $p(\cdot)$ denote the PDF of $z \in D_z$, $p(\cdot)$ is bounded below by a positive constant for all $z \in D_z$.
@@ -307,9 +307,9 @@ According to Ichimura (1993), $\hat{\beta}_{n}$ has convergence rate $n^{-\frac{
 	
 %\end{enumerate}
 
+\[ \sqrt{n}(\hat{\beta}_n - \beta_0) \stackrel{d}{\rightarrow} N(0,\Omega_I), \] 
 
-\[ \sqrt{n}(\hat{\beta}_n - \beta_0) \stackrel{d}{\rightarrow} N(0,\Omega_I), \] where $\Omega_I = V^{-1}\Sigma V^{-1}$, $I$ stands for Ichimura
-and 
+ with $\Omega_I = V^{-1}\Sigma V^{-1}$, where $I$ stands for Ichimura and 
 \[\Sigma = E\{w(X_i)^2\sigma^2(X_i)(g_i^{(1)})^2(X_i - E_A(X_i|X_i'\beta_0)) \times (X_i - E_A(X_i|X_i'\beta_0))'\},\]
 
 with $g_i^{(1)} = [\partial g(v)/\partial v]|_{v = X_i'\beta_0}, E_A(X_i|v) = E(X_i|x_A'\beta_0 = v)$ with $x_A$ having the distribution of $X_i$ conditional on $X_i \in A_\delta$, and
@@ -318,7 +318,8 @@ with $g_i^{(1)} = [\partial g(v)/\partial v]|_{v = X_i'\beta_0}, E_A(X_i|v) = E(
 
 \end{theorem}
 
-Note $\sqrt{n}(\hat{\beta}_n - \beta_0)=O_p(1)$ and $(\hat{\beta}_n - \beta_0) = O_p\left(\frac{1}{\sqrt{n}}\right)$. Therefore, root-n consistency is attained, which is the optimal rate for most parametric methods. Also, $h_n = O(n^{-\frac{1}{5}})$, which is the optimal bandwidth balancing bias and variance for a  nonparametric density.
+Note $\sqrt{n}(\hat{\beta}_n - \beta_0)=O_p(1)$, and thus $(\hat{\beta}_n - \beta_0) = O_p\left(\frac{1}{\sqrt{n}}\right)$. Therefore, root-n consistency is attained, which is the optimal rate for most parametric methods. Furthermore, $\sqrt{n}(\hat{\beta}_n - \beta_0)$ is asymptotically normally distributed and its asymptotic distribution is centered at zero. The latter fact contrasts with the case of nonparametric density estimation, whose asymptotic distributions are in general not centered at zero when the estimators have their fastest possible rates of convergence (Horowitz (1998)). 
+
 
 A consistent estimator of $\Omega_I$ is given by
 
@@ -481,18 +482,21 @@ Furthermore, the bandwidth must satisfy the rate $ n^{-\frac{1}{6}} < h_n < n^{-
 
 
 \begin{theorem}
-According to Klein and Spady (1993), $\hat{\beta}_{n}$ has convergence rate $n^{-\frac{1}{2}}$ and asymptotic normal distribution as in 
+According to Klein and Spady (1993), 
 
 \[\sqrt{n}(\hat{\beta}_{n} - \beta_0) \stackrel{d}{\rightarrow} N(0,\Omega_{KS}),
 \]
-where \[ \Omega_{KS} = \left\{ E\left[\frac{\partial}{\partial \beta}
- G(X_i'\beta)\frac{\partial}{\partial \beta} G(X_i'\beta)'\frac{1}{g(X_i'\beta_0)(1 - g(X_i'\beta_0))} \right]\right\}^{-1}. \]
+
+with  \[ \Omega_{KS} = \left\{ E\left[\frac{\partial}{\partial \beta}
+ G(X_i'\beta)\frac{\partial}{\partial \beta} G(X_i'\beta)'\frac{1}{g(X_i'\beta_0)(1 - g(X_i'\beta_0))} \right]\right\}^{-1}, \]
  
-$KS$ stands for Klein and Spady and $\Omega_{KS} = \Omega_{SI}$, i.e., the estimator is asymptotically efficient.
+where $KS$ stands for Klein and Spady and $\Omega_{KS} = \Omega_{SI}$, i.e., the estimator is asymptotically efficient.
 
 \end{theorem}
 
-Note $\sqrt{n}(\hat{\beta}_n - \beta_0)=O_p(1)$ and $(\hat{\beta}_n - \beta_0) = O_p\left(\frac{1}{\sqrt{n}}\right)$. Thus root-n consistency is attained. Furthermore, to have a good grasp of this result, it is fundamental to understand the expression for $\Omega_{KS}$. In particular, if one is to show that $\Omega_{KS} = \Omega_{SI}$, it is necessary to understand that $\frac{1}{g(X_i'\beta_0)(1 - g(X_i'\beta_0))}$ indeed corresponds to $\frac{1}{\sigma^2(x)}$ in equation (10). 
+Note $\sqrt{n}(\hat{\beta}_n - \beta_0)=O_p(1)$, and thus $(\hat{\beta}_n - \beta_0) = O_p\left(\frac{1}{\sqrt{n}}\right)$.  Thus root-n consistency is attained, which is the optimal rate for most parametric methods. Furthermore, $\sqrt{n}(\hat{\beta}_n - \beta_0)$ is asymptotically normally distributed and its asymptotic distribution is centered at zero. Once again, the latter fact contrasts with the case of nonparametric density estimation, whose asymptotic distributions are in general not centered at zero when the estimators have their fastest possible rates of convergence (Horowitz (1998)). 
+
+However, to have a good grasp of Theorem 5.1., it is fundamental to understand the expression for $\Omega_{KS}$. In particular, if one is to show that $\Omega_{KS} = \Omega_{SI}$, it is necessary to understand that $\frac{1}{g(X_i'\beta_0)(1 - g(X_i'\beta_0))}$ indeed corresponds to $\frac{1}{\sigma^2(x)}$ in equation (10). 
 
 It is known that for a binary choice model, 
 \[Var(Y|X = x) = P(Y = 1|X = x)[1 - P(Y = 1|X = x)].\]
