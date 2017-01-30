@@ -72,13 +72,15 @@
 	
 \section{Introduction} % (fold)
 \label{sec:introduction}
-TO BE WRITTEN WHEN THE APPLIED PART IS DONE.
-SAY WHO DID WHAT.
+THIS SECTION WILL WRITTEN WHEN THE APPLIED PART IS DONE.
+%Say who did what.
 
-Semiparametric single index models are widely applied in economic research. Applications range from finance to labor economics.
+
+
+%Semiparametric single index models are widely applied in economic research. Applications range from finance to labor economics.
 
 % section introduction (end)
-The main focus of this paper is Ichimura's semiparametric model. In section 4 the identification conditions necessary for uniquely determining $\beta_0$ and $g(\cdot)$ in semiparametric models are presented.  Furthermore, Ichimura's solution will be analyzed in detail in section 5. The latter section briefly explains the weight function and bandwidth selection. As a comparison to Ichimura's method, Klein and Spady's (1993) semiparametric binary choice model will be explained concisely in section 6. Finally, in section 6 the two models are compared in both a theoretical and applied perspective.
+%The main focus of this paper is Ichimura's semiparametric model. In section 4 the identification conditions necessary for uniquely determining $\beta_0$ and $g(\cdot)$ in semiparametric models are presented.  Furthermore, Ichimura's solution will be analyzed in detail in section 5. The latter section briefly explains the weight function and bandwidth selection. As a comparison to Ichimura's method, Klein and Spady's (1993) semiparametric binary choice model will be explained concisely in section 6. Finally, in section 6 the two models are compared in both a theoretical and applied perspective.
 
 
 
@@ -262,13 +264,13 @@ G(X_i'\beta) \stackrel{def}{=} E(Yi|X_i'\beta) = E[g(X_i'\beta_0)|X_i'\beta]
 \end{equation}
  by the kernel method. 
 
-Ichimura (1993) proposes modifications of the usual kernel estimation to estimate $G(X_i'\beta)$. Markedly, observation $i$ is excluded from the calculation of $G(X_i'\beta)$. Otherwise, consider a relatively small bandwidth is used. Then, $S_n(\beta)$ is trivially minimized when $\hat{G}(X_i'\beta) = Y_i$. By leaving one observation out, this problem is countered. Also, this validates the ability to predict the $i$th observation using the remaining observations in the sample. Therefore, outside the sample prediction is improved. In this way, a leave-one-out Nadaraya-Watson (NW) kernel estimator is obtained
+Ichimura (1993) proposes modifications of the usual kernel estimation to estimate $G(X_i'\beta)$. Markedly, observation $i$ is excluded from the calculation of $G(X_i'\beta)$. Otherwise, consider a relatively small bandwidth. Then, $S_n(\beta)$ is trivially minimized when $\hat{G}(X_i'\beta) = Y_i$. By leaving one observation out, this problem is countered. Also, this validates the ability to predict the $i$th observation using the remaining observations in the sample. Therefore, outside the sample prediction is improved. This way, a leave-one-out Nadaraya-Watson (NW) kernel estimator is obtained
 
 \begin{equation}
 \hat{G}_{-i}(X_i'\beta) \equiv \hat{E}_{-i}(Yi|X_i'\beta) = \frac{(nh)^{-1}\sum_{j=1, j \neq i }^{n}  Y_jK(\frac{X_j'\beta - X_i'\beta}{h_n})}{\hat{p}_{-i}(X_i'\beta)},
 \end{equation}
 
-where $\hat{p}_{-i}(X_i'\beta) = \frac{1}{nh_n}\sum_{j=1,j \neq i}^{n}K(\frac{X_j'\beta - X_i'\beta}{h_n})$.  
+where $\hat{p}_{-i}(X_i'\beta) = (nh)^{-1}\sum_{j=1,j \neq i}^{n}K(\frac{X_j'\beta - X_i'\beta}{h_n})$.  
 
 The denominator $\hat{p}(X_i'\beta)$ is random and it becomes necessary to trim small values, particularly at the tails of the distribution. Otherwise, the value for the NW kernel estimator explodes. Let $p(x'\beta)$ denote the probability density function (PDF) of $X_i'\beta$ and $A_\delta$ and $A_n$ be the sets
 
@@ -295,7 +297,7 @@ To derive the asymptotic distribution of $\hat{\beta}_n$, first certain restrict
 \newtheorem{theorem}{Theorem}[section]
 
 \begin{theorem}
-According to Ichimura (1993), $\hat{\beta}_{n}$ has convergence rate $n^{-\frac{1}{2}}$ and is asymptotically normally distribution as in
+According to Ichimura (1993), $\hat{\beta}_{n}$ has convergence rate $n^{-\frac{1}{2}}$ and asymptotic normal distribution as in
 
 %\begin{enumerate}[label=(\roman*)]
 	%\item The set $A_\delta$ is compact, and the weight function $w(\cdot)$ is bounded and positive on $A_\delta$. Define the set $D_z = \{ z : z = x'\beta, \beta \in \mathcal{B}$,$ x \in A_\delta\}$. Letting $p(\cdot)$ denote the PDF of $z \in D_z$, $p(\cdot)$ is bounded below by a positive constant for all $z \in D_z$.
@@ -386,9 +388,9 @@ where $\hat{G}_{-i}(X_i'\beta, h_n) = \hat{G}_{-i}(X_i'\beta)$ and $A_\delta$ is
 \subsection{Weight Function} % (fold)
 \label{sub:Weight Function}
 
-In case heteroskedastic data is used, the model must be changed as it is no longer efficient and standard errors and $t$-statistics are biased.
 Heteroskedasticity occurs when the variance of the unobservable error $\varepsilon$, conditional on  the vector of independent variables, is not constant. That is, $Var(\varepsilon_i|X_i) = \sigma_i^2$. In particular, the variance of $\varepsilon$ might be a function of the independent variables.
 Moreover, efficiency is desirable because the more efficient an estimator is, the smaller the amount of dispersion it has around its expected value and the more precise it is as an estimator of the corresponding parameter. 
+Hence, in case heteroskedastic data is used, the model must be changed as it is no longer efficient and standard errors and $t$-statistics are biased.
 
 Following the idea of Generalized Least Squares (GLS), the model must then be transformed in order to achieve efficiency. Also analogously to GLS, if the transformation depends upon unknown parameters, these need to be estimated and an analogue of Feasible GLS (FGLS) is obtained instead. On the latter case, a weight function is used that assumes a general form of heteroskedasticy. This weight function, $w$, is chosen so as to maximize the asymptotic efficiency of the estimator. 
 
@@ -465,7 +467,7 @@ where
 
 It is clear from equation (13) that restrictions must be imposed such that any estimate of $g(\cdot)$ is kept sufficiently far away from 0 and 1. This can be achieved by using a simplified trimming function $\tau_i = \mathbf{1}{(X_i \in A_\delta)}$ that restricts X to a fixed set $A_\delta$ on which $G$ is bounded away from 0 and 1.
 
-Similarly to Ichimura's method, Klein and Spady (1993) suggest replacing $g(\cdot)$ with the leave-one-out NW from equation (8). Again, we leave one observation out as otherwise, for a relatively small bandwidth, the objective function would be maximized by setting $G(X_i'\beta)=0$ when $Y_i=0$ and $G(X_i'\beta)=1$ when $Y_i=1$. That is, the objective function would take the value zero. By leaving one observation out, outside the sample prediction is improved. 
+Similarly to Ichimura's method, Klein and Spady (1993) suggest replacing $g(\cdot)$ with the leave-one-out NW from equation (8). Again, one observation is left out as otherwise, for a relatively small bandwidth, the objective function would be maximized by setting $G(X_i'\beta)=0$ when $Y_i=0$ and $G(X_i'\beta)=1$ when $Y_i=1$. That is, the objective function would take the value zero. By leaving one observation out, outside the sample prediction is improved. 
 
 With this in mind, the maximization problem takes the form
 
@@ -479,7 +481,7 @@ Furthermore, the bandwidth must satisfy the rate $ n^{-\frac{1}{6}} < h_n < n^{-
 
 
 \begin{theorem}
-According to Klein and Spady (1993), $\hat{\beta}_{n}$ is $n^{-\frac{1}{2}}$ and has asymptotic normal distribution as in 
+According to Klein and Spady (1993), $\hat{\beta}_{n}$ has convergence rate $n^{-\frac{1}{2}}$ and asymptotic normal distribution as in 
 
 \[\sqrt{n}(\hat{\beta}_{n} - \beta_0) \stackrel{d}{\rightarrow} N(0,\Omega_{KS}),
 \]
@@ -490,7 +492,7 @@ $KS$ stands for Klein and Spady and $\Omega_{KS} = \Omega_{SI}$, i.e., the estim
 
 \end{theorem}
 
-To have a good grasp of this result, it is fundamental to understand the expression for $\Omega_{KS}$. In particular, if one is to show that $\Omega_{KS} = \Omega_{SI}$, it is necessary to understand that $\frac{1}{g(X_i'\beta_0)(1 - g(X_i'\beta_0))}$ indeed corresponds to $\frac{1}{\sigma^2(x)}$ in equation (10). 
+Note $\sqrt{n}(\hat{\beta}_n - \beta_0)=O_p(1)$ and $(\hat{\beta}_n - \beta_0) = O_p\left(\frac{1}{\sqrt{n}}\right)$. Thus root-n consistency is attained. Furthermore, to have a good grasp of this result, it is fundamental to understand the expression for $\Omega_{KS}$. In particular, if one is to show that $\Omega_{KS} = \Omega_{SI}$, it is necessary to understand that $\frac{1}{g(X_i'\beta_0)(1 - g(X_i'\beta_0))}$ indeed corresponds to $\frac{1}{\sigma^2(x)}$ in equation (10). 
 
 It is known that for a binary choice model, 
 \[Var(Y|X = x) = P(Y = 1|X = x)[1 - P(Y = 1|X = x)].\]
@@ -512,7 +514,7 @@ with probability approaching 1 as $n \rightarrow \infty$. This is the same as th
 
 \begin{align*}
 w_i & = \{ \hat{G}_{-i}(X_i'\beta_n)[ 1 - \hat{G}_{-i}(X_i'\beta_n)]\}^{-1} = \{ G(X_i'\beta_n)[ 1 - G(X_i'\beta_n)]\}^{-1} + o_p(1) \\
-     & = \{ G(X_i'\beta_0)[ 1 - G(X_i'\beta_0)]\}^{-1} + o_p(1).
+     & = \{ G(X_i'\beta_0)[ 1 - G(X_i'\beta_0)]\}^{-1} + o_p(1) = \{ g(X_i'\beta_0)[ 1 - g(X_i'\beta_0)]\}^{-1} + o_p(1).
 \end{align*}
 
 
