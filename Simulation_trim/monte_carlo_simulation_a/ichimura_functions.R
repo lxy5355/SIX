@@ -41,7 +41,7 @@ min_SSE_Gaussian <- function(X,y,b_vec,h) {
 ichimura_calc <- function(X,y,h) {
 
   opt.test <- gridSearch(fun=function(x){min_SSE_Gaussian(X=X,y=y,b_vec=x,h=h)},
-	                     levels=append(1,rep(list(seq(0,20,len=40)),ncol(X)-1)) )
+	                     levels=append(1,rep(list(seq(-2.5,-1.5,len=100)),ncol(X)-1)) )
                                           
   beta.hat <- opt.test$minlevels
   g.hat <- approxfun(X%*%beta.hat, g_i(X,y,beta.hat,h), method = "linear", rule = 1, ties = mean)
