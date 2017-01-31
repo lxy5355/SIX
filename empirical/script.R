@@ -1,10 +1,9 @@
 library(caTools)
-#library(rpart)
-#library(rpart.plot)
+library(np)
 source ("ichimura_functions.R")
 source ("KS_functions.R")
-########remember to normaliye the x data to have variance eqauls to 1#######
-######plot g hat estimate and logistic######
+
+#need to adapt data import path
 data <- read.csv('C:/Users/lxy53/Documents/GitHub/SIX/empirical/voice.csv')
 
 # Create a train and test set.
@@ -13,20 +12,20 @@ spl <- sample.split(data$label, 0.7)
 train <- subset(data, spl == TRUE)
 test <- subset(data, spl == FALSE)
 
-h=.1
-###############
-# Basline model (always predict male).
-###############
+ytrain = (train$label == "male")*1  #convert y data to binary
+ytest = (test$label == "male")*1
 
-print('Baseline model')
+xtrain = as.matrix( within(train,rm(label)) )
+colnames(xtrain) = NULL
+rownames(xtrain) = NULL
+xtest = as.matrix(  within(test,rm(label))  )
+colnames(xtest) = NULL
+rownames(xtest) = NULL
 
-# Accuracy: 0.50
-table(train$label)
-1109/nrow(train)
+#xtrain=scale(xtrain)
 
-# Accuracy: 0.50
-table(test$label)
-475/nrow(test)
+h=.2
+
 
 ###################################
 # Logistic regression model.
@@ -47,32 +46,30 @@ table(test$label, predictLog2 >= 0.5)
 (462+468)/nrow(test)
 
 ##################################
-#ichimura methods
+#np-package, does not work
 ##################################
 
-ytrain = train$label == "male"  #convert y data to binary
-ytest = test$label == "male"
+ichimura.racine = npindex(xtrain,ytrain,method="ichimura")
+KS.racine = npindex(xtrain,ytrain,method="kleinspady")
 
-xtrain = as.matrix( within(train,rm(label)) )
-colnames(xtrain) = NULL
-rownames(xtrain) = NULL
-xtest = as.matrix(  within(test,rm(label))  )
-colnames(xtest) = NULL
-rownames(xtest) = NULL
+
+##################################
+#ichimura methods
+##################################
 
 ichimura <- ichimura_calc (xtrain,ytrain,h)
 g.hat.ichimura = ichimura$g.hat
 beta.hat.ichimura = ichimura$beta.hat
 
 # accuracy rate for training sample
-y.hat = g.hat.ichimura(xtrain%*%beta.hat.ichimura)>.5
-table(ytrain, y.hat)
-(1030+1045)/nrow(xtrain)
+y.hat = g.hat.ichimura(xtrain%*%beta.hat.ichimura)
+table(ytrain, y.hat>.5)
+#(401+461)/nrow(xtrain)
 
 # accuracy rate for test sample
-y.test.hat = g.hat.ichimura(xtest%*%beta.hat.ichimura)>.5
-table(ytest, y.test.hat)
-(446+451)/nrow(xtest)
+y.test.hat = g.hat.ichimura(xtest%*%beta.hat.ichimura)
+table(ytest, y.test.hat>.5)
+#(904+1063)/nrow(xtest)
 
 ##################################
 #KS methods
@@ -84,25 +81,43 @@ beta.hat.KS = KS$beta.hat
 # accuracy rate for training sample
 y.hat.KS = g.hat.KS(xtrain%*%beta.hat.KS)>.5
 table(ytrain, y.hat.KS)
-(1022+1030)/nrow(xtrain)
+#(1022+1030)/nrow(xtrain)
 
 # accuracy rate for test sample
 y.test.hat.KS = g.hat.KS(xtest%*%beta.hat.KS)>.5
 table(ytest, y.test.hat.KS)
-(440+441)/nrow(xtest)
+#(440+441)/nrow(xtest)
+
+##############################
+#draw graph
+##############################
+xfit=cbind(rep(1,nrow(xtrain)),xtrain)
+b=unname(genderLog$coefficients,force=FALSE)
+b[is.na(b)] = 0
+m.log=xfit%*%b
+
+m.ichimura=xtrain%*%beta.hat.ichimura
+m.KS = xtrain%*%beta.hat.KS
+
+par(mfrow=c(1,1))
+plot(m.KS,ytrain)
+points(m.KS,y.hat.KS,col="red")
+
+plot(m.ichimura,ytrain)
+points(m.ichimura,y.hat,col="red")
+
+plot(m.log,ytrain)
+points(m.log,predictLog,col="red")
+
 
 ##########################################################################
 #try out code
 
-grid.min <- min(genderLog$coefficients,na.rm=TRUE)
-grid.max <- max(genderLog$coefficients,na.rm=TRUE)
-
-
-x1 = rnorm(100)
-x2 = rnorm(100)
-x3 = rnorm(100)
-x4 = rnorm(100)
-y = x1*2+x2*3+x3*4+x4*5>0
-x=cbind(x1,x2,x3,x4)
-ichimura = ichimura_calc(X=x,y=y,h=.2)
-
+x1 = rnorm(200)
+x2 = rnorm(200)
+#x3 = rnorm(200)
+#x4 = rnorm(200)
+y = x1*2+x2*3
+x=cbind(x1,x2)
+ichimura = ichimura_calc(X=x,y=y,h=.1)
+npindex = npindex(x,y)

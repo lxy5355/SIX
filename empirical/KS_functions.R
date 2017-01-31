@@ -38,7 +38,7 @@ loglike <- function(X,y,b_vec,h) {
     kde=normal_kde(u,h)
     estimate <- y[-i]%*%kde / sum(kde)
     g_i[i] <- estimate
-    L <-log(g_i+0.0000001)%*%y + log(1-g_i+0.0000001)%*%(1-y)    #only this line is different from the function g_i
+    L <-log(g_i+0.000000000001)%*%y + log(1-g_i+0.000000000001)%*%(1-y)    #only this line is different from the function g_i
     }
   return(-L)
 }
@@ -49,7 +49,7 @@ KS_calc <- function(X,y,h) {
   #opt.test <- gridSearch(fun=function(x){loglike(X=X,y=y,b_vec=x,h=h)},
 	                     #levels=append(1,rep(list(seq(-2.5,.5,len=100)),ncol(X)-1)) )
   
-  estimates=nlm(min_SSE_Gaussian,rep(0,ncol(X)),X=X,y=y,h=h)$estimate
+  estimates=nlm(loglike,rep(2,ncol(X)),X=X,y=y,h=h)$estimate
   estimates_norm = estimates/estimates[1]                                     
   beta.hat <- estimates_norm 
   g.hat <-approxfun(X%*%beta.hat, g_i(X,y,beta.hat,h), method = "linear", rule = 1, ties = mean)

@@ -40,9 +40,9 @@ min_SSE_Gaussian <- function(X,y,b_vec,h) {
 # Define function to estimate beta.hat and g.hat
 ichimura_calc <- function(X,y,h) {
 
-#opt.test <- gridSearch(fun=function(x){min_SSE_Gaussian(X=X,y=y,b_vec=x,h=h)},
-	                     #levels=append(1,rep(list(seq(gridstart,gridend,len=100)),ncol(X)-1)) )
-
+  #opt.test <- gridSearch(fun=function(x){min_SSE_Gaussian(X=X,y=y,b_vec=x,h=h)},
+	                     #levels=append(1,rep(list(seq(-5,5,len=100)),ncol(X)-1)) )
+  #beta.hat <- opt.test$minlevels
   estimates=nlm(min_SSE_Gaussian,rep(0,ncol(X)),X=X,y=y,h=h)$estimate
   estimates_norm = estimates/estimates[1]                                     
   beta.hat <- estimates_norm
