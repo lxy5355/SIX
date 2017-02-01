@@ -328,7 +328,7 @@ A consistent estimator of $\Omega_I$ is given by
 where $\hat{V} = n^{-1}\sum_{i} w(X_i)(\hat{g}^{(1)})^2(X_i'\hat{\beta}_n)(X_i - \hat{E}(X_i|X_i'\beta_n))(X_i - \hat{E}(X_i|X_i'\beta_n))', \hat{\Sigma} = n^{-1}\sum_{i} w(X_i)^2\hat{\varepsilon}_{i}^{2}(\hat{g}^{(1)})^2(X_i'\hat{\beta}_n)(X_i - \hat{E}(X_i|X_i'\beta_n))', \hat{\varepsilon}_i = Y_i - \hat{g}(X_i'\hat{\beta}_n), \hat{g}^{(1)}(X_i'\hat{\beta}_n) \linebreak
 = [\partial \hat{g}_{-i}/\partial \beta]|_{\beta=\hat{\beta}_n}$, $\hat{g}_{-i}(X_i'\hat{\beta}_n)$ is defined in (8), $\hat{E}(X_i|X_i'\beta_n)' = \sum_{j} X_jK((X_i - X_j')'\hat{\beta})/ \sum_{j}K((X_i - X_j)'\hat{\beta}_n).$
 
-For what follows the trimming set $A_\delta$ is ignored and $w(\cdot)$ is set to 1. Furthermore, assume $\beta_n - \beta_0 = O(n^{-\frac{1}{2}})$ and $\hat{\beta}_n - \beta_0 = O_p(n^{-\frac{1}{2}})$. Then, 
+Some intuition for Theorem 4.1 can be provided if some, perhaps rather strong, assumptions are made. For what follows the trimming set $A_\delta$ is ignored and $w(\cdot)$ is set to 1. Furthermore, assume $\beta_n - \beta_0 = O(n^{-\frac{1}{2}})$ and $\hat{\beta}_n - \beta_0 = O_p(n^{-\frac{1}{2}})$. Then, 
 
 
 \begin{align*}
@@ -416,21 +416,20 @@ The efficiency bound is then
 
 where $SI$ stands for single index and, considering the result shown above, we have
 \begin{align*}
-g(X_i'\beta_0) - E_A[g(X_i'\beta_0)|X_i'\beta)] & = g^{(1)}(X_i'\beta)( X_i - E_A[X_i'|X_i'\beta])(\beta_0 - \beta) \\
-											   & + O(n^{-1})
+E_A[g(X_i'\beta_0)|X_i'\beta)] & = g(X_i'\beta_0) - g^{(1)}(X_i'\beta)( X_i - E_A[X_i'|X_i'\beta])(\beta_0 - \beta) + O(n^{-1})\\
+							  & = g(X_i'\beta_0) - g^{(1)}(X_i'\beta_0)( X_i - E_A[X_i'|X_i'\beta_0])(\beta_0 - \beta) + o_p(1)											   
 \end{align*}
-for $E_A(X_i|v) = E(X_i|x_A'\beta_0 = v)$ with $x_A$ having the distribution of $X_i$ conditional on $X_i \in A_\delta$. Minimizing in order to $\beta$ and ignoring terms independent of $\beta$ and $O(n^{-1})$
+for $E_A(X_i|v) = E(X_i|x_A'\beta_0 = v)$ with $x_A$ having the distribution of $X_i$ conditional on $X_i \in A_\delta$. Minimizing in order to $\beta$ and ignoring terms independent of $\beta$ and $o_p(1)$ 
 \begin{align*}
- \frac{\partial}{\partial \beta} G(X_i'\beta) & = g^{(1)}(X_i'\beta)( X_i - E_A[X_i'|X_i'\beta]) \\
- 										   & = g^{(1)}(X_i'\beta_0)( X_i - E_A[X_i'|X_i'\beta]) + o_p(1).
+ \frac{\partial}{\partial \beta} G(X_i'\beta) & = g^{(1)}(X_i'\beta_0)( X_i - E_A[X_i'|X_i'\beta_0])
 \end{align*}
 
 This bound is achieved by the semiparametric WNLS estimator if $\sigma^2(X)$ is known or independent of X. 
 
-When $\sigma^2(X)$ is unknown, following the reasoning above, the most efficient estimator is an analogue of FGLS.  Consider a given consistent estimator, say $s_{n}^{2}(x)$. If $w(X) = \frac{1}{s_{n}^{2}(x)}$ in the semiparametric WNLS estimator, the asymptotic efficiency bound will be reached. Thus, an asymptotic efficient estimator of $\beta_0$ is obtained even when $\sigma^2(X)$ is unknown. This consistent estimator uses a two-step procedure. On the first step, minimize function (9) with respect to $\beta$ for $w(x) = 1$. We obtain an estimator $\hat{\beta}_n$ that is $n^{\frac{1}{2}}$-consistent and asymptotically normal but inefficient. This estimator is used on the second step to calculate the weight function $\hat{w}_i(x) = \frac{1}{\hat{\sigma}_{i}^{2}}$. Here, $\hat{\sigma}_{i}^{2}$ is defined by Robinson (1987) as 
+When $\sigma^2(X)$ is unknown, following the reasoning above, the most efficient estimator is an analogue of FGLS.  Consider a given consistent estimator, say $s_{n}^{2}(x)$. If $w(X) = \frac{1}{s_{n}^{2}(x)}$ in the semiparametric WNLS estimator, the asymptotic efficiency bound will be reached. Thus, an asymptotic efficient estimator of $\beta_0$ is obtained even when $\sigma^2(X)$ is unknown. This consistent estimator uses a two-step procedure. On the first step, minimize function (9) with respect to $\beta$ for $w(x) = 1$. We obtain an estimator $\hat{\beta}_n$ that is root-n consistent and asymptotically normal but inefficient. This estimator is used on the second step to calculate the weight function $\hat{w}_i(x) = \frac{1}{\hat{\sigma}_{i}^{2}}$. Here, $\hat{\sigma}_{i}^{2}$ is defined by Robinson (1987) as 
 \[\hat{\sigma}_{i}^{2} = \frac{1}{k}\sum_{j=1}^{n} \mathbf{1}{(x_j \in N_k(x_i))}\hat{\varepsilon}_{j}^{2} ,\]
 %The assumption that $X \in A_{\delta}$ can be replaced by the assumption that $A_{\delta}$ grows very slowly as $n$ increases.
-and $\hat{\varepsilon}_i = Y_i - \hat{G}_{-i}(X_i'\hat{\beta_n})$. Further, $N_k(x_i)$ is the set of $k$ observations of $x_j$ closest to $x_i$ in weighted Euclidean norm.
+and $\hat{\varepsilon}_i = Y_i - \hat{G}_{-i}(X_i'\hat{\beta}_n)$. Further, $N_k(x_i)$ is the set of $k$ observations of $x_j$ closest to $x_i$ in weighted Euclidean norm.
 
 
 
