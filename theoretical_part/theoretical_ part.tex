@@ -264,7 +264,11 @@ G(X_i'\beta) \stackrel{def}{=} E(Yi|X_i'\beta) = E[g(X_i'\beta_0)|X_i'\beta]
 \end{equation}
  by the kernel method. 
 
-Ichimura (1993) proposes modifications of the usual kernel estimation to estimate $G(X_i'\beta)$. Markedly, observation $i$ is excluded from the calculation of $G(X_i'\beta)$. Otherwise, consider a relatively small bandwidth. Then, $S_n(\beta)$ is trivially minimized when $\hat{G}(X_i'\beta) = Y_i$. By leaving one observation out, this problem is countered. Also, this validates the ability to predict the $i$th observation using the remaining observations in the sample. Therefore, outside the sample prediction is improved. This way, a leave-one-out Nadaraya-Watson (NW) kernel estimator is obtained
+Ichimura (1993) proposes modifications of the usual kernel estimation to estimate $G(X_i'\beta)$. Markedly, observation $i$ is excluded from the calculation of $G(X_i'\beta)$. Otherwise, consider a relatively small bandwidth. Then, $S_n(\beta)$ is trivially minimized when $\hat{G}(X_i'\beta) = Y_i$. By leaving one observation out, this problem is countered. Also, this validates the ability to predict the $i$th observation using the remaining observations in the sample. Therefore, outside the sample prediction is improved. 
+
+Furthermore, restrictions are imposed on the kernel estimator and bandwith. Assume a bounded second order kernel with compact support is used and $ h_n = O(n^{-\frac{1}{5}})$. \footnote{The assumption that the support of the kernel is compact is used in order to simplify arguments.}
+
+With all of this in mind, a leave-one-out Nadaraya-Watson (NW) kernel estimator is obtained
 
 \begin{equation}
 \hat{G}_{-i}(X_i'\beta) \equiv \hat{E}_{-i}(Yi|X_i'\beta) = \frac{(nh)^{-1}\sum_{j=1, j \neq i }^{n}  Y_jK(\frac{X_j'\beta - X_i'\beta}{h_n})}{\hat{p}_{-i}(X_i'\beta)},
@@ -292,7 +296,6 @@ S_n(\beta) = \frac{1}{n} \sum_{i=1}^{n}  [Y_i - \hat{G}_{-i}(X_i'\beta)]^2w(x_i)
 
 where $\mathbf{1}{(X_i \in A_n)}$ is a trimming function that ensures that the random denominator is positive with high probability, and $w(x_i)$ is an appropriate nonnegative weighting function to correct heteroskedasticity, as explained in section 4.2. 
 
-To derive the asymptotic distribution of $\hat{\beta}_n$, first certain restrictions must be imposed. In particular, a bounded second order kernel with bounded support must be used and $ h_n = O(n^{-\frac{1}{5}})$.
 
 \newtheorem{theorem}{Theorem}[section]
 
@@ -469,16 +472,17 @@ It is clear from equation (13) that restrictions must be imposed such that any e
 
 Similarly to Ichimura's method, Klein and Spady (1993) suggest replacing $g(\cdot)$ with the leave-one-out NW from equation (8). Again, one observation is left out as otherwise, for a relatively small bandwidth, the objective function would be maximized by setting $G(X_i'\beta)=0$ when $Y_i=0$ and $G(X_i'\beta)=1$ when $Y_i=1$. That is, the objective function would take the value zero. By leaving one observation out, outside the sample prediction is improved. 
 
-With this in mind, the maximization problem takes the form
-
-\begin{equation}
-\mathcal{L}_n(\beta) = \frac{1}{n}\sum_{i=1}^n \tau_{i}\{ (1 - Y_i)ln[ 1 - \hat{G}_{-i}(X_i'\beta)] +  Y_iln[\hat{G}_{-i}(X_i'\beta)]\}.
-\end{equation}
-
-To derive the asymptotic distribution of $\hat{\beta}_n$, certain assumptions are required in terms of bandwidth and kernel choice. In particular, Klein and Spady (1993) use an higher order kernel. Higher order kernels allow for increased smoothness and faster rates of convergence. However, for these desirable properties to ``kick in'', a high number of observations might be necessary. \footnote{Marron (1992) gives a particular example in which at least 10 000 observations are necessary for the a fourth order kernel to become decidedly dominant relatively to a nonnegative second order kernel.} An example of a higher order kernel is
+Furthermore, the kernel estimator and bandwidth have certain restrictions. assume an higher order kernel is used. Higher order kernels allow for increased smoothness and faster rates of convergence. However, for these desirable properties to ``kick in'', a high number of observations might be necessary. \footnote{Marron (1992) gives a particular example in which at least 10 000 observations are necessary for the a fourth order kernel to become decidedly dominant relatively to a nonnegative second order kernel.} An example of a higher order kernel is
 \[\int z^{2}K(z)dz = 0.\]
 Furthermore, the bandwidth must satisfy the rate $ n^{-\frac{1}{6}} < h_n < n^{-\frac{1}{8}}$.
 
+With all of this in mind, the maximization problem takes the form
+
+\begin{equation}
+\mathcal{L}_n(\beta) = \frac{1}{n}\sum_{i=1}^n \tau_{i}\{ (1 - Y_i)ln[ 1 - \hat{G}_{-i}(X_i'\beta)] +  Y_iln[\hat{G}_{-i}(X_i'\beta)]\},
+\end{equation}
+
+where $\hat{G}_{-i}$ follows equation (8).
 
 \begin{theorem}
 According to Klein and Spady (1993), 
