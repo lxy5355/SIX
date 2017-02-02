@@ -1,7 +1,26 @@
-\documentclass[11pt, a4paper, leqno]{article}
-\usepackage{a4wide}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
+\documentclass[a4paper]{article}
+\setlength{\headheight}{1.1\baselineskip}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+% package for including graphics with figure-environment
+\usepackage{graphicx}
+\usepackage{hyperref}
+% colors for hyperlinks
+% colored borders (false) colored text (true)
+\hypersetup{colorlinks=true,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black}
+
+% package for bibliography
+\usepackage[authoryear,round]{natbib}
+% package for expectation signs
+\usepackage{amsmath,amssymb,mathtools,bm,etoolbox}
+%\documentclass[a4paper,11pt]{report} 
+\usepackage{breqn}
+\usepackage{amsmath}
+\usepackage{enumitem} 
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{amsmath}
+\newcommand{\abs}[1]{ \left\lvert#1\right\rvert} 
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \usepackage{float, afterpage, rotating, graphicx}
 \usepackage{epstopdf}
 \usepackage{longtable, booktabs, tabularx}
@@ -14,25 +33,7 @@
 \usepackage{setspace}
 \usepackage{xcolor}
 
-\usepackage[unicode=true]{hyperref}
-\hypersetup{
-    colorlinks=true,
-    linkcolor=black,
-    anchorcolor=black,
-    citecolor=black,
-    filecolor=black,
-    menucolor=black,
-    runcolor=black,
-    urlcolor=black
-}
 
-
-\widowpenalty=10000
-\clubpenalty=10000
-
-\setlength{\parskip}{1ex}
-\setlength{\parindent}{0ex}
-\setstretch{1.5}
 
 
 \begin{document}
@@ -60,8 +61,8 @@ To summarize, the designed baseline function is
 y_i = I(x_{1i} - 2x_{2i} > \epsilon_i).
 \end{equation*}
 
-\section{Definition of Estimation Function} 
-Following steps are taken to characterize ichimura's leave-one-out Nadaraya Watson estimator and Klein and Spady's maximum likelihood estimator:
+\section{Definition of Original Estimation} 
+The following steps are carried out to characterize ichimura's leave-one-out Nadaraya Watson estimator and Klein and Spady's maximum likelihood estimator:
 \begin{enumerate}
 \item define in both a fourth order Gaussian kernel function in order to achieve the kernel order requirment for Klein and Spady's method;
 \item define a leave-one-out estimator function which returns the leave-one-out kernel estimator;
@@ -70,17 +71,44 @@ Following steps are taken to characterize ichimura's leave-one-out Nadaraya Wats
  
 \end{enumerate}
 
-\section{A Comparison between GridSearch and NLS}
+\section{A Comparison: Grid Search, Optim and NLS}
+We have first employed $Grid Search$ in the original defined functions. Referring to the histogram that characterized results from the 1000-time Monte Carlo simulation, this method is able to find `good' parameter values for a function. However a grid search has two deficiencies worth noticing: on the one hand, as the length of the first argument to function (which is the support of $\mathcal{B}$ containing the true $\beta$) increases, the number of necessary function evaluations grows exponentially; on the other hand, when the true $\beta$ is unknown, the performance of estimation relies heavily on the range of list and the distance between two candidates primarily set to loop over. In our simulation the support of $\mathcal{B}_2$ is presumably set to $(-4,0)$ with an accuracy rate of $0.05$. This leads to $81$ function evaluations for each data generation. Taking the amount of $1000$ data generations into account this method is already considerably computational costly even for estimation on a single parameter $\beta_2$. 
 
 \section{Definition of Data Trimming}
+Following the interpretation on trimming function, the formulation of which is clarified above, this paper came up with an empirical way to employ trimming functions originally. Although Klein and Spady (1993) states that a trimming function has insignificant effect on efficiency performance and therefore the same trimming function as used in Ichimura's method can be referred to, we have found profound deficiency such that a reckless copy and paste may lead Klein and Spady estimating functions collapse, especially in the case of a binary choice model. This issue will be elaborated on later after an introduction of trimming function used in Ichimura's method.
+
+To begin with, the aim of a trimming function is to guarantee the denominator of equation $(8)$, i.e., $\hat{p}_{-i}(X_i'\beta) = \frac{1}{nh}\sum_{j=1,j \neq i}^{n}K(\frac{X_j'\beta - X_i'\beta}{h})$ not too close to zero. Theoretically bounds $A_\delta$ and $A_n$ are imposed on exogenous variables with:
+\[ A_\delta = \{ x : p(x'\beta) \geq \delta, \text{ for all }  \beta \in \mathcal{B} \}
+\]
+where $\delta > 0$ is a constant, $\mathcal{B} \in \mathbb{R}^q$, and
+
+\[ A_n = \{ x : \norm{x - x^*} \leq 2h_n \text{ for some } x^* \in A_\delta\}.
+\]
+
+Then the trimming function $\mathbf{1}{(Xi \in A_n)}$ is inserted into the WNLS equation $(9)$ as
+\[
+S_n(\beta) = \frac{1}{n} \sum_{i=1}^{n}  [Y_i - \hat{G}_{-i}(X_i'\beta)]^2w(x_i)\mathbf{1}{(X_i \in A_n)}.
+\]
+
+To interprete, the estimate $\hat{p}_{-i}(X_i'\beta)$ is calculated over a small range of bandwidth $h$. There are two ways to keep such an estimate enough positive: either there exists enough many realizations of $X_i'\beta$ itself, corresponding to a theoretically high $p(x'\beta)$ guaranteed by $A_\delta$, or it is a point very close to $X_i'\beta$ (or $X_i$, since a linear transformation should not take the point too far away), which is expressed $A_n$ in the language of equation, again an estimation on this point will also be positive enough owing to high estimated probability $X_i'\beta$.
+
+Following this interpretation, simulated sample data is sieved by examing whether their (more specifically, the single indices constructed on sample data) leave-one-out kernel estimates are large enough. If the kernel estimator for $p(x'\beta)$ fails to achieve the chosen lower bound, this sample data $x$ will be removed from sample data set before turing to estimation step.
+
+Furthermore, as we choose GridSearch method to carry out estimation, the same set of grids is employed for $\mathcal{B}$. And data sieve is looped over this set to guarantee that for all grid substitution the sample data is ready for a sensible estimation.
+
+To keep the comparability, same trimmed data set is used both for Ichimura's and Klein and Spady's estimation methods. However, this is not enough for the latter to work. While the initiative is to avoid any estimate of $g$ being too close to 0 or 1, a technically too small estimate may still emerge. The reason resides in a coexistence of positive enough denominator and relatively too small nominator. Recollect that the nominator follows the sum of dependent binary variables $y_i$ weighted by its corresponding kernel evaluation, the uncommon phenomenon pops up when a relatively large evaluation coincides with $y_i = 0$. Therefore, based on the same trimmed data as in Ichimura's method, we further introduced a lower bound equals to square root of machine double epsilon and set any estimate smaller than the lower bound to its level.
 
 \section{Bandwidth Selection}
+As in this paper attention is put into estimation of parameter inside the single index, a bandwidth needs to be chosen prior to estimating $\beta_2$ using our originally defined functions. To select a sensible bandwidth, function $npindexbw$ of the NP package is employed respectively for Ichimura's and Klein and Spady's methods with the same data generation procedure nested in 1000-time Monte Carlo simulation as in the original method. For each set of generated data, $npindexbw$ chooses a likelihood-based cross-validation approach which simultaneously decides the parameters for the single index model and the bandwidth for the index function. Then the 1000 bandwidths selected in all simulated data sets are averaged to one number and in the end we get two bandwidths respectively for Ichimura's and Klein and Spady's methods.
 
-\section{A Result Comparison between Original Functions and Using NP Package}
+\section{A Result Comparison between Using Original Functions and Using NP Package}
 ($n = 250, m = 1000$)
 
 \begin{table}[H]
 \caption {Mean Squared Error Comparison} \label{tab:mean squared error}
+
+(with gridsearch $(-2.5, -1.5, 100)$)
+
 \begin{tabular}{l r r}
 
 \toprule
@@ -101,7 +129,35 @@ Klein and Spady & 0.00416 & 0.000121 \tabularnewline
   \label{fig:plot of estimates}
 \end{figure}
 
+A scale problem can be immediately perceived from the different ranges of x-axis, which also implies possible existence of multi-modal for $\beta$ estimates. Furthermore, due to a narrower range of the list of $\beta_2$ in Grid Search, the result of MSE is not informative on advantage of original functions either. 
 
+To correct this mistake and make results comparable, the range of gridsearch will be adjusted to $(-4,0)$ with 0.05 space between two candidates.
 
+\begin{table}[H]
+\caption {Mean Squared Error Comparison} \label{tab:mean squared error}
 
+(with gridsearch $(-4, 0, 81)$)
+
+\begin{tabular}{l r r}
+
+\toprule
+\textbf{method} & \textbf{NP Package} & \textbf{Original Functions} \tabularnewline\midrule
+(standard normal distribution for $x_1$, $x_2$, $\epsilon$) & &
+\tabularnewline
+Ichimura & 0.00363 & 0.00201 \tabularnewline
+Klein and Spady & 0.00416 & 0.0000893 \tabularnewline
+
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h!]
+  \caption{Plot of Estimates on Same Scale}
+  \includegraphics[width=\linewidth]{compare_done.png}
+ 
+  \label{fig:plot of estimates on same scale}
+\end{figure}
+
+Now we can find out that the performance of originally defined programming functions are at least almost as good as of NP package, and the frequency plot of both are skewed to left, implying an asymptotic feature of estimator.
 \end{document}
+
