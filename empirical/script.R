@@ -1,7 +1,5 @@
 library(caTools)
 library(np)
-source ("ichimura_functions.R")
-source ("KS_functions.R")
 
 #need to adapt data import path
 data <- read.csv('C:/Users/lxy53/Documents/GitHub/SIX/empirical/voice.csv')
@@ -18,106 +16,97 @@ ytest = (test$label == "male")*1
 xtrain = as.matrix( within(train,rm(label)) )
 colnames(xtrain) = NULL
 rownames(xtrain) = NULL
-xtest = as.matrix(  within(test,rm(label))  )
+xtrain = cbind(xtrain[,1:5],xtrain[,7:11],xtrain[,13:18],xtrain[,20])  #remove multicoliearity
+
+xtest = as.matrix(  within(test,rm(label)) )
 colnames(xtest) = NULL
 rownames(xtest) = NULL
-
-#xtrain=scale(xtrain)
-
-h=.2
+xtest = cbind(xtest[,1:5],xtest[,7:11],xtest[,13:18],xtest[,20])
 
 
 ###################################
 # Logistic regression model.
 ###################################
 
-print('Logistic regression model')
-
 genderLog <- glm(label ~ ., data=train, family='binomial')
-
-# Accuracy: 0.9711
 predictLog <- predict(genderLog, type='response')
-table(train$label, predictLog >= 0.5)
-(1073+1081)/nrow(train)
-
-# Accuracy: 0.9789
 predictLog2 <- predict(genderLog, newdata=test, type='response')
-table(test$label, predictLog2 >= 0.5)
-(462+468)/nrow(test)
 
 ##################################
-#np-package, does not work
+#np-package
 ##################################
 
-ichimura.racine = npindex(xtrain,ytrain,method="ichimura")
-KS.racine = npindex(xtrain,ytrain,method="kleinspady")
+bw.ichimura <- npindexbw(xdat=xtrain, ydat=ytrain)
+model.ichimura <- npindex(bws=bw.ichimura)
+fit.ichimura <- predict(model.ichimura)
+test.ichimura <- fitted(npindex(exdat=xtest, bws=bw.ichimura))
 
+bw.KS <- npindexbw(xdat=xtran, ydat=ytrain,method="kleinspady")
+model.KS <- npindex(bws=bw.KS,method="kleinspady")
+fit.KS <- predict(model.KS)
+test.KS <- fitted(npindex(exdat=xtest,bws=bw.KS,method="kleinspady"))
 
-##################################
-#ichimura methods
-##################################
+###################################
+#draw graphs and tables
+###################################
+m.ichimura = xtrain%*%model.ichimura$beta
+m.KS = xtrain%*%model.KS$beta
 
-ichimura <- ichimura_calc (xtrain,ytrain,h)
-g.hat.ichimura = ichimura$g.hat
-beta.hat.ichimura = ichimura$beta.hat
-
-# accuracy rate for training sample
-y.hat = g.hat.ichimura(xtrain%*%beta.hat.ichimura)
-table(ytrain, y.hat>.5)
-#(401+461)/nrow(xtrain)
-
-# accuracy rate for test sample
-y.test.hat = g.hat.ichimura(xtest%*%beta.hat.ichimura)
-table(ytest, y.test.hat>.5)
-#(904+1063)/nrow(xtest)
-
-##################################
-#KS methods
-##################################
-KS <- KS_calc (xtrain,ytrain,h)
-g.hat.KS = KS$g.hat
-beta.hat.KS = KS$beta.hat
-
-# accuracy rate for training sample
-y.hat.KS = g.hat.KS(xtrain%*%beta.hat.KS)>.5
-table(ytrain, y.hat.KS)
-#(1022+1030)/nrow(xtrain)
-
-# accuracy rate for test sample
-y.test.hat.KS = g.hat.KS(xtest%*%beta.hat.KS)>.5
-table(ytest, y.test.hat.KS)
-#(440+441)/nrow(xtest)
-
-##############################
-#draw graph
-##############################
 xfit=cbind(rep(1,nrow(xtrain)),xtrain)
 b=unname(genderLog$coefficients,force=FALSE)
-b[is.na(b)] = 0
+b=na.omit(b)   
 m.log=xfit%*%b
 
-m.ichimura=xtrain%*%beta.hat.ichimura
-m.KS = xtrain%*%beta.hat.KS
 
-par(mfrow=c(1,1))
-plot(m.KS,ytrain)
-points(m.KS,y.hat.KS,col="red")
+m2.ichimura = xtest%*%model.ichimura$beta
+m2.KS = xtest%*%model.KS$beta
+
+xfit2=cbind(rep(1,nrow(xtest)),xtest)  
+m2.log=xfit2%*%b
+
+
+par(mfrow=c(4,2))
+plot(m.log,predictLog,col="blue")
+title(main = "comparison of methods on training set")
+points(m.ichimura,fit.ichimura,col="red")
+points(m.KS,fit.KS,col="green")
+
+plot(m2.log,predictLog2,col="blue")
+title(main = "comparison of methods on test set")
+points(m2.ichimura,test.ichimura,col="red")
+points(m2.KS,test.KS,col="green")
 
 plot(m.ichimura,ytrain)
-points(m.ichimura,y.hat,col="red")
+title(main = "ichimura on training set")
+points(m.ichimura,fit.ichimura,col="red")
+
+plot(m2.ichimura,ytest)
+title(main = "ichimura on test set")
+points(m2.ichimura,test.ichimura,col="red")
 
 plot(m.log,ytrain)
-points(m.log,predictLog,col="red")
+title(main = "logistic on training set")
+points(m.log,predictLog,col="blue")
 
+plot(m2.log,ytest)
+title(main = "logistic on test set")
+points(m2.log,predictLog2,col="blue")
 
-##########################################################################
-#try out code
+plot(m.KS,ytrain)
+title(main = "kleinspady on training set")
+points(m.KS,fit.KS,col="green")
 
-x1 = rnorm(200)
-x2 = rnorm(200)
-#x3 = rnorm(200)
-#x4 = rnorm(200)
-y = x1*2+x2*3
-x=cbind(x1,x2)
-ichimura = ichimura_calc(X=x,y=y,h=.1)
-npindex = npindex(x,y)
+plot(m2.KS,ytest)
+title(main = "kleinspady on test set")
+points(m2.KS,test.KS,col="green")
+
+#######table#######
+log1 = table(train$label, predictLog >= 0.5)
+ichimura1 = table(ytrain,fit.ichimura>=.5)
+ks1 = table(ytrain,fit.KS>=.5)
+
+log2 = table(test$label, predictLog2 >= 0.5)
+ichimura2 = table(ytest,test.ichimura>=.5)
+ks2 = table(ytest,test.KS>=.5)
+
+table = cbind(log1,ichimura1,ks1,log2,ichimura2,ks2)
