@@ -36,7 +36,7 @@
 	%		\includegraphics[width=0.7\textwidth]{logo.eps}
 	%\end{figure}
 	\vspace{1cm}
-	\Huge \textbf{ Semiparametric Single Index Models }\\ \Large Ichimura and Klein and Spady's methods \\
+	\Huge \textbf{ Semiparametric Single Index Models }\\ \Large Ichimura's and Klein and Spady's methods \\
 	}
 	
 	\vspace{1cm}
@@ -153,7 +153,7 @@ Distinctively, nonparametric models can be defined as
 
 with smooth $g$, assuming additivity of the error. \footnote{One can suggest an even more general model by dropping the additivity of the error term assumption. That is, $Y_i = g(X_i) + \varepsilon_i$. } Thus, the assumptions of a single index model are weaker than those of a parametric model and stronger than those of a nonparametric model.  \footnote{However, the necessary assumptions for consistent parametric estimation can be relaxed. In particular, the single index model might have weaker assumptions than a fully parameterized model for structural economic models.} 
 
-Nonparametric models typically suffer from the curse of dimensionality. This is defined by Gery Geenens (2011) as being caused by the sparsity of data in high-dimensional spaces, which results in a decrease in fastest achievable rates of convergence of regression function estimators toward their target curve as the dimension of the vector of independent variables increases. 
+Nonparametric models typically suffer from the curse of dimensionality, a term usually attributed to Bellman (1961). This is defined by Gery Geenens (2011) as being caused by the sparsity of data in high-dimensional spaces, which results in a decrease in fastest achievable rates of convergence of regression function estimators toward their target curve as the dimension of the vector of independent variables increases. 
 
 The single index model avoids the curse of dimensionality by reducing the p-dimensional predictor to a univariate single-index. In fact, the estimator achieves the same convergence rate $n^{-\frac{1}{2}}$ that is optimal for most parametric models. For nonparametric models this rate is only $n^{-\frac{2}{5}}$, if the underlying function is twice continuously differentiable (Cameron and Trivedi(2005)).
 Thus, in general, single index models reach greater estimation precision than fully nonparametric estimators with multidimensional X.
@@ -323,7 +323,7 @@ with $g_i^{(1)} = [\partial g(v)/\partial v]|_{v = X_i'\beta_0}, E_A(X_i|v) = E(
 
 \end{theorem}
 
-Note $\sqrt{n}(\hat{\beta}_n - \beta_0)=O_p(1)$, and thus $(\hat{\beta}_n - \beta_0) = O_p\left(\frac{1}{\sqrt{n}}\right)$. Therefore, root-n consistency is attained, which is the optimal rate for most parametric methods. Furthermore, $\sqrt{n}(\hat{\beta}_n - \beta_0)$ is asymptotically normally distributed and its asymptotic distribution is centered at zero. The latter fact contrasts with the case of nonparametric density estimation, whose asymptotic distributions are in general not centered at zero when the estimators have their fastest possible rates of convergence (Horowitz (1998)). 
+Note $\sqrt{n}(\hat{\beta}_n - \beta_0)=O_p(1)$, and thus $(\hat{\beta}_n - \beta_0) = O_p\left(\frac{1}{\sqrt{n}}\right)$. Therefore, root-n consistency is attained, which is the optimal rate for most parametric methods. Furthermore, $\sqrt{n}(\hat{\beta}_n - \beta_0)$ is asymptotically normally distributed and its asymptotic distribution is centered at zero. The latter fact contrasts with the case of nonparametric density estimation, whose asymptotic distributions are in general not centered at zero when the estimators have their fastest possible rates of convergence (Stone (1980) and Goldstein and Messer (1992)). 
 
 
 A consistent estimator of $\Omega_I$ is given by
@@ -338,11 +338,11 @@ Some intuition for Theorem 4.1 can be provided if some, perhaps rather strong, a
 
 \begin{align*}
 S_{n}(\beta_n) & = \frac{1}{n}\sum_i \{ Y_i - \hat{G}_{-i}(X_i'\beta_n)\}^2 = \frac{1}{n}\sum_i\{Y_i - \hat{G}_{-i}(X_i'\beta_n) +  \hat{G}_{-i}(X_i'\beta_0) \\
-			 & - \hat{G}_{-i}(X_i'\beta_0) \}^2 = \frac{1}{n} \sum_i \{Y_i - G(X_i'\beta_n) + o_p(1) + \hat{G}_{-i}(X_i'\beta_0) \\
-			 & - \hat{G}_{-i}(X_i'\beta_0) \}^2 = \frac{1}{n}\sum_i \{ Y_i - G(X_i'\beta_n) + \hat{G}_{-i}(X_i'\beta_0) \\
-			 & - g(X_i'\beta_0) + o_p(1) \}^2 = \frac{1}{n} \sum_i \{ g(X_i'\beta_0) + \varepsilon_i - G(X_i'\beta_n) + \hat{G}_{-i}(X_i'\beta_0) \\
-			 & - g(X_i'\beta_0) + o_p(1) \}^2 = \frac{1}{n} \sum_i \{ \varepsilon_i + \hat{G}_{-i}(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta_n] \\
-			 & + o_p(1) \}^2 = \frac{1}{n}\sum_i \{ g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta_n] +  \varepsilon_i + o_p(1)\}^2 \\
+			   & - \hat{G}_{-i}(X_i'\beta_0) \}^2 = \frac{1}{n} \sum_i \{Y_i - G(X_i'\beta_n) + o_p(1) + \hat{G}_{-i}(X_i'\beta_0) \\
+			   & - \hat{G}_{-i}(X_i'\beta_0) \}^2 = \frac{1}{n}\sum_i \{ Y_i - G(X_i'\beta_n) + \hat{G}_{-i}(X_i'\beta_0) - g(X_i'\beta_0) \\
+			   &  + o_p(1) \}^2 = \frac{1}{n} \sum_i \{ g(X_i'\beta_0) + \varepsilon_i - G(X_i'\beta_n) + \hat{G}_{-i}(X_i'\beta_0) - g(X_i'\beta_0)\\
+			   & + o_p(1) \}^2 = \frac{1}{n} \sum_i \{ \varepsilon_i + \hat{G}_{-i}(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta_n]  + o_p(1) \}^2 \\
+			   &= \frac{1}{n}\sum_i \{ g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta_n] +  \varepsilon_i + o_p(1)\}^2 \\
 			 & = \frac{1}{n}\sum_i \{ g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta_n] +  \varepsilon_i\}^2 + o_p(1)
 \end{align*}
 
@@ -351,26 +351,26 @@ Using a Taylor expansion:
 \begin{align*}
 g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta_n)] & = g(X_i'\beta_0) - g(X_i'\beta_n) \\
 											 & - g^{(1)}(X_i'\beta_n)E[(\beta_0 - \beta_n)X_i'|X_i'\beta_n] + o_p(1) \\
-				                              & = g^{(1)}(X_i'\beta_n)( X_i - E[X_i'|X_i'\beta_n])(\beta_0 - \beta_n) + o_p(1)
+				                              & = g^{(1)}(X_i'\beta_n)( X_i - E[X_i'|X_i'\beta_n])(\beta_0 - \beta_n) + o_p(1) \\
+				                              & = g^{(1)}(X_i'\beta_0)( X_i - E[X_i'|X_i'\beta_0])(\beta_0 - \beta_n) + o_p(1)
 \end{align*}
 
 
-Given that $E(\varepsilon) = 0$, the mean of $\varepsilon_i$ is $o_p(1)$. Then, $\frac{1}{n}\sum_i\varepsilon_io_p(1) = o_p(1)$. Hence, for $g_{i}^{(1)} = g^{(1)}(X_i'\hat{\beta}_n)$ and $v_i = X_i - E[X_i'|X_i'\beta_n]$:
-
+Hence, for $g_{i0}^{(1)} = g^{(1)}(X_i'\beta_0)$ and $v_{i0} = X_i - E[X_i'|X_i'\beta_0]$
+ 
 \begin{align*}
-S_{n}(\hat{\beta}_n) & = (\beta_0 - \hat{\beta}_n)'\left[\frac{1}{n}\sum_i (g_i^{(1)})^2v_iv_i'\right](\beta_0 - \hat{\beta}_n) \\
-             & + 2\frac{1}{n}\sum_i\varepsilon_ig_i^{(1)}v_i'(\beta_0 - \hat{\beta}_n) + \frac{1}{n}\sum_i \varepsilon_i^2 + o_p(1)
+S_{n}(\hat{\beta}_n) & = (\beta_0 - \hat{\beta}_n)'\left[\frac{1}{n}\sum_i (g_{i0}^{(1)})^2v_{i0}v_{i0}'\right](\beta_0 - \hat{\beta}_n) \\
+             & + 2\frac{1}{n}\sum_i\varepsilon_ig_{i0}^{(1)}v_{i0}'(\beta_0 - \hat{\beta}_n) + \frac{1}{n}\sum_i \varepsilon_i^2 + o_p(1)
 \end{align*}
 
-Minimizing in order to $\hat{\beta}_n$ and ignoring terms independent of $\hat{\beta}_n$ and $o_p(1)$:
-\[2\frac{1}{n}(\hat{\beta}_n - \beta_0)\sum_i(g_{i}^{(1)})^2v_iv_i' - 2\frac{1}{n}\sum_i\varepsilon_ig_i^{(1)}v_i' = 0 \]
+Now following Li and Racine (2007), the objective function is minimized in order to $\hat{\beta}_n$, ignoring terms independent of $\hat{\beta}_n$ and $o_p(1)$ \footnote{This part can be found on pages 256-277}
+\[2\frac{1}{n}(\hat{\beta}_n - \beta_0)\sum_i(g_{i0}^{(1)})^2v_{i0}v_{i0}' - 2\frac{1}{n}\sum_i\varepsilon_ig_{i0}^{(1)}v_{i0}' = 0 \]
 Then, 
 \begin{align*}
-\sqrt{n}(\hat{\beta}_n - \beta_0) & = (\frac{1}{n}\sum_i(g_{i}^{(1)})^2v_iv_i')^{-1}\frac{1}{\sqrt{n}}\sum_i\varepsilon_i g_{i}^{(1)}v_i \\
-     					  & = (\frac{1}{n}\sum_i(g_{i0}^{(1)})^2v_{i0}v_{i0}')^{-1}\frac{1}{\sqrt{n}}\sum_i\varepsilon_i g_{i0}^{(1)}v_{i0} + o_p(1).
+\sqrt{n}(\hat{\beta}_n - \beta_0) & = (\frac{1}{n}\sum_i(g_{i0}^{(1)})^2v_{i0}v_{i0}')^{-1}\frac{1}{\sqrt{n}}\sum_i\varepsilon_i g_{i0}^{(1)}v_{i0}.
 \end{align*}
 
-For $g_{i0}^{(1)} = g^{(1)}(X_i'\beta_0)$ and $v_{i0} = X_i - E[X_i'|X_i'\beta_0]$. With this in mind, the Central Limit Theorem (CLT) and Law of Large Numbers (LLN) we obtain the result from Theorem 4.1 if we set $w(X_i) = 1$.
+With this in mind, the Central Limit Theorem and Law of Large Numbers we obtain the result from Theorem 4.1 if we set $w(X_i) = 1$.
 
 
 %Recall when we described identiÖcation that we required the dimension of Xi to be 2 or larger.
