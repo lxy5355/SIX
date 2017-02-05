@@ -21,7 +21,7 @@ g_i <- function(X,y,b_vec,h) {
     estimate[which(estimate < kleinspadyFloor)] <- kleinspadyFloor
     estimate[which(estimate > 1 - kleinspadyFloor)] <- 1 - kleinspadyFloor
     g_i[i] <- estimate
-  }
+    }
   return(g_i)
 }
 
@@ -46,7 +46,7 @@ loglike <- function(X,y,b_vec,h) {
     estimate[which(estimate > 1 - kleinspadyFloor)] <- 1 - kleinspadyFloor
     g_i[i] <- estimate
     L <-log(g_i)%*%y + log(1-g_i)%*%(1-y)    #only this line is different from the function g_i
-  }
+    }
   return(-L)
 }
 
@@ -54,7 +54,7 @@ loglike <- function(X,y,b_vec,h) {
 # Define function to estimate beta.hat and g.hat
 KS_calc <- function(X,y,h) {
   opt.test <- gridSearch(fun=function(x){loglike(X=X,y=y,b_vec=x,h=h)},
-                         levels=append(1,rep(list(seq(-2.5,-1.5,len=100)),ncol(X)-1)) )
+	                     levels=append(1,rep(list(seq(-4,0,len=81)),ncol(X)-1)) )
   beta.hat <- opt.test$minlevels
   g.hat <-approxfun(X%*%beta.hat, g_i(X,y,beta.hat,h), method = "linear", rule = 1, ties = mean)
   returnlist <- list(g.hat=g.hat,beta.hat=beta.hat)

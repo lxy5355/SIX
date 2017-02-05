@@ -1,8 +1,8 @@
 source("ichimura_functions.R")
 
-data.trim <- function(X,y) {
+data.trim <- function(X,y,h) {
 
-b_2<-seq(-2.5,-1.5,len=100)
+b_2<-seq(-4,0,len=81)
 for (b2 in b_2){
     b_vec <- c(1,b2)
     n <- nrow(X)
