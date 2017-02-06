@@ -129,26 +129,17 @@ Parametric methods to estimate $\beta$ require assumptions on the distribution o
 
 \[ 
 \begin{split}
-E(Y|x) & = \sum_{y=0,1} yP(y|x) = 1 \times P(Y=1|x) + 0 \times P(Y=0|x) \\
- & = P(Y=1|x) = P(\alpha + x'\beta + u_i > 0) \\
+E(Y|x) & = \sum_{y=0,1} yP(y|x) = P(Y=1|x) = P(\alpha + x'\beta + u_i > 0) \\
  & = P(u_i > -(\alpha + x'\beta)) = 1 - P(u_i \leq -(\alpha + x'\beta)) \\
- & = 1 - F(-(\alpha + x'\beta)) \equiv g(\alpha + x'\beta),
+ & = 1 - F(-(\alpha + x'\beta)) \\
 \end{split}
 \]
 
 
 where $F(\cdot)$ is the cummulative distribution function (CDF) of $u$. Furthermore, $1 - F(-(\alpha + x'\beta) = F(\alpha + x'\beta)$, since $u$ has a symmetric distribution.
 
-Model (2) is then commonly referred to as a Probit model
-
-\[
-E(Y|X) = P(Y=1|x) = \Phi(\alpha + x'\beta),
-\]
-
-where $\Phi$ is the CDF of a standard normal variable. 
-
-Alternatively, for $u$ following a symmetric logistic distribution a logit model is obtained. Generally speaking, model (1) contains many widely used parametric models that assume $g$ is known up to a finite-dimensional parameter. Thus, different functional forms for $u$ lead to different functional forms for the conditional probability of $Y = 1$. Abridge, consistent parametric estimation of $E(Y|X) = P(Y=1|x)$ requires the \textit{correct} distribution specification of $u$. 
-Hence, model (1) with unknown $g(\cdot)$ is a more flexible version of parametric models which still clings to many of its desirable features. 
+If $\Phi$ is the CDF of a standard normal variable, then a Probit model is obtained. Alternatively, for $u$ following a symmetric logistic distribution a logit model is obtained. Thus, different functional forms for $u$ lead to different functional forms for the conditional probability of $Y = 1$. Abridge, consistent parametric estimation of $E(Y|X) = P(Y=1|x)$ requires the \textit{correct} distribution specification of $u$. 
+Hence, while model (1) with unknown $g(\cdot)$ is a more flexible version of parametric models, it still clings to many of its desirable features. 
 
 Distinctively, nonparametric models can be defined as
   
@@ -269,19 +260,14 @@ G(X_i'\beta) \stackrel{def}{=} E(Yi|X_i'\beta) = E[g(X_i'\beta_0)|X_i'\beta]
 \end{equation}
  by the kernel method. 
 
-Ichimura (1993) proposes modifications of the usual kernel estimation to estimate $G(X_i'\beta)$. Markedly, observation $i$ is excluded from the calculation of $G(X_i'\beta)$. Otherwise, consider a relatively small bandwidth. Then, $S_n(\beta)$ is trivially minimized when $\hat{G}(X_i'\beta) = Y_i$. By leaving one observation out, this problem is countered. Also, this validates the ability to predict the $i$th observation using the remaining observations in the sample. Therefore, outside the sample prediction is improved.
+The Nadaraya-Watson (NW) kernel density estimator would commonly take the form
 
-Furthermore, without going into lengthy technical details, restrictions are imposed on the kernel estimator and bandwidth. Assume a bounded second order kernel $K(u)$ with compact support is used. These satisfy $0 \leq K(u) < \infty$, $K(u)=K(-u)$, $\int_{- \infty}^{\infty} K(u)du = 1$ and $\sigma_k^2 = \int_{-\infty}^{\infty} u^2K(u)du < \infty$. Furthermore, an approximately optimal bandwidth balancing bias and variance is required. That is, $ h_n = O(n^{-\frac{1}{5}})$. \footnote{The assumption that the support of the kernel is compact is used in order to simplify arguments.}
+\[\hat{G}(X_i'\beta) = \frac{(nh)^{-1}\sum_{i=1}^{n}  Y_iK \left(\frac{x'\beta - X_i'\beta}{h_n}\right)}{\hat{p}(X_i'\beta)} \]
 
-With all of this in mind, a leave-one-out Nadaraya-Watson (NW) kernel estimator is obtained
+where where $\hat{p}(X_i'\beta) = (nh)^{-1}\sum_{i=1}^{n}K\left(\frac{x'\beta - X_i'\beta}{h_n}\right)$.
 
-\begin{equation}
-\hat{G}_{-i}(X_i'\beta) \equiv \hat{E}_{-i}(Yi|X_i'\beta) = \frac{(nh)^{-1}\sum_{j=1, j \neq i }^{n}  Y_jK(\frac{X_j'\beta - X_i'\beta}{h_n})}{\hat{p}_{-i}(X_i'\beta)},
-\end{equation}
 
-where $\hat{p}_{-i}(X_i'\beta) = (nh)^{-1}\sum_{j=1,j \neq i}^{n}K(\frac{X_j'\beta - X_i'\beta}{h_n})$.  
-
-The denominator $\hat{p}(X_i'\beta)$ is random and it becomes necessary to trim small values, particularly at the tails of the distribution. Otherwise, the value for the NW kernel estimator explodes. Let $p(x'\beta)$ denote the probability density function (PDF) of $X_i'\beta$ and $A_\delta$ and $A_n$ be the sets
+Ichimura (1993) proposes modifications of the usual kernel estimation to estimate $G(X_i'\beta)$. Markedly, observation $i$ is excluded from the calculation of $G(X_i'\beta)$. Otherwise, consider a relatively small bandwidth. Then, $S_n(\beta)$ is trivially minimized when $\hat{G}(X_i'\beta) = Y_i$. By leaving one observation out, this problem is countered. Also, this validates the ability to predict the $i$th observation using the remaining observations in the sample. Therefore, outside the sample prediction is improved. Moreover, the denominator $\hat{p}(X_i'\beta)$ is random and it becomes necessary to trim small values, particularly at the tails of the distribution. Otherwise, the value for the NW kernel estimator explodes. Let $p(x'\beta)$ denote the probability density function (PDF) of $X_i'\beta$ and $A_\delta$ and $A_n$ be the sets
 
 \[ A_\delta = \{ x : p(x'\beta) \geq \delta, \text{ for all }  \beta \in \mathcal{B} \}
 \]
@@ -293,36 +279,38 @@ where $\delta > 0$ is a constant, $\mathcal{B} \in \mathbb{R}^q$, and
 
 Then, for $x \in A_\delta$ the denominator does not get too close to zero. The set $A_n$ where $\norm{\cdot}$ is a Euclidean norm, is larger than $A_\delta$ but as $ n \rightarrow \infty $, $h_n \rightarrow 0$, $A_n$ shrinks to $A_\delta$. 
 
-With this in mind, it is possible to choose $\beta$ by using a weighted NLS (WNLS) method
+With all of this in mind, a leave-one-out Nadaraya-Watson (NW) kernel estimator is obtained
 
 \begin{equation}
-S_n(\beta) = \frac{1}{n} \sum_{i=1}^{n}  [Y_i - \hat{G}_{-i}(X_i'\beta)]^2w(x_i)\mathbf{1}{(X_i \in A_n)}
+\hat{G}_{-i}(X_i'\beta) = \frac{(nh)^{-1}\sum_{j=1, j \neq i }^{n}  w(x_j)\mathbf{1}{(X_j \in A_n)}Y_jK\left(\frac{X_j'\beta - X_i'\beta}{h_n}\right)}{\hat{p}_{-i}(X_i'\beta)},
 \end{equation}
 
-where $\mathbf{1}{(X_i \in A_n)}$ is a trimming function that ensures that the random denominator is positive with high probability, and $w(x_i)$ is an appropriate nonnegative weighting function to maximize asymptotic efficiency, as explained in section 4.2. 
+where $\hat{p}_{-i}(X_i'\beta) = (nh)^{-1}\sum_{j=1,j \neq i}^{n}w(x_j)\mathbf{1}{(X_j \in A_n)}K\left(\frac{X_j'\beta - X_i'\beta}{h_n}\right)$ and \linebreak  $\mathbf{1}{(X_i \in A_\delta)}$ is a trimming function.
 
+
+Furthermore, without going into lengthy technical details, restrictions are imposed on the kernel estimator and bandwidth. A bounded second order kernel $K(u)$ with compact support is used. This kind of kernel satisfies $0 \leq K(u) < \infty$, $K(u)=K(-u)$, $\int_{- \infty}^{\infty} K(u)du = 1$ and $\sigma_k^2 = \int_{-\infty}^{\infty} u^2K(u)du < \infty$. Furthermore, an approximately optimal bandwidth balancing bias and variance is required. That is, $ h_n = O(n^{-\frac{1}{5}})$. \footnote{The assumption that the support of the kernel is compact is used in order to simplify arguments.}
+
+With all of this in mind, it is possible to choose $\beta$ by using a weighted NLS (WNLS) method
+
+\begin{equation}
+S_n(\beta) = \frac{1}{n} \sum_{i=1}^{n}  [Y_i - \hat{G}_{-i}(X_i'\beta)]^2w(x_i)\mathbf{1}{(X_i \in A_\delta)}
+\end{equation}
+
+where $\mathbf{1}{(X_i \in A_n)}$ is a trimming function, and $w(x_i)$ is an appropriate nonnegative weighting function to maximize asymptotic efficiency, as explained in section 4.2. 
 
 \newtheorem{theorem}{Theorem}[section]
 
 \begin{theorem}
 According to Ichimura (1993), 
 
-%\begin{enumerate}[label=(\roman*)]
-	%\item The set $A_\delta$ is compact, and the weight function $w(\cdot)$ is bounded and positive on $A_\delta$. Define the set $D_z = \{ z : z = x'\beta, \beta \in \mathcal{B}$,$ x \in A_\delta\}$. Letting $p(\cdot)$ denote the PDF of $z \in D_z$, $p(\cdot)$ is bounded below by a positive constant for all $z \in D_z$.
-	%\item $g(\cdot)$ and $p(\cdot)$ are three times differentiable with respect to $z = x'\beta$. The third derivatives are Lipschitz continuous uniformly over $\mathcal{B}$ for all $z \in D_z$.
-	%\item The kernel function is a bounded second order kernel having bounded support, is twice differentiable, and its second derivative is Lipschitz continuous.
-	%\item $E|Y^m| < \infty$ for some $m \geq 3$. $cov(Y|x)$ is bounded and bounded away from zero for all $x \in A_\delta$. $ln(h)/[nh^{3 + \frac{3}{m-1}}] \rightarrow 0$ and $nh^8 \rightarrow 0$ as $n \rightarrow \infty $ .
-	
-%\end{enumerate}
-
 \[ \sqrt{n}(\hat{\beta}_n - \beta_0) \stackrel{d}{\rightarrow} N(0,\Omega_I), \] 
 
  with $\Omega_I = V^{-1}\Sigma V^{-1}$, where $I$ stands for Ichimura and 
-\[\Sigma = E\{w(X_i)^2\sigma^2(X_i)(g_i^{(1)})^2(X_i - E_A(X_i|X_i'\beta_0)) \times (X_i - E_A(X_i|X_i'\beta_0))'\},\]
+\[\Sigma = E\{\mathbf{1}{(X_i \in A_\delta)}w(X_i)^2\sigma^2(X_i)(g_i^{(1)})^2(X_i - E(X_i|X_i'\beta_0)) \times (X_i - E(X_i|X_i'\beta_0))'\},\]
 
-with $g_i^{(1)} = [\partial g(v)/\partial v]|_{v = X_i'\beta_0}, E_A(X_i|v) = E(X_i|x_A'\beta_0 = v)$ with $x_A$ having the distribution of $X_i$ conditional on $X_i \in A_\delta$, and
+with $g_i^{(1)} = [\partial g(v)/\partial v]|_{v = X_i'\beta_0}$, and
 
-\[ V = E[w(X_i)(g_i^{(1)})^2(X_i - E_A(X_i|X_i'\beta_0))(X_i - E_A(X_i|X_i'\beta_0))'].\]
+\[ V = E[ \mathbf{1}{(X_i \in A_\delta)} w(X_i)(g_i^{(1)})^2(X_i - E(X_i|X_i'\beta_0))(X_i - E(X_i|X_i'\beta_0))'].\]
 
 \end{theorem}
 
@@ -406,18 +394,18 @@ The problem of efficient estimation of $\beta_0$ in a single index model with un
 The efficiency bound is then
 
 \begin{equation}
-\Omega_{SI} = \left\{ E\left[\frac{1}{\sigma^2(x)}\frac{\partial}{\partial \beta}
+\Omega_{SI} = \left\{ E\left[\frac{\mathbf{1}{(X_i \in A_\delta)}}{\sigma^2(x)}\frac{\partial}{\partial \beta}
  G(X'\beta,\beta)\frac{\partial}{\partial \beta} G(X'\beta,\beta) \right] \right\}^{-1}
 \end{equation}
 
-where $SI$ stands for single index. Considering the result shown above
+where $SI$ stands for single index. Consider the result shown above
 \begin{align*}
-E_A[g(X_i'\beta_0)|X_i'\beta)] & = g(X_i'\beta_0) - g^{(1)}(X_i'\beta)( X_i - E_A[X_i'|X_i'\beta])(\beta_0 - \beta) + O(n^{-1})\\
-							  & = g(X_i'\beta_0) - g^{(1)}(X_i'\beta_0)( X_i - E_A[X_i'|X_i'\beta_0])(\beta_0 - \beta) + o_p(1)											   
+E[g(X_i'\beta_0)|X_i'\beta)] & = g(X_i'\beta_0) - g^{(1)}(X_i'\beta)( X_i - E[X_i'|X_i'\beta])(\beta_0 - \beta) + O(n^{-1})\\
+							  & = g(X_i'\beta_0) - g^{(1)}(X_i'\beta_0)( X_i - E[X_i'|X_i'\beta_0])(\beta_0 - \beta) + o_p(1)	.										   
 \end{align*}
-for $E_A(X_i|v) = E(X_i|x_A'\beta_0 = v)$ with $x_A$ having the distribution of $X_i$ conditional on $X_i \in A_\delta$. Minimizing in order to $\beta$ and ignoring terms independent of $\beta$ and keeping the term $o_p(1)$ so as to make the previous approximations evident
+Minimizing the previous result in order to $\beta$ and ignoring terms independent of $\beta$ and keeping the term $o_p(1)$ so as to make the previous approximations evident
 \begin{align*}
- \frac{\partial}{\partial \beta} G(X_i'\beta) & = g^{(1)}(X_i'\beta_0)( X_i - E_A[X_i'|X_i'\beta_0]) + o_p(1)
+ \frac{\partial}{\partial \beta} G(X_i'\beta) & = g^{(1)}(X_i'\beta_0)( X_i - E[X_i'|X_i'\beta_0]) + o_p(1)
 \end{align*}
 
 This bound is achieved by the semiparametric WNLS estimator if $\sigma^2(X)$ is known.
@@ -462,20 +450,18 @@ where
 		\item $\{x_i,y_i\}$ for i = 1, ..., n is an i.i.d. sample.
 \end{enumerate}
 
-It is clear from equation (13) that restrictions must be imposed such that any estimate of $g(\cdot)$ is kept sufficiently far away from 0 and 1. This can be achieved by using a simplified trimming function $\tau_i = \mathbf{1}{(X_i \in A_\delta)}$ that restricts X to a fixed set $A_\delta$ on which $G$ is bounded away from 0 and 1.
+It is clear from equation (13) that restrictions must be imposed such that any estimate of $g(\cdot)$ is kept sufficiently far away from 0 and 1. As in Ichimura's (1993) model, this can be achieved by using a simplified trimming function $\mathbf{1}{(X_i \in A_\delta)}$ that restricts X to a fixed set $A_\delta$ on which $G$ is bounded away from 0 and 1. The set $A_n$ is defined as in section 4.
 
-Similarly to Ichimura's method, Klein and Spady (1993) suggest replacing $g(\cdot)$ with the leave-one-out NW from equation (8). Again, one observation is left out as otherwise, for a relatively small bandwidth, the objective function would be maximized by setting $\hat{G}(X_i'\beta)=0$ when $Y_i=0$ and $\hat{G}(X_i'\beta)=1$ when $Y_i=1$. That is, the objective function would take the value zero. By leaving one observation out, outside the sample prediction is improved. 
+Similarly to Ichimura's method, Klein and Spady (1993) suggest replacing $g(\cdot)$ with an unweighted version of leave-one-out NW estimator from equation (8). Again, one observation is left out as otherwise, for a relatively small bandwidth, the objective function would be maximized by setting $\hat{G}(X_i'\beta)=0$ when $Y_i=0$ and $\hat{G}(X_i'\beta)=1$ when $Y_i=1$. That is, the objective function would take the value zero. By leaving one observation out, outside the sample prediction is improved. 
 
 Furthermore, without spanning much on technical details, assumptions are made concerning the kernel estimator and bandwidth. Assume an higher order kernel density estimator $K(u)$ with compact support is used. In general, higher order kernels allow for increased smoothness and faster asymptotic rates of convergence by relaxing the restriction that the kernel  be a density function. However, these are seldomnly used in applied work as they involve local averaging with negative weights (Marron (1992)). \footnote{ In fact, for its desirable properties to ``kick in'', a very large number of observations might be necessary. Marron and Wand (1992) conclude that, in most situations, the benefits in terms of performance of higher order kernels are not sufficient to outweigh the loss of interpretability.} An example of a higher order kernel is
 \[\int z^{2}K(z)dz = 0.\]
 The bandwidth must satisfy the rate $ n^{-\frac{1}{6}} < h_n < n^{-\frac{1}{8}}$. Moreover, $P(Y=1|X=x)$ need not be monotonic in $x$.
 
 With all of this in mind, the maximization problem takes the form
-
 \begin{equation}
-\mathcal{L}_n(\beta) = \frac{1}{n}\sum_{i=1}^n \tau_{i}\{ (1 - Y_i)ln[ 1 - \hat{G}_{-i}(X_i'\beta)] +  Y_iln[\hat{G}_{-i}(X_i'\beta)]\},
+\mathcal{L}_n(\beta) = \frac{1}{n}\sum_{i=1}^n \mathbf{1}{(X_i \in A_\delta)} \{ (1 - Y_i)ln[ 1 - \hat{G}_{-i}(X_i'\beta)] +  Y_iln[\hat{G}_{-i}(X_i'\beta)]\},
 \end{equation}
-
 where $\hat{G}_{-i}$ follows equation (8).
 
 \begin{theorem}
@@ -484,8 +470,8 @@ According to Klein and Spady (1993),
 \[\sqrt{n}(\hat{\beta}_{n} - \beta_0) \stackrel{d}{\rightarrow} N(0,\Omega_{KS}),
 \]
 
-with  \[ \Omega_{KS} = \left\{ E\left[\frac{\partial}{\partial \beta}
- G(X_i'\beta)\frac{\partial}{\partial \beta} G(X_i'\beta)'\frac{1}{g(X_i'\beta_0)(1 - g(X_i'\beta_0))} \right]\right\}^{-1}, \]
+with  \[ \Omega_{KS} = \left\{ E\left[\frac{\mathbf{1}{(X_i \in A_\delta)}}{g(X_i'\beta_0)(1 - g(X_i'\beta_0))}\frac{\partial}{\partial \beta}
+ G(X_i'\beta)\frac{\partial}{\partial \beta} G(X_i'\beta)' \right]\right\}^{-1}, \]
  
 where $KS$ stands for Klein and Spady and $\Omega_{KS} = \Omega_{SI}$, i.e., the estimator is asymptotically efficient.
 
@@ -508,18 +494,15 @@ where the last equality follows from the assumption $E[\varepsilon|X]=0$. Hence,
 
 If one differentiates the right-hand side of equation (14) with respect to $\beta_n$, then the first order condition is
 \begin{equation}
-\frac{1}{n} \sum_{i=1}^n \frac{\frac{\partial\hat{G}_{-i}(X_i'\beta_n)}{\partial \beta_n}}{\hat{G}_{-i}(X_i'\beta_n)(1 - \hat{G}_{-i}(X_i'\beta_n))} (Y_i - \hat{G}_{-i}(X_i'\beta_n)) X_i \tau_i = 0
+\frac{1}{n} \sum_{i=1}^n \frac{\frac{\partial\hat{G}_{-i}(X_i'\beta_n)}{\partial \beta_n}}{\hat{G}_{-i}(X_i'\beta_n)(1 - \hat{G}_{-i}(X_i'\beta_n))} (Y_i - \hat{G}_{-i}(X_i'\beta_n)) \mathbf{1}{(X_i \in A_\delta)} X_i = 0
 \end{equation} 
 with probability approaching 1 as $n \rightarrow \infty$. 
 
 Consider now a semiparametric WNLS estimation of $\beta_0$ such as in Ichimura's (1993) model. The first order condition from equation (15) is the same as the first-order condition for semiparametric WNLS estimation of $\beta_0$ with the weight function
-
 \begin{align*}
 w_i & = \{ \hat{G}_{-i}(X_i'\beta_n)[ 1 - \hat{G}_{-i}(X_i'\beta_n)]\}^{-1} = \{ G(X_i'\beta_n)[ 1 - G(X_i'\beta_n)]\}^{-1} + o_p(1) \\
      & = \{ G(X_i'\beta_0)[ 1 - G(X_i'\beta_0)]\}^{-1} + o_p(1) = \{ g(X_i'\beta_0)[ 1 - g(X_i'\beta_0)]\}^{-1} + o_p(1).
 \end{align*}
-
-
 Seeing to section 4.2., it follows that semiparametric maximum-likelihood estimator of $\beta_0$ in Klein and Spady's model is asymptotically efficient.\footnote{This is only true for ``first order efficiency'', i.e., when $E(X_i|X_i'\beta)$ is linear in $X_i'\beta$.}
 
 \subsection{Bandwidth Selection} % (fold)
