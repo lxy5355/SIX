@@ -176,9 +176,11 @@ Although it can be perceived from Figure 3 that the range of estimates obtained 
   \label{fig:boxplots of estimates}
 \end{figure}
 
-Another reason might be that the accuracy of estimate searching in NP package satisfies a relative convergence tolerance of $1e-8$, which is much finer than an accuracy rate of $0.05$ defined in original functions. However, whether this difference can give rise to higher variance of estimates of the former than the latter is quite doubtful.
+Another thought refers to the accuracy of estimate-searching. In NP package an estimate satisfies a relative convergence tolerance of $1e-8$, which is much finer than an accuracy rate of $0.05$ defined in original functions. While it is not clear whether this difference can give rise to a higher variance of estimates of the former than the latter, the reason might exist in the optimization procedure nested in optim() function. We therefore do not go into details on this issue and will only focus on original functions.
 
-The second question resides in an interpretation of magnificently smaller MSE of Klein and Spady estimates in comparison with that of Ichimura estimates when using original functions. Meanwhile this relationship is reversed in the case of NP package, which will be taken as a third question and elaborated later.
+The second question resides in an interpretation of the magnificently smaller MSE of Klein and Spady's estimates in comparison with that of Ichimura estimates when using original functions. This can be explained by the difference in efficiency between the two estimates. Notice that residuals in binary choice model only take two values depending on independent variables $x_i$ and are thus heteroskedastic by definition, the estimate in Klein and Spady's model is efficient compared to that in Ichimura's model, which requires a sensible weight function. For simplicity we stick to the `natural` weight function $w(x_i)=1$ in this paper. 
+
+Meanwhile this relationship is reversed in the case of NP package, yet again a detailed knowledge on the NP package is required to find the real reason. 
 
 
 

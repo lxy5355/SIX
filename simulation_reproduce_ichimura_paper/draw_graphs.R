@@ -36,3 +36,4 @@ hist(KS_6$x,breaks = 50, main="KS_6")
 #hist(KS_8$x,breaks = 50, main="KS_8")
 
 
+MSE=read.csv("loss_beta.csv")
