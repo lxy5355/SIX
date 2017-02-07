@@ -485,12 +485,11 @@ It is known that for a binary choice model,
 \[Var(Y|X = x) = P(Y = 1|X = x)[1 - P(Y = 1|X = x)].\]
 Thus, in the present case
 \begin{align*}
-Var(Y|X = x) & = E[\mathbf{1}{(Y = 1)}|X = x]\{1 - E[\mathbf{1}{(Y = 1)}|X = x]\} \\
-&=E[\mathbf{1}{(x'\beta_0 \geq \varepsilon)}|X = x]\{1 - E[\mathbf{1}{(x'\beta_0 \geq \varepsilon)}|X = x]\} \\ 
+Var(Y|X = x) & = P((x'\beta_0 \geq \varepsilon)|X = x)[1 - P((x'\beta_0 \geq \varepsilon)|X = x)] \\
 & = g(x'\beta_0)[1 - g(x'\beta_0)]
 \end{align*}
 
-where the last equality follows from the assumption $E[\varepsilon|X]=0$. Hence, the model can handle heteroskedasticity only if the ``error" distribution depends on the same index, $ x'\beta_0$, that determines the ``mean response" (Klein and Vella (2006)).
+Hence, the model can handle heteroskedasticity only if the ``error" distribution depends on the same index, $ x'\beta_0$, that determines the ``mean response" (Klein and Vella (2006)).
 
 If one differentiates the right-hand side of equation (14) with respect to $\beta_n$, then the first order condition is
 \begin{equation}
