@@ -31,3 +31,10 @@ MSE_logit_standard <- mean((beta_logit_standard$x - beta.true))^2
 MSE_ich_joint <- mean((beta_ich_joint$x - beta.true))^2
 MSE_ks_joint <- mean((beta_ks_joint$x - beta.true))^2
 MSE_logit_joint <- mean((beta_logit_joint$x - beta.true))^2
+
+RMSE_ich_standard <- sqrt(MSE_ich_standard)
+RMSE_ks_standard <- sqrt(MSE_ks_standard)
+RMSE_logit_standard <- sqrt(MSE_logit_standard)
+RMSE_ich_joint <- sqrt(MSE_ich_joint)
+RMSE_ks_joint <- sqrt(MSE_ks_joint)
+RMSE_logit_joint <- sqrt(MSE_logit_joint)
