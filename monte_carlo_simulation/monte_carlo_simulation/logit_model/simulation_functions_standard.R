@@ -23,6 +23,6 @@ a <- summary(glm(y ~ x1 + x2, family='binomial'))$coefficients
 mc.beta.logit[j] <- a[3][1]/a[2][1]
 }
 
-MSE_logit <- mean((mc.beta.logit - beta.true))^2
+MSE_logit_standard <- mean((mc.beta.logit - beta.true))^2
 
-write.csv(mc.beta.logit, 'beta_logit_mc.csv')
+write.csv(mc.beta.logit, 'beta_logit_standard_mc.csv')
