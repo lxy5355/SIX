@@ -101,21 +101,17 @@ In this section, we elaborate on the model's main features and contributions to 
 
 \vspace{2mm} 
 The model
- 
 \begin{eqnarray}
-Y_i = g(X_i'\beta) + \varepsilon_i,
+Y_i = g(X_i'\beta_0) + \varepsilon_i,
 \end{eqnarray}
-
 where
-
 \begin{enumerate}[label=(\roman*)]
 		\item $\{x_i,y_i\}$ for i = 1, ..., n is an i.i.d. sample;
-		\item $Y_{i}$ is the dependent variable, $X_i \in \mathbb{R}^{q}$ is a vector of explanatory variables, $\beta$ is the q $\times$ 1 vector of unknown parameters; 
-	\item $X_i'\beta$ is a single index because it is a scalar;
+		\item $Y_{i}$ is the dependent variable, $X_i \in \mathbb{R}^{q}$ is a vector of explanatory variables, $\beta_0$ is the q $\times$ 1 vector of unknown parameters; 
+	\item $X_i'\beta_0$ is a single index because it is a scalar;
 	\item $ E(\varepsilon_i|x_i) = 0 $;
 	\item $g: \mathbb{R} \rightarrow \mathbb{R} $ is a smooth unknown link function; 
 \end{enumerate}
-
 is a single index model.
 \vspace{2mm}
 
@@ -157,7 +153,7 @@ with smooth $g$, assuming additivity of the error. \footnote{One can suggest an 
 
 Nonparametric models typically suffer from the curse of dimensionality, a term usually attributed to Bellman (1961) \cite{[3]}. This is defined by Gery Geenens (2011) \cite{[4]} as being caused by the sparsity of data in high-dimensional spaces, which results in a decrease in fastest achievable rates of convergence of regression function estimators toward their target curve as the dimension of the vector of independent variables increases. 
 
-The single index model avoids the curse of dimensionality by reducing the p-dimensional predictor to a univariate single-index. In fact, the estimator achieves the same convergence rate $n^{-\frac{1}{2}}$ that is optimal for most parametric models. For nonparametric models this rate is only $n^{-\frac{2}{5}}$, if the underlying function is twice continuously differentiable (Cameron and Trivedi (2005) \cite{[5]}).
+The rate of convergence of a estimator quantifies how fast the estimation error decreases as the sample size increases. The single index model avoids the curse of dimensionality by reducing the p-dimensional predictor to a univariate single-index. Thus, the estimator achieves the same convergence rate $n^{-\frac{1}{2}}$ that is optimal for most parametric models. For nonparametric models this rate is only $n^{-\frac{2}{5}}$, if the underlying function is twice continuously differentiable (Cameron and Trivedi (2005) \cite{[5]}).
 Thus, in general, single index models reach greater estimation precision than fully nonparametric estimators with multidimensional X.
 
 
@@ -296,7 +292,7 @@ With all of this in mind, a leave-one-out Nadaraya-Watson (NW) kernel estimator 
 where $\hat{p}_{-i}(X_i'\beta) = (nh)^{-1}\sum_{j=1,j \neq i}^{n}w(x_j)\mathbf{1}{(X_j \in A_n)}K\left(\frac{X_j'\beta - X_i'\beta}{h_n}\right)$ and \linebreak  $\mathbf{1}{(X_i \in A_\delta)}$ is a trimming function.
 
 
-Furthermore, without going into lengthy technical details, restrictions are imposed on the kernel estimator and bandwidth. A bounded second order kernel $K(u)$ with compact support is used.  \footnote{The assumption that the support of the kernel is compact is used in order to simplify arguments.} This kind of kernel satisfies $0 \leq K(u) < \infty$, $K(u)=K(-u)$, $\int_{- \infty}^{\infty} K(u)du = 1$ and $\sigma_k^2 = \int_{-\infty}^{\infty} u^2K(u)du < \infty$. Furthermore, an approximately optimal bandwidth balancing bias and variance is required. That is, $ h_n = O(n^{-\frac{1}{5}})$.
+Furthermore, without going into lengthy technical details, further restrictions must be imposed on the model. A bounded second order kernel $K(u)$ with compact support is used. A kernel is of second order if its second moment is the first nonzero moment. \footnote{The assumption that the support of the kernel is compact is used in order to simplify arguments.} This kind of kernel satisfies $0 \leq K(u) < \infty$, $K(u)=K(-u)$, $\int_{- \infty}^{\infty} K(u)du = 1$ and $\sigma_k^2 = \int_{-\infty}^{\infty} u^2K(u)du < \infty$. Additionaly, $g(\cdot)$ is twice continuously differentiable, which is a classical assumption for consistency of the kernel estimator. Furthermore, an approximately optimal bandwidth balancing bias and variance is required. That is, $ h_n = O(n^{-\frac{1}{5}})$.
 
 With all of this in mind, it is possible to choose $\beta$ by using a weighted NLS (WNLS) method
 
@@ -358,11 +354,11 @@ g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta_n)] & = g(X_i'\beta_0) - g(X_i'\beta
 Hence, for $g_{i0}^{(1)} = g^{(1)}(X_i'\beta_0)$ and $v_{i0} = X_i - E[X_i'|X_i'\beta_0]$
  
 \begin{align*}
-S_{n}(\hat{\beta}_n) & = (\beta_0 - \hat{\beta}_n)'\left[\frac{1}{n}\sum_i (g_{i0}^{(1)})^2v_{i0}v_{i0}'\right](\beta_0 - \hat{\beta}_n) \\
-             & + 2\frac{1}{n}\sum_i\varepsilon_ig_{i0}^{(1)}v_{i0}'(\beta_0 - \hat{\beta}_n) + \frac{1}{n}\sum_i \varepsilon_i^2 + o_p(1)
+S_{n}(\beta_n) & = (\beta_0 - \beta_n)'\left[\frac{1}{n}\sum_i (g_{i0}^{(1)})^2v_{i0}v_{i0}'\right](\beta_0 - \beta_n) \\
+             & + 2\frac{1}{n}\sum_i\varepsilon_ig_{i0}^{(1)}v_{i0}'(\beta_0 - \beta_n) + \frac{1}{n}\sum_i \varepsilon_i^2 + o_p(1)
 \end{align*}
 
-Now following closely Li and Racine (2007) \cite{[1]}, the objective function is minimized in order to $\hat{\beta}_n$, ignoring terms independent of $\hat{\beta}_n$ and keeping the term $o_p(1)$ so as to make the previous approximations evident \footnote{ The scatch for the proof can be found on pages 256-277.}
+Now following closely Li and Racine (2007) \cite{[1]}, the objective function is minimized in order to $\beta_n$, ignoring terms independent of $\beta_n$ and keeping the term $o_p(1)$ so as to make the previous approximations evident \footnote{ The scatch for the proof can be found on pages 256-277.}. Moreover, replace $\beta_n$ by the minimizing value $\hat{\beta}_n$
 \[2\frac{1}{n}(\hat{\beta}_n - \beta_0)\sum_i(g_{i0}^{(1)})^2v_{i0}v_{i0}' - 2\frac{1}{n}\sum_i\varepsilon_ig_{i0}^{(1)}v_{i0}' + o_p(1) = 0.  \]
 Then, 
 \begin{align*}
@@ -403,12 +399,12 @@ The efficiency bound is then
 
 \begin{equation}
 \Omega_{SI} = \left\{ E\left[\frac{\mathbf{1}{(X_i \in A_\delta)}}{\sigma^2(x)}\frac{\partial}{\partial \beta}
- G(X'\beta,\beta)\frac{\partial}{\partial \beta} G(X'\beta,\beta) \right] \right\}^{-1}
+ G(X'\beta)\frac{\partial}{\partial \beta} G(X'\beta) \right] \right\}^{-1}
 \end{equation}
 
 where $SI$ stands for single index. Consider the result shown above
 \begin{align*}
-E[g(X_i'\beta_0)|X_i'\beta)] & = g(X_i'\beta_0) - g^{(1)}(X_i'\beta)( X_i - E[X_i'|X_i'\beta])(\beta_0 - \beta) + O(n^{-1})\\
+E[g(X_i'\beta_0)|X_i'\beta)] & = g(X_i'\beta_0) - g^{(1)}(X_i'\beta)( X_i - E[X_i'|X_i'\beta])(\beta_0 - \beta) + o_p(1)\\
 							  & = g(X_i'\beta_0) - g^{(1)}(X_i'\beta_0)( X_i - E[X_i'|X_i'\beta_0])(\beta_0 - \beta) + o_p(1)	.										   
 \end{align*}
 Minimizing the previous result in order to $\beta$ and ignoring terms independent of $\beta$ and keeping the term $o_p(1)$ so as to make the previous approximations evident
@@ -441,7 +437,7 @@ In this section we analyze Klein and Spady's (1993) \cite{[12]} semiparametric b
 The model is defined as
 
 \begin{equation}
-Y_i =  \mathbf{1}{(X_i'\beta \geq \varepsilon_i)},
+Y_i =  \mathbf{1}{(X_i'\beta_0 \geq \varepsilon_i)},
 \end{equation}
 where $\varepsilon$ is a random disturbance. Furthermore, $G(X_i'\beta) = E(g(X_i'\beta_0)|X_i'\beta)$ and for known $g(\cdot)$, the asymptotically efficient estimator of $\beta_0$ is a maximum likelihood estimator (MLE). 
 
@@ -460,10 +456,9 @@ where
 
 It is clear from equation (13) that restrictions must be imposed such that any estimate of $g(\cdot)$ is kept sufficiently far away from 0 and 1. As in Ichimura's (1993) \cite{[6]} model, this can be achieved by using a simplified trimming function $\mathbf{1}{(X_i \in A_\delta)}$ that restricts X to a fixed set $A_\delta$ on which $G$ is bounded away from 0 and 1. The set $A_n$ is defined as in section 4.
 
-Similarly to Ichimura's method, Klein and Spady (1993) \cite{[12]} suggest replacing $g(\cdot)$ with an unweighted version of leave-one-out NW estimator from equation (8). Again, one observation is left out as otherwise, for a relatively small bandwidth, the objective function would be maximized by setting $\hat{G}(X_i'\beta)=0$ when $Y_i=0$ and $\hat{G}(X_i'\beta)=1$ when $Y_i=1$. That is, the objective function would take the value zero. By leaving one observation out, outside the sample prediction is improved. 
+Similarly to Ichimura's method, $g(\cdot)$ cannot be estimated directly. Thus, Klein and Spady (1993) \cite{[12]} suggest replacing $g(\cdot)$ with an unweighted version of leave-one-out NW estimator from equation (8). Again, one observation is left out as otherwise, for a relatively small bandwidth, the objective function would be maximized by setting $\hat{G}(X_i'\beta)=0$ when $Y_i=0$ and $\hat{G}(X_i'\beta)=1$ when $Y_i=1$. That is, the objective function would take the value zero. By leaving one observation out, outside the sample prediction is improved. 
 
-Furthermore, without spanning much on technical details, assumptions are made concerning the kernel estimator and bandwidth. Assume an higher order kernel density estimator $K(u)$ with compact support is used. In general, higher order kernels allow for increased smoothness and faster asymptotic rates of convergence by relaxing the restriction that the kernel  be a density function. However, these are seldomnly used in applied work as they involve local averaging with negative weights (Marron (1994) \cite{[23]}). \footnote{ In fact, for its desirable properties to ``kick in'', a very large number of observations might be necessary. Marron and Wand (1992) \cite{[24]} conclude that, in most situations, the benefits in terms of performance of higher order kernels are not sufficient to outweigh the loss of interpretability.} An example of a higher order kernel is
-\[\int z^{2}K(z)dz = 0.\]
+Furthermore, without spanning much on technical details, further restrictions must be imposed on the model. Assume an higher order kernel density estimator $K(u)$ with compact support is used. Higher order kernels have order bigger than two and, in general, allow for faster asymptotic rates of convergence by relaxing the restriction that the kernel  be a density function. However, these are seldomnly used in applied work as they involve local averaging with negative weights (Marron (1994) \cite{[23]}). \footnote{ In fact, for its desirable properties to ``kick in'', a very large number of observations might be necessary. Marron and Wand (1992) \cite{[24]} conclude that, in most situations, the benefits in terms of performance of higher order kernels are not sufficient to outweigh the loss of interpretability.}
 The bandwidth must satisfy the rate $ n^{-\frac{1}{6}} < h_n < n^{-\frac{1}{8}}$. Moreover, $P(Y=1|X=x)$ need not be monotonic in $x$.
 
 With all of this in mind, the maximization problem takes the form
@@ -489,13 +484,12 @@ It follows from the theorem 5.1. that $\sqrt{n}(\hat{\beta}_n - \beta_0)=O_p(1)$
 
 However, to have a good grasp of Theorem 5.1., it is fundamental to understand the expression for $\Omega_{KS}$. In particular, if one is to show that $\Omega_{KS} = \Omega_{SI}$, it is necessary to understand that $\frac{1}{g(X_i'\beta_0)(1 - g(X_i'\beta_0))}$ indeed corresponds to $\frac{1}{\sigma^2(x)}$ in equation (10). 
 
-It is known that for a binary choice model, 
-\[Var(Y|X = x) = P(Y = 1|X = x)[1 - P(Y = 1|X = x)].\]
-Thus, in the present case
+The variance of the present binary choice model is \footnote{Also note $Var(Y|X=x)=E[\mathbf{1}(x'\beta_0 \geq \varepsilon)|X=x](1 - E[\mathbf{1}(x'\beta_0 \geq \varepsilon)|X=x] = E[Y|X=x](1 - E[Y|X=x])$}
 \begin{align*}
-Var(Y|X = x) & = P((x'\beta_0 \geq \varepsilon)|X = x)[1 - P((x'\beta_0 \geq \varepsilon)|X = x)] \\
-& = g(x'\beta_0)[1 - g(x'\beta_0)]
-\end{align*}
+Var(Y|X = x) & = P(Y = 1|X = x)[1 - P(Y = 1|X = x)] \\
+&=P((x'\beta_0 \geq \varepsilon)|X = x)[1 - P((x'\beta_0 \geq \varepsilon)|X = x)] \\
+&= g(x'\beta_0)[1 - g(x'\beta_0)].
+\end{align*} 
 
 Hence, the model can handle heteroskedasticity only if the ``error" distribution depends on the same index, $ x'\beta_0$, that determines the ``mean response" (Klein and Vella (2006) \cite{[25]}).
 
@@ -508,7 +502,7 @@ with probability approaching 1 as $n \rightarrow \infty$.
 Consider now a semiparametric WNLS estimation of $\beta_0$ such as in Ichimura's (1993) \cite{[6]} model. The first order condition from equation (15) is the same as the first-order condition for semiparametric WNLS estimation of $\beta_0$ with the weight function
 \begin{align*}
 w_i & = \{ \hat{G}_{-i}(X_i'\beta_n)[ 1 - \hat{G}_{-i}(X_i'\beta_n)]\}^{-1} = \{ G(X_i'\beta_n)[ 1 - G(X_i'\beta_n)]\}^{-1} + o_p(1) \\
-     & = \{ G(X_i'\beta_0)[ 1 - G(X_i'\beta_0)]\}^{-1} + o_p(1) = \{ g(X_i'\beta_0)[ 1 - g(X_i'\beta_0)]\}^{-1} + o_p(1).
+     & = \{ g(X_i'\beta_0)[ 1 - g(X_i'\beta_0)]\}^{-1} + o_p(1) = Var(Y|X = x) + o_p(1)
 \end{align*}
 Seeing to section 4.2., it follows that semiparametric maximum-likelihood estimator of $\beta_0$ in Klein and Spady's (1993) \cite{[12]} model is asymptotically efficient.\footnote{This is only true for ``first order efficiency'', i.e., when $E(X_i|X_i'\beta)$ is linear in $X_i'\beta$.}
 
@@ -534,7 +528,7 @@ Zhou and Lang (1995) \cite{[26]} provide an alternative using an ``easy to compu
 
 For the binary choice case, Klein and Spady's (1993) \cite{[12]} model seems more adequate than Ichimura's (1993) \cite{[6]}. Klein and Spady's (1993) \cite{[12]} model is efficient in the sense that it reaches the semiparametric efficiency bound. Maximum-likelihood functions have ``natural'' weighting. On the other hand, Ichimura's (1993) \cite{[6]} model requires a weighting function, and potentially the two-step procedure described in section 4.2., to reach the asymptotic bound. Thus, much is saved in terms of simplicity and asymptotic efficiency is in general improved by using Klein and Spady's (1993) \cite{[12]} model for the binary case.
 
-However, restricting analysis to the case of a binary dependent variable is quite stringent. Indeed, this fact gives a clear advantage to Ichimura's (1993)\cite{[6]} model, as its WNLS model allows for a continuous dependent variable defined in the real numbers. Thus, it can be applied to a much broader variety of settings than Klein and Spady's (1993) \cite{[12]}  model.
+However, restricting analysis to the case of a binary dependent variable is quite stringent. Indeed, this fact gives a clear advantage to Ichimura's (1993)\cite{[6]} model, as his WNLS model allows for a continuous dependent variable defined in the real numbers. Thus, it can be applied to a much broader variety of settings than Klein and Spady's (1993) \cite{[12]}  model.
 
 
 %In fact, under certain assumptions, such as asymptotic normality and root-n consistency, if the maximum likelihood solution exists, the maximum likelihood estimate is the most efficient estimator of $\beta_0$ (Eliason (1993)). As Ichimura's (1993) and Klein and Spady's models (1993) satisfy both these conditions, the previous statement seems to give support to our claim.
