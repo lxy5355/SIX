@@ -25,12 +25,12 @@ hist(beta_logit_joint$x,breaks = 60, main="beta_logit_joint",xlim = range(c(-4,-
 
 ##########################################################################
 beta.true <- -2
-MSE_ich_standard <- mean((beta_ich_standard$x - beta.true))^2
-MSE_ks_standard <- mean((beta_ks_standard$x - beta.true))^2
-MSE_logit_standard <- mean((beta_logit_standard$x - beta.true))^2
-MSE_ich_joint <- mean((beta_ich_joint$x - beta.true))^2
-MSE_ks_joint <- mean((beta_ks_joint$x - beta.true))^2
-MSE_logit_joint <- mean((beta_logit_joint$x - beta.true))^2
+MSE_ich_standard <- mean((beta_ich_standard$x - beta.true)^2)
+MSE_ks_standard <- mean((beta_ks_standard$x - beta.true)^2)
+MSE_logit_standard <- mean((beta_logit_standard$x - beta.true)^2)
+MSE_ich_joint <- mean((beta_ich_joint$x - beta.true)^2)
+MSE_ks_joint <- mean((beta_ks_joint$x - beta.true)^2)
+MSE_logit_joint <- mean((beta_logit_joint$x - beta.true)^2)
 
 RMSE_ich_standard <- sqrt(MSE_ich_standard)
 RMSE_ks_standard <- sqrt(MSE_ks_standard)
@@ -38,3 +38,10 @@ RMSE_logit_standard <- sqrt(MSE_logit_standard)
 RMSE_ich_joint <- sqrt(MSE_ich_joint)
 RMSE_ks_joint <- sqrt(MSE_ks_joint)
 RMSE_logit_joint <- sqrt(MSE_logit_joint)
+
+bias_ich_standard <- mean(beta_ich_standard$x) - beta.true
+bias_ich_joint <- mean(beta_ich_joint$x) - beta.true
+bias_ks_standard <- mean(beta_ks_standard$x) - beta.true
+bias_ks_joint <- mean(beta_ks_joint$x) - beta.true
+bias_logit_standard <- mean(beta_logit_standard$x) - beta.true
+bias_logit_joint <- mean(beta_logit_joint$x) - beta.true
