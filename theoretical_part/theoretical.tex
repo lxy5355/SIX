@@ -33,11 +33,32 @@
 \setheadsepline[122mm]{0.3mm}
 \usepackage{csquotes}
 
+
+
+% some more packages enabling table and figure production
+\usepackage{float, afterpage, rotating, graphicx}
+\usepackage{epstopdf}
+\usepackage{longtable, booktabs, tabularx}
+\usepackage{fancyvrb, moreverb, relsize}
+\usepackage{eurosym, calc, chngcntr}
+\usepackage{amsmath, amssymb, amsfonts, amsthm, bm}
+\usepackage{caption}
+\usepackage{mdwlist}
+\usepackage{xfrac}
+\usepackage{setspace}
+\usepackage{xcolor}
+\usepackage{multirow}
+%\usepackage{booktabs}
+
+
+% packages for bibliography
 \usepackage[backend=biber, natbib=true,style=numeric]{biblatex}
 \AtBeginDocument{\toggletrue{blx@useprefix}}
 \AtBeginBibliography{\togglefalse{blx@useprefix}}
 \setlength{\bibitemsep}{1.5ex}
 \addbibresource{refs.bib}
+
+
 
 
 \begin{document}
@@ -73,10 +94,10 @@
 	\setlength{\parindent}{0pt}
 
 \vspace{2cm}
-\begin{abstract}
+%\begin{abstract}
 
 
-\end{abstract}
+%\end{abstract}
 %	\newpage
 %	\tableofcontents
 	\newpage
@@ -532,6 +553,64 @@ However, restricting analysis to the case of a binary dependent variable is quit
 
 
 %In fact, under certain assumptions, such as asymptotic normality and root-n consistency, if the maximum likelihood solution exists, the maximum likelihood estimate is the most efficient estimator of $\beta_0$ (Eliason (1993)). As Ichimura's (1993) and Klein and Spady's models (1993) satisfy both these conditions, the previous statement seems to give support to our claim.
+
+
+\section{Simulation results} % (fold)
+\label{sec:Simulation results}
+
+
+In this section, estimators are simulated from Ichimura's (1993) \cite{[12]} and Klein and Spady's (1993) \cite{[13]} theoretical models. We reflect on the properties of these estimates, generated via a Monte Carlo experiment with sample size of 250 and 1000 trials. Results are listed in $Table\ 1$.
+
+Several points are worth noticing in the design of the experiment. Firstly, two scenarios are designed regarding to error distributions: standard normal $N(0,1)$ and joint normal $0.75 \cdot N(-0.5,1)+0.25\cdot N(1.5,2.5)$. For each scenario, a logit estimator is included as an additional source of comparison with the two semiparametric single index models. Furthermore, for all specifications, the exogenous vector of variables contains two components. Both of these components are independently generated from standard normal distributions. Lastly, we restrict out model to the binary case, as this is one of the restrictions of Klein and Spady's (1993) \cite{[13]} model. Following section 3, the parameter of the first exogenous component is normalized to $1$. Moreover, the true value for the second is set to $-2$:
+\begin{equation*}
+y_i = I(x_{1i} - 2x_{2i} > \epsilon_i).
+\end{equation*}
+
+Our simulation characterizes Ichimura's \cite{[12]} nonlinear least squares estimator and Klein and Spady's \cite{[13]} maximum likelihood estimator. Again for the convenience of comparison, a fourth order Gaussian kernel function is selected for both cases, in order to achieve the minimal order requirement in Klein and Spady's (1993) \cite{[13]} model. Additionally, a trimming function is defined, following the theoretical requirements from section 4 and 5. This guarantees sensible calculation of estimates over each randomly drawn data set.\footnote{Although Ichimura's (1993) \cite{[12]} and Klein and Spady's (1993) \cite{[13]} estimators of one individual simulation are extracted from the same trimmed data set, a `floor` is executed on the latter for technical reasons.} As for bandwidth selection, we preselect two bandwidths respectively for the two models, through a likelihood-based cross-validation approach, which is employed in the function $npindexbw$ of the empirical $NP\ Package$ created by Racine (2009) \cite{[28]}. This optimal bandwidth is investigated by Haerdle, Hall and Ichimura (1993) \cite{[7]} .
+
+In accordance with Ichimura $(1993)$ \cite{[12]}, $grid\ search$ was chosen as the method of optimization nested in our estimator's simulations. This method performs sufficiently well in finding ``good'' estimates, as supported by histograms of estimates shown in $Figure\ 1$. However, it may have two considerable deficiencies: on the one hand, as the amount of grids increases, function evaluations grow exponentially; on the other hand, when the true $\beta$ is unknown, the performance of estimation relies heavily on the way grids are preselected. In our experiment grid search is looped over $(-4,0)$ with width $0.05$. This leads to $81$ function evaluations for each data generation, which is already computational costly taking into account an amount of $1000$ data generations.
+
+\begin{table}[H]
+\caption {Bias and Root Mean Squared Error Comparison} \label{tab:bias and mean squared error}
+
+$x_1$ and $x_2$ normal - Performance of parametric and semiparametric estimators; a Monte Carlo experiment(250 observations, 1000 trials).
+\centering
+\resizebox{.75\textwidth}{!}{
+
+\begin{tabular}{l r r r r}
+\toprule
+ & \multicolumn{2}{c}{Standard Normal} & \multicolumn{2}{c}{Joint Normal} \tabularnewline
+\cmidrule[0.25pt]{2-3}
+\cmidrule[0.25pt]{4-5}
+Estimator$^1$ & Bias & RMSE & Bias & RMSE
+\tabularnewline
+\midrule
+Ichi & -0.045 & 0.3672 & -0.057 & 0.3665
+\tabularnewline
+KS & -0.0095 & 0.3231 & -0.015 & 0.3125
+\tabularnewline 
+Logit & -0.030 & 0.2760  & -0.034 & 0.2813
+\tabularnewline
+\bottomrule
+\end{tabular}
+}
+
+$^1$Ichi = Ichimura's method, KS = Klein and Spady's method.
+
+\end{table}
+
+\begin{figure}[H]
+  \caption{Plot of Estimates}
+  \includegraphics[width=0.8\textwidth,natwidth=610,natheight=642]{plot_comparison.png}
+ 
+  \label{fig:plot of estimates}
+\end{figure}
+
+Combining simulation results from the table and the figure it can be observed that the distributions of all three estimators are skewed to the left, while the biases are bounded below $-0.06$. This indicates that the property of asymptotic consistency exists in all three estimators, amongst which the Klein and Spady's (1993) \cite{[13]} estimator converges most rapidly to the true value. 
+
+As to what concerns the mean squared error, there is no significant difference among estimators in terms of magnitude. Since binary choice models are inherently heteroskedasticity, Ichimura’s (1993) \cite{[12]}  estimator would require the use of a weight function. However, this is out of the scope of our work, and it can be adapted to simulation in further studies. Nevertheless, our results suggest that this might not be an influencing issue here. 
+
+In the end, a comparison between our simulation results and Racine's (2009) \cite{[28]} $NP\ Package$ encouraged us to rely on our original simulation functions. These results listed in the Appendix.
 
 
 \newpage 
