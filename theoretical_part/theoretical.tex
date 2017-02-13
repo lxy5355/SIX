@@ -41,7 +41,6 @@
 \usepackage{longtable, booktabs, tabularx}
 \usepackage{fancyvrb, moreverb, relsize}
 \usepackage{eurosym, calc, chngcntr}
-\usepackage{amsmath, amssymb, amsfonts, amsthm, bm}
 \usepackage{caption}
 \usepackage{mdwlist}
 \usepackage{xfrac}
@@ -50,6 +49,8 @@
 \usepackage{multirow}
 %\usepackage{booktabs}
 
+\usepackage{grfext}
+\PrependGraphicsExtensions*{.png,.PNG}
 
 % packages for bibliography
 \usepackage[backend=biber, natbib=true,style=numeric]{biblatex}
@@ -94,10 +95,10 @@
 	\setlength{\parindent}{0pt}
 
 \vspace{2cm}
-%\begin{abstract}
+\begin{abstract}
 
 
-%\end{abstract}
+\end{abstract}
 %	\newpage
 %	\tableofcontents
 	\newpage
@@ -574,6 +575,7 @@ In accordance with Ichimura $(1993)$ \cite{[12]}, $grid\ search$ was chosen as t
 \caption {Bias and Root Mean Squared Error Comparison} \label{tab:bias and mean squared error}
 
 $x_1$ and $x_2$ normal - Performance of parametric and semiparametric estimators; a Monte Carlo experiment(250 observations, 1000 trials).
+
 \centering
 \resizebox{.75\textwidth}{!}{
 
@@ -601,7 +603,7 @@ $^1$Ichi = Ichimura's method, KS = Klein and Spady's method.
 
 \begin{figure}[H]
   \caption{Plot of Estimates}
-  \includegraphics[width=0.8\textwidth,natwidth=610,natheight=642]{plot_comparison.png}
+  \includegraphics[width=0.8\textwidth]{plot_comparison.PNG}
  
   \label{fig:plot of estimates}
 \end{figure}
