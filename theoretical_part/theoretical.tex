@@ -548,7 +548,7 @@ Zhou and Lang (1995) \cite{[26]} provide an alternative using an ``easy to compu
 
 For the binary choice case, Klein and Spady's (1993) \cite{[12]} model seems more adequate than Ichimura's (1993) \cite{[6]}. Klein and Spady's (1993) \cite{[12]} model is efficient in the sense that it reaches the semiparametric efficiency bound. Maximum-likelihood functions have ``natural'' weighting. On the other hand, Ichimura's (1993) \cite{[6]} model requires a weighting function, and potentially the two-step procedure described in section 4.2., to reach the asymptotic bound. Thus, much is saved in terms of simplicity and asymptotic efficiency is in general improved by using Klein and Spady's (1993) \cite{[12]} model for the binary case.
 
-However, restricting analysis to the case of a binary dependent variable is quite stringent. Indeed, this fact gives a clear advantage to Ichimura's (1993)\cite{[6]} model, as his WNLS model allows for a continuous dependent variable defined in the real numbers. Thus, it can be applied to a much broader variety of settings than Klein and Spady's (1993) \cite{[12]}  model.
+However, restricting analysis to the case of a binary dependent variable is quite stringent. Indeed, this fact gives a clear advantage to Ichimura's (1993)\cite{[6]} model, as his WNLS model allows for a continuous outcomes. Thus, it can be applied to a much broader variety of settings than Klein and Spady's (1993) \cite{[12]}  model.
 
 
 %In fact, under certain assumptions, such as asymptotic normality and root-n consistency, if the maximum likelihood solution exists, the maximum likelihood estimate is the most efficient estimator of $\beta_0$ (Eliason (1993)). As Ichimura's (1993) and Klein and Spady's models (1993) satisfy both these conditions, the previous statement seems to give support to our claim.
@@ -608,7 +608,7 @@ $^1$Ichi = Ichimura's method, KS = Klein and Spady's method.
 
 Combining simulation results from the table and the figure it can be observed that the distributions of all three estimators are skewed to the left, while the biases are bounded below $-0.06$. This indicates that the property of asymptotic consistency exists in all three estimators, amongst which the Klein and Spady's (1993) \cite{[12]} estimator converges most rapidly to the true value. 
 
-As to what concerns the mean squared error, there is no significant difference among estimators in terms of magnitude. Since binary choice models are inherently heteroskedasticity, Ichimura’s (1993) \cite{[6]}  estimator would require the use of a weight function. However, this is out of the scope of our work, and it can be adapted to simulation in further studies. Nevertheless, our results suggest that this might not be an influencing issue here. 
+As to what concerns the mean squared error, there is no significant difference among estimators in terms of magnitude. Since binary choice models are inherently heteroskedasticity, Ichimura’s (1993) \cite{[6]}  estimator would require the use of a weight function. However, this is out of the scope of our work and it is in fact also excluded from the np package. The weight function can be thus adapted to simulation in further studies. Nevertheless, our results suggest that this might not be an influencing issue here. 
 
 In the end, a comparison between our simulation results and Racine's (2009) \cite{[28]} $NP\ Package$ encouraged us to rely on our original simulation functions. These results listed in the Appendix.
 
