@@ -65,40 +65,33 @@ xfit2=cbind(rep(1,nrow(xtest)),xtest)
 m2.log=xfit2%*%b
 
 
-par(mfrow=c(4,2))
-plot(m.log,predictLog,col="blue")
-title(main = "comparison of methods on training set")
-points(m.ichimura,fit.ichimura,col="red")
-points(m.KS,fit.KS,col="green")
+par(mfrow=c(1,3),mgp=c(2.3,.5, 0))
 
-plot(m2.log,predictLog2,col="blue")
-title(main = "comparison of methods on test set")
-points(m2.ichimura,test.ichimura,col="red")
-points(m2.KS,test.KS,col="green")
+plot(m2.log,ytest,ann=FALSE)
+title(main = "Logistic regression on test set", xlab = expression("X'" ~ hat(beta)[Logistic]), ylab = expression("y and " ~ hat(y)))
+points(m2.log,predictLog2,col="darkgrey",ann=FALSE,pch=20)
 
-plot(m.ichimura,ytrain)
-title(main = "ichimura on training set")
-points(m.ichimura,fit.ichimura,col="red")
+plot(m2.ichimura,ytest,ann=FALSE)
+points(m2.ichimura,test.ichimura,col="darkgrey",ann=FALSE,pch=20)
+title(main = "Ichimura method on test set", xlab = expression("X'" ~ hat(beta)[Ichimura]), ylab = expression("y and " ~ hat(y)))
 
-plot(m2.ichimura,ytest)
-title(main = "ichimura on test set")
-points(m2.ichimura,test.ichimura,col="red")
+plot(m2.KS,ytest,ann=FALSE)
+title(main = "Kleinspady method on test set", xlab = expression("X'" ~ hat(beta)[Kleinspady]), ylab = expression("y and " ~ hat(y)))
+points(m2.KS,test.KS,col="darkgrey",ann=FALSE,pch=20)
 
-plot(m.log,ytrain)
-title(main = "logistic on training set")
-points(m.log,predictLog,col="blue")
 
-plot(m2.log,ytest)
-title(main = "logistic on test set")
-points(m2.log,predictLog2,col="blue")
 
-plot(m.KS,ytrain)
-title(main = "kleinspady on training set")
-points(m.KS,fit.KS,col="green")
+#plot(m.ichimura,ytrain)
+#title(main = "ichimura on training set")
+#points(m.ichimura,fit.ichimura,col="red")
 
-plot(m2.KS,ytest)
-title(main = "kleinspady on test set")
-points(m2.KS,test.KS,col="green")
+#plot(m.log,ytrain)
+#title(main = "Logistic regression on training set", xlab = expression("X'" ~ hat(beta)[Logistic]), ylab = expression("y and " ~ hat(y)))
+#points(m.log,predictLog,col="blue")
+
+#plot(m.KS,ytrain,ann=FALSE)
+#title(main = "Kleinspady method on training set", xlab = expression("X'" ~ hat(beta)[Kleinspady]), ylab = expression("y and " ~ hat(y)))
+#points(m.KS,fit.KS,col="green",ann=FALSE)
 
 #######table#######
 log1 = table(train$label, predictLog >= 0.5)
