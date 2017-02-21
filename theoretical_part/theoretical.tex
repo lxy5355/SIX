@@ -104,7 +104,9 @@
 \section{Introduction} % (fold)
 \label{sec:introduction}
 
-Semiparametric single index models are widely applied in economic research. Applications range from finance to labor economics. This paper focuses on Ichimura's (1993) \cite{[6]} and Klein and Spady's (1993) \cite{[12]} models. These models help us dig into the vast field of semiparametric single index regression models, while still leaving much behind. In particular, both of these models are based on iterative optimization methods, which are in general computationally costly. A natural attraction of Klein and Spady's (1993) \citep{[12]} model is the fact that it reaches the semiparametric efficiency bound. Thus, in that sense, one can say it is fully efficient. However, it is at fault comparatively to Ichimura's (1993) \citep{[6]} due to its lack of generality, as it is restricted to the binary case.
+Semiparametric single index models are widely applied in economic research. Applications range from finance to labor economics. Masten and Masten (2015) \cite{[30]} use a Klein and Spady's (1993) \cite{[12]} semiparametric single index model to predict bankruptcies, as opposed to the logit model, the standard parametric model for bankruptcy prediction. Coelho et al. (2005) \cite{[29]} use the same semiparametric single index model to analyze female labor market in Portugal. 
+
+This paper focuses on Ichimura's (1993) \cite{[6]} and Klein and Spady's (1993) \cite{[12]} models. These models help us dig into the vast field of semiparametric single index regression models, while still leaving much behind. In particular, both of these models are based on iterative optimization methods, which are in general computationally costly. A natural attraction of Klein and Spady's (1993) \citep{[12]} model is the fact that it reaches the semiparametric efficiency bound. Thus, in that sense, one can say it is fully efficient. However, it is at fault comparatively to Ichimura's (1993) \cite{[6]} due to its lack of generality, as it is restricted to the binary case.
 
 This paper is organized in three main blocks of analysis: theoretical outline; simulations, where small sample properties are analyzed; and a real data set example, where one can illustrate the behavior of the models on a more applied framework. All parties contributed to the presentation and the writing of the paper. Isa Marques led the theoretical part. Xi Sun and Xueying Liu worked mainly on the applied part including R coding, simulations and real dataset application.
 
@@ -657,7 +659,18 @@ We also take note of the two peculiar features of the results. First, the accura
 
 \newpage 
 
-\section{Appendix} % (fold)
+
+
+\section{Bibliography} % (fold)
+\label{sec:Bibliography}
+
+
+\nocite{*}
+\printbibliography[heading=none]
+
+\newpage 
+
+\section{Appendix}
 \label{sec:appendix}
 
 \subsection{List of Variables}
@@ -719,14 +732,67 @@ label & male or female
 \end{center}
 
 
-\newpage 
+\subsection{Empirical Definition of Trimming Function}
+Section 7 develops an empirical method to implement the trimming functions for Ichimura's (1993) \cite{[6]} and Klein and Spady's (1993) \cite{[12]} models.
+
+Referring to theoretical definitions, the aim of a trimming function in Ichimura's (1993) \citep{[6]} model is to guarantee $\hat{p}_{-i}(X_i'\beta)$ not too close to zero. 
+
+The estimate $\hat{p}_{-i}(X_i'\beta)$ is calculated over a given bandwidth $h$. There are two ways to keep such an estimate far away enough from zero: either we  employ $A_\delta$  directly, which can be quite stringent, or we use observations that are close enough to the independent variables that satisfy $x \in A_\delta$. The latter also leads $\hat{p}_{-i}(X_i'\beta)$, the estimated probability for $X_i'\beta$, to be large enough. Furthermore, to avoid choosing inappropriate estimate for $\beta$, $A_n$ is implemented to calculate the leave-one-out NW estimator for g.
+
+Before starting the estimation, simulated sample data is sieved by examining whether the single index's leave-one-out kernel estimates are large enough. If $\hat{p}(x'\beta)$ fails to achieve the chosen lower bound, this sample data $x$ will be removed from the data set.
+
+Furthermore, as the Grid Search method is used to carry out the estimation, the same set of grids is used to define $\mathcal{B}$, as defined in section 4. Data sieving is carried out over this set such that the estimation procedure is sensible for each single grid.
 
 
-\section{Bibliography} % (fold)
-\label{sec:Bibliography}
+Firstly, the same trimmed data set is used for Ichimura's (1993) \cite{[6]} and Klein and Spady's (1993) \cite{[12]} estimation methods. However, this is not enough for the latter model to work, as it only prevents $g(\cdot)$ from growing out of bounds.  Klein and Spady's (1993) \cite{[12]} model is more restrictive than Ichimura's (1993) \cite{[6]} model on this point, as it requires any estimate of $\hat{G}_i$  not to be too close to 0 or 1. Recall that the denominator follows the sum of dependent binary variables $y_i$ weighted by its corresponding kernel evaluation. This issue becomes apparent when a relatively large evaluation coincides with $y_i = 0$. Therefore, based on the trimmed data from Ichimura's (1993) \cite{[6]} method, we further introduced a lower bound equal to square root of machine double epsilon and set any estimate smaller than the lower bound to its level.
 
 
-\nocite{*}
-\printbibliography[heading=none]
+\subsection{A Comparison in Results of Simulation Functions and NP Package}
+Model design of monte carlo simulation following Ichimura (1993):
+\begin{itemize}
+\item sample size is 250;
+\item the semiparametric single index model is specified as binary choice model;
+\item exogenous vector of variables contains two components and both are independently generated from standard normal distribution;
+\item when constructing single index, parameter of the first exogenous component is normalized to 1, and true value for the second parameter is set to -2;
+\item presume standard normal distribution for error distribution;
+\item the amount of monte carlo simulation is 1000 times.
+\end{itemize}
+To summarize, the designed baseline function is
+\begin{equation*}
+y_i = I(x_{1i} - 2x_{2i} > \epsilon_i).
+\end{equation*}
+
+\begin{table}[H]
+\caption {Mean Squared Error Comparison} \label{tab:mean squared error}
+
+(with gridsearch $(-4, 0, 81)$)
+
+\begin{tabular}{l r r}
+
+\toprule
+\textbf{method} & \textbf{NP Package} & \textbf{Simulation Functions} \tabularnewline\midrule
+(standard normal distribution for $x_1$, $x_2$, $\epsilon$) & &
+\tabularnewline
+Ichimura & 0.00363 & 0.00201 \tabularnewline
+Klein and Spady & 0.00416 & 0.0000893 \tabularnewline
+
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[h!]
+  \caption{Comparison of Estimates on the Same Scale}
+  \includegraphics[width=\linewidth]{compare_done.png}
+ 
+  \label{fig:comparison of estimates on the same scale}
+\end{figure}
+
+From $Table\ 3$ and $Figure\ 3$, we see that our self-implemented code does not perform significantly worse than the np-package. In fact it is even better for Klein and Spady's (1993) \cite{[12]} method. This could be due to the use of our \textit{a-priori} knowledge of the true beta when specifying the grid. We thus conclude that it is an useful and successful practice in constructing our own code for single index model functions.
+
+\subsection{Optimization Methods: Grid Search $vs$ Non-linear Minimization}
+\label{A comparison in optimization methods:grid search and non-linear squares}
+We employed $Grid Search$ in the definition of simulation functions. Referring to $Figure\ 3$, this method is able to find `good' parameter values for a function. However a grid search has two deficiencies worth noticing: on the one hand, when either the size of the grid or the number of parameters to be estimated expands, the length of the first argument to grid search function (which is the support of estimates, i.e. $\mathcal{B}$ containing the true $\beta$) will increase, resulting in the number of necessary function evaluations growing exponentially; on the other hand, when the true $\beta$ is unknown, the performance of estimation relies heavily on the range of list and the distance between two candidates primarily set to loop over. In our simulation the support of $\mathcal{B}_2$ is presumably set to $(-4,0)$ with an accuracy rate of $0.05$. This leads to $81$ function evaluations for each data generation. Taking the amount of $1000$ data generations into account this method is already considerably computational costly even for estimation on a single parameter $\beta_2$. 
+
+Hayfield and Racine's (2008)  \cite{[28]} np package employs a nonlinear parameter estimation tool ($optim: Nelder-Mead$) which does not require derivatives of objective functions and uses heuristics to search the domain of parameter. Compared to the support of $\mathcal{B}$ prespecified in Grid Search, the core function that facilitates this paper is $npindexbw$, which declares successful convergence in three ways: reaching absolute convergence tolerance, relative convergence tolerance or maximum number of iterations ($500$ times for Nelder-Mead method). Besides, this function provides a choice of different (random) initial points to start the searching, whereas in our simulation functions, starting points are manually chosen which may lead to ignorance of other local minima.
 
 \end{document}
