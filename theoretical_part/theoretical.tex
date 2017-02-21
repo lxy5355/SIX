@@ -95,6 +95,7 @@
 \vspace{2cm}
 \begin{abstract}
 
+Semiparametric single index models are widely applied in economic research. Applications range from finance to labor economics. This paper focuses on Ichimura's (1993) and Klein and Spady's (1993) models. These models help us dig into the vast field of semiparametric single index regression models, while still leaving much behind. In particular, both of these models are based on iterative optimization methods, which are in general computationally costly. The structure of the paper consists of three blocks of analysis: theoretical outline; monte carlo simulations; and a real data set example, using the pre-processed Gender Recognition by Voice and Speech Analysis dataset.
 
 \end{abstract}
 %	\newpage
@@ -104,11 +105,11 @@
 \section{Introduction} % (fold)
 \label{sec:introduction}
 
-Semiparametric single index models are widely applied in economic research. Applications range from finance to labor economics. Masten and Masten (2015) \cite{[30]} use a Klein and Spady's (1993) \cite{[12]} semiparametric single index model to predict bankruptcies, as opposed to the logit model, the standard parametric model for bankruptcy prediction. Coelho et al. (2005) \cite{[29]} use the same semiparametric single index model to analyze female labor market in Portugal. Moreover, McMillen and Thorsnes (2012) \cite{[31]} adopt a semiparametric single index average derivative estimator to study the effect of copper smelter on house prices in Tacoma.
+Semiparametric single index models are widely applied in economic research. Applications range from finance to labor economics. Masten and Masten (2015) \cite{[30]} use Klein and Spady's (1993) \cite{[12]} semiparametric single index model to predict bankruptcies, as opposed to the logit model, the standard parametric model for bankruptcy prediction. Coelho et al. (2005) \cite{[29]} use the same semiparametric single index model to analyze female labor market in Portugal. Moreover, McMillen and Thorsnes (2012) \cite{[31]} adopt a semiparametric single index average derivative estimator to study the effect of copper smelter on house prices in Tacoma.
 
-This paper focuses on Ichimura's (1993) \cite{[6]} and Klein and Spady's (1993) \cite{[12]} models. These models help us dig into the vast field of semiparametric single index regression models, while still leaving much behind. In particular, both of these models are based on iterative optimization methods, which are in general computationally costly. A natural attraction of Klein and Spady's (1993) \citep{[12]} model is the fact that it reaches the semiparametric efficiency bound. Thus, in that sense, one can say it is fully efficient. However, it is at fault comparatively to Ichimura's (1993) \cite{[6]} due to its lack of generality, as it is restricted to the binary case.
+This paper focuses on Ichimura's (1993) \cite{[6]} and Klein and Spady's (1993) \cite{[12]} models. These models help us dig into the vast field of semiparametric single index regression models, while still leaving much behind. In particular, both of these models are based on iterative optimization methods, which are in general computationally costly. A natural attraction of Klein and Spady's (1993) \citep{[12]} model is the fact that it reaches the semiparametric efficiency bound. Thus, in that sense, one can say it is fully efficient  (Cameron and Trivedi, 2005 \cite{[5]}). However, it is at fault comparatively to Ichimura's (1993) \cite{[6]} due to its lack of generality, as it is restricted to the binary case.
 
-This paper is organized in three main blocks of analysis: theoretical outline; simulations, where small sample properties are analyzed; and a real data set example, where one can illustrate the behavior of the models on a more applied framework. All parties contributed to the presentation and the writing of the paper. Isa Marques led the theoretical part. Xi Sun and Xueying Liu worked mainly on the applied part including R coding, simulations and real dataset application.
+The structure of the paper consists of three blocks of analysis: theoretical outline; simulations, where small sample properties are analyzed; and a real data set example, where one can illustrate the behavior of the models on an applied framework. All parties contributed to the presentation and the writing of the paper. Isa Marques led the theoretical part. Xi Sun and Xueying Liu worked mainly on the applied part including R coding, simulations and real dataset application.
 
 
 Section 2 of this paper provides a framework for semiparametric single index models and a general comparison with parametric and nonparameteric models. Section 3 outlines the identification conditions necessary in semiparametric single index models. Ichimura's (1993) \citep{[6]} and Klein and Spady's (1993) \citep{[12]} solution will be analyzed in detail in section 4 and 5, respectively. The former section briefly explains the weight function. In section 6, the two models are briefly compared from a theoretical viewpoint. The simulation results from the Monte Carlo experiment are explained in section 7. Finally, in section 8 a real data set example is provided using the pre-processed Gender Recognition by Voice and Speech Analysis dataset.
@@ -137,7 +138,7 @@ is a semiparametric single index model.
 
 Three points become relevant when explaining why the present model is of  semiparametric nature. First, unlike fully nonparametric models, the functional form of the linear index is stated. However, as opposed to classical parametric models, the conditional probability of $\varepsilon$ conditioned on X is not specified except $ E(\varepsilon|X) = 0 $. Alongside, $g(\cdot)$ is left fully unspecified.
 
-For illustrative purposes and as a mean of comparison to classical models, we now analyze binary choice models in the setting proposed by Li and Racine \cite{[1]}. The relationship between a binary dependent variable (Y) and covariates (X) can be modelled as follows:
+For illustrative purposes and as a mean of comparison to classical models, we now analyze binary choice models in the setting proposed by Li and Racine (2007) \cite{[1]}. The relationship between a binary dependent variable (Y) and covariates (X) can be modelled as follows:
 
 \[
     Y_i = 
@@ -149,20 +150,20 @@ For illustrative purposes and as a mean of comparison to classical models, we no
 
 where $Y^{*}$ is a latent variable.
 Assuming a linear relationship between Y and X, the empirical analysis focuses on the estimation of $\beta$.
-Parametric methods to estimate $\beta$ require assumptions on the distribution of the error term $u$. A common assumption in the parametric framework is $ u \sim N(0, 1)$. \footnote{With the identification condition $\sigma = 1$, $\beta$ can be jointly identified (Madalla (1986) \cite{[2]}) and we can use maximum likelihood.}  Let $F_u(\cdot)$ denote the true CDF of $u$. Then, the conditional expectation of Y has the form
+Parametric methods to estimate $\beta$ require assumptions on the distribution of the error term $u$. A common assumption in the parametric framework is $ u \sim N(0, 1)$. \footnote{With the identification condition $\sigma = 1$, $\beta$ can be jointly identified (Madalla (1986) \cite{[2]}) and we can use maximum likelihood.}  Let $F(\cdot)$ denote the true cummulative distribution function (CDF) of $u$. Then, the conditional expectation of Y has the form
 
 \[ 
 \begin{split}
 E(Y|x) & = \sum_{y=0,1} yP(y|x) = P(Y=1|x) = P(\alpha + x'\beta + u_i > 0) \\
  & = P(u_i > -(\alpha + x'\beta)) = 1 - P(u_i \leq -(\alpha + x'\beta)) \\
- & = 1 - F(-(\alpha + x'\beta)) \\
+ & = 1 - F(-(\alpha + x'\beta)). \\
 \end{split}
 \]
 
 
-where $F(\cdot)$ is the cummulative distribution function (CDF) of $u$. Furthermore, $1 - F(-(\alpha + x'\beta) = F(\alpha + x'\beta)$, since $u$ has a symmetric distribution.
+Moreover, if $u$ has a symmetric distribution, $1 - F(-(\alpha + x'\beta) = F(\alpha + x'\beta)$, 
 
-Different functional forms for $u$ lead to different functional forms for the conditional probability of $Y = 1$. If $\Phi$ is the CDF of a standard normal variable, then a Probit model is obtained. Alternatively, for $u$ following a symmetric logistic distribution a Logit model is obtained. Abridge, consistent parametric estimation of $E(Y|X) = P(Y=1|x)$ requires the ``correct'' distribution specification of $u$. 
+Different functional forms for $u$ lead to different functional forms for the conditional probability of $Y = 1$. If $F(\cdot)$ is the CDF of a standard normal variable, then a Probit model is obtained. Alternatively, for $u$ following a symmetric logistic distribution a Logit model is obtained. Moreover, consistent parametric estimation of $E(Y|X) = P(Y=1|x)$ requires the correct distribution specification of $u$. 
 Hence, to sum up, while model (1) still clings to many of parametric model's desirable features, it is a more flexible version, as $g(\cdot)$ is left fully undefined.
 
 Distinctively, nonparametric models can be defined as
@@ -178,13 +179,13 @@ Thus, in general, semiparametric single index models reach greater estimation pr
 
 
 
-Nonetheless, semiparametric models have two important disadvantages. First, they are hard to compute. Take the case of Ichimura's (1993) \cite{[6]} model, which requires nonlinear iteration procedures. Second, semiparametric models often have multiple local optima, as they require optimization of objective functions that are not unimodal. These problems seem to be exarcebated for increasing sample sizes or number of explanatory variables (Manski, 1975 \cite{[7]}, 1985 \cite{[8]}; Manski and Thompson, 1989 \cite{[9]}; Cosslett, 1983 \cite{[10]}; Ichimura, 1993 \cite{[6]}; Horowitz, 1992 \cite{[11]}; and Klein and Spady, 1993 \cite{[12]} ).
+Nonetheless, semiparametric models have two important disadvantages. First, they are hard to compute. Ichimura's (1993) \cite{[6]} model provides a good example for these computational issues, as it requires nonlinear iteration procedures. Second, semiparametric models often have multiple local optima, as they require optimization of objective functions that are not unimodal. These problems seem to be exarcebated by increasing sample sizes or number of explanatory variables (Manski, 1975 \cite{[7]}, 1985 \cite{[8]}; Manski and Thompson, 1989 \cite{[9]}; Cosslett, 1983 \cite{[10]}; Ichimura, 1993 \cite{[6]}; Horowitz, 1992 \cite{[11]}; and Klein and Spady, 1993 \cite{[12]} ).
 
 
 \section{Identification conditions} % (fold)
 \label{sec:Identification conditions}
 
-This section provides identification conditions for semiparametric single index models,  summarized in proposition 3.1. Brief intuitive explanations follow each of these conditions. Moreover, it is under these that $\beta_0$ and $ g(\cdot)$ are estimated in Ichimura (1993) \cite{[6]} and Klein and Spady's (1993) \cite{[12]} models, analyzed in sections 4 and 5, respectively.
+This section provides identification conditions for semiparametric single index models,  summarized in proposition 3.1. Brief intuitive explanations follow each of these conditions. Moreover, it is under these conditions that $\beta_0$ and $ g(\cdot)$ are estimated in Ichimura (1993) \cite{[6]} and Klein and Spady's (1993) \cite{[12]} models, which are analyzed in sections 4 and 5, respectively.
 
 
 Model (1) implies
@@ -210,7 +211,7 @@ Identification of $\beta_0$ and $g(\cdot)$ in model (2) requires that
 
 Requirement $(i)$ is candidly fundamental for the analysis, and thus we won't dwell much on it. Imposing that the support of $x'\beta_0$ is a bounded convex set can for example prevent that it is separated into disjoint subsets. This problem is analyzed in more detail in point $(iv)$.
 
-Aside the identification restrictions on $x$ outlined in $(ii)$, and before all else, $x$ cannot suffer from multicollinearity. That is, one cannot have $Pr(x'\alpha = c) = 1$ where $\alpha$ is a constant and c is a scalar, as the presence of high correlation between predictors might render statistical inference unreliable. 
+Apart from the identification restrictions on $x$ outlined in $(ii)$, we assume $x$ cannot suffer from perfect multicollinearity. That is, there cannot be a perfect linear relationship between the independent variables. Otherwise, $\beta_0$ cannot be identified.
 
 Some intuition can be provided to the specific requirements of $(ii)$, following a quite intertwined reasoning. First, requiring $x$ to contain at least one continuous variable (with nonzero coefficient) prevents $x$ from having a finite support. Otherwise, $E(Y|X = x) = g(x'\beta_0)$ would impose only a finite number of restrictions on $g(\cdot)$, leading to an infinite number of different choices for $g(\cdot)$ and $\beta_0$ that satisfy those restrictions.\footnote{Note that if all $x$ components are discrete we can still identify bounds on the components of $\beta_0$, if $g$ is assumed to be increasing See Horowitz (1998) \cite{[13]} for  concrete examples.} Following similar reasoning, identification requires location and scale normalization. Define the function $g^{*}$ such that $g^{*}(\gamma + v\delta) = g(v)$, for all $v$ in the support of $x'\beta_0$. Then
 
@@ -226,9 +227,9 @@ E(Y|X = x) = g^*(\gamma + x'\beta_0\delta).
 
 Models (3) and (4) are observationally equivalent. Thus, $\beta_0$ and $g$ are not identified unless restrictions are imposed to uniquely specify $\gamma$ and $\delta$. By restricting $\gamma$, one provides location normalization conditions. For example, by requiring that $x$ does not include a constant. On the other hand, scale normalization conditions restrict $\delta$. Here, it is assumed that $\beta_0$ has one of its components set to 1. \footnote{This implies that $X$ must have at least 2 dimensions. Otherwise $\beta_0$ is simply normalized to 1 and a one-dimensional nonparametric model $E(y|x) = g(x)$ with no semiparametric part is obtained instead.}
 
-Restrictions are also imposed on $g(\cdot)$ in $(iii)$, even though some of these can be weakened. To start with, $g(\cdot)$ cannot be a constant function. Otherwise, $\beta_0$ is not identified. Furthermore, what makes the identification of $E(Y|X = x)$ possible is that it remains constant if $x$ changes in such a way that $x'\beta_0$ stays constant. However, $P(x'\beta_0 = c)=0$, for $x_0'\beta$ continuously distributed and for some constant $c$. This renders identification impossible. By adding the assumption that $g(\cdot)$ is differentiable, $g(x'\beta_0)$ is close to $g(c)$ whenever $x'\beta_0$ is close enough to $c$. Then, the set of $x$ for which $x'\beta_0$ is within any specified nonzero distance of $c$ has nonzero probability for $c$ in the interior of the support of $x'\beta_0$. Therefore, we identify $\beta_0$ by the approximate constancy of $x'\beta_0$. In fact, Wei Lin and Kulasekera (2007) \cite{[14]} show that the weaker assumption that $g(\cdot)$ is continuous is sufficient for identification. Yet, differentiability is assumed on the remainder of the paper as it will become useful when analyzing Ichimura's (1993) \cite{[6]} and Klein and Spady's (1993) \cite{[12]} models.
+Restrictions are also imposed on $g(\cdot)$ in $(iii)$, even though some of these can be weakened. To start with, $g(\cdot)$ cannot be a constant function. Otherwise, $\beta_0$ is not identified. Furthermore, what makes the identification of $E(Y|X = x)$ possible is that it remains constant if $x$ changes in such a way that $x'\beta_0$ stays constant. However, $P(x'\beta_0 = c)$ is equal to zero, for $x_0'\beta$ continuously distributed and for some constant $c$. This renders identification impossible. By adding the assumption that $g(\cdot)$ is differentiable, $g(x'\beta_0)$ is close to $g(c)$ whenever $x'\beta_0$ is close enough to $c$. Then, the set of $x$ for which $x'\beta_0$ is within any specified nonzero distance of $c$ has nonzero probability for $c$ in the interior of the support of $x'\beta_0$. Therefore, we identify $\beta_0$ by the approximate constancy of $x'\beta_0$. In fact, Wei Lin and Kulasekera (2007) \cite{[14]} show that the weaker assumption that $g(\cdot)$ is continuous is sufficient for identification. Yet, differentiability is assumed on the remainder of the paper as it will become useful when analyzing Ichimura's (1993) \cite{[6]} and Klein and Spady's (1993) \cite{[12]} models.
 
-The need for condition (iv), that is,  the need to prevent $x'\beta_0$  from being divided into disjoint subsets, can be explained with an example inspired on Horowitz's (1998) \cite{[13]}. Consider a semiparametric single index model in which the vector of independent variables, X, has a continuous component $X_1$ with support $\big[0,1\big]$, and one discrete component $X_2$, whith support $\{0,1\}$. Assume $X_1$ and $X_2$ are independent, $g(\cdot)$ is strictly increasing and non periodic and set $\beta_1 = 1$ as a \textit{scale normalization}. 
+The need for condition (iv), that is,  the need to prevent $x'\beta_0$  from being divided into disjoint subsets, can be explained with an example inspired by Horowitz's (1998) \cite{[13]}. Consider a semiparametric single index model in which the vector of independent variables, X, has a continuous component $X_1$ with support $\big[0,1\big]$, and one discrete component $X_2$, whith support $\{0,1\}$. Assume $X_1$ and $X_2$ are independent, $g(\cdot)$ is strictly increasing and non periodic and set $\beta_1 = 1$ as a \textit{scale normalization}. 
 
 Consider in particular the case
 \[
@@ -376,7 +377,7 @@ S_{n}(\beta_n) & = (\beta_0 - \beta_n)'\left[\frac{1}{n}\sum_i (g_{i0}^{(1)})^2v
              & + 2\frac{1}{n}\sum_i\varepsilon_ig_{i0}^{(1)}v_{i0}'(\beta_0 - \beta_n) + \frac{1}{n}\sum_i \varepsilon_i^2 + o_p(1)
 \end{align*}
 
-Now following closely Li and Racine (2007) \cite{[1]}, the objective function is minimized in order to $\beta_n$, ignoring terms independent of $\beta_n$ and keeping the term $o_p(1)$ so as to make the previous approximations evident. \footnote{ The sketch for the proof can be found on pages 256-277.} Moreover, replace $\beta_n$ by the minimizing value $\hat{\beta}_n$
+Now following closely Li and Racine (2007) \cite{[1]}, the objective function is minimized in order to $\beta$, ignoring terms independent of $\beta_n$ and keeping the term $o_p(1)$ so as to make the previous approximations evident. \footnote{ The sketch for the proof can be found on pages 256-277.} Moreover, replace $\beta_n$ by the minimizing value $\hat{\beta}_n$
 \[2\frac{1}{n}(\hat{\beta}_n - \beta_0)\sum_i(g_{i0}^{(1)})^2v_{i0}v_{i0}' - 2\frac{1}{n}\sum_i\varepsilon_ig_{i0}^{(1)}v_{i0}' + o_p(1) = 0.  \]
 Then, 
 \begin{align*}
