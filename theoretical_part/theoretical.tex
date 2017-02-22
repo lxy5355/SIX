@@ -95,7 +95,7 @@
 \vspace{2cm}
 \begin{abstract}
 
-Semiparametric single index models are widely applied in economic research. Applications range from finance to labor economics. This paper focuses on Ichimura's (1993) and Klein and Spady's (1993) models. These models help us dig into the vast field of semiparametric single index regression models, while still leaving much behind. In particular, both of these models are based on iterative optimization methods, which are in general computationally costly. The structure of the paper consists of three blocks of analysis: theoretical outline; monte carlo simulations; and a real data set example, using the pre-processed Gender Recognition by Voice and Speech Analysis dataset.
+Semiparametric single index models are widely applied in economic research. Applications range from finance to labor economics. This paper focuses on Ichimura's (1993) and Klein and Spady's (1993) models, which are root-n consistent and asymptotically normal. These models help us dig into the vast field of semiparametric single index regression models, while still leaving much behind. In particular, both of these models are based on iterative optimization methods, which are in general computationally costly. The structure of the paper consists of three blocks of analysis: theoretical outline; monte carlo simulations; and a real data set example, using the pre-processed Gender Recognition by Voice and Speech Analysis dataset.
 
 \end{abstract}
 %	\newpage
@@ -107,7 +107,7 @@ Semiparametric single index models are widely applied in economic research. Appl
 
 Semiparametric single index models are widely applied in economic research. Applications range from finance to labor economics. Masten and Masten (2015) \cite{[30]} use Klein and Spady's (1993) \cite{[12]} semiparametric single index model to predict bankruptcies, as opposed to the logit model, the standard parametric model for bankruptcy prediction. Coelho et al. (2005) \cite{[29]} use the same semiparametric single index model to analyze female labor market in Portugal. Moreover, McMillen and Thorsnes (2012) \cite{[31]} adopt a semiparametric single index average derivative estimator to study the effect of copper smelter on house prices in Tacoma.
 
-This paper focuses on Ichimura's (1993) \cite{[6]} and Klein and Spady's (1993) \cite{[12]} models. These models help us dig into the vast field of semiparametric single index regression models, while still leaving much behind. In particular, both of these models are based on iterative optimization methods, which are in general computationally costly. A natural attraction of Klein and Spady's (1993) \citep{[12]} model is the fact that it reaches the semiparametric efficiency bound. Thus, in that sense, one can say it is fully efficient  (Cameron and Trivedi, 2005 \cite{[5]}). However, it is at fault comparatively to Ichimura's (1993) \cite{[6]} due to its lack of generality, as it is restricted to the binary case.
+This paper focuses on Ichimura's (1993) \cite{[6]} and Klein and Spady's (1993) \cite{[12]} models. Both models are root-n consistent and asymptotically normal. A natural attraction of Klein and Spady's (1993) \citep{[12]} model is the fact that it reaches the semiparametric efficiency bound. Thus, in that sense, one can say it is fully efficient  (Cameron and Trivedi, 2005 \cite{[5]}). However, it is at fault comparatively to Ichimura's (1993) \cite{[6]} due to its lack of generality. Indeed, by restricting itself to binary case it renders its prospects for application excessively narrow. These models help us dig into the vast field of semiparametric single index regression models, while still leaving much behind. In particular, both of these models are based on iterative optimization methods, which are in general computationally costly. 
 
 The structure of the paper consists of three blocks of analysis: theoretical outline; simulations, where small sample properties are analyzed; and a real data set example, where one can illustrate the behavior of the models on an applied framework. All parties contributed to the presentation and the writing of the paper. Isa Marques led the theoretical part. Xi Sun and Xueying Liu worked mainly on the applied part including R coding, simulations and real dataset application.
 
@@ -164,7 +164,7 @@ E(Y|x) & = \sum_{y=0,1} yP(y|x) = P(Y=1|x) = P(\alpha + x'\beta + u_i > 0) \\
 Moreover, if $u$ has a symmetric distribution, $1 - F(-(\alpha + x'\beta) = F(\alpha + x'\beta)$, 
 
 Different functional forms for $u$ lead to different functional forms for the conditional probability of $Y = 1$. If $F(\cdot)$ is the CDF of a standard normal variable, then a Probit model is obtained. Alternatively, for $u$ following a symmetric logistic distribution a Logit model is obtained. Moreover, consistent parametric estimation of $E(Y|X) = P(Y=1|x)$ requires the correct distribution specification of $u$. 
-Hence, to sum up, while model (1) still clings to many of parametric model's desirable features, it is a more flexible version, as $g(\cdot)$ is left fully undefined.
+Hence, while model (1) still clings to many of parametric model's desirable features, it is a more flexible version, as $g(\cdot)$ is left fully undefined.
 
 Distinctively, nonparametric models can be defined as
   
@@ -179,13 +179,13 @@ Thus, in general, semiparametric single index models reach greater estimation pr
 
 
 
-Nonetheless, semiparametric models have two important disadvantages. First, they are hard to compute. Ichimura's (1993) \cite{[6]} model provides a good example for these computational issues, as it requires nonlinear iteration procedures. Second, semiparametric models often have multiple local optima, as they require optimization of objective functions that are not unimodal. These problems seem to be exarcebated by increasing sample sizes or number of explanatory variables (Manski, 1975 \cite{[7]}, 1985 \cite{[8]}; Manski and Thompson, 1989 \cite{[9]}; Cosslett, 1983 \cite{[10]}; Ichimura, 1993 \cite{[6]}; Horowitz, 1992 \cite{[11]}; and Klein and Spady, 1993 \cite{[12]} ).
+Nonetheless, semiparametric models have two important disadvantages. First, they are hard to compute. Ichimura's (1993) \cite{[6]} model provides a good example of these computational issues, as it requires nonlinear iteration procedures. Second, semiparametric models often have multiple local optima, as they require optimization of objective functions that are not unimodal. These problems seem to be exarcebated by increasing sample sizes or number of explanatory variables (Manski, 1975 \cite{[7]}, 1985 \cite{[8]}; Manski and Thompson, 1989 \cite{[9]}; Cosslett, 1983 \cite{[10]}; Ichimura, 1993 \cite{[6]}; Horowitz, 1992 \cite{[11]}; and Klein and Spady, 1993 \cite{[12]} ).
 
 
 \section{Identification conditions} % (fold)
 \label{sec:Identification conditions}
 
-This section provides identification conditions for semiparametric single index models,  summarized in proposition 3.1. Brief intuitive explanations follow each of these conditions. Moreover, it is under these conditions that $\beta_0$ and $ g(\cdot)$ are estimated in Ichimura (1993) \cite{[6]} and Klein and Spady's (1993) \cite{[12]} models, which are analyzed in sections 4 and 5, respectively.
+This section provides identification conditions for semiparametric single index models,  summarized in proposition 3.1. Brief intuitive explanations follow each of these conditions. Moreover, it is under these conditions that $\beta_0$ and $ g(\cdot)$ are estimated in Ichimura (1993) \cite{[6]} and Klein and Spady's (1993) \cite{[12]} models, which are analyzed in sections 4 and 5 respectively.
 
 
 Model (1) implies
@@ -290,7 +290,7 @@ The Nadaraya-Watson (NW) kernel density estimator commonly takes the form
 where $\hat{p}(X_i'\beta) = (nh)^{-1}\sum_{i=1}^{n}K\left(\frac{x'\beta - X_i'\beta}{h_n}\right)$.
 
 
-Ichimura (1993) \cite{[6]} proposes modifications of the usual kernel estimation to estimate $G(X_i'\beta)$. Markedly, observation $i$ is excluded from the calculation of $G(X_i'\beta)$. Otherwise, for a relatively small bandwidth, $S_n(\beta)$ is trivially minimized when $\hat{G}(X_i'\beta) = Y_i$. By leaving one observation out, this problem is countered. Also, it validates the ability to predict the $i$th observation using the remaining observations in the sample. Therefore, outside the sample prediction is improved. Moreover, the denominator $\hat{p}(X_i'\beta)$ is random and it becomes necessary to trim small values, particularly at the tails of the distribution. Otherwise, the value for the NW kernel estimator grows out of bound. Let $p(x'\beta)$ denote the probability density function of $X_i'\beta$ and $A_\delta$ and $A_n$ be the sets
+Ichimura (1993) \cite{[6]} proposes modifications of the usual kernel estimation to estimate $G(X_i'\beta)$. Markedly, observation $i$ is excluded from the calculation of $G(X_i'\beta)$. Otherwise, for a relatively small bandwidth, $S_n(\beta)$ is trivially minimized when $\hat{G}(X_i'\beta) = Y_i$. By leaving one observation out, this problem is resolved. Also, it validates the ability to predict the $i$th observation using the remaining observations in the sample. Therefore, outside the sample prediction is improved. Moreover, the denominator $\hat{p}(X_i'\beta)$ is random and it becomes necessary to trim small values, particularly at the tails of the distribution. Otherwise, the value for the NW kernel estimator grows out of bound. Let $p(x'\beta)$ denote the probability density function of $X_i'\beta$ and $A_\delta$ and $A_n$ be the sets
 
 \[ A_\delta = \{ x : p(x'\beta) \geq \delta, \text{ for all }  \beta \in \mathcal{B} \}
 \]
@@ -305,13 +305,13 @@ Then, for $x \in A_\delta$ the denominator does not get too close to zero. The s
 With all of this in mind, a leave-one-out Nadaraya-Watson (NW) kernel estimator is obtained
 
 \begin{equation}
-\hat{G}_{-i}(X_i'\beta) = \frac{(nh)^{-1}\sum_{j=1, j \neq i }^{n}  w(x_j)\mathbf{1}{(X_j \in A_n)}Y_jK\left(\frac{X_j'\beta - X_i'\beta}{h_n}\right)}{\hat{p}_{-i}(X_i'\beta)},
+\hat{G}_{-i}(X_i'\beta) = \frac{(nh)^{-1}\sum_{j=1, j \neq i }^{n}  w(x_j)\mathbf{1}{(X_j \in A_n)}Y_jK\left(\frac{X_i'\beta - X_j'\beta}{h_n}\right)}{\hat{p}_{-i}(X_i'\beta)},
 \end{equation}
 
-where $\hat{p}_{-i}(X_i'\beta) = (nh)^{-1}\sum_{j=1,j \neq i}^{n}w(x_j)\mathbf{1}{(X_j \in A_n)}K\left(\frac{X_j'\beta - X_i'\beta}{h_n}\right)$ and \linebreak  $\mathbf{1}{(X_i \in A_\delta)}$ is a trimming function.
+where $\hat{p}_{-i}(X_i'\beta) = (nh)^{-1}\sum_{j=1,j \neq i}^{n}w(x_j)\mathbf{1}{(X_j \in A_n)}K\left(\frac{X_i'\beta - X_j'\beta}{h_n}\right)$, \linebreak  $\mathbf{1}{(X_i \in A_n)}$ is a trimming function and $w(\cdot)$ is a nonnegative weight function chosen to maximize the asymptotic efficiency of the estimator. The latter is explained in detail in section 4.2.
 
 
-Furthermore, without going into lengthy technical details, additional restrictions must be imposed on the model. A bounded second order kernel $K(u)$ with compact support is used. A kernel is of second order if its second moment is the first nonzero moment. \footnote{The assumption that the support of the kernel is compact is used in order to simplify arguments.} This kind of kernel satisfies $0 \leq K(u) < \infty$, $K(u)=K(-u)$, $\int_{- \infty}^{\infty} K(u)du = 1$ and $\sigma_k^2 = \int_{-\infty}^{\infty} u^2K(u)du < \infty$. Additionaly, $g(\cdot)$ is twice continuously differentiable, which is a classical assumption for consistency of the kernel estimator. Furthermore, an approximately optimal bandwidth balancing bias and variance is required. That is, $ h_n = O(n^{-\frac{1}{5}})$.
+Furthermore, without going into lengthy technical details, additional restrictions must be imposed on the model. A bounded second order kernel $K(u)$ with compact support is used. A kernel is of second order if its second moment is the first nonzero moment. \footnote{The assumption that the support of the kernel is compact is used in order to simplify arguments.} This kind of kernel satisfies $0 \leq K(u) < \infty$, $K(u)=K(-u)$, $\int_{- \infty}^{\infty} K(u)du = 1$ and $\sigma_k^2 = \int_{-\infty}^{\infty} u^2K(u)du < \infty$. Additionaly, $g(\cdot)$ is twice continuously differentiable, which is a classical assumption for consistency of the kernel estimator. Moreover, an approximately optimal bandwidth balancing bias and variance is required. That is, $ h_n = O(n^{-\frac{1}{5}})$.
 
 With all of this in mind, it is possible to choose $\beta$ by using a weighted NLS (WNLS) method
 
@@ -319,7 +319,7 @@ With all of this in mind, it is possible to choose $\beta$ by using a weighted N
 S_n(\beta) = \frac{1}{n} \sum_{i=1}^{n}  w(x_i)\mathbf{1}{(X_i \in A_\delta)[Y_i - \hat{G}_{-i}(X_i'\beta)]^2}
 \end{equation}
 
-where $\mathbf{1}{(X_i \in A_\delta)}$ is a trimming function, and $w(x_i)$ is an appropriate nonnegative weighting function to maximize asymptotic efficiency, as explained in section 4.2. 
+where $\mathbf{1}{(X_i \in A_\delta)}$ is a trimming function, and $w(x_i)$ is an appropriate nonnegative weighting function to maximize asymptotic efficiency.
 
 \newtheorem{theorem}{Theorem}[section]
 
@@ -360,7 +360,7 @@ S_{n}(\beta_n) & = \frac{1}{n}\sum_i \{ Y_i - \hat{G}_{-i}(X_i'\beta_n)\}^2 = \f
 			 & = \frac{1}{n}\sum_i \{ g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta_n] +  \varepsilon_i\}^2 + o_p(1)
 \end{align*}
 
-Using a two Taylor expansions:
+Using Taylor expansions:
 
 \begin{align*}
 g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta_n)] & = g(X_i'\beta_0) - g(X_i'\beta_n) \\
@@ -377,7 +377,7 @@ S_{n}(\beta_n) & = (\beta_0 - \beta_n)'\left[\frac{1}{n}\sum_i (g_{i0}^{(1)})^2v
              & + 2\frac{1}{n}\sum_i\varepsilon_ig_{i0}^{(1)}v_{i0}'(\beta_0 - \beta_n) + \frac{1}{n}\sum_i \varepsilon_i^2 + o_p(1)
 \end{align*}
 
-Now following closely Li and Racine (2007) \cite{[1]}, the objective function is minimized in order to $\beta$, ignoring terms independent of $\beta_n$ and keeping the term $o_p(1)$ so as to make the previous approximations evident. \footnote{ The sketch for the proof can be found on pages 256-277.} Moreover, replace $\beta_n$ by the minimizing value $\hat{\beta}_n$
+Now following closely Li and Racine (2007) \cite{[1]}, the objective function is minimized with respect to $\beta$, ignoring terms independent of $\beta_n$ and keeping the term $o_p(1)$ so as to make the previous approximations evident. \footnote{ The sketch for the proof can be found on pages 256-277.} Moreover, replace $\beta_n$ by the minimizing value $\hat{\beta}_n$
 \[2\frac{1}{n}(\hat{\beta}_n - \beta_0)\sum_i(g_{i0}^{(1)})^2v_{i0}v_{i0}' - 2\frac{1}{n}\sum_i\varepsilon_ig_{i0}^{(1)}v_{i0}' + o_p(1) = 0.  \]
 Then, 
 \begin{align*}
@@ -394,7 +394,7 @@ With this in mind, as well as the Lindeberg-Levy Central Limit Theorem and the L
 \subsection{Bandwidth Selection} % (fold)
 \label{sub:Bandwidth Selection}
 
-Ichimura (1993) \cite{[6]} suggests the use of the optimal smoothing parameter $h_n$ balancing bias and variance. That is, $h_n = O(n^{-\frac{1}{5}})$. \footnote{The original paper (1993) \cite{[6]} suggests conditions that, according to Ichimura, satisfy optimal smoothing. However, no explicit explanation is provided, and thus we refrain from further details.} However, even though Ichimura (1993) \cite{[6]} gives a range of bandwidth choices which enables the construction of a root-$n$ consistent $\hat{\beta}_n$, it excludes the size of bandwidth that is optimal for estimating $g(\cdot)$. \footnote{Hall (1989) \cite{[17]} shows that two very different bandwidths may be necessary to construct good estimators of both $g(\cdot)$ and $\beta$.}
+Ichimura (1993) \cite{[6]} suggests the use of the optimal smoothing parameter $h_n$, which balances bias and variance. That is, $h_n = O(n^{-\frac{1}{5}})$. \footnote{The original paper (1993) \cite{[6]} suggests conditions that, according to Ichimura, satisfy optimal smoothing. However, no explicit explanation is provided, and thus we refrain from further details.} However, even though Ichimura (1993) \cite{[6]} gives a range of bandwidth choices which enables the construction of a root-$n$ consistent $\hat{\beta}_n$, it excludes the size of bandwidth that is optimal for estimating $g(\cdot)$. \footnote{Hall (1989) \cite{[17]} shows that two very different bandwidths may be necessary to construct good estimators of both $g(\cdot)$ and $\beta$.}
  
 With this in mind, H{\"a}rdle et al. (1993) \cite{[18]} suggest an empirical way of selecting the bandwidth for optimal smoothing of both $g(\cdot)$ and $\beta$. This can be attained by selecting $h_n$ and $\beta$ simultaneously by minimizing
 
@@ -402,7 +402,7 @@ With this in mind, H{\"a}rdle et al. (1993) \cite{[18]} suggest an empirical way
 M(\beta, h_n) = \sum_i \left[ Y_i - \hat{G}_{-i}(X_i'\beta, h_n) \right]^2\mathbf{1}{(X_i \in A_\delta)},
 \end{equation}
 
-where $\hat{G}_{-i}(X_i'\beta, h_n) = \hat{G}_{-i}(X_i'\beta)$ and thus follows equation (8), and $\tau_i$ is the trimming set, as defined in  the present section.
+where $\hat{G}_{-i}(X_i'\beta, h_n) = \hat{G}_{-i}(X_i'\beta)$ and thus follows equation (8), and $\mathbf{1}{(X_i \in A_\delta)}$ is the trimming set, as defined in  the present section.
 
 \subsection{Weight Function} % (fold)
 \label{sub:Weight Function}
@@ -418,7 +418,7 @@ The efficiency bound is then
 
 \begin{equation}
 \Omega_{SI} = \left\{ E\left[\frac{\mathbf{1}{(X_i \in A_\delta)}}{\sigma^2(x)}\frac{\partial}{\partial \beta}
- G(X'\beta)\frac{\partial}{\partial \beta} G(X'\beta) \right] \right\}^{-1}
+ G(X'\beta)\frac{\partial}{\partial \beta} G(X'\beta)' \right] \right\}^{-1}
 \end{equation}
 
 where $SI$ stands for single index. Consider the result shown in the present section
@@ -432,25 +432,25 @@ Minimizing the previous result in order to $\beta$, ignoring terms independent o
 
 Thus, the efficiency bound from equation (11) is achieved by the semiparametric WNLS estimator if $\sigma^2(X)$ is known.
 
-Even when $\sigma^2(X)$ is unknown, an asymptotic efficient estimator of $\beta_0$ can be obtained by using an analogue of FGLS.  Consider a given consistent estimator of $\sigma^2(X)$, say $\hat{\sigma}_{n}^{2}(x)$, that adopts a two-step procedure. On the first step, minimize function (9) with respect to $\beta$ for $w(x) = 1$. The resulting estimator $\hat{\beta}_n$ is root-n consistent and asymptotically normal but inefficient. This estimator is used on the second step to calculate the weight function $\hat{w}_i(x) = \frac{1}{\hat{\sigma}_{i}^{2}}$. Here, $\hat{\sigma}_{i}^{2}$ is defined by Robinson (1987) \cite{[20]} as 
-\[\hat{\sigma}_{i}^{2} = \frac{1}{k}\sum_{j=1}^{n} \mathbf{1}{(x_j \in N_k(x_i))}\hat{\varepsilon}_{j}^{2} ,\]
-%The assumption that $X \in A_{\delta}$ can be replaced by the assumption that $A_{\delta}$ grows very slowly as $n$ increases.
-and $\hat{\varepsilon}_i = Y_i - \hat{G}_{-i}(X_i'\hat{\beta}_n)$. Further, $N_k(x_i)$ is the set of $k$ observations of $x_j$ closest to $x_i$ in weighted Euclidean norm.
+Even when $\sigma^2(X)$ is unknown, an asymptotic efficient estimator of $\beta_0$ can be obtained by using an analogue of FGLS.  Consider a given consistent estimator of $\sigma^2(X)$, say $\hat{\sigma}_{n}^{2}(x)$, that adopts a two-step procedure. On the first step, minimize function (9) with respect to $\beta$ for $w(x) = 1$. The resulting estimator $\hat{\beta}_n$ is root-n consistent and asymptotically normal but inefficient. This estimator is used on the second step to calculate the weight function $\hat{w}_i(x) = \frac{1}{\hat{\sigma}_{i}^{2}}$. Robinson (1987) \cite{[20]} estimated $\hat{\sigma}_{i}^{2}$ using a nearest-neighbor nonparametric regression estimator
+where $\hat{\varepsilon}_i = Y_i - \hat{G}_{-i}(X_i'\hat{\beta}_n)$. The latter is used to avoid technical problems if $X$ has unbounded support or a density that can be arbitrarily close to zero. However, in practice a kernel estimator will suffice if $A_\delta$ is chosen so as to keep the estimated density of $X$ away from zero.
 
+%\[\hat{\sigma}_{i}^{2} = \frac{1}{k}\sum_{j=1}^{n} \mathbf{1}{(x_j \in N_k(x_i))}\hat{\varepsilon}_{j}^{2} ,\]
 
+%and $N_k(x_i)$ is the set of $k$ observations of $x_j$ closest to $x_i$ in weighted Euclidean norm.
 
 
 \subsection{Model's disadvantages} % (fold)
 \label{sub:Model's disadvantages}
 
 
-It is important to realize that the minimization of a nonlinear objective function such as equation (9) might be computationally costly. The WNLS estimator is computed by iterative methods. Start with an initial guess for the estimator $\hat{\beta}_n^{1}$ such as $\hat{\beta}_n^{1} = - \frac{1}{n}\sum_i y_i\hat{f'}(x_i)$, where $f'$ can be obtained by calculation of the first derivative of the kernel estimator of the density of $x_i$. \footnote{This estimator is a density weighted average derivative estimator such as in Stoker (1986) \cite{[21]}} Moreover, $\hat{\beta}_n^{1}$ follows the restrictions from section 3. Reach the kernel estimate $\hat{G}_{-i}(X_i'\hat{\beta}_n^{1})$ and thus $S_n(\hat{\beta}_n^{1})$. Perturb $\hat{\beta}_n^{1}$ to obtain $\frac{\partial S_n(\beta)}{\partial\beta} |_{\hat{\beta}_n^{1}}$ and update $\hat{\beta}_n^{2} = \hat{\beta}_n^{1} + A_n  \frac{ \partial S_n(\beta)}{\partial\beta}|_{\hat{\beta}_n^{1}}$ where $A_n$ is the size of the random disturbance. This process should be repeated until convergence. Yet, this is computationally difficult, specially because there might be multiple local minima, in case, for example, the objective function is multimodal or nonconvex. 
+It is important to realize that the minimization of a nonlinear objective function such as equation (9) might be computationally costly. The WNLS estimator is computed by iterative methods. Start with an initial guess for the estimator $\hat{\beta}_n^{1}$ such as $\hat{\beta}_n^{1} = - \frac{1}{n}\sum_i y_i\hat{f'}(x_i)$, where $f'$ can be obtained by calculation of the first derivative of the kernel estimator of the density of $x_i$. \footnote{This estimator is a density weighted average derivative estimator such as in Stoker (1986) \cite{[21]}} Moreover, $\hat{\beta}_n^{1}$ follows the restrictions from section 3. First, one reaches the kernel estimate $\hat{G}_{-i}(X_i'\hat{\beta}_n^{1})$ and thus $S_n(\hat{\beta}_n^{1})$. Afterwards, $\hat{\beta}_n^{1}$ must be perturb so as to obtain $\frac{\partial S_n(\beta)}{\partial\beta} |_{\hat{\beta}_n^{1}}$. Then, one updates $\hat{\beta}_n^{2} = \hat{\beta}_n^{1} + A_n  \frac{ \partial S_n(\beta)}{\partial\beta}|_{\hat{\beta}_n^{1}}$ where $A_n$ is the size of the random disturbance. This process should be repeated until convergence. Yet, this is computationally difficult, specially because there might be multiple local minima, in case, for example, the objective function is multimodal or nonconvex. 
 
 One may consider  as an alternative a direct estimation method that does not require optimization of problems involving iterative solutions.  H{\"a}rdle and Stoker (1989) \cite{[22]} provide such a method. However, according to Racine and Li (2007) \cite{[1]}, for small sample settings, H{\"a}rdle and Stoker's (1989) \cite{[22]} direct method may still be less appealing than Ichimura's (1993) \cite{[6]} iterative method.
 
 \section{Klein and Spady's binary estimation model} % (fold)
 \label{sec:section_about_references_within_the_document}
-In this section we analyze Klein and Spady's (1993) \cite{[12]} semiparametric binary choice model, used to estimate model (2) when $Y \in \{0,1\}$.   This method exhibits $n^{-\frac{1}{2}}$ efficiency, asymptotic normality and asymptotic efficiency. 
+In this section we analyze Klein and Spady's (1993) \cite{[12]} semiparametric binary choice model, which is used to estimate model (2) when $Y \in \{0,1\}$.   This method exhibits $n^{-\frac{1}{2}}$ efficiency, asymptotic normality and asymptotic efficiency. 
 
 The model is defined as
 
@@ -467,9 +467,9 @@ The $log-likelihood$ function is
 
 It is clear from equation (13) that restrictions must be imposed such that any estimate of $g(\cdot)$ is kept sufficiently far away from 0 and 1. As in Ichimura's (1993) \cite{[6]} model, this can be achieved by using a simplified trimming function $\mathbf{1}{(X_i \in A_\delta)}$ that restricts $X$ to a fixed set $A_\delta$ on which $g$ is bounded away from 0 and 1. The set $A_n$ is defined as in section 4.
 
-Similarly to Ichimura's method, $g(\cdot)$ cannot be estimated directly. Thus, Klein and Spady (1993) \cite{[12]} suggest replacing $g(\cdot)$ with an unweighted version of leave-one-out NW estimator similar equation (8). Again, one observation is left out as otherwise, for a relatively small bandwidth, the objective function would be maximized by setting $\hat{G}(X_i'\beta)=0$ when $Y_i=0$ and $\hat{G}(X_i'\beta)=1$ when $Y_i=1$. That is, the objective function would take the value zero. By leaving one observation out, outside the sample prediction is improved. 
+Similarly to Ichimura's method, $g(\cdot)$ cannot be estimated directly. Thus, Klein and Spady (1993) \cite{[12]} suggest replacing $g(\cdot)$ with an unweighted version of leave-one-out NW estimator similar equation (8). Again, one observation is left out as otherwise, for a relatively small bandwidth, the objective function would be maximized by setting $\hat{G}(X_i'\beta)=0$ when $Y_i=0$ and $\hat{G}(X_i'\beta)=1$ when $Y_i=1$. That is, the $\mathcal{L}_n$ would be zero. By leaving one observation out, outside the sample prediction is improved. 
 
-Furthermore, without spanning much on technical details, further restrictions must be imposed on the model. Assume an higher order kernel density estimator $K(u)$ with compact support is used. Higher order kernels have order bigger than two and, in general, allow for faster asymptotic rates of convergence by relaxing the restriction that the kernel  be a density function. However, these are seldomnly used in applied work as they involve local averaging with negative weights (Marron (1994) \cite{[23]}). \footnote{ In fact, for its desirable properties to ``kick in'', a very large number of observations might be necessary. Marron and Wand (1992) \cite{[24]} conclude that, in most situations, the benefits in terms of performance of higher order kernels are not sufficient to outweigh the loss of interpretability.}
+Furthermore, without spanning much on technical details, further restrictions must be imposed on the model. Klein and Spady (1993) \cite{[12]} assume a higher order kernel density estimator $K(u)$ with compact support is used. Higher order kernels have order bigger than two and, in general, allow for faster asymptotic rates of convergence by relaxing the restriction that the kernel must be a density function. However, these are seldomly used in applied work as they involve local averaging with negative weights (Marron (1994) \cite{[23]}). \footnote{ In fact, for its desirable properties to ``kick in'', a very large number of observations might be necessary. Marron and Wand (1992) \cite{[24]} conclude that, in most situations, the benefits in terms of performance of higher order kernels are not sufficient to outweigh the loss of interpretability.}
 The bandwidth must satisfy the rate $ n^{-\frac{1}{6}} < h_n < n^{-\frac{1}{8}}$. Moreover, $P(Y=1|X=x)$ need not be monotonic in $x$.
 
 With all of this in mind, the maximization problem takes the form
@@ -491,9 +491,9 @@ where $KS$ stands for Klein and Spady and $\Omega_{KS} = \Omega_{SI}$, i.e., the
 
 \end{theorem}
 
-It follows from the theorem 5.1. that $\sqrt{n}(\hat{\beta}_n - \beta_0)=O_p(1)$, and thus $(\hat{\beta}_n - \beta_0) = O_p\left(\frac{1}{\sqrt{n}}\right)$.  Consequently, root-n consistency is attained, which is the optimal rate for most parametric methods. Furthermore, $\sqrt{n}(\hat{\beta}_n - \beta_0)$ is asymptotically normally distributed and its asymptotic distribution is centered at zero. Once again, the latter fact contrasts with the case of nonparametric density estimation, whose asymptotic distributions are in general not centered at zero when the estimators have their fastest possible rates of convergence (Stone (1980) \cite{[15]} and Goldstein and Messer (1992) \cite{[16]}). 
+It follows from theorem 5.1. that $\sqrt{n}(\hat{\beta}_n - \beta_0)=O_p(1)$, and thus $(\hat{\beta}_n - \beta_0) = O_p\left(\frac{1}{\sqrt{n}}\right)$.  Consequently, root-n consistency is attained, which is the optimal rate for most parametric methods. Furthermore, $\sqrt{n}(\hat{\beta}_n - \beta_0)$ is asymptotically normally distributed and its asymptotic distribution is centered at zero. Once again, the latter fact contrasts with the case of nonparametric density estimation, whose asymptotic distributions are in general not centered at zero when the estimators have their fastest possible rates of convergence (Stone (1980) \cite{[15]} and Goldstein and Messer (1992) \cite{[16]}). 
 
-However, to have a good grasp of Theorem 5.1., it is fundamental to understand the expression for $\Omega_{KS}$. In particular, if one is to show that $\Omega_{KS} = \Omega_{SI}$, it is necessary to understand that $\frac{1}{g(X_i'\beta_0)(1 - g(X_i'\beta_0))}$ indeed corresponds to $\frac{1}{\sigma^2(x)}$ in equation (10). 
+However, to have a good grasp of Theorem 5.1., it is fundamental to understand the expression for $\Omega_{KS}$. In particular, if one is to show that $\Omega_{KS} = \Omega_{SI}$, it is necessary to understand that $\frac{1}{g(X_i'\beta_0)(1 - g(X_i'\beta_0))}$ indeed corresponds to $\frac{1}{\sigma^2(x)}$ in equation (11). 
 
 The variance of the present binary choice model is %\footnote{Also note $Var(Y|X=x)=E[\mathbf{1}(x'\beta_0 \geq \varepsilon)|X=x](1 - E[\mathbf{1}(x'\beta_0 \geq \varepsilon)|X=x] = E[Y|X=x](1 - E[Y|X=x])$}
 \begin{align*}
@@ -513,24 +513,24 @@ with probability approaching 1 as $n \rightarrow \infty$ and where $\hat{G}'_{-i
 Consider now a semiparametric WNLS estimation of $\beta_0$ such as in Ichimura's (1993) \cite{[6]} model. The first order condition from equation (15) is the same as the first-order condition for the semiparametric WNLS estimation of $\beta_0$ with the weight function
 \begin{align*}
 w_i & = \{ \hat{G}_{-i}(X_i'\beta_n)[ 1 - \hat{G}_{-i}(X_i'\beta_n)]\}^{-1} = \{ G(X_i'\beta_n)[ 1 - G(X_i'\beta_n)]\}^{-1} + o_p(1) \\
-     & = \{ g(X_i'\beta_0)[ 1 - g(X_i'\beta_0)]\}^{-1} + o_p(1) = Var(Y|X = x) + o_p(1)
+     & = \{ g(X_i'\beta_0)[ 1 - g(X_i'\beta_0)]\}^{-1} + o_p(1) = Var(Y|X = x)^{-1} + o_p(1)
 \end{align*}
-Seeing to section 4.2., it follows that semiparametric maximum-likelihood estimator of $\beta_0$ in Klein and Spady's (1993) \cite{[12]} model is asymptotically efficient.\footnote{This is only true for ``first order efficiency'', i.e., when $E(X_i|X_i'\beta)$ is linear in $X_i'\beta$.}
+Based on section 4.2., it follows that semiparametric maximum-likelihood estimator of $\beta_0$ in Klein and Spady's (1993) \cite{[12]} model is asymptotically efficient.\footnote{This is only true for ``first order efficiency'', i.e., when $E(X_i|X_i'\beta)$ is linear in $X_i'\beta$.}
 
 \subsection{Bandwidth Selection} % (fold)
 \label{sub:Bandwidth Selection}
 
-Klein and Spady (1993) \cite{[12]} do not discuss the choice of bandwidth, apart from the requirement that $ n^{-\frac{1}{6}} < h_n < n^{-\frac{1}{8}}$. However, similarly to Ichimura's (1993) \cite{[6]} method and following H{\"a}rdle et al. (1993) \cite{[18]}, an empirical way of selecting the bandwidth for optimal smoothing of both $g(\cdot)$ and $\beta$ can be conjectured. This is attained by choosing $h_n$ jointly with $\beta$ when maximizing
+Klein and Spady (1993) \cite{[12]} do not discuss the choice of bandwidth, apart from the requirement that $ n^{-\frac{1}{6}} < h_n < n^{-\frac{1}{8}}$. However, similarly to Ichimura's (1993) \cite{[6]} method and H{\"a}rdle et al. (1993) \cite{[18]}, an empirical way of selecting the bandwidth for optimal smoothing of both $g(\cdot)$ and $\beta$ can be conjectured. This is attained by choosing $h_n$ jointly with $\beta$ when maximizing
 \begin{equation}
-M_n(\beta, h_n) = \frac{1}{n}\sum_{i=1}^n \tau_{i}\{ (1 - Y_i)ln[ 1 - \hat{G}_{-i}(X_i'\beta, h_n)] +  Y_iln[\hat{G}_{-i}(X_i'\beta, h_n)]\}
+M_n(\beta, h_n) = \frac{1}{n}\sum_{i=1}^n \mathbf{1}{(X_i \in A_\delta)}\{ (1 - Y_i)ln[ 1 - \hat{G}_{-i}(X_i'\beta, h_n)] +  Y_iln[\hat{G}_{-i}(X_i'\beta, h_n)]\}
 \end{equation}
 
-where $\hat{G}_{-i}(X_i'\beta, h_n) = \hat{G}_{-i}(X_i'\beta)$ and thus follows equation (8), and $\tau_i$ is the trimming set, supposedly as defined in the present section.
+where $\hat{G}_{-i}(X_i'\beta, h_n) = \hat{G}_{-i}(X_i'\beta)$ and thus follows equation (8), and $\mathbf{1}{(X_i \in A_\delta)}$ is the trimming set, supposedly as defined at the beginning of section 5.
 
 \subsection{Model's disadvantages} % (fold)
 \label{sub:Model's disadvantages}
 
-Analogously to Ichimura's (1993) \cite{[6]} model, optimization of the maximum likelihood function, using the iteration between the computation of $\hat{\beta}_n$ given $\hat{G}_{-i}$ and the computation of $\hat{G}_{-i}$ given $\hat{\beta}_n$, is recurrently difficult.  Especially so when the optimization leads to multiple local maxima. Such an event could be explained by an objective function that is either multimodal or nonconcave. 
+Analogously to Ichimura's (1993) \cite{[6]} model, optimization of the maximum likelihood function, using the iteration between the computation of $\hat{\beta}_n$ given $\hat{G}_{-i}$ and the computation of $\hat{G}_{-i}$ given $\hat{\beta}_n$, is recurrently difficult.  Especially so when the optimization leads to multiple local maxima. Such an event could be caused by an objective function that is either multimodal or nonconcave. 
 
 Zhou and Lang (1995) \cite{[26]} provide an alternative using an ``easy to compute'' semiparametric estimator for binary choice models. It preserves root-n consistency and is asymptotically normally distributed, but has the novelty of being fast and easy to compute. \footnote{The method is based on a semiparametric interpretation of the Expectation and Maximization principle (Dempster et al (1977) \cite{[27]}) and the least squares approach.}
 % section section_about_references_within_the_document (end)
@@ -550,16 +550,16 @@ However, restricting analysis to the case of a binary dependent variable is quit
 \label{sec:Simulation results}
 
 
-In this section, estimators are simulated from Ichimura's (1993) \cite{[6]} and Klein and Spady's (1993) \cite{[12]} theoretical models. We reflect on the properties of these estimates, generated via a Monte Carlo experiment with sample size of 250 and 1000 trials. Results are listed in $Table\ 1$.
+In this section, datasets are simulated from Ichimura's (1993) \cite{[6]} and Klein and Spady's (1993) \cite{[12]} theoretical models. Estimators are then estimated using this dataset. We reflect on the properties of these estimates, generated via a Monte Carlo experiment with sample size of 250 and 1000 trials. Results are listed in $Table\ 1$.
 
-Several points are worth noticing in the design of the experiment. Firstly, two scenarios are designed regarding to error distributions: standard normal $N(0,1)$ and joint normal $0.75 \cdot N(-0.5,1)+0.25\cdot N(1.5,2.5)$. For each scenario, a logit estimator is included as an additional source of comparison with the two semiparametric single index models. Furthermore, for all specifications, the exogenous vector of variables contains two components. Both of these components are independently generated from standard normal distributions. Lastly, we restrict out model to the binary case, as this is one of the restrictions of Klein and Spady's (1993) \cite{[12]} model. Following section 3, the parameter of the first exogenous component is normalized to $1$. Moreover, the true value for the second is set to $-2$:
+Several points are worth noticing in the design of the experiment. Firstly, two scenarios are simulated based on different error distributions : standard normal $N(0,1)$ and joint normal $0.75 \cdot N(-0.5,1)+0.25\cdot N(1.5,2.5)$. For each scenario, a logit estimator is included as an additional source of comparison with the two semiparametric single index models. Furthermore, both specifications contain two independent/exogenous variables, each independently generated from a standard normal distribution.  Lastly, we restrict out model to the binary case, as this satisfies the restrictions of Klein and Spady's (1993) \cite{[12]} model. Following section 3, the coefficient of the first exogenous variable is normalized to $1$. Moreover, the true value for the second is arbitrarily set to -2. The dependent variable y is thus generated based on the following equation
 \begin{equation*}
 y_i = I(x_{1i} - 2x_{2i} > \epsilon_i).
 \end{equation*}
 
-Our simulation characterizes Ichimura's \cite{[6]} nonlinear least squares estimator and Klein and Spady's \cite{[12]} maximum likelihood estimator. Again for the convenience of comparison, a fourth order Gaussian kernel function is selected for both cases, in order to achieve the minimal order requirement in Klein and Spady's (1993) \cite{[12]} model. Additionally, a trimming function is defined, following the theoretical requirements from section 4 and 5. This guarantees sensible calculation of estimates over each randomly drawn data set.\footnote{Although Ichimura's (1993) \cite{[6]} and Klein and Spady's (1993) \cite{[12]} estimators of one individual simulation are extracted from the same trimmed data set, a ``floor'' is executed on the latter for technical reasons.} As for bandwidth selection, we preselect two bandwidths respectively for the two models, through a likelihood-based cross-validation approach, which is employed in the function $npindexbw$ of the empirical $NP\ Package$ created by Hayfield and Racine (2008) \cite{[28]}. This optimal bandwidth is investigated by Haerdle, Hall and Ichimura (1993) \cite{[18]} .
+Our simulation characterizes Ichimura's \cite{[6]} nonlinear least squares estimator and Klein and Spady's \cite{[12]} maximum likelihood estimator. Again for convenience of comparison, a fourth order Gaussian kernel function is selected for both cases, in order to achieve the minimal order requirement in Klein and Spady's (1993) \cite{[12]} model. Additionally, a trimming function is defined, following the theoretical requirements from section 4 and 5. This guarantees sensible calculation of estimates over each randomly drawn data set.\footnote{Although Ichimura's (1993) \cite{[6]} and Klein and Spady's (1993) \cite{[12]} estimators of one individual simulation are extracted from the same trimmed data set, a ``floor'' is executed on the latter for technical reasons.} As for bandwidth selection, we preselect two bandwidths respectively for the two models, through a likelihood-based cross-validation approach, which is employed in the function $npindexbw$ of the empirical np-package created by Hayfield and Racine (2008) \cite{[28]}. This optimal bandwidth is investigated by H{\"a}rdle, Hall and Ichimura (1993) \cite{[18]} .
 
-In accordance with Ichimura $(1993)$ \cite{[6]}, $grid\ search$ was chosen as the method of optimization nested in our estimator's simulations. This method performs sufficiently well in finding ``good'' estimates, as supported by histograms of estimates shown in $Figure\ 1$. However, it may have two considerable deficiencies: on the one hand, as the amount of grids increases, function evaluations grow exponentially; on the other hand, when the true $\beta$ is unknown, the performance of estimation relies heavily on the way grids are preselected. In our experiment grid search is looped over $(-4,0)$ with width $0.05$. This leads to $81$ function evaluations for each data generation, which is already computational costly taking into account an amount of $1000$ data generations.
+In accordance with Ichimura $(1993)$ \cite{[6]}, $grid\ search$ was chosen as the method of optimization nested in our estimation process. This method performs sufficiently well and stable in finding ``good'' estimates, as supported by histograms of estimates shown in $Figure\ 1$. However, it may have two considerable deficiencies: first, as the number of grids increases due to larger number of independent variables as well as when the length of each grid increases, the number of function evaluations grow exponentially; second, when the true $\beta$ is unknown, the performance of estimation relies heavily on the way grids are preselected. An extreme example of the latter fact would be when the true beta lies outside the pre-specified grid, in which case we would never obtain an estimator close to the true value. In our experiment grid search is set to be $(-4,0)$ with width $0.05$. This leads to $81$ function evaluations for each data generation, which is already computationally costly, and even more so with 1000 data generation trials. 
 
 \begin{table}[H]
 \caption {Bias and Root Mean Squared Error Comparison} \label{tab:bias and mean squared error}
@@ -598,11 +598,14 @@ $^1$Ichi = Ichimura's method, KS = Klein and Spady's method.
   \label{fig:plot of estimates}
 \end{figure}
 
-Combining simulation results from the table and the figure it can be observed that the distributions of all three estimators are skewed to the left, while the biases are bounded below $-0.06$. This indicates that the property of asymptotic consistency exists in all three estimators, amongst which the Klein and Spady's (1993) \cite{[12]} estimator converges most rapidly to the true value. 
 
-As to what concerns the mean squared error, there is no significant difference among estimators in terms of magnitude. Since binary choice models are inherently heteroskedasticity, Ichimura’s (1993) \cite{[6]}  estimator would require the use of a weight function. However, this is out of the scope of our work and it is in fact also excluded from the np package. The weight function can be thus adapted to simulation in further studies. Nevertheless, our results suggest that this might not be an influencing issue here. 
+First, note 
+\[ RMSE = \sqrt{(\beta_0 - \hat{\beta})^2}. \]
+Combining simulation results from the table and the figure it can be observed that the distributions of all six estimators are skewed to the left, while the biases are bounded below by - 0.6. The property of asymptotic consistency seems to be present in all cases, amongst which the Klein and Spady's (1993) \cite{[12]} estimator seems to converge most rapidly to the true value. 
 
-In the end, a comparison between our simulation results and Hayfield and Racine's (2008) \cite{[28]} $NP\ Package$ encouraged us to rely on our original simulation functions. These results listed in the Appendix.
+As to what concerns the mean squared error, there is no significant difference among estimators in terms of magnitude. Since binary choice models are inherently heteroskedasticity, Ichimura’s (1993) \cite{[6]}  estimator would require the use of a weight function. However, this is out of the scope of our work and it is in fact also excluded from the np-package created by Hayfield and Racine (2008) \cite{[28]}. The weight function can however be employed in further simulation studies. Nevertheless, our results suggest that this might not be a significant problem here. 
+
+In the end, a comparison between our simulation results and Hayfield and Racine's (2008) np-package \cite{[28]} encouraged us to rely on our original simulation functions. These results listed in Appendix.
 
 \section{Empirical Application} % (fold)
 \label{sec:Empirical Application}
@@ -613,9 +616,9 @@ The dataset we used is the pre-processed Gender Recognition by Voice and Speech 
 
 As a first step, we removed three variables that have shown to cause multicollinearity problem,  namely; IQR, centroid, and dfrange. Next, the dataset is split into training sample for estimation of parameters, and test sample for prediction using estimated parameters. 70\% of the data are randomly selected into the training sample, with the remaining 30\% left for the test sample. 
 
-For estimation, we use the pre-implemented np-package in R (Racine and Hayfield, 2008) \cite{[28]} for computational simplicity. In our self-implemented Ichimura (1993) method \cite{[6]} and Klein and Spady (1993) \cite{[12]} method, we employed grid-search in the minimization process for equation (9) and (14), which is also the method proposed by Ichimura (1993) \cite{[6]}. The minimization results are highly dependent on the specification of the grid for each independent variables and an appropriate resolution of the grid is necessary for precise results. As such, grid-search method suffers from the curse of dimensionality. Numerical approximation becomes infeasible in our case as the data contains 18 independent variables. We therefore decided to use the np-package which employs the $npksum()$ and $nlm()$ minimization procedures in R with multiple starting values to best avoid local minima. A comparison with logistic regression is also done using the logistic regression routine pre-implemented in R. 
+For estimation, we use the pre-implemented np-package in R (Racine and Hayfield, 2008) \cite{[28]} for computational simplicity. In our self-implemented Ichimura (1993) method \cite{[6]} and Klein and Spady (1993) \cite{[12]} method, we employed grid search in the minimization process for equation (9) and (14), which is also the method proposed by Ichimura (1993) \cite{[6]}. The minimization results are highly dependent on the specification of the grid for each independent variables and an appropriate resolution of the grid is necessary for precise results. As such, grid-search method suffers from the curse of dimensionality. Numerical approximation becomes infeasible in our case as the data contains 18 independent variables. We therefore use the np-package which employs the $npksum()$ and $nlm()$ minimization procedures in R with multiple starting values to best avoid local minima. A comparison with logistic regression is also done using the pre-implemented logistic regression routine in R.
 
-The prediction results and the true values are plotted in figure 2. A comparison of in-sample and prediction accuracy rate and approximate calculation time are also presented in table 2. The accuracy rate is defined as ratio of correct gender prediction to the total number of data points.
+The prediction results and the true values are plotted in figure 2, with grey points representing predicted values and black points true values. A comparison of in-sample and prediction accuracy rate and approximate calculation time are also presented in table 2. The accuracy rate is defined as ratio of correct gender prediction to the total number of data points.
 
 \begin{table}
     \centering
@@ -655,7 +658,13 @@ The prediction results and the true values are plotted in figure 2. A comparison
 
 From Table 2 and Figure 2, we could conclude that the logistic regression would be the preferred method in this case since the improvement in accuracy rate by using semi-parametric methods are minimum while the calculation time increases significantly. However, this could be due to the fact that the underlying data fit the logistic distribution better, and thus this comparison should not be generalized to other datasets. 
 
-We also take note of the two peculiar features of the results. First, the accuracy rate is higher for test sample than in-sample accuracy rate. As the difference is relatively small, we postulate that this could be random and of no particular significance. Moreover, the fact that the training sample contains 3.5 times more data points than the test sample could exacerbate the random effect. The second feature is that the result graph from Klein and Spady (1993) \cite{[12]} method is not very smooth. This could be due to a problem with bandwidth selection included in the np-package (Racine and Hayfield, 2008) \cite{[28]} or the minimization process. However, as the result is not significantly worse than the other estimators, actually slightly better, we do not think that this should be of great concern.
+We also take note of the two peculiar features of the results. First, the accuracy rate is higher for test sample than for training sample. As the difference is relatively small, we postulate that this could be random and of no particular significance. Moreover, the fact that the training sample contains 3.5 times more data points than the test sample could exacerbate the random effect. The second feature is that the result graph from Klein and Spady (1993) \cite{[12]} method is not very smooth. This could be due to a problem with bandwidth selection included in the np-package (Racine and Hayfield, 2008) \cite{[28]} or the minimization process. However, as the result is not significantly worse than the other estimators, actually slightly better, we do not think that this should be of great concern.
+
+\section{Conclusion} % (fold)
+\label{sec:Conclusion}
+
+In this paper, we study the theoretical underpinnings and derivations of a special class of semiparametric methods i.e. the single index models, and more specifically, Ichimura's (1993) \cite{[6]} and Klein and Spady's (1993) \cite{[12]} models. 
+We use monte carlo experiments to explore the characters of each model. As predicted from theory, simulations point to root-n consistency and asymptotic normality. At the same time, simulations make computational evident. Moreover, an application on real dataset is presented to further examine the relevance of such methods in real world data analysis. This study has bettered our understanding of semiparametric models and we hope that more applications using such methods could be done in the future. Further effort could be put into the study of better minimization methods or estimation procedures with more relaxed model assumptions. 
 
 
 \newpage 
@@ -674,7 +683,71 @@ We also take note of the two peculiar features of the results. First, the accura
 \section{Appendix}
 \label{sec:appendix}
 
-\subsection{List of Variables}
+
+\subsection{Empirical Definition of Trimming Function}
+Section 7 develops an empirical method to implement the trimming functions for Ichimura's (1993) \cite{[6]} and Klein and Spady's (1993) \cite{[12]} models.
+
+Referring to theoretical definitions, the aim of a trimming function in Ichimura's (1993) \citep{[6]} model is to guarantee $\hat{p}_{-i}(X_i'\beta)$ is not too close to zero. 
+
+The estimate $\hat{p}_{-i}(X_i'\beta)$ is calculated over a given bandwidth $h$. There are two ways to keep such an estimate far away enough from zero: either we  employ $A_\delta$  directly, which can be quite stringent, or we use observations that are close enough to the independent variables that satisfy $x \in A_\delta$. The latter also leads $\hat{p}_{-i}(X_i'\beta)$, the kernel density estimator for $X_i'\beta$, to be large enough. We use a similar reasoning to $A_n$ for the primary trimming function.
+
+Before starting the estimation, simulated sample data is sieved by examining whether the single index's NW leave-one-out kernel estimates are large enough. A lower bound is defined, such that $\hat{p}_{-i}(x'\beta)$ is not too close to zero and also so that enough observations are left  for the estimation to be reliable. If $\hat{p}_{-i}(x'\beta)$ fails to achieve the chosen lower bound, this data point will be removed from the data set.
+Furthermore, as the grid search method is used to carry out the estimation, the same set of grids is used to define $\mathcal{B}$, as defined in section 4. Data sieving is carried out over this set such that the estimation procedure is sensible for each single grid.
+
+Firstly, the same trimmed data set is used for Ichimura's (1993) \cite{[6]} and Klein and Spady's (1993) \cite{[12]} estimation methods. However, this is not enough for the latter model to work, as it only prevents $g(\cdot)$ from growing out of bounds.  Klein and Spady's (1993) \cite{[12]} model is more restrictive than Ichimura's (1993) \cite{[6]} model on this point, as it requires any estimate of $\hat{G}_i$ not to be too close to 0 or 1. Recall that the numerator follows the sum of dependent binary variables $y_i$ weighted by its corresponding kernel evaluation. This issue becomes apparent for relatively large evaluations. Therefore, we further introduce a lower bound equal to square root of machine double epsilon and set any estimate smaller than the lower bound to this value.
+
+
+\subsection{A Comparison in Results of self implemented functions and pre-implemented np-package}
+Model design of monte carlo simulation following Ichimura (1993):
+\begin{itemize}
+\item sample size is 250;
+\item the semiparametric single index model is specified as binary choice model;
+\item the model includes two exogenous variables, both are independently generated from standard normal distribution  
+\item when constructing the single index, coefficient of the first exogenous variable is normalized to 1, and the true value for the coefficient of the second exogenous variable is -2;
+\item standard normal distribution for error distribution;
+\item the amount of monte carlo simulation is 1000 times.
+\end{itemize}
+To summarize, the simulation is based on the following model setup 
+\begin{equation*}
+y_i = I(x_{1i} - 2x_{2i} > \epsilon_i).
+\end{equation*}
+
+The following table uses grid search $(-4, 0, 81)$
+\begin{table}[H]
+
+\begin{tabular}{l r r}
+
+\toprule
+\textbf{method} & \textbf{np-package} & \textbf{Simulation Functions} \tabularnewline\midrule
+(standard normal distribution for $x_1$, $x_2$, $\epsilon$) & &
+\tabularnewline
+Ichimura & 0.00363 & 0.00201 \tabularnewline
+Klein and Spady & 0.00416 & 0.0000893 \tabularnewline
+
+\bottomrule
+\end{tabular}
+\caption {Mean Squared Error Comparison} \label{tab:mean squared error)
+}
+
+\end{table}
+
+\begin{figure}[h!]
+  \caption{Comparison of Estimates on the Same Scale}
+  \includegraphics[width=\linewidth]{compare_done.png}
+ 
+  \label{fig:comparison of estimates on the same scale}
+\end{figure}
+
+From $Table\ 3$ and $Figure\ 3$, we see that our self-implemented code does not perform significantly worse than the np-package \citep{[28]}. In fact it is even better for Klein and Spady's (1993) \cite{[12]} method. This could be due to the use of our \textit{a-priori} knowledge of the true value of the coefficients when specifying the grid. We thus conclude that it is an useful and successful practice in constructing our own code for single index model functions.
+
+\subsection{Optimization Methods: Grid Search $vs$ Non-linear Minimization}
+\label{A comparison in optimization methods:grid search and non-linear squares}
+
+We employed grid search in the definition of simulation functions. Referring to $Figure\ 3$, this method is able to find `good' parameter values for a function. However a grid search has two deficiencies worth noticing: on the one hand, when either the size of the grid or the number of parameters to be estimated expands, the length of the first argument to grid search function (which is the support of estimates, i.e. $\mathcal{B}$ containing the true $\beta$) will increase, resulting in the number of necessary function evaluations growing exponentially; on the other hand, when the true $\beta$ is unknown, the performance of estimation relies heavily on the range of list and the distance between two candidates primarily set to loop over. In our simulation the support of $\mathcal{B}_2$ is presumably set to $(-4,0)$ with an accuracy rate of $0.05$. This leads to $81$ function evaluations for each data generation. Taking the amount of $1000$ data generations into account this method is already considerably computational costly even for estimation on a single parameter $\beta_2$. 
+
+Hayfield and Racine's (2008)  \cite{[28]} np package employs a nonlinear parameter estimation tool ($optim: Nelder-Mead$) which does not require derivatives of objective functions and uses heuristics to search the domain of parameter. Compared to the support of $\mathcal{B}$ prespecified in Grid Search, the core function that facilitates this paper is $npindexbw$, which declares successful convergence in three ways: reaching absolute convergence tolerance, relative convergence tolerance or maximum number of iterations ($500$ times for Nelder-Mead method). Besides, this function provides a choice of different (random) initial points to start the searching, whereas in our simulation functions, starting points are manually chosen which may lead to ignorance of other local minima.
+
+\subsection{Real Dataset Variable Explanation}
 The following list shows the 21 independent variables and 1 binary gender indicator contained in the dataset.
 
 \begin{center}
@@ -733,65 +806,5 @@ label & male or female
 \end{center}
 
 
-\subsection{Empirical Definition of Trimming Function}
-Section 7 develops an empirical method to implement the trimming functions for Ichimura's (1993) \cite{[6]} and Klein and Spady's (1993) \cite{[12]} models.
-
-Referring to theoretical definitions, the aim of a trimming function in Ichimura's (1993) \citep{[6]} model is to guarantee $\hat{p}_{-i}(X_i'\beta)$ is not too close to zero. 
-
-The estimate $\hat{p}_{-i}(X_i'\beta)$ is calculated over a given bandwidth $h$. There are two ways to keep such an estimate far away enough from zero: either we  employ $A_\delta$  directly, which can be quite stringent, or we use observations that are close enough to the independent variables that satisfy $x \in A_\delta$. The latter also leads $\hat{p}_{-i}(X_i'\beta)$, the estimated probability for $X_i'\beta$, to be large enough. We use a similar reasoning to $A_n$ for the primary trimming function.
-
-Before starting the estimation, simulated sample data is sieved by examining whether the single index's NW leave-one-out kernel estimates are large enough. A lower bound is defined, such that $\hat{p}(x'\beta)$ is not too close to zero and also so that enough observations are left  for the estimation to be reliable. If $\hat{p}(x'\beta)$ fails to achieve the chosen lower bound, this sample data $x$ will be removed from the data set.
-Furthermore, as the Grid Search method is used to carry out the estimation, the same set of grids is used to define $\mathcal{B}$, as defined in section 4. Data sieving is carried out over this set such that the estimation procedure is sensible for each single grid.
-
-Firstly, the same trimmed data set is used for Ichimura's (1993) \cite{[6]} and Klein and Spady's (1993) \cite{[12]} estimation methods. However, this is not enough for the latter model to work, as it only prevents $g(\cdot)$ from growing out of bounds.  Klein and Spady's (1993) \cite{[12]} model is more restrictive than Ichimura's (1993) \cite{[6]} model on this point, as it requires any estimate of $\hat{G}_i$ not to be too close to 0 or 1. Recall that the numerator follows the sum of dependent binary variables $y_i$ weighted by its corresponding kernel evaluation. This issue becomes apparent for relatively large evaluations. Therefore, we further introduce a lower bound equal to square root of machine double epsilon and set any estimate smaller than the lower bound to this value.
-
-
-\subsection{A Comparison in Results of Simulation Functions and NP Package}
-Model design of monte carlo simulation following Ichimura (1993):
-\begin{itemize}
-\item sample size is 250;
-\item the semiparametric single index model is specified as binary choice model;
-\item exogenous vector of variables contains two components and both are independently generated from standard normal distribution;
-\item when constructing single index, parameter of the first exogenous component is normalized to 1, and true value for the second parameter is set to -2;
-\item presume standard normal distribution for error distribution;
-\item the amount of monte carlo simulation is 1000 times.
-\end{itemize}
-To summarize, the designed baseline function is
-\begin{equation*}
-y_i = I(x_{1i} - 2x_{2i} > \epsilon_i).
-\end{equation*}
-
-\begin{table}[H]
-\caption {Mean Squared Error Comparison} \label{tab:mean squared error}
-
-(with gridsearch $(-4, 0, 81)$)
-
-\begin{tabular}{l r r}
-
-\toprule
-\textbf{method} & \textbf{NP Package} & \textbf{Simulation Functions} \tabularnewline\midrule
-(standard normal distribution for $x_1$, $x_2$, $\epsilon$) & &
-\tabularnewline
-Ichimura & 0.00363 & 0.00201 \tabularnewline
-Klein and Spady & 0.00416 & 0.0000893 \tabularnewline
-
-\bottomrule
-\end{tabular}
-\end{table}
-
-\begin{figure}[h!]
-  \caption{Comparison of Estimates on the Same Scale}
-  \includegraphics[width=\linewidth]{compare_done.png}
- 
-  \label{fig:comparison of estimates on the same scale}
-\end{figure}
-
-From $Table\ 3$ and $Figure\ 3$, we see that our self-implemented code does not perform significantly worse than the np-package. In fact it is even better for Klein and Spady's (1993) \cite{[12]} method. This could be due to the use of our \textit{a-priori} knowledge of the true beta when specifying the grid. We thus conclude that it is an useful and successful practice in constructing our own code for single index model functions.
-
-\subsection{Optimization Methods: Grid Search $vs$ Non-linear Minimization}
-\label{A comparison in optimization methods:grid search and non-linear squares}
-We employed $Grid Search$ in the definition of simulation functions. Referring to $Figure\ 3$, this method is able to find `good' parameter values for a function. However a grid search has two deficiencies worth noticing: on the one hand, when either the size of the grid or the number of parameters to be estimated expands, the length of the first argument to grid search function (which is the support of estimates, i.e. $\mathcal{B}$ containing the true $\beta$) will increase, resulting in the number of necessary function evaluations growing exponentially; on the other hand, when the true $\beta$ is unknown, the performance of estimation relies heavily on the range of list and the distance between two candidates primarily set to loop over. In our simulation the support of $\mathcal{B}_2$ is presumably set to $(-4,0)$ with an accuracy rate of $0.05$. This leads to $81$ function evaluations for each data generation. Taking the amount of $1000$ data generations into account this method is already considerably computational costly even for estimation on a single parameter $\beta_2$. 
-
-Hayfield and Racine's (2008)  \cite{[28]} np package employs a nonlinear parameter estimation tool ($optim: Nelder-Mead$) which does not require derivatives of objective functions and uses heuristics to search the domain of parameter. Compared to the support of $\mathcal{B}$ prespecified in Grid Search, the core function that facilitates this paper is $npindexbw$, which declares successful convergence in three ways: reaching absolute convergence tolerance, relative convergence tolerance or maximum number of iterations ($500$ times for Nelder-Mead method). Besides, this function provides a choice of different (random) initial points to start the searching, whereas in our simulation functions, starting points are manually chosen which may lead to ignorance of other local minima.
 
 \end{document}
