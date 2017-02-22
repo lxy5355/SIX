@@ -67,7 +67,7 @@
 	%		\includegraphics[width=0.7\textwidth]{logo.eps}
 	%\end{figure}
 	\vspace{1cm}
-	\Huge \textbf{ Semiparametric Single Index Models }\\ \Large Ichimura's and Klein and Spady's methods \\
+	\Huge \textbf{ SSIMs }\\ \Large Ichimura's and Klein and Spady's methods \\
 	}
 	
 	\vspace{1cm}
@@ -95,7 +95,7 @@
 \vspace{2cm}
 \begin{abstract}
 
-Semiparametric single index models are widely applied in economic research. Applications range from finance to labor economics. This paper focuses on Ichimura's (1993) and Klein and Spady's (1993) models, which are root-n consistent and asymptotically normal. These models help us dig into the vast field of semiparametric single index regression models, while still leaving much behind. In particular, both of these models are based on iterative optimization methods, which are in general computationally costly. The structure of the paper consists of three blocks of analysis: theoretical outline; monte carlo simulations; and a real data set example, using the pre-processed Gender Recognition by Voice and Speech Analysis dataset.
+This study reviews semiparametric single index models discussed in Ichimura (1993) and Klein and Spady (1993). We elaborate on the theoretical justifications, as well as differences in the identification method. We find that both estimators are root-n consistent, asymptotically normal, as well as computationally expensive. While the maximum likelihood estimator proposed by Klein and Spady (1993) is fully efficient it looses general applicability. In a brief simulation study we find that Klein and Spady's (1993) estimator shows a higher convergence rate compared to Ichimura (1993) and a classic logit model. We apply the three estimators to a Voice Recognition data set to test for empirical differences. We find little to no differences in in-sample and out-of-sample accuracy, however, the semiparametric models require a much greater computational effort.
 
 \end{abstract}
 %	\newpage
@@ -105,20 +105,22 @@ Semiparametric single index models are widely applied in economic research. Appl
 \section{Introduction} % (fold)
 \label{sec:introduction}
 
-Semiparametric single index models are widely applied in economic research. Applications range from finance to labor economics. Masten and Masten (2015) \cite{[30]} use Klein and Spady's (1993) \cite{[12]} semiparametric single index model to predict bankruptcies, as opposed to the logit model, the standard parametric model for bankruptcy prediction. Coelho et al. (2005) \cite{[29]} use the same semiparametric single index model to analyze female labor market in Portugal. Moreover, McMillen and Thorsnes (2012) \cite{[31]} adopt a semiparametric single index average derivative estimator to study the effect of copper smelter on house prices in Tacoma.
+Semiparametric single index models (SSIM) are widely applied in economic research. Applications range from finance to labor economics. Masten and Masten (2015) \cite{[30]} use Klein and Spady's (1993) \cite{[12]} SSIM to predict bankruptcies. Coelho et al. (2005) \cite{[29]} use the same SSIM to analyze female labor market in Portugal. Moreover, McMillen and Thorsnes (2012) \cite{[31]} adopt a semiparametric single index average derivative estimator to study the effect of copper smelter on house prices in Tacoma.
 
-This paper focuses on Ichimura's (1993) \cite{[6]} and Klein and Spady's (1993) \cite{[12]} models. Both models are root-n consistent and asymptotically normal. A natural attraction of Klein and Spady's (1993) \citep{[12]} model is the fact that it reaches the semiparametric efficiency bound. Thus, in that sense, one can say it is fully efficient  (Cameron and Trivedi, 2005 \cite{[5]}). However, it is at fault comparatively to Ichimura's (1993) \cite{[6]} due to its lack of generality. Indeed, by restricting itself to binary case it renders its prospects for application excessively narrow. These models help us dig into the vast field of semiparametric single index regression models, while still leaving much behind. In particular, both of these models are based on iterative optimization methods, which are in general computationally costly. 
+This paper reviews Ichimura's (1993) \cite{[6]} and Klein and Spady's (1993) \cite{[12]} models. Both models are root-n consistent and asymptotically normal. A natural attraction of Klein and Spady's (1993) \citep{[12]} model is that it reaches the semiparametric efficiency bound. Thus, it is fully efficient  (Cameron and Trivedi, 2005 \cite{[5]}). However, it lacks generality compared to Ichimura's (1993) \cite{[6]} . As Klein and SpadyS (1993) model is restricted to binary outcomes, the application possibilities are limited.
+
+We focus on a comparison of Ichimura's (1993) \cite{[6]} and Klein and Spady's (1993)  \cite{[12]} models with regards to their theoretical justification, simulation performance, and empirical applicability. We find that, Ichimura's (1993) \cite{[6]} and Klein and Spady's \cite{[12]} models share a very similar set of assumptions, specially the estimation of the link function $g(\cdot)$. The most noticeable difference is the use of a weighted nonlinear least squares method for the Ichimura's (1993) \cite{[6]} model, while Klein and Spady's (1993) \cite{[12]} uses a maximum likelihood method. As to what concerns the monte carlo simulations, we found that the proposed estimators are expensive to compute. Moreover, as the number of grids increases due to larger number of independent variables as well as when the length of each grid increases, the number of function evaluations grows exponentially. Also when the true $\beta$ is unknown, the performance of estimation relies heavily on the way grids are preselected. The estimator appears to be root-n consistent and asymptotically normal. Klein and Spady's (1993) \cite{[6]} estimator shows a higher convergence rate compared to Ichimura's (1993)\cite{[12]} and a classic logit model. Finally, we apply the three estimators to a Voice Recognition data set to test for empirical differences. We find little to no differences in in-sample and out-of-sample accuracy, however, the semiparametric models require a much greater computational effort. 
 
 The structure of the paper consists of three blocks of analysis: theoretical outline; simulations, where small sample properties are analyzed; and a real data set example, where one can illustrate the behavior of the models on an applied framework. All parties contributed to the presentation and the writing of the paper. Isa Marques led the theoretical part. Xi Sun and Xueying Liu worked mainly on the applied part including R coding, simulations and real dataset application.
 
 
-Section 2 of this paper provides a framework for semiparametric single index models and a general comparison with parametric and nonparameteric models. Section 3 outlines the identification conditions necessary in semiparametric single index models. Ichimura's (1993) \citep{[6]} and Klein and Spady's (1993) \citep{[12]} solution will be analyzed in detail in section 4 and 5, respectively. The former section briefly explains the weight function. In section 6, the two models are briefly compared from a theoretical viewpoint. The simulation results from the Monte Carlo experiment are explained in section 7. Finally, in section 8 a real data set example is provided using the pre-processed Gender Recognition by Voice and Speech Analysis dataset.
+Section 2 of this paper provides a framework for SSIMs and a general comparison with parametric and nonparameteric models. Section 3 outlines the identification conditions necessary in SSIMs. Ichimura's (1993) \citep{[6]} and Klein and Spady's (1993) \citep{[12]} solution will be analyzed in detail in section 4 and 5, respectively. The former section briefly explains the weight function. In section 6, the two models are briefly compared from a theoretical viewpoint. The simulation results from the Monte Carlo experiment are explained in section 7. Finally, in section 8 a real data set example is provided using the pre-processed Gender Recognition by Voice and Speech Analysis dataset.
 
 
 
 \section{Context} % (fold)
 \label{sec:context}
-In this section, we elaborate on the model's main features and contributions to the class of semiparametric models. Close at hand, a comparison with classical parametric models and nonparametrics models is provided. In essence, the risk of mispecification is reduced relative to the overly restrictive but interpretable parametric models. Additionally, it avoids inconveniences of fully nonparametric models such as the curse of dimensionality, difficulty of interpretation, and the lack of extrapolation capability. However, this comes at a cost, as computation for semiparametric single index models is often difficult.
+In this section, we elaborate on the model's main features and contributions to the class of semiparametric models. Close at hand, a comparison with classical parametric models and nonparametrics models is provided. In essence, the risk of mispecification is reduced relative to the overly restrictive but interpretable parametric models. Additionally, it avoids inconveniences of fully nonparametric models such as the curse of dimensionality, difficulty of interpretation, and the lack of extrapolation capability. However, this comes at a cost, as computation for SSIMs is often difficult.
 
 \vspace{2mm} 
 The model
@@ -133,7 +135,7 @@ where
 	\item $ E(\varepsilon_i|x_i) = 0 $;
 	\item $g: \mathbb{R} \rightarrow \mathbb{R} $ is a smooth unknown link function; 
 \end{enumerate}
-is a semiparametric single index model.
+is a SSIM.
 \vspace{2mm}
 
 Three points become relevant when explaining why the present model is of  semiparametric nature. First, unlike fully nonparametric models, the functional form of the linear index is stated. However, as opposed to classical parametric models, the conditional probability of $\varepsilon$ conditioned on X is not specified except $ E(\varepsilon|X) = 0 $. Alongside, $g(\cdot)$ is left fully unspecified.
@@ -170,12 +172,12 @@ Distinctively, nonparametric models can be defined as
   
 \[Y_i = g(X_i) + \varepsilon_i\]
 
-with smooth $g$, assuming additivity of the error. \footnote{One can suggest an even more general model by dropping the additivity of the error term assumption. That is, $Y_i = g(X_i, \varepsilon_i) $. } Thus, while the assumptions of a semiparametric single index model are in general weaker than those of a parametric model, they are stronger than those of a nonparametric model. \footnote{The semiparameteric single index model might have weaker assumptions than a fully parameterized model for structural economic models \cite{[13]}.} 
+with smooth $g$, assuming additivity of the error. \footnote{One can suggest an even more general model by dropping the additivity of the error term assumption. That is, $Y_i = g(X_i, \varepsilon_i) $. } Thus, while the assumptions of a SSIM are in general weaker than those of a parametric model, they are stronger than those of a nonparametric model. \footnote{The semiparameteric single index model might have weaker assumptions than a fully parameterized model for structural economic models \cite{[13]}.} 
 
 Nonparametric models typically suffer from the curse of dimensionality, a term usually attributed to Bellman (1961) \cite{[3]}. This term is defined by Gery Geenens (2011) \cite{[4]} as being caused by the sparsity of data in high-dimensional spaces, which results in a decrease in fastest achievable rates of convergence of regression function estimators toward their target curve as the dimension of the vector of independent variables increases. 
 
 The rate of convergence of a estimator quantifies how fast the estimation error decreases as the sample size increases. The single index model avoids the curse of dimensionality by reducing the p-dimensional predictor to a univariate single-index. Thus, the estimator achieves the same convergence rate $n^{-\frac{1}{2}}$ that is optimal for most parametric models. For nonparametric models this rate is only $n^{-\frac{2}{5}}$, if the underlying function is twice continuously differentiable (Cameron and Trivedi (2005) \cite{[5]}).
-Thus, in general, semiparametric single index models reach greater estimation precision than fully nonparametric estimators with multidimensional vector of independent variables.
+Thus, in general, SSIMs reach greater estimation precision than fully nonparametric estimators with multidimensional vector of independent variables.
 
 
 
@@ -185,7 +187,7 @@ Nonetheless, semiparametric models have two important disadvantages. First, they
 \section{Identification conditions} % (fold)
 \label{sec:Identification conditions}
 
-This section provides identification conditions for semiparametric single index models,  summarized in proposition 3.1. Brief intuitive explanations follow each of these conditions. Moreover, it is under these conditions that $\beta_0$ and $ g(\cdot)$ are estimated in Ichimura (1993) \cite{[6]} and Klein and Spady's (1993) \cite{[12]} models, which are analyzed in sections 4 and 5 respectively.
+This section provides identification conditions for SSIMs,  summarized in proposition 3.1. Brief intuitive explanations follow each of these conditions. Moreover, it is under these conditions that $\beta_0$ and $ g(\cdot)$ are estimated in Ichimura (1993) \cite{[6]} and Klein and Spady's (1993) \cite{[12]} models, which are analyzed in sections 4 and 5 respectively.
 
 
 Model (1) implies
@@ -229,7 +231,7 @@ Models (3) and (4) are observationally equivalent. Thus, $\beta_0$ and $g$ are n
 
 Restrictions are also imposed on $g(\cdot)$ in $(iii)$, even though some of these can be weakened. To start with, $g(\cdot)$ cannot be a constant function. Otherwise, $\beta_0$ is not identified. Furthermore, what makes the identification of $E(Y|X = x)$ possible is that it remains constant if $x$ changes in such a way that $x'\beta_0$ stays constant. However, $P(x'\beta_0 = c)$ is equal to zero, for $x_0'\beta$ continuously distributed and for some constant $c$. This renders identification impossible. By adding the assumption that $g(\cdot)$ is differentiable, $g(x'\beta_0)$ is close to $g(c)$ whenever $x'\beta_0$ is close enough to $c$. Then, the set of $x$ for which $x'\beta_0$ is within any specified nonzero distance of $c$ has nonzero probability for $c$ in the interior of the support of $x'\beta_0$. Therefore, we identify $\beta_0$ by the approximate constancy of $x'\beta_0$. In fact, Wei Lin and Kulasekera (2007) \cite{[14]} show that the weaker assumption that $g(\cdot)$ is continuous is sufficient for identification. Yet, differentiability is assumed on the remainder of the paper as it will become useful when analyzing Ichimura's (1993) \cite{[6]} and Klein and Spady's (1993) \cite{[12]} models.
 
-The need for condition (iv), that is,  the need to prevent $x'\beta_0$  from being divided into disjoint subsets, can be explained with an example inspired by Horowitz's (1998) \cite{[13]}. Consider a semiparametric single index model in which the vector of independent variables, X, has a continuous component $X_1$ with support $\big[0,1\big]$, and one discrete component $X_2$, whith support $\{0,1\}$. Assume $X_1$ and $X_2$ are independent, $g(\cdot)$ is strictly increasing and non periodic and set $\beta_1 = 1$ as a \textit{scale normalization}. 
+The need for condition (iv), that is,  the need to prevent $x'\beta_0$  from being divided into disjoint subsets, can be explained with an example inspired by Horowitz's (1998) \cite{[13]}. Consider a SSIM in which the vector of independent variables, X, has a continuous component $X_1$ with support $\big[0,1\big]$, and one discrete component $X_2$, whith support $\{0,1\}$. Assume $X_1$ and $X_2$ are independent, $g(\cdot)$ is strictly increasing and non periodic and set $\beta_1 = 1$ as a \textit{scale normalization}. 
 
 Consider in particular the case
 \[
@@ -432,8 +434,8 @@ Minimizing the previous result in order to $\beta$, ignoring terms independent o
 
 Thus, the efficiency bound from equation (11) is achieved by the semiparametric WNLS estimator if $\sigma^2(X)$ is known.
 
-Even when $\sigma^2(X)$ is unknown, an asymptotic efficient estimator of $\beta_0$ can be obtained by using an analogue of FGLS.  Consider a given consistent estimator of $\sigma^2(X)$, say $\hat{\sigma}_{n}^{2}(x)$, that adopts a two-step procedure. On the first step, minimize function (9) with respect to $\beta$ for $w(x) = 1$. The resulting estimator $\hat{\beta}_n$ is root-n consistent and asymptotically normal but inefficient. This estimator is used on the second step to calculate the weight function $\hat{w}_i(x) = \frac{1}{\hat{\sigma}_{i}^{2}}$. Robinson (1987) \cite{[20]} estimated $\hat{\sigma}_{i}^{2}$ using a nearest-neighbor nonparametric regression estimator
-where $\hat{\varepsilon}_i = Y_i - \hat{G}_{-i}(X_i'\hat{\beta}_n)$. The latter is used to avoid technical problems if $X$ has unbounded support or a density that can be arbitrarily close to zero. However, in practice a kernel estimator will suffice if $A_\delta$ is chosen so as to keep the estimated density of $X$ away from zero.
+Even when $\sigma^2(X)$ is unknown, an asymptotic efficient estimator of $\beta_0$ can be obtained by using an analogue of FGLS.  Consider a given consistent estimator of $\sigma^2(X)$, say $\hat{\sigma}_{n}^{2}(x)$, that adopts a two-step procedure. On the first step, minimize function (9) with respect to $\beta$ for $w(x) = 1$. The resulting estimator $\hat{\beta}_n$ is root-n consistent and asymptotically normal but inefficient. This estimator is used on the second step to calculate the weight function $\hat{w}_i(x) = \frac{1}{\hat{\sigma}_{i}^{2}}$. Robinson (1987) \cite{[20]} estimates $\hat{\sigma}_{i}^{2}$ using a nearest-neighbor nonparametric regression estimator
+where $\hat{\varepsilon}_i = Y_i - \hat{G}_{-i}(X_i'\hat{\beta}_n)$ and $\hat{\beta}_n$ is the estimator from the first step . This method is used to avoid technical problems if $X$ has unbounded support or a density that can be arbitrarily close to zero. However, in practice a kernel estimator will suffice if $A_\delta$ is chosen so as to keep the estimated density of $X$ away from zero.
 
 %\[\hat{\sigma}_{i}^{2} = \frac{1}{k}\sum_{j=1}^{n} \mathbf{1}{(x_j \in N_k(x_i))}\hat{\varepsilon}_{j}^{2} ,\]
 
@@ -552,7 +554,7 @@ However, restricting analysis to the case of a binary dependent variable is quit
 
 In this section, datasets are simulated from Ichimura's (1993) \cite{[6]} and Klein and Spady's (1993) \cite{[12]} theoretical models. Estimators are then estimated using this dataset. We reflect on the properties of these estimates, generated via a Monte Carlo experiment with sample size of 250 and 1000 trials. Results are listed in $Table\ 1$.
 
-Several points are worth noticing in the design of the experiment. Firstly, two scenarios are simulated based on different error distributions : standard normal $N(0,1)$ and joint normal $0.75 \cdot N(-0.5,1)+0.25\cdot N(1.5,2.5)$. For each scenario, a logit estimator is included as an additional source of comparison with the two semiparametric single index models. Furthermore, both specifications contain two independent/exogenous variables, each independently generated from a standard normal distribution.  Lastly, we restrict out model to the binary case, as this satisfies the restrictions of Klein and Spady's (1993) \cite{[12]} model. Following section 3, the coefficient of the first exogenous variable is normalized to $1$. Moreover, the true value for the second is arbitrarily set to -2. The dependent variable y is thus generated based on the following equation
+Several points are worth noticing in the design of the experiment. Firstly, two scenarios are simulated based on different error distributions : standard normal $N(0,1)$ and joint normal $0.75 \cdot N(-0.5,1)+0.25\cdot N(1.5,2.5)$. For each scenario, a logit estimator is included as an additional source of comparison with the two SSIMs. Furthermore, both specifications contain two independent/exogenous variables, each independently generated from a standard normal distribution.  Lastly, we restrict out model to the binary case, as this satisfies the restrictions of Klein and Spady's (1993) \cite{[12]} model. Following section 3, the coefficient of the first exogenous variable is normalized to $1$. Moreover, the true value for the second is arbitrarily set to -2. The dependent variable y is thus generated based on the following equation
 \begin{equation*}
 y_i = I(x_{1i} - 2x_{2i} > \epsilon_i).
 \end{equation*}
@@ -656,7 +658,7 @@ The prediction results and the true values are plotted in figure 2, with grey po
   \caption{Plot of Estimates on Test Sample}
 \end{figure}
 
-From Table 2 and Figure 2, we could conclude that the logistic regression would be the preferred method in this case since the improvement in accuracy rate by using semi-parametric methods are minimum while the calculation time increases significantly. However, this could be due to the fact that the underlying data fit the logistic distribution better, and thus this comparison should not be generalized to other datasets. 
+From Table 2 and Figure 2, we could conclude that the logistic regression would be the preferred method in this case since the improvement in accuracy rate by using semiparametric methods are minimum while the calculation time increases significantly. However, this could be due to the fact that the underlying data fit the logistic distribution better, and thus this comparison should not be generalized to other datasets. 
 
 We also take note of the two peculiar features of the results. First, the accuracy rate is higher for test sample than for training sample. As the difference is relatively small, we postulate that this could be random and of no particular significance. Moreover, the fact that the training sample contains 3.5 times more data points than the test sample could exacerbate the random effect. The second feature is that the result graph from Klein and Spady (1993) \cite{[12]} method is not very smooth. This could be due to a problem with bandwidth selection included in the np-package (Racine and Hayfield, 2008) \cite{[28]} or the minimization process. However, as the result is not significantly worse than the other estimators, actually slightly better, we do not think that this should be of great concern.
 
@@ -701,7 +703,7 @@ Firstly, the same trimmed data set is used for Ichimura's (1993) \cite{[6]} and 
 Model design of monte carlo simulation following Ichimura (1993):
 \begin{itemize}
 \item sample size is 250;
-\item the semiparametric single index model is specified as binary choice model;
+\item the SSIM is specified as binary choice model;
 \item the model includes two exogenous variables, both are independently generated from standard normal distribution  
 \item when constructing the single index, coefficient of the first exogenous variable is normalized to 1, and the true value for the coefficient of the second exogenous variable is -2;
 \item standard normal distribution for error distribution;
