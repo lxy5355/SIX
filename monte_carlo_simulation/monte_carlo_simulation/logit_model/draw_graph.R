@@ -1,4 +1,4 @@
-beta_logit_standard=read.csv("beta_logit_standard_mc.csv",header=TRUE)
+beta_logit_standard=read.csv("beta_logit_standard_mc_n_150.csv",header=TRUE)
 beta_logit_joint=read.csv("beta_logit_joint_mc.csv",header=TRUE)
 
 #########################################################################

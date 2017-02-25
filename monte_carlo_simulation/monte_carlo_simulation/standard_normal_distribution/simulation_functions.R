@@ -13,7 +13,7 @@ h.ks <- mean(unlist(read.csv("bw_KS.csv")[2]))
 
 ##data generation
 for(j in 1:M){
-n <- 250
+n <- 150
 x1<-rnorm(n)
 x2<-rnorm(n)
 y <- ifelse(x1 + beta.true*x2 - rnorm(n) > 0, 1, 0)
@@ -31,5 +31,5 @@ mc.beta.KS.fun[j] <- KS_calc (X,y,h.ks)$beta.hat[2]
 MSE_ich_standard <- mean((mc.beta.ich.fun - beta.true))^2
 MSE_ks_standard <- mean((mc.beta.KS.fun - beta.true))^2
 
-write.csv(mc.beta.ich.fun, 'beta_ich_mc.csv')
-write.csv(mc.beta.KS.fun, 'beta_ks_mc.csv')
+write.csv(mc.beta.ich.fun, 'beta_ich_mc_n_150.csv')
+write.csv(mc.beta.KS.fun, 'beta_ks_mc_n_150.csv')

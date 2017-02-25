@@ -8,7 +8,7 @@ mc.beta.logit <- rep(NA,M)
 
 ##data generation
 for(j in 1:M){
-n <- 250
+n <- 50
 x1<-rnorm(n)
 x2<-rnorm(n)
 y <- ifelse(x1 + beta.true*x2 - rnorm(n) > 0, 1, 0)
@@ -25,4 +25,4 @@ mc.beta.logit[j] <- a[3][1]/a[2][1]
 
 MSE_logit_standard <- mean((mc.beta.logit - beta.true))^2
 
-write.csv(mc.beta.logit, 'beta_logit_standard_mc.csv')
+write.csv(mc.beta.logit, 'beta_logit_standard_mc_n_50.csv')
