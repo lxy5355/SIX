@@ -77,7 +77,7 @@
 	
 	% Insert here your name and correct mail address
 	\author{\Large \href{mailto:first.student@smail.fh-koeln.de}{Isa Marques}\and \Large \href{mailto:second.student@smail.fh-koeln.de}{Xi Sun} \and \Large \href{mailto:second.student@smail.fh-koeln.de}{Xueying Liu}
-	\vspace{1cm}}
+	\vspace{1cm} \thanks{All parties contributed to the presentation and the writing of the paper. Isa Marques led the theoretical part. Xi Sun and Xueying Liu led the applied part including R coding, simulations and real dataset application.}}
 	
 	% name of the course and module
 	\date{
@@ -92,31 +92,29 @@
 	\maketitle
 	\setlength{\parindent}{0pt}
 
-\vspace{2cm}
+\vspace{1cm}
 \begin{abstract}
 
-This study reviews semiparametric single index models discussed in Ichimura (1993) and Klein and Spady (1993). We elaborate on the theoretical justifications, as well as differences in the identification method. We find that both estimators are root-n consistent, asymptotically normal, as well as computationally expensive. While the maximum likelihood estimator proposed by Klein and Spady (1993) is fully efficient it lacks general applicability. In a simulation study we find that the bias of the estimator shows a decreasing nature for Ichimura's (1993), Klein and Spady's (1993) and the classic logit model. However, Klein and Spady's (1993) model exhibits a smaller finite sample bias. We apply the three estimators to a Voice Recognition data set to test for empirical differences. We find little to no differences in in-sample and out-of-sample accuracy, however, the semiparametric models require a much greater computational effort.
+This study reviews semiparametric single index models discussed in Ichimura (1993) and Klein and Spady (1993). We elaborate on the theoretical justifications, as well as differences in the identification method. Both estimators are root-n consistent, asymptotically normal, as well as computationally expensive. While the maximum likelihood estimator proposed by Klein and Spady (1993) is fully efficient it lacks general applicability. In a simulation study we find that the bias of the estimator shows a decreasing nature for Ichimura's (1993), Klein and Spady's (1993) and the standard parametric logistic estimator. However, Klein and Spady's (1993) model exhibits a smaller finite sample bias. We apply the three estimators to a Voice Recognition data set to test for empirical differences. We find little to no differences in in-sample and out-of-sample accuracy, however, the semiparametric models require a much greater computational effort.
 
 \end{abstract}
 %	\newpage
 %	\tableofcontents
-	\newpage
+
+
+\newpage
 	
 \section{Introduction} % (fold)
 \label{sec:introduction}
 
 Semiparametric single index models (SSIM) are widely applied in economic research. Applications range from finance to labor economics. Masten and Masten (2015) \cite{[30]} use Klein and Spady (1993) \cite{[12]} SSIM to predict bankruptcies. Coelho et al. (2005) \cite{[29]} use the same SSIM to analyze female labor market in Portugal. Moreover, McMillen and Thorsnes (2012) \cite{[31]} adopt a semiparametric single index average derivative estimator to study the effect of copper smelter on house prices in Tacoma.
 
-This paper reviews Ichimura's (1993) \cite{[6]} and Klein and Spady's (KS) (1993) \cite{[12]} models. Both models are root-n consistent and asymptotically normal. A natural attraction of the KS (1993) \cite{[12]} model is that it reaches the semiparametric efficiency bound. Thus, it is fully efficient  (Cameron and Trivedi, 2005 \cite{[5]}). However, it lacks generality compared to Ichimura's (1993) \cite{[6]}, as the KS (1993) \cite{[12]} model is restricted to binary outcomes.
+This paper reviews Ichimura's (1993) \cite{[6]} and Klein and Spady's (KS) (1993) \cite{[12]} models. Both models are root-n consistent and asymptotically normal. A natural attraction of the KS (1993) \cite{[12]} model is that it reaches the semiparametric efficiency bound. Thus, it is fully efficient  (Cameron and Trivedi, 2005 \cite{[5]}). However, it lacks generality compared to Ichimura's (1993) \cite{[6]} model, as the KS (1993) \cite{[12]} model is restricted to binary outcomes.
 
-We thus focus on a comparison of Ichimura's (1993) \cite{[6]} and KS (1993) \cite{[12]} models with regards to their theoretical justification, simulation performance, and empirical applicability. We find that, Ichimura's (1993) \cite{[6]} and KS (1993) \cite{[12]} models share a very similar set of assumptions, specially the estimation of the link function $g(\cdot)$. The most noticeable difference is the use of a weighted nonlinear least squares method for the Ichimura's (1993) \cite{[6]} model, while the KS model (1993) \cite{[12]} uses a maximum likelihood method. As to what concerns the Monte Carlo simulations, we found that the proposed estimators are expensive to compute. Moreover, as the number of grids increases due to larger number of independent variables as well as when the length of each grid increases, the number of function evaluations grows exponentially. Also when the true estimator is unknown, the performance of estimation relies heavily on the way grids are preselected. The estimator appears to be root-n consistent and asymptotically normal. For an increasing sample size, the bias of the estimator shows a decreasing nature for Ichimura's (1993)\cite{[12]}, the KS (1993) and the classic logit model. The KS (1993) \cite{[12]} model exhibits a smaller finite sample bias. Finally, we apply the three estimators to a Voice Recognition data set to test for empirical differences. We find little to no differences in in-sample and out-of-sample accuracy, however, the semiparametric models require a much greater computational effort. 
+We thus focus on a comparison of Ichimura's (1993) \cite{[6]} and KS (1993) \cite{[12]} models with regards to their theoretical justification, simulation performance, and empirical applicability. We find that, Ichimura's (1993) \cite{[6]} and KS (1993) \cite{[12]} models share a very similar set of assumptions, specially the estimation of the link function $g(\cdot)$. The most noticeable difference is the use of a weighted nonlinear least squares method for Ichimura's (1993) \cite{[6]} model, while the KS model (1993) \cite{[12]} uses a maximum likelihood method. As to what concerns the Monte Carlo simulations, we found that the proposed estimators are expensive to compute. Moreover, as the number of grids increases due to larger number of independent variables as well as when the length of each grid increases, the number of function evaluations grows exponentially. Also when the true estimator is unknown, the performance of estimation relies heavily on the way grids are preselected. For an increasing sample size, the bias of the estimator shows a decreasing nature for Ichimura's (1993)\cite{[12]}, the KS (1993) and the classic logit model. The KS (1993) \cite{[12]} model exhibits a smaller finite sample bias. Finally, we apply the three estimators to a Voice Recognition data set to test for empirical differences. We find little to no differences in in-sample and out-of-sample accuracy, however, the semiparametric models require a much greater computational effort. 
 
-The structure of the paper consists of three blocks of analysis: theoretical outline; simulations, where small sample properties are analyzed; and a real data set example, where one can illustrate the behavior of the models on an applied framework. 
-Section 2 of this paper provides a framework for SSIMs and a general comparison with parametric and nonparameteric models. Section 3 outlines the identification conditions necessary in SSIMs. Ichimura's (1993) \cite{[6]} and the KS (1993) \cite{[12]} solution will be analyzed in detail in section 4 and 5, respectively. The former section briefly explains the weight function. In section 6, the two models are briefly compared from a theoretical viewpoint. The simulation results from the Monte Carlo experiment are explained in section 7. Finally, in section 8 a real data set example is provided using the pre-processed Gender Recognition by Voice and Speech Analysis dataset.
-
-All parties contributed to the presentation and the writing of the paper. Isa Marques led the theoretical part. Xi Sun and Xueying Liu led the applied part including R coding, simulations and real dataset application.
-
-
+This study builds on three blocks: theoretical outline; simulations, where finite sample properties are analyzed; and a real data set example, where one can illustrate the behavior of the models on an applied framework. 
+The paper continues in the following structure. Section 2 of this paper provides a framework for SSIMs and a general comparison with parametric and nonparameteric models. Section 3 outlines the identification conditions necessary in SSIMs. Ichimura's (1993) \cite{[6]} and the KS (1993) \cite{[12]} solution will be analyzed in detail in section 4 and 5, respectively. The former section briefly explains the weight function. In section 6 the two models are briefly compared from a theoretical perspective. The simulation results from the Monte Carlo simulations are explained in section 7. Finally, in section 8 a real data set example is presented using the pre-processed Gender Recognition by Voice and Speech Analysis dataset.
 
 \section{Context} % (fold)
 \label{sec:context}
@@ -559,9 +557,9 @@ Several points are worth noting in the design of the experiment. Firstly, two sc
 Y_i = I(x_{1i} - 2x_{2i} > \epsilon_i).
 \end{equation*}
 
-Our simulation characterizes Ichimura's \cite{[6]} nonlinear least squares estimator and the KS (1993) \cite{[12]} maximum likelihood estimator. Again for convenience of comparison, a fourth order Gaussian kernel function is selected for both cases, in order to achieve the requirement in the KS (1993) \cite{[12]} model. Additionally, a trimming function is defined, following the theoretical requirements from section 4 and 5. This guarantees sensible calculation of estimates over each randomly drawn data set. Although Ichimura's (1993) \cite{[6]} and the KS (1993) \cite{[12]} estimators of one individual simulation are extracted from the same trimmed data set, a ``floor'' is executed on the latter. This is due to the stronger restriction that $g(\cdot)$ is between 0 and 1 for the KS (1993) model. As for bandwidth selection, we preselect two bandwidths respectively for the two models, through a likelihood-based cross-validation approach, which is used in the function $npindexbw$ of the empirical np-package created by Hayfield and Racine (2008) \cite{[28]}. 
+Our simulation characterizes Ichimura's (1993) \cite{[6]} nonlinear least squares estimator and the KS (1993) \cite{[12]} maximum likelihood estimator. Again for convenience of comparison, a fourth order Gaussian kernel function is selected for both cases, in order to achieve the requirement in the KS (1993) \cite{[12]} model. Additionally, a trimming function is defined, following the theoretical requirements from section 4 and 5. This guarantees sensible calculation of estimates over each randomly drawn data set. Although Ichimura's (1993) \cite{[6]} and the KS (1993) \cite{[12]} estimators of one individual simulation are extracted from the same trimmed data set, a ``floor'' is executed on the latter. This is due to the stronger restriction that $g(\cdot)$ is between 0 and 1 for the KS (1993) \cite{[12]} model. As for bandwidth selection, we preselect two bandwidths respectively for the two models, through a likelihood-based cross-validation approach, which is used in the function $npindexbw$ of the empirical np-package created by Hayfield and Racine (2008) \cite{[28]}. 
 
-In accordance with Ichimura (1993) \cite{[6]}, grid search was chosen as the method of optimization nested in our estimation process. This method performs sufficiently well and is stable in finding ``good'' estimates, as supported by histograms of estimates shown in $Figure\ 1$. However, it may have two considerable deficiencies: first, as the number of grids increases due to larger number of independent variables as well as when the length of each grid increases, the number of function evaluations grow exponentially; second, when the true $\beta$ is unknown, the performance of estimation relies heavily on the way grids are preselected. An extreme example of the latter fact would be when the true beta lies outside the pre-specified grid, in which case we would never obtain an estimator close to the true value. In our experiment grid search is set to be $(-4,0)$ with width $0.05$. This leads to $81$ function evaluations for each data generation, which is already computationally costly, and even more so with 1000 data generation trials. 
+In accordance with Ichimura (1993) \cite{[6]}, grid search was chosen as the method of optimization nested in our estimation process. This method performs sufficiently well and is stable in finding ``good'' estimates, as supported by histograms of estimates shown in \textit{Figure 1}. However, it may have two considerable deficiencies: first, as the number of grids increases due to larger number of independent variables as well as when the length of each grid increases, the number of function evaluations grow exponentially; second, when the true $\beta$ is unknown, the performance of estimation relies heavily on the way grids are preselected. An extreme example of the latter fact would be when the true beta lies outside the pre-specified grid, in which case we would never obtain an estimator close to the true value. In our experiment grid search is set to be $(-4,0)$ with width $0.05$. This leads to $81$ function evaluations for each data generation, which is already computationally costly, and even more so with 1000 data generation trials. 
 
 \begin{table}[H]
 %$x_1$ and $x_2$ normal - Performance of parametric and semiparametric estimators; a Monte Carlo experiment(250 observations, 1000 trials).
@@ -594,14 +592,13 @@ $^1$Ichi = Ichimura's method, KS = Klein and Spady's method.
 
 \begin{figure}[H]
   \includegraphics[width=\linewidth]{plot_comparison.png}
- 
   \label{fig:plot of the estimates}
    \caption{Plot of the estimates}
 \end{figure}
 
 First, note that for a given numbers of simulations $m$
-\[RMSE = \sqrt{\frac{1}{m}\sum_{i=1}^m\left(\hat{\beta}_i - \beta_0\right)^2}\]
-Combining simulation results from table 1 and figure 1, it can be observed that the distributions of all six estimators are skewed to the left, which can be due to finite sample properties. Moreover, the biases are bounded below by - 0.6. 
+\[RMSE = \sqrt{\frac{1}{m}\sum_{i=1}^m\left(\hat{\beta}_i - \beta_0\right)^2}.\]
+Combining simulation results from \textit{Table 1} and \textit{Figure 1}, it can be observed that the distributions of all six estimators are skewed to the left, which can be due to finite sample properties. Moreover, the biases are bounded below by - 0.6. 
 As to what concerns the mean squared error, there is no significant difference among estimators in terms of magnitude. Since binary choice models are inherently heteroskedasticity, Ichimura’s (1993) \cite{[6]} model in particular would require the use of a weight function. However, this is out of the scope of our work and it is also excluded from the np-package created by Hayfield and Racine (2008) \cite{[28]}.
 
 \begin{table}[H]
@@ -623,9 +620,9 @@ Logit  & -0.240235  & -0.05246 & -0.030321
 }
 \caption {Bias of the estimators for different sample sizes} \label{tab:Bias of the estimators}
 \end{table}
-To fully understand the finite sample properties of the estimators, we need to analyze consistency. Indeed, observing table 2, the bias of the estimators presents a decreasing nature for all cases, despite small increases. The KS (1993) \cite{[12]} model exhibits a smaller finite sample bias (ranging in absolute terms from 0.0095 to 0.0302) than Ichimura's (1993) \citep{[6]} model (ranging from 0.0449 to 0.1477) and the logit model (ranging from 0.0303 to 0.2402). Further simulations with increasing number of observations would be desirable, for a more indepth and reliable study of consistency. However, computational issues limit our analysys.
+To fully understand the finite sample properties of the estimators, we need to study consistency. Indeed, observing \textit{Table 2}, the bias of the estimators presents a decreasing nature for all cases, despite small increases. The KS (1993) \cite{[12]} model exhibits a smaller finite sample bias (ranging in absolute terms from 0.0095 to 0.0302) than Ichimura's (1993) \citep{[6]} model (ranging from 0.0449 to 0.1477) and the logit model (ranging from 0.0303 to 0.2402). Further simulations with increasing number of observations would be desirable, for a more indepth and reliable study of consistency. However, computational issues limit our analysis. More details on consistency and asymptotic normality can be found in the appendix (section 11.3).
 
-Ultimately, a comparison between our simulation results and Hayfield and Racine's (2008) np-package \cite{[28]} encouraged us to rely on our own implementation. The weight function can however be employed in further simulation studies. 
+Ultimately, a comparison between our simulation results and Hayfield and Racine's (2008) np-package \cite{[28]} encouraged us to rely on our own implementation. This study is included in the appendix (section 11.2). The weight function can however be employed in further simulation studies. 
 
 \section{Empirical Application} % (fold)
 \label{sec:Empirical Application}
@@ -666,18 +663,20 @@ For estimation, we use the pre-implemented np-package in R (Racine and Hayfield,
 	\caption {Estimation time and accuracy rate}
 \end{table}
 
-The prediction results and the true values are plotted in figure 2, with grey points representing predicted values and black points true values. A comparison of in-sample and prediction accuracy rate and approximate calculation time are also presented in table 3. The accuracy rate is defined as ratio of correct gender prediction to the total number of data points.
+The prediction results and the true values are plotted in \textit{Figure 2}, with grey points representing predicted values and black points true values. A comparison of in-sample and prediction accuracy rate and approximate calculation time are also presented in \textit{Table 3}. The accuracy rate is defined as ratio of correct gender prediction to the total number of data points.
 
 
-From table 3 and figure 2, we could conclude that the logistic regression would be the preferred method in this case since the improvement in accuracy rate by using semiparametric methods are minimum while the calculation time increases significantly. However, this could be due to the fact that the underlying data fit the logistic distribution better, and thus this comparison should not be generalized to other datasets. 
+From \textit{Table 3} and \textit{Figure 2}, we could conclude that the logistic regression would be the preferred method in this case since the improvement in accuracy rate by using semiparametric methods are minimum while the calculation time increases significantly. However, this could be due to the fact that the underlying data fit the logistic distribution better, and thus this comparison should not be generalized to other datasets. 
 
 We also take note of the two peculiar features of the results. First, the accuracy rate is higher for test sample than for training sample. As the difference is relatively small, we postulate that this could be random and of no particular significance. Moreover, the fact that the training sample contains 3.5 times more data points than the test sample could exacerbate the random effect. The second feature is that the resulting graph for the KS (1993) \cite{[12]} method is not very smooth. This could be due to a problem with bandwidth selection included in the np-package (Racine and Hayfield, 2008) \cite{[28]} or the minimization process. However, as the result is not significantly worse than the other estimators, actually slightly better, we do not think that this should be of great concern.
 
 \section{Conclusion} % (fold)
 \label{sec:Conclusion}
 
-In this paper, we study the theoretical underpinnings and derivations of a special class of semiparametric methods i.e. the single index models, and more specifically, Ichimura's (1993) \cite{[6]} and the KS (1993) \cite{[12]} model. 
-We use Monte Carlo experiments to explore the characters of each model. While the finite sample bias decreases for increasing sample size, the KS (1993) \cite{[12]} model exhibits a smaller finite sample bias. Moreover, simulations make computational issues evident. An application on real dataset is presented to further examine the relevance of such methods in real world data analysis. This study has bettered our understanding of semiparametric models and we hope that more applications using such methods could be done in the future. Further effort could be put into the study of better minimization methods or estimation procedures with more relaxed model assumptions. 
+This study investigates the class of semiparametric single index models (SSIMs) as discussed in Ichimura (1993) and Klein and Spady (1993). These models allow to leave the link function and the error term distribution unspecified, while achieving root-n consistency. We present key properties, such as root-n consistency, asymptotic normality and asymptotic efficiency.\\
+We implement a brief simulation study to analyze finite sample properties of the proposed estimators. The findings suggest that the finite sample bias decreases for increasing sample size. Klein and Spady's (1993) \cite{[12]} model exhibits a smaller finite sample bias. The semiparametric estimators weakly outperform a standard parametric logistic estimator, yet require significantly more computational effort.\\
+This result is confirmed in a brief empirical study using a gender voice recognition data set. While the semiparametric estimators achieve weakly higher in-sample and out-of-sample accuracy, computational issues remain.\\
+
 
 
 \newpage 
@@ -704,10 +703,10 @@ Referring to theoretical definitions, the aim of a trimming function in Ichimura
 
 The estimate $\hat{p}_{-i}(X_i'\beta)$ is calculated over a given bandwidth $h$. There are two ways to keep such an estimate far away enough from zero: either we  employ $A_\delta$  directly, which can be quite stringent, or we use observations that are close enough to the independent variables that satisfy $x \in A_\delta$. The latter also leads $\hat{p}_{-i}(X_i'\beta)$, the kernel density estimator for $X_i'\beta$, to be large enough. We use a similar reasoning to $A_n$ for the primary trimming function.
 
-Before starting the estimation, simulated sample data is sieved by examining whether the single index's NW leave-one-out kernel estimates are large enough. A lower bound is defined, such that $\hat{p}_{-i}(x'\beta)$ is not too close to zero and also so that enough observations are left  for the estimation to be reliable. If $\hat{p}_{-i}(x'\beta)$ fails to achieve the chosen lower bound, this data point will be removed from the data set.
+Before starting the estimation, simulated sample data is sieved by examining whether the single index's NW leave-one-out kernel estimates are large enough. A lower bound is defined, such that $\hat{p}_{-i}(x'\beta)$ is not too close to zero and also so that enough observations are left  for the estimation to be reliable. If $\hat{p}_{-i}(x'\beta)$ fails to achieve the chosen lower bound, this data point will be removed from the dataset.
 Furthermore, as the grid search method is used to carry out the estimation, the same set of grids is used to define $\mathcal{B}$, as defined in section 4. Data sieving is carried out over this set such that the estimation procedure is sensible for each single grid.
 
-Firstly, the same trimmed data set is used for Ichimura's (1993) \cite{[6]} and the KS (1993) \cite{[12]} estimation methods. However, this is not enough for the latter model to work, as it only prevents $g(\cdot)$ from growing out of bounds.  The KS (1993) \cite{[12]} model is more restrictive than Ichimura's (1993) \cite{[6]} model on this point, as it requires any estimate of $\hat{G}_i$ not to be too close to 0 or 1. Recall that the numerator follows the sum of dependent binary variables $y_i$ weighted by its corresponding kernel evaluation. This issue becomes apparent for relatively large evaluations. Therefore, we further introduce a lower bound equal to square root of machine double epsilon and set any estimate smaller than the lower bound to this value.
+Firstly, the same trimmed dataset is used for Ichimura's (1993) \cite{[6]} and the KS (1993) \cite{[12]} estimation methods. However, this is not enough for the latter model to work, as it only prevents $g(\cdot)$ from growing out of bounds.  The KS (1993) \cite{[12]} model is more restrictive than Ichimura's (1993) \cite{[6]} model on this point, as it requires any estimate of $\hat{G}_i$ not to be too close to 0 or 1. Recall that the numerator follows the sum of dependent binary variables $y_i$ weighted by its corresponding kernel evaluation. This issue becomes apparent for relatively large evaluations. Therefore, we further introduce a lower bound equal to square root of machine double epsilon and set any estimate smaller than the lower bound to this value.
 
 
 \subsection{A Comparison in Results of self implemented functions and pre-implemented np-package}
@@ -725,13 +724,14 @@ To summarize, the simulation is based on the following model setup
 y_i = I(x_{1i} - 2x_{2i} > \epsilon_i).
 \end{equation*}
 
-The following table uses grid search $(-4, 0, 81)$
+The \textit{Table 4} presents a comparison between the pre-implemented np-package and our own implementation using grid search.
+
 \begin{table}[H]
 
 \begin{tabular}{l r r}
 
 \toprule
-\textbf{method} & \textbf{np-package} & \textbf{Simulation Functions} \tabularnewline\midrule
+\textbf{Method} & \textbf{np-package} & \textbf{self-implementation} \tabularnewline\midrule
 (standard normal distribution for $x_1$, $x_2$, $\epsilon$) & &
 \tabularnewline
 Ichimura & 0.00363 & 0.00201 \tabularnewline
@@ -753,14 +753,18 @@ Klein and Spady & 0.00416 & 0.0000893 \tabularnewline
 \end{figure}
 
 
-From table 4 and figure 3, we see that our self-implemented code does not perform significantly worse than the np-package \cite{[28]}. In fact it is even better for the KS (1993) \cite{[12]} method. This could be due to the use of our \textit{a-priori} knowledge of the true value of the coefficients when specifying the grid. We thus conclude that it is an useful and successful practice in constructing our own code for single index model functions.
+From \textit{Table 4} and \textit{Figure 3}, we see that our self-implemented code does not perform significantly worse than the np-package \cite{[28]}. In fact it is even better for the KS (1993) \cite{[12]} method. This could be due to the use of our \textit{a-priori} knowledge of the true value of the coefficients when specifying the grid. We thus conclude that it is an useful and successful practice in constructing our own code for single index model functions.
 
-\subsection{Optimization Methods: Grid Search $vs$ Non-linear Minimization}
-\label{A comparison in optimization methods:grid search and non-linear squares}
+\subsection{Analysis of consistency}
+These are the graphs that follow the analysis of finite sample bias on section 7. For the three models, the variance of the estimates decreases with the sample size. Moreover, the histograms resemble more and more closely the distribution of normal variables.
 
-We employed grid search in the definition of simulation functions. Referring to $Figure\ 3$, this method is able to find `good' parameter values for a function. However a grid search has two deficiencies worth noticing: on the one hand, when either the size of the grid or the number of parameters to be estimated expands, the length of the first argument to grid search function (which is the support of estimates, i.e. $\mathcal{B}$ containing the true $\beta$) will increase, resulting in the number of necessary function evaluations growing exponentially; on the other hand, when the true $\beta$ is unknown, the performance of estimation relies heavily on the range of list and the distance between two candidates primarily set to loop over. In our simulation the support of $\mathcal{B}_2$ is presumably set to $(-4,0)$ with an accuracy rate of $0.05$. This leads to $81$ function evaluations for each data generation. Taking the amount of $1000$ data generations into account this method is already considerably computational costly even for estimation on a single parameter $\beta_2$. 
+\begin{figure}[h!]
+  \includegraphics[width=\linewidth]{sample_size.png}
+ 
+  \label{fig:comparison of estimates on the same scale}
+    \caption{Plot of estimates for different sample sizes}
 
-Hayfield and Racine's (2008)  \cite{[28]} np package employs a nonlinear parameter estimation tool ($optim: Nelder-Mead$) which does not require derivatives of objective functions and uses heuristics to search the domain of parameter. Compared to the support of $\mathcal{B}$ prespecified in Grid Search, the core function that facilitates this paper is $npindexbw$, which declares successful convergence in three ways: reaching absolute convergence tolerance, relative convergence tolerance or maximum number of iterations ($500$ times for Nelder-Mead method). Besides, this function provides a choice of different (random) initial points to start the searching, whereas in our simulation functions, starting points are manually chosen which may lead to ignorance of other local minima.
+\end{figure}
 
 \subsection{Real Dataset Variable Explanation}
 The following list shows the 21 independent variables and 1 binary gender indicator contained in the dataset.
