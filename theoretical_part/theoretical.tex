@@ -51,7 +51,7 @@
 
 
 % packages for bibliography
-\usepackage[backend=bibtex, natbib=true,style=numeric]{biblatex}
+\usepackage[backend=biber, natbib=true,style=numeric]{biblatex}
 \AtBeginDocument{\toggletrue{blx@useprefix}}
 \AtBeginBibliography{\togglefalse{blx@useprefix}}
 \setlength{\bibitemsep}{1.5ex}
@@ -279,7 +279,7 @@ Hence, one minimizes $S_n(\beta)$ instead of $S(\beta)$.
 In the present case, $g(\cdot)$ is in fact unknown and it must be estimated. However, this cannot be done directly by kernel estimation as $\beta_0$ is also unknown. Still, for a given $\beta$ we can estimate
 
 \begin{equation}
-G(X_i'\beta) \stackrel{def}{=} E(Yi|X_i'\beta) = E[g(X_i'\beta_0)|X_i'\beta]
+G(X_i'\beta) \stackrel{def}{=} E(Y_i|X_i'\beta) = E[g(X_i'\beta_0)|X_i'\beta]
 \end{equation}
  by a kernel method. 
 
@@ -504,15 +504,15 @@ Var(Y|X = x) & = P(Y = 1|X = x)[1 - P(Y = 1|X = x)] \\
 
 Hence, the model can handle heteroskedasticity only if the ``error" distribution depends on the same index, $ x'\beta_0$, that determines the ``mean response" (Klein and Vella (2006) \cite{[25]}).
 
-If one differentiates the right-hand side of equation (14) with respect to $\beta$, then the first order condition is
+If one differentiates the right-hand side of equation (14) with respect to $\beta$ and then replace $\beta$ by the minimizing value $\hat{\beta}_n$, the first order condition is
 \begin{equation}
-\frac{1}{n} \sum_{i=1}^n \frac{\hat{G}'_{-i}(X_i'\beta_n)}{\hat{G}_{-i}(X_i'\beta_n)(1 - \hat{G}_{-i}(X_i'\beta_n))} (Y_i - \hat{G}_{-i}(X_i'\beta_n)) \mathbf{1}{(X_i \in A_\delta)} X_i = 0
+\frac{1}{n} \sum_{i=1}^n \frac{\hat{G}'_{-i}(X_i'\hat{\beta}_n)}{\hat{G}_{-i}(X_i'\hat{\beta}_n)(1 - \hat{G}_{-i}(X_i'\hat{\beta}_n))} (Y_i - \hat{G}_{-i}(X_i'\hat{\beta}_n)) \mathbf{1}{(X_i \in A_\delta)} X_i = 0
 \end{equation} 
 with probability approaching 1 as $n \rightarrow \infty$ and where $\hat{G}'_{-i}(z) = \partial \hat{G}_{-i}(z) / \partial z$.
 
 Consider now a semiparametric WNLS estimation of $\beta_0$ such as in Ichimura's (1993) \cite{[6]} model. The first order condition in equation (15) is the same as the first-order condition for the semiparametric WNLS estimation of $\beta_0$ with the estimated weight function
 \begin{align*}
-w_i & = \{ \hat{G}_{-i}(X_i'\beta_n)[ 1 - \hat{G}_{-i}(X_i'\beta_n)]\}^{-1} = \{ G(X_i'\beta_n)[ 1 - G(X_i'\beta_n)]\}^{-1} + o_p(1) \\
+w_i & = \{ \hat{G}_{-i}(X_i'\hat{\beta}_n)[ 1 - \hat{G}_{-i}(X_i'\hat{\beta}_n)]\}^{-1} = \{ G(X_i'\hat{\beta}_n)[ 1 - G(X_i'\hat{\beta}_n)]\}^{-1} + o_p(1) \\
      & = \{ g(X_i'\beta_0)[ 1 - g(X_i'\beta_0)]\}^{-1} + o_p(1) = Var(Y|X = x)^{-1} + o_p(1)
 \end{align*}
 Based on section 4.2., it follows that the KS (1993) \cite{[12]} model is asymptotically efficient.

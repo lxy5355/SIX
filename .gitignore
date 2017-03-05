@@ -52,7 +52,6 @@ Temporary Items
 *.bbl
 *.bcf
 *.blg
-*.pdf
 *.log
 *.out
 *.run.xml
