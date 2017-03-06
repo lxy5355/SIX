@@ -13,21 +13,28 @@ from bld.project_paths import project_paths_join as ppj
 
 
 np.random.seed(12345)
-
-n_types = 2
-n_draws = 30000
-
-
-def draw_sample():
-    shape = (2, n_types, n_draws)
-    s = np.random.uniform(size=np.product(shape))
-    return s.reshape(shape)
-
-
-def save_data(sample):
-    sample.tofile(ppj("OUT_DATA", "initial_locations.csv"), sep=",")
-
-
 if __name__ == "__main__":
-    sample = draw_sample()
-    save_data(sample)
+    model = json.load(open(ppj("IN_MODEL_SPECS", "baseline.json"), encoding="utf-8"))
+
+sample_size = model["sample_size"]
+trial = model["trial"]
+beta_true = model["beta_true"]
+h = model["bandwidth"]
+grid_start = model["grid_start"]
+grid_end = model["grid_end"]
+
+for n in sample_size:
+	sample = np.zeros((trial,n,2))
+    for i in range (trial):
+        x1=np.random.randn(n, 1) 
+        x2=np.random.randn(n, 1) 
+        e=np.random.randn(n, 1)
+        x=np.concatenate((x1,x2),axis=1)
+        y=(np.dot(x,beta_true)>1)*1
+        x,y=data_trim(x,y,h,grid_start,grid_end)
+        x1 = np.array(x[:,0],ndmin=2)
+    	x2 = np.array(x[:,1],ndmin=2)
+    	y = np.array(y,ndmin=2)
+    	sample[i-1] = np.concatenate((x1,x2,y))
+    sample.tofie(ppj("OUT_DATA","simulation_data_sample_size_{}.csv".format(n)), sep=",")
+        
