@@ -33,9 +33,9 @@ def log_likelihood(beta_hat,*params):
     L = np.dot(np.log(g_i),y) + np.dot(np.log(1-g_i),(1-y)) 
     return -L
     
-def KS(X,y,h):
+def KS(X,y,h,grid_start,grid_end):
     params=(X,y,h)
-    ranges=(slice(-2, 2, 0.1), slice(-2, 2, 0.1))
+    ranges=(slice(grid_start, grid_end, 0.1), slice(grid_start, grid_end, 0.1))
     opt_temp=optimize.brute(log_likelihood, ranges, params,finish=optimize.fmin)
     opt=opt_temp[1]/opt_temp[0]
     return opt

@@ -34,9 +34,9 @@ def loss(beta_hat,*params):
     return loss_sqr
  
 #minimize loss function  
-def ichimura(X,y,h):
+def ichimura(X,y,h,grid_start, grid_end):
     params=(X,y,h)
-    ranges=(slice(-2, 2, 0.1), slice(-2, 2, 0.1))
+    ranges=(slice(grid_start, grid_end, 0.1), slice(grid_start, grid_end, 0.1))
     opt_temp=optimize.brute(loss, ranges, params,finish=optimize.fmin)
     opt=opt_temp[1]/opt_temp[0]
     return opt
