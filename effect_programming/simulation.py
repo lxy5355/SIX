@@ -8,17 +8,20 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LogisticRegression
 from ichimura import ichimura
+from KS import KS
 
 sample_size=[100,200]
-trial=10
+trial=2
 beta_true=[1,-2]
 h=.1
 
 beta_hat_ichimura={}
 beta_hat_log={}
+beta_hat_KS={}
 for n in sample_size:
     beta_hat_log[n]=np.zeros(trial)
     beta_hat_ichimura[n]=np.zeros(trial)
+    beta_hat_KS[n]=np.zeros(trial)
     for i in range (trial):
         x1=np.random.randn(n, 1) 
         x2=np.random.randn(n, 1) 
@@ -29,11 +32,13 @@ for n in sample_size:
         log_coef=log.coef_
         beta_hat_log[n][i]=log_coef[0,1]/log_coef[0,0]
         beta_hat_ichimura[n][i]=ichimura(x,y,h)
-        
-        
-plt.subplot(3, 1, 1)	      
-hist(beta_hat_log[100],bins=5)
-plt.subplot(3, 1, 2)
-hist(beta_hat_log[200],bins=5)
-plt.subplot(3, 1, 3)
-hist(beta_hat_ichimura[200],bins=5)
+        beta_hat_KS[n][i]=KS(x,y,h)
+    plt.figure()
+    hist(beta_hat_log[n],bins=5)
+    savefig('beta_hat_log_{}.png'.format(n))
+    plt.figure()
+    hist(beta_hat_ichimura[n],bins=5)
+    savefig('beta_hat_ichimura_{}.png'.format(n))
+    plt.figure()
+    hist(beta_hat_KS[n],bins=5)
+    savefig('beta_hat_KS_{}.png'.format(n))
