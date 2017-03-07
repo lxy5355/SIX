@@ -3,21 +3,21 @@
 
 def build(ctx):
 
-    for model in 'baseline', 'max_moves_2':
+    for model in '100', '200':
 
         # Illustrate use of run_py_script with automatic model specification.
         ctx(
             features='run_py_script',
-            source='schelling.py',
+            source='simulation.py',
             deps=[
-                ctx.path_to(ctx, 'OUT_DATA', 'initial_locations.csv'),
-                ctx.path_to(ctx, 'IN_MODEL_CODE', 'agent.py'),
-                ctx.path_to(ctx, 'IN_MODEL_SPECS', '{}.json'.format(model)),
+                ctx.path_to(ctx, 'OUT_DATA', 'simulation_data_sample_size_{}.csv'.format(model)),
+                ctx.path_to(ctx, 'IN_MODEL_CODE', 'ichimura.py'),
+                ctx.path_to(ctx, 'IN_MODEL_CODE', 'KS.py'),
+                ctx.path_to(ctx, 'IN_MODEL_SPECS', 'sample_size_{}.json'.format(model))
             ],
             target=[
-                ctx.path_to(ctx, 'OUT_ANALYSIS', 'schelling_{}.pickle'.format(model)),
-                ctx.path_to(ctx, 'OUT_ANALYSIS', 'log', 'schelling_{}.log'.format(model))
+                ctx.path_to(ctx, 'OUT_ANALYSIS', 'simulation_{}.pickle'.format(model)),
             ],
             append=model,
-            name='schelling_{}'.format(model)
+            name='simulation_{}'.format(model)
         )

@@ -9,8 +9,9 @@ use of *run_py_script* only.
 """
 
 import numpy as np
-from bld.project_paths import project_paths_join as ppj
 
+from bld.project_paths import project_paths_join as ppj
+from data_trim import data_trim
 
 np.random.seed(12345)
 if __name__ == "__main__":

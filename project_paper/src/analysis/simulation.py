@@ -6,7 +6,7 @@ Created on Sun Mar  5 13:04:15 2017
 """
 import json
 import numpy as np
-import pickle
+import matplotlib.pyplot as plt
 
 from bld.project_paths import project_paths_join as ppj
 from sklearn.linear_model import LogisticRegression
@@ -47,3 +47,13 @@ for i in range (trial):
 
 with open(ppj("OUT_ANALYSIS", "simulation_{}.pickle".format(model_name)), "wb") as out_file:
     pickle.dump(beta_hat, out_file)
+
+plt.figure()
+hist(beta_hat_log[n],bins=5)
+savefig('beta_hat_log_{}.png'.format(n))
+plt.figure()
+hist(beta_hat_ichimura[n],bins=5)
+savefig('beta_hat_ichimura_{}.png'.format(n))
+plt.figure()
+hist(beta_hat_KS[n],bins=5)
+savefig('beta_hat_KS_{}.png'.format(n))

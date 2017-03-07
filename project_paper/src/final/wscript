@@ -3,16 +3,19 @@
 
 def build(ctx):
 
-    for model in 'baseline', 'max_moves_2':
+    for model in '100', '200':
 
         ctx(
             features='run_py_script',
-            source='plot_locations.py',
+            source='plot_beta_hat.py',
             deps=[
-                ctx.path_to(ctx, 'OUT_ANALYSIS', 'schelling_{}.pickle'.format(model)),
-                ctx.path_to(ctx, 'IN_MODEL_SPECS', '{}.json'.format(model))
+                ctx.path_to(ctx, 'OUT_ANALYSIS', 'simulation_{}.pickle'.format(model))
             ],
-            target=ctx.path_to(ctx, 'OUT_FIGURES', 'schelling_{}.png'.format(model)),
+            target=[
+                ctx.path_to(ctx, 'OUT_FIGURES', 'beta_hat_ichimura_{}.png'.format(model)),
+                ctx.path_to(ctx, 'OUT_FIGURES', 'beta_hat_KS_{}.png'.format(model)),
+                ctx.path_to(ctx, 'OUT_FIGURES', 'beta_hat_log_{}.png'.format(model))
+            ]
             append=model,
-            name='plot_locations_{}'.format(model)
+            name='plot_beta_hat_{}'.format(model)
         )
