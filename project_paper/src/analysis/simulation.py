@@ -40,10 +40,9 @@ x1 = np.array(x1,ndmin=2)
 x2 = np.array(x2,ndmin=2)
 y = np.array(y,ndmin=2)
 y=y.T
-print(y.shape)
 x=np.concatenate((x1,x2),axis=0)
 x=np.transpose(x)
-print(x.shape)
+
 for i in range (trial):
 
     beta_hat['ichimura'][model_name][i]=ichimura(x,y,h,grid_start,grid_end)
