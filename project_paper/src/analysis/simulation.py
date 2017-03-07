@@ -55,13 +55,3 @@ for i in range (trial):
 
 with open(ppj("OUT_ANALYSIS", "simulation_{}.pickle".format(model_name)), "wb") as out_file:
     pickle.dump(beta_hat, out_file)
-
-plt.figure()
-hist(beta_hat_log[n],bins=5)
-savefig('beta_hat_log_{}.png'.format(n))
-plt.figure()
-hist(beta_hat_ichimura[n],bins=5)
-savefig('beta_hat_ichimura_{}.png'.format(n))
-plt.figure()
-hist(beta_hat_KS[n],bins=5)
-savefig('beta_hat_KS_{}.png'.format(n))

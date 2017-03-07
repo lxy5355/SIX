@@ -26,6 +26,7 @@ def g_i(beta_hat,X,y,h):
         estimate = np.dot(np.delete(y,i),kde) / np.sum(kde)
         g_i[i] = estimate
     return g_i
+    
 #define loss function 
 def loss(beta_hat,*params):
     X,y,h=params
@@ -37,7 +38,7 @@ def loss(beta_hat,*params):
 def ichimura(X,y,h,grid_start, grid_end):
     params=(X,y,h)
     ranges=(slice(grid_start, grid_end, 0.1), slice(grid_start, grid_end, 0.1))
-    opt_temp=optimize.brute(loss, ranges, args=params, full_output=True, finish=optimize.fmin)
+    opt_temp=optimize.brute(loss, ranges, args=params, finish=optimize.fmin)
     opt=opt_temp[1]/opt_temp[0]
     return opt
 

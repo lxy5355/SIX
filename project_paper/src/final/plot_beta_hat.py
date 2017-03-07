@@ -4,7 +4,7 @@ Created on Sun Mar  5 13:04:15 2017
 
 @author: lxy53
 """
-
+import sys
 import pickle
 import matplotlib.pyplot as plt
 
@@ -18,13 +18,13 @@ if __name__ == "__main__":
         beta_hat = pickle.load(in_file)
 
     plt.figure()
-    hist(beta_hat['ichimura'][model_name],bins=5)
-    savefig(ppj("OUT_FIGURES", 'beta_hat_ichimura_{}.png'.format(model_name)))
+    plt.hist(beta_hat['ichimura'][model_name],bins=5)
+    plt.savefig(ppj("OUT_FIGURES", 'beta_hat_ichimura_{}.png'.format(model_name)))
 
     plt.figure()
-    hist(beta_hat['KS'][model_name],bins=5)
-    savefig(ppj("OUT_FIGURES", 'beta_hat_KS_{}.png'.format(model_name)))
+    plt.hist(beta_hat['KS'][model_name],bins=5)
+    plt.savefig(ppj("OUT_FIGURES", 'beta_hat_KS_{}.png'.format(model_name)))
 
     plt.figure()
-    hist(beta_hat['log'][model_name],bins=5)
-    savefig(ppj("OUT_FIGURES", 'beta_hat_log_{}.png'.format(model_name)))
+    plt.hist(beta_hat['log'][model_name],bins=5)
+    plt.savefig(ppj("OUT_FIGURES", 'beta_hat_log_{}.png'.format(model_name)))
