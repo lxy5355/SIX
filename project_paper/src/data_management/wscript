@@ -13,5 +13,6 @@ def build(ctx):
 	                ctx.path_to(ctx, 'IN_MODEL_SPECS', 'sample_size_{}.json'.format(model)),
 	                'data_trim.py'
 	            ],
-	        name='get_simulation_draws_{}'.format(model)
+             append=model,
+	       name='get_simulation_draws_{}'.format(model)
 	    )
