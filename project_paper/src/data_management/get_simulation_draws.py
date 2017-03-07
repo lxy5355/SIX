@@ -32,14 +32,19 @@ if __name__ == "__main__":
         x1=np.random.randn(sample_size, 1) 
         x2=np.random.randn(sample_size, 1) 
         e=np.random.randn(sample_size, 1)
+        y=np.ones(sample_size)
         x=np.concatenate((x1,x2),axis=1)
-        y=[1 if np.dot(x,beta_true) - e > 0 else 0 ]
-        
+        for j in range(sample_size):
+            y[j]=(np.dot(x[j],beta_true) - e[j] > 0)*1
+
         x,y=data_trim(x,y,h,grid_start,grid_end)
         x1 = np.array(x[:,0],ndmin=2)
         x2 = np.array(x[:,1],ndmin=2)
         y = np.array(y,ndmin=2)
-        sample[i-1] = np.concatenate((x1,x2,y))
+        print(y.size)
+        print(x1.size)
+        
+        sample = np.concatenate((x1,x2,y), axis=1)
 
-    sample.tofie(ppj("OUT_DATA","simulation_data_sample_size_{}.csv".format(model_name)), sep=",")
+        sample.tofile(ppj("OUT_DATA","simulation_data_sample_size_{}.csv".format(model_name)), sep=",")
             

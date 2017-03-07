@@ -34,8 +34,8 @@ beta_hat['KS'][model_name]=np.zeros(trial)
 beta_hat['log'][model_name]=np.zeros(trial)
 
 for i in range (trial):
-    x = simulation_data[i-1][:2]
-    y = simulation_data[i-1][2]
+    x = simulation_data[:2]
+    y = simulation_data[2]
 
     beta_hat['ichimura'][model_name][i]=ichimura(x,y,h,grid_start,grid_end)
     
