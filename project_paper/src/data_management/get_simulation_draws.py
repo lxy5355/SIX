@@ -33,8 +33,8 @@ if __name__ == "__main__":
         x2=np.random.randn(sample_size, 1) 
         e=np.random.randn(sample_size, 1)
         x=np.concatenate((x1,x2),axis=1)
-        y=(np.dot(x,beta_true)>1)*1
-
+        y=[1 if np.dot(x,beta_true) - e > 0 else 0 ]
+        
         x,y=data_trim(x,y,h,grid_start,grid_end)
         x1 = np.array(x[:,0],ndmin=2)
         x2 = np.array(x[:,1],ndmin=2)
