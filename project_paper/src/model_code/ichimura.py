@@ -17,6 +17,7 @@ def g_i(beta_hat,X,y,h):
     nrow=X.shape[0]
     g_i = np.zeros(shape=(nrow,1))
     g_i.fill(np.nan)
+###problem here!! it's needs to depends on the trial too, I think. So instead of [0], we would have [j]
     beta=[1, beta_hat[0]]
     for i in range (nrow):
         u_temp = np.subtract(X,X[[i]])

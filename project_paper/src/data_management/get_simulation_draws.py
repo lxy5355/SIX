@@ -35,7 +35,7 @@ if __name__ == "__main__":
         x=np.concatenate((x1,x2),axis=1)
         for j in range(sample_size):
             y[j]=(np.dot(x[j],beta_true) - e[j] > 0)*1
-
+###problem here. need to find a way for it to depend on the trial!!
         x,y=data_trim(x,y,h,grid_start,grid_end)
         x1 = np.array(x[:,0],ndmin=2)
         x2 = np.array(x[:,1],ndmin=2)

@@ -36,12 +36,14 @@ y = np.loadtxt(ppj("OUT_DATA", "y_sample_size_{}.csv".format(model_name)), delim
 beta_hat['ichimura'][model_name]=np.zeros(trial)
 beta_hat['KS'][model_name]=np.zeros(trial)
 beta_hat['log'][model_name]=np.zeros(trial)
-x1 = np.array(x1,ndmin=2)
-x2 = np.array(x2,ndmin=2)
-y = np.array(y,ndmin=2)
-y=y.T
-x=np.concatenate((x1,x2),axis=0)
-x=np.transpose(x)
+
+for i in range (trial):
+    x1 = np.array(x1[i],ndmin=2)
+    x2 = np.array(x2[i],ndmin=2)
+    y = np.array(y[i],ndmin=2)
+    y=y[i].T
+    x=np.concatenate((x1,x2),axis=0)
+    x=np.transpose(x)
 
 for i in range (trial):
 
@@ -52,6 +54,7 @@ for i in range (trial):
     log = LogisticRegression().fit(x,y)
     log_coef=log.coef_
     beta_hat['log'][model_name][i]=log_coef[0,1]/log_coef[0,0]
+
 
 with open(ppj("OUT_ANALYSIS", "simulation_{}.pickle".format(model_name)), "wb") as out_file:
     pickle.dump(beta_hat, out_file)
