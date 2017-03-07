@@ -18,7 +18,6 @@ def g_i(beta_hat,X,y,h):
     g_i=np.empty(nrow)
     g_i.fill(np.nan)
     beta=[1, beta_hat[0]]
-    print(X)
     for i in range (nrow):
         u_temp = np.subtract(X,np.dot(np.ones((1,nrow)).T,X[[i]]))
         argument=np.delete(u_temp,i,0)

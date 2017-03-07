@@ -23,6 +23,7 @@ sample_size = model["sample_size"]
 h = model["bandwidth"]
 grid_start = model["grid_start"]
 grid_end = model["grid_end"]
+trial = model["trial"]
 
 beta_hat = {}
 beta_hat['ichimura']={}
@@ -32,13 +33,18 @@ beta_hat['log']={}
 x1 = np.loadtxt(ppj("OUT_DATA", "x1_sample_size_{}.csv".format(model_name)), delimiter=",")
 x2 = np.loadtxt(ppj("OUT_DATA", "x2_sample_size_{}.csv".format(model_name)), delimiter=",")
 y = np.loadtxt(ppj("OUT_DATA", "y_sample_size_{}.csv".format(model_name)), delimiter=",")
-trial = simulation_data.shape[0]
 beta_hat['ichimura'][model_name]=np.zeros(trial)
 beta_hat['KS'][model_name]=np.zeros(trial)
 beta_hat['log'][model_name]=np.zeros(trial)
-
+x1 = np.array(x1,ndmin=2)
+x2 = np.array(x2,ndmin=2)
+y = np.array(y,ndmin=2)
+y=y.T
+print(y.shape)
+x=np.concatenate((x1,x2),axis=0)
+x=np.transpose(x)
+print(x.shape)
 for i in range (trial):
-    x=np.concatenate((x1,x2),axis=1)    
 
     beta_hat['ichimura'][model_name][i]=ichimura(x,y,h,grid_start,grid_end)
     
