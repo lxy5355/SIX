@@ -4,9 +4,11 @@ Created on Sun Mar  5 13:04:15 2017
 
 @author: lxy53
 """
+import sys
 import json
 import numpy as np
 import matplotlib.pyplot as plt
+import pickle
 
 from bld.project_paths import project_paths_join as ppj
 from sklearn.linear_model import LogisticRegression
@@ -27,15 +29,16 @@ beta_hat['ichimura']={}
 beta_hat['KS']={}
 beta_hat['log']={}
 
-simulation_data = np.loadtxt(ppj("OUT_DATA", "simulation_data_sample_size_{}.csv".format(model_name)), delimiter=",")
+x1 = np.loadtxt(ppj("OUT_DATA", "x1_sample_size_{}.csv".format(model_name)), delimiter=",")
+x2 = np.loadtxt(ppj("OUT_DATA", "x2_sample_size_{}.csv".format(model_name)), delimiter=",")
+y = np.loadtxt(ppj("OUT_DATA", "y_sample_size_{}.csv".format(model_name)), delimiter=",")
 trial = simulation_data.shape[0]
 beta_hat['ichimura'][model_name]=np.zeros(trial)
 beta_hat['KS'][model_name]=np.zeros(trial)
 beta_hat['log'][model_name]=np.zeros(trial)
 
 for i in range (trial):
-    x = simulation_data[:2]
-    y = simulation_data[2]
+    x=np.concatenate((x1,x2),axis=1)    
 
     beta_hat['ichimura'][model_name][i]=ichimura(x,y,h,grid_start,grid_end)
     

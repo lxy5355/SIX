@@ -27,7 +27,6 @@ if __name__ == "__main__":
     grid_start = model["grid_start"]
     grid_end = model["grid_end"]
 
-    sample = np.zeros((trial,sample_size,2))
     for i in range (trial):
         x1=np.random.randn(sample_size, 1) 
         x2=np.random.randn(sample_size, 1) 
@@ -41,10 +40,8 @@ if __name__ == "__main__":
         x1 = np.array(x[:,0],ndmin=2)
         x2 = np.array(x[:,1],ndmin=2)
         y = np.array(y,ndmin=2)
-        print(y.size)
-        print(x1.size)
         
-        sample = np.concatenate((x1,x2,y), axis=1)
-
-        sample.tofile(ppj("OUT_DATA","simulation_data_sample_size_{}.csv".format(model_name)), sep=",")
-            
+        x1.tofile(ppj("OUT_DATA","x1_sample_size_{}.csv".format(model_name)), sep=",")
+        x2.tofile(ppj("OUT_DATA","x2_sample_size_{}.csv".format(model_name)), sep=",")
+        y.tofile(ppj("OUT_DATA","y_sample_size_{}.csv".format(model_name)), sep=",")
+           

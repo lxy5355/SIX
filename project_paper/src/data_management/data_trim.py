@@ -1,8 +1,5 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Mar  6 15:10:03 2017
-
-@author: lxy53
+""" Definition of a trimming function that excludes observations whose x 
+variables have a relatively low density.
 """
 
 import numpy as np
@@ -19,13 +16,13 @@ def data_trim(X,y,h,grid_start,grid_end):
         i=0
         while i <= nrow-1:
             u_temp = np.subtract(X,np.dot(np.ones((1,nrow)).T,X[[i]]))
-            u = np.dot(np.delete(u_temp,i,0),beta_vec)      
+            argument = np.delete(u_temp,i,0)
+            u = np.dot(argument, beta_vec)      
             kde = normal_kde(u,h)
             if np.sum(kde)<np.finfo(float).eps:
                 X=np.delete(X,i,0)
                 y=np.delete(y,i,0)
                 nrow = nrow-1
-                i=i
             else:
                 i=i+1
     return X,y
