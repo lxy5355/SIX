@@ -1,8 +1,5 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Mar  5 13:04:15 2017
+""" Plot hstograms for the estimator for three models defined in analysis.
 
-@author: lxy53
 """
 import sys
 import pickle
@@ -16,15 +13,16 @@ if __name__ == "__main__":
 
     with open(ppj("OUT_ANALYSIS", "simulation_{}.pickle".format(model_name)), "rb") as in_file:
         beta_hat = pickle.load(in_file)
-
+        print(beta_hat)
+        
     plt.figure()
-    plt.hist(beta_hat['ichimura'][model_name],bins=5)
+    plt.hist(beta_hat['ichimura'][model_name][0],bins=10)
     plt.savefig(ppj("OUT_FIGURES", 'beta_hat_ichimura_{}.png'.format(model_name)))
 
     plt.figure()
-    plt.hist(beta_hat['KS'][model_name],bins=5)
+    plt.hist(beta_hat['KS'][model_name][0],bins=10)
     plt.savefig(ppj("OUT_FIGURES", 'beta_hat_KS_{}.png'.format(model_name)))
 
     plt.figure()
-    plt.hist(beta_hat['log'][model_name],bins=5)
+    plt.hist(beta_hat['log'][model_name][0],bins=10)
     plt.savefig(ppj("OUT_FIGURES", 'beta_hat_log_{}.png'.format(model_name)))
