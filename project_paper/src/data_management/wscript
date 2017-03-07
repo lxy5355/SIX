@@ -11,7 +11,7 @@ def build(ctx):
 	        target=ctx.path_to(ctx, 'OUT_DATA', "simulation_data_sample_size_{}.csv".format(model)),
 	        deps=[
 	                ctx.path_to(ctx, 'IN_MODEL_SPECS', 'sample_size_{}.json'.format(model)),
-	                ctx.path_to(ctx, 'data_trim.py')
+	                'data_trim.py'
 	            ],
-	        name='get_simulation_draws'
+	        name='get_simulation_draws_{}'.format(model)
 	    )

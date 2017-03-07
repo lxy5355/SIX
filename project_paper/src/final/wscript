@@ -15,7 +15,7 @@ def build(ctx):
                 ctx.path_to(ctx, 'OUT_FIGURES', 'beta_hat_ichimura_{}.png'.format(model)),
                 ctx.path_to(ctx, 'OUT_FIGURES', 'beta_hat_KS_{}.png'.format(model)),
                 ctx.path_to(ctx, 'OUT_FIGURES', 'beta_hat_log_{}.png'.format(model))
-            ]
+            ],
             append=model,
             name='plot_beta_hat_{}'.format(model)
         )
