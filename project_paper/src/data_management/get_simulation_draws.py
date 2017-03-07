@@ -14,7 +14,8 @@ from bld.project_paths import project_paths_join as ppj
 
 np.random.seed(12345)
 if __name__ == "__main__":
-    model = json.load(open(ppj("IN_MODEL_SPECS", "baseline.json"), encoding="utf-8"))
+	model_name = sys.argv[1]
+    model = json.load(open(ppj("IN_MODEL_SPECS", "sample_size_{}.json".format(model_name)), encoding="utf-8"))
 
 sample_size = model["sample_size"]
 trial = model["trial"]
@@ -23,18 +24,19 @@ h = model["bandwidth"]
 grid_start = model["grid_start"]
 grid_end = model["grid_end"]
 
-for n in sample_size:
-	sample = np.zeros((trial,n,2))
-    for i in range (trial):
-        x1=np.random.randn(n, 1) 
-        x2=np.random.randn(n, 1) 
-        e=np.random.randn(n, 1)
-        x=np.concatenate((x1,x2),axis=1)
-        y=(np.dot(x,beta_true)>1)*1
-        x,y=data_trim(x,y,h,grid_start,grid_end)
-        x1 = np.array(x[:,0],ndmin=2)
-    	x2 = np.array(x[:,1],ndmin=2)
-    	y = np.array(y,ndmin=2)
-    	sample[i-1] = np.concatenate((x1,x2,y))
-    sample.tofie(ppj("OUT_DATA","simulation_data_sample_size_{}.csv".format(n)), sep=",")
+sample = np.zeros((trial,sample_size,2))
+for i in range (trial):
+    x1=np.random.randn(sample_size, 1) 
+    x2=np.random.randn(sample_size, 1) 
+    e=np.random.randn(sample_size, 1)
+    x=np.concatenate((x1,x2),axis=1)
+    y=(np.dot(x,beta_true)>1)*1
+
+    x,y=data_trim(x,y,h,grid_start,grid_end)
+    x1 = np.array(x[:,0],ndmin=2)
+    x2 = np.array(x[:,1],ndmin=2)
+    y = np.array(y,ndmin=2)
+    sample[i-1] = np.concatenate((x1,x2,y))
+
+sample.tofie(ppj("OUT_DATA","simulation_data_sample_size_{}.csv".format(sample_size)), sep=",")
         
