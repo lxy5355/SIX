@@ -1,5 +1,5 @@
 {
-    "sample_size": 10,
+    "sample_size": 100,
     "trial": 2,
     "beta_true": [1,-2],
     "bandwidth": 0.1,

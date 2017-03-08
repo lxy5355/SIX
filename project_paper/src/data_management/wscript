@@ -1,0 +1,22 @@
+##! python
+
+
+def build(ctx):
+
+    for model in '100','200':
+   
+	    ctx(
+	        features='run_py_script',
+	        source='get_simulation_draws.py',
+	        target=[
+                 ctx.path_to(ctx, 'OUT_DATA', "x1_sample_size_{}.csv".format(model)),
+                 ctx.path_to(ctx, 'OUT_DATA', "x2_sample_size_{}.csv".format(model)),
+                 ctx.path_to(ctx, 'OUT_DATA', "y_sample_size_{}.csv".format(model))
+                 ],
+	        deps=[
+	                ctx.path_to(ctx, 'IN_MODEL_SPECS', 'sample_size_{}.json'.format(model)),
+	                'data_trim.py'
+	            ],
+             append=model,
+	       name='get_simulation_draws_{}'.format(model)
+	    )

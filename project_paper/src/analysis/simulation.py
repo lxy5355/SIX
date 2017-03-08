@@ -13,8 +13,6 @@ from bld.project_paths import project_paths_join as ppj
 from sklearn.linear_model import LogisticRegression
 from src.model_code.ichimura import ichimura
 from src.model_code.KS import KS
-from data_trim import data_trim
-
 
 if __name__ == "__main__":
     model_name = sys.argv[1]
@@ -31,31 +29,25 @@ beta_hat['ichimura']={}
 beta_hat['KS']={}
 beta_hat['log']={}
 
-#x1 = np.loadtxt(ppj("OUT_DATA", "x1_sample_size_{}.csv".format(model_name)), delimiter=",")
-#x2 = np.loadtxt(ppj("OUT_DATA", "x2_sample_size_{}.csv".format(model_name)), delimiter=",")
-#y = np.loadtxt(ppj("OUT_DATA", "y_sample_size_{}.csv".format(model_name)), delimiter=",")
+x1 = np.loadtxt(ppj("OUT_DATA", "x1_sample_size_{}.csv".format(model_name)), delimiter=",")
+x2 = np.loadtxt(ppj("OUT_DATA", "x2_sample_size_{}.csv".format(model_name)), delimiter=",")
+y = np.loadtxt(ppj("OUT_DATA", "y_sample_size_{}.csv".format(model_name)), delimiter=",")
 
 beta_hat['ichimura'][model_name]=np.zeros(trial)
 beta_hat['KS'][model_name]=np.zeros(trial)
 beta_hat['log'][model_name]=np.zeros(trial)
 beta_true = model["beta_true"]
 
+y=np.array(y,ndmin=2)
+y=y.T
+x1=np.array(x1,ndmin=2)
+x2=np.array(x2,ndmin=2)
+
+x=np.concatenate((x1,x2),axis=0)
+x=np.transpose(x)
+print(x.shape)
+
 for i in range (trial):
-    x1=np.random.randn(sample_size, 1) 
-    x2=np.random.randn(sample_size, 1) 
-    e=np.random.randn(sample_size, 1)
-    y=np.ones(sample_size)
-    x=np.concatenate((x1,x2),axis=1)
-    for j in range(sample_size):
-        y[j]=(np.dot(x[j],beta_true) - e[j] > 0)*1
-###problem here. need to find a way for it to depend on the trial!!
-    x,y=data_trim(x,y,h,grid_start,grid_end)
-    x1 = np.array(x[:,0],ndmin=2)
-    x2 = np.array(x[:,1],ndmin=2)
-    y = np.array(y,ndmin=2)
-    y=y.T
-    x=np.concatenate((x1,x2),axis=0)
-    x=np.transpose(x)
 
     beta_hat['ichimura'][model_name][i]=ichimura(x,y,h,grid_start,grid_end)
     

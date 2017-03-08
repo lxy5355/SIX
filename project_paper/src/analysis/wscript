@@ -10,11 +10,13 @@ def build(ctx):
             features='run_py_script',
             source='simulation.py',
             deps=[
+                ctx.path_to(ctx, 'OUT_DATA', "x1_sample_size_{}.csv".format(model)),
+                ctx.path_to(ctx, 'OUT_DATA', "x2_sample_size_{}.csv".format(model)),
+                ctx.path_to(ctx, 'OUT_DATA', "y_sample_size_{}.csv".format(model)),
                ctx.path_to(ctx, 'IN_MODEL_CODE', 'ichimura.py'),
                 ctx.path_to(ctx, 'IN_MODEL_CODE', 'KS.py'),
-                ctx.path_to(ctx, 'IN_MODEL_SPECS', 'sample_size_{}.json'.format(model)),
-                'data_trim.py'
-            ],
+                ctx.path_to(ctx, 'IN_MODEL_SPECS', 'sample_size_{}.json'.format(model))
+                ],
             target=[
                 ctx.path_to(ctx, 'OUT_ANALYSIS', 'simulation_{}.pickle'.format(model)),
             ],

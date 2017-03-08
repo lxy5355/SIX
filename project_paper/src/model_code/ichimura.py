@@ -26,7 +26,6 @@ def g_i(beta_hat,X,y,h):
         kde = normal_kde(u,h)
         estimate = np.dot(np.delete(y,i),kde) / np.sum(kde)
         g_i[i] = estimate
-        print(g_i)
     return g_i
     
 #define loss function 
