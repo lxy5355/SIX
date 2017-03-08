@@ -10,6 +10,7 @@ use of *run_py_script* only.
 import sys
 import json
 import numpy as np
+import pickle
 
 from bld.project_paths import project_paths_join as ppj
 from data_trim import data_trim
@@ -27,21 +28,32 @@ if __name__ == "__main__":
     grid_start = model["grid_start"]
     grid_end = model["grid_end"]
 
+    X={}
+    Y={}
+
     for i in range (trial):
+        X[i]=np.zeros((sample_size,2))
+        Y[i]=np.zeros(sample_size)
         x1=np.random.randn(sample_size, 1) 
         x2=np.random.randn(sample_size, 1) 
         e=np.random.randn(sample_size, 1)
-        y=np.ones(sample_size)
         x=np.concatenate((x1,x2),axis=1)
-        for j in range(sample_size):
-            y[j]=(np.dot(x[j],beta_true) - e[j] > 0)*1
-###problem here. need to find a way for it to depend on the trial!!
-        x,y=data_trim(x,y,h,grid_start,grid_end)
-        x1 = np.array(x[:,0],ndmin=2)
-        x2 = np.array(x[:,1],ndmin=2)
-        y = np.array(y,ndmin=2)
+        y=(np.dot(x,beta_true)>1)*1
         
-        x1.tofile(ppj("OUT_DATA","x1_sample_size_{}.csv".format(model_name)), sep=",")
-        x2.tofile(ppj("OUT_DATA","x2_sample_size_{}.csv".format(model_name)), sep=",")
-        y.tofile(ppj("OUT_DATA","y_sample_size_{}.csv".format(model_name)), sep=",")
+        x,y=data_trim(x,y,h,grid_start,grid_end)
+        X[i]=x
+        Y[i]=y
+
+
+        #X.tofile(ppj("OUT_DATA","x1_sample_size_{}.csv".format(model_name)), sep=",")
+        #x2.tofile(ppj("OUT_DATA","x2_sample_size_{}.csv".format(model_name)), sep=",")
+        #Y.tofile(ppj("OUT_DATA","y_sample_size_{}.csv".format(model_name)), sep=",")
            
+
+    with open(ppj("OUT_DATA", "x_sample_size_{}.pickle".format(model_name)), "wb") as out_file:
+        pickle.dump(X, out_file)
+
+    with open(ppj("OUT_DATA", "y_sample_size_{}.pickle".format(model_name)), "wb") as out_file:
+        pickle.dump(Y, out_file)
+
+    

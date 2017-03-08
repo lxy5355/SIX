@@ -15,19 +15,16 @@ def normal_kde(u,h):
 #define leave one out estimator
 def g_i(beta_hat,X,y,h):
     nrow=X.shape[0]
-    g_i = np.zeros(shape=(nrow,1))
+    g_i=np.empty(nrow)
     g_i.fill(np.nan)
-###problem here!! it's needs to depends on the trial too, I think. So instead of [0], we would have [j]
-    beta=[1, beta_hat[0]]
     for i in range (nrow):
-        u_temp = np.subtract(X,X[[i]])
-        argument=np.delete(u_temp,i,0)
-        u = np.dot(argument, beta)      
+        u_temp = np.subtract(X,np.dot(np.ones((1,nrow)).T,X[[i]]))
+        u = np.dot(np.delete(u_temp,i,0),beta_hat)      
         kde = normal_kde(u,h)
         estimate = np.dot(np.delete(y,i),kde) / np.sum(kde)
         g_i[i] = estimate
     return g_i
-    
+
 #define loss function 
 def loss(beta_hat,*params):
     X,y,h=params
@@ -39,7 +36,6 @@ def loss(beta_hat,*params):
 def ichimura(X,y,h,grid_start, grid_end):
     params=(X,y,h)
     ranges=(slice(grid_start, grid_end, 0.1), slice(grid_start, grid_end, 0.1))
-    opt_temp=optimize.brute(loss, ranges, args=params, finish=optimize.fmin)
+    opt_temp=optimize.brute(loss, ranges, params,finish=optimize.fmin)
     opt=opt_temp[1]/opt_temp[0]
     return opt
-
