@@ -1,0 +1,23 @@
+#! python
+
+
+def build(ctx):
+
+    for model in '100', '200':
+
+        # Illustrate use of run_py_script with automatic model specification.
+        ctx(
+            features='run_py_script',
+            source='simulation.py',
+            deps=[
+               ctx.path_to(ctx, 'IN_MODEL_CODE', 'ichimura.py'),
+                ctx.path_to(ctx, 'IN_MODEL_CODE', 'KS.py'),
+                ctx.path_to(ctx, 'IN_MODEL_SPECS', 'sample_size_{}.json'.format(model)),
+                'data_trim.py'
+            ],
+            target=[
+                ctx.path_to(ctx, 'OUT_ANALYSIS', 'simulation_{}.pickle'.format(model)),
+            ],
+            append=model,
+            name='simulation_{}'.format(model)
+        )

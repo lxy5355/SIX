@@ -1,0 +1,21 @@
+#! python
+
+
+def build(ctx):
+
+    for model in '100', '200':
+
+        ctx(
+            features='run_py_script',
+            source='plot_beta_hat.py',
+            deps=[
+                ctx.path_to(ctx, 'OUT_ANALYSIS', 'simulation_{}.pickle'.format(model))
+            ],
+            target=[
+                ctx.path_to(ctx, 'OUT_FIGURES', 'beta_hat_ichimura_{}.png'.format(model)),
+                ctx.path_to(ctx, 'OUT_FIGURES', 'beta_hat_KS_{}.png'.format(model)),
+                ctx.path_to(ctx, 'OUT_FIGURES', 'beta_hat_log_{}.png'.format(model))
+            ],
+            append=model,
+            name='plot_beta_hat_{}'.format(model)
+        )
