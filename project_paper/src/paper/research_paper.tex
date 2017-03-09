@@ -155,7 +155,7 @@
 \usepackage{xcolor}
 \usepackage{multirow}
 %\usepackage{booktabs}
-
+\usepackage{subcaption}
 
 % packages for bibliography
 \usepackage[backend=bibtex, natbib=true,style=numeric]{biblatex}
@@ -687,6 +687,43 @@ $^1$Ichi = Ichimura's method, KS = Klein and Spady's method.
 
 \end{table}
 
+\begin{figure}
+\caption{Simulation results: comparison between normal and joint normal distribution of error term}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.7\linewidth]{../../out/figures/beta_hat_log_2.png}
+  \caption{Normal distribution with logit}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.7\linewidth]{../../out/figures/beta_hat_log_3.png}
+  \caption{Joint normal distribution with logit}
+\end{subfigure}%
+\\
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.7\linewidth]{../../out/figures/beta_hat_ichimura_2.png}
+  \caption{Normal distribution with Ichimura}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.7\linewidth]{../../out/figures/beta_hat_ichimura_3.png}
+  \caption{Joint normal distribution with Ichimura}
+\end{subfigure}%
+\\
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.7\linewidth]{../../out/figures/beta_hat_KS_2.png}
+  \caption{Normal distribution with KS}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.7\linewidth]{../../out/figures/beta_hat_KS_3.png}
+  \caption{Joint normal distribution with KS}
+\end{subfigure}%
+\end{figure}
+
 % \begin{figure}[H]
 %   \includegraphics[width=\linewidth]{plot_comparison.png}
 %   \label{fig:plot of the estimates}
@@ -854,14 +891,44 @@ From \textit{Table 4} and \textit{Figure 3}, we see that our self-implemented co
 \subsection{Analysis of consistency}
 These are the graphs that follow the analysis of finite sample bias on section 7. For the three models, the variance of the estimates decreases with the sample size. Moreover, the histograms resemble more and more closely the distribution of normal variables.
 
-% \begin{figure}[h!]
-%   \includegraphics[width=\linewidth]{sample_size.png}
- 
-%   \label{fig:comparison of estimates on the same scale}
-%     \caption{Plot of estimates for different sample sizes}
+\begin{figure}
+\caption{Consistency study: comparison between different sample sizes}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.7\linewidth]{../../out/figures/beta_hat_log_1.png}
+  \caption{Normal distribution, logit, n=100}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.7\linewidth]{../../out/figures/beta_hat_log_2.png}
+  \caption{Joint normal, logit, n=200}
+\end{subfigure}%
+\\
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.7\linewidth]{../../out/figures/beta_hat_ichimura_1.png}
+  \caption{Normal distribution, ichimura, n=100}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.7\linewidth]{../../out/figures/beta_hat_ichimura_2.png}
+  \caption{Joint normal, ichimura, n=200}
+\end{subfigure}%
+\\
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.7\linewidth]{../../out/figures/beta_hat_KS_1.png}
+  \caption{Normal distribution, KS, n=100}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.7\linewidth]{../../out/figures/beta_hat_KS_2.png}
+  \caption{Joint normal, KS, n=200}
+\end{subfigure}%
+\end{figure}
 
-% \end{figure}
-
+\newpage
 \subsection{Real Dataset Variable Explanation}
 The following list shows the 21 independent variables and 1 binary gender indicator contained in the dataset.
 
