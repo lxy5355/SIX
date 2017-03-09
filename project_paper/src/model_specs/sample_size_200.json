@@ -1,8 +1,0 @@
-{
-    "sample_size": 200,
-    "trial": 20,
-    "beta_true": [1,-2],
-    "bandwidth": 0.1,
-    "grid_start": -3,
-    "grid_end": 2
-}

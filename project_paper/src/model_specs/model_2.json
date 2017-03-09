@@ -1,0 +1,16 @@
+{
+    "sample_size": 200,
+    "trial": 3,
+    "beta_true": [1,-2],
+    "bandwidth": 0.1,
+    "grid_start": -3,
+    "grid_end": 2,
+
+    "e":{
+    	"mean_1":0,
+    	"mean_2":0,
+    	"sd_1":1,
+    	"sd_2":1,
+    	"weight":1
+    }
+}

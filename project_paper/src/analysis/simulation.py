@@ -19,12 +19,12 @@ from src.model_code.KS import KS
 
 if __name__ == "__main__":
     model_name = sys.argv[1]
-    model = json.load(open(ppj("IN_MODEL_SPECS", "sample_size_{}.json".format(model_name)), encoding="utf-8"))
+    model = json.load(open(ppj("IN_MODEL_SPECS", "model_{}.json".format(model_name)), encoding="utf-8"))
 
-with open(ppj("OUT_DATA", "x_sample_size_{}.pickle".format(model_name)), "rb") as in_file:
+with open(ppj("OUT_DATA", "x_model_{}.pickle".format(model_name)), "rb") as in_file:
         X = pickle.load(in_file)
 
-with open(ppj("OUT_DATA", "y_sample_size_{}.pickle".format(model_name)), "rb") as in_file:
+with open(ppj("OUT_DATA", "y_model_{}.pickle".format(model_name)), "rb") as in_file:
         Y = pickle.load(in_file)
 
 sample_size = model["sample_size"]
