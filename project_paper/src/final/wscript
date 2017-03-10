@@ -19,3 +19,19 @@ def build(ctx):
             append=model,
             name='plot_beta_hat_{}'.format(model)
         )
+
+
+    ctx(
+        features='run_py_script',
+        source='table_beta_hat.py',
+        deps=[
+            ctx.path_to(ctx, 'OUT_ANALYSIS', 'simulation_3.pickle'),
+            ctx.path_to(ctx, 'OUT_ANALYSIS', 'simulation_4.pickle'),
+            ctx.path_to(ctx, 'IN_MODEL_SPECS', 'model_3.json')
+            ],
+        target=[
+            ctx.path_to(ctx, 'OUT_TABLES', 'table_bias.tex'),
+            ],
+        append=model,
+        name='table'
+    )

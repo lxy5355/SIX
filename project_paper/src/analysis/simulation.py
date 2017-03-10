@@ -35,26 +35,22 @@ trial = model["trial"]
 
 
 beta_hat={}
-beta_hat['ichimura']={}
-beta_hat['KS']={}
-beta_hat['log']={}
 
-
-beta_hat['ichimura'][model_name]=np.zeros(trial)
-beta_hat['KS'][model_name]=np.zeros(trial)
-beta_hat['log'][model_name]=np.zeros(trial)
+beta_hat['ichimura']=np.zeros(trial)
+beta_hat['KS']=np.zeros(trial)
+beta_hat['log']=np.zeros(trial)
 
 
 
 for i in range (trial):
     x=X[i]
     y=Y[i]
-    beta_hat['ichimura'][model_name][i]=ichimura(x,y,h,grid_start,grid_end)
-    beta_hat['KS'][model_name][i]=KS(x,y,h,grid_start,grid_end)
+    beta_hat['ichimura'][i]=ichimura(x,y,h,grid_start,grid_end)
+    beta_hat['KS'][i]=KS(x,y,h,grid_start,grid_end)
 
     log = LogisticRegression().fit(x,y)
     log_coef=log.coef_
-    beta_hat['log'][model_name][i]=log_coef[0,1]/log_coef[0,0]
+    beta_hat['log'][i]=log_coef[0,1]/log_coef[0,0]
 
 with open(ppj("OUT_ANALYSIS", "simulation_{}.pickle".format(model_name)), "wb") as out_file:
     pickle.dump(beta_hat, out_file)

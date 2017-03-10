@@ -23,3 +23,20 @@ def build(ctx):
             name='simulation_{}'.format(model)
         )
 
+        # for model in '3','4':
+        # ctx(
+        #     features='run_py_script',
+        #     source='table_calc.py',
+        #     deps=[
+        #         ctx.path_to(ctx, 'IN_MODEL_SPECS', 'model_{}.json'.format(model)),
+        #         ctx.path_to(ctx, 'OUT_ANALYSIS', 'simulation_{}.pickle'.format(model))
+        #         ],
+        #     target=[
+        #         ctx.path_to(ctx, 'OUT_ANALYSIS', 'bias_{}.pickle'.format(model)),
+        #         ctx.path_to(ctx,'OUT_ANALYSIS','RMSE_{}.pickle'.format(model))
+        #         ],
+        #     append=model,
+        #     name='table'
+        # )
+
+

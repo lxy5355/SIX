@@ -664,26 +664,11 @@ In accordance with Ichimura (1993) \cite{[6]}, grid search was chosen as the met
 \centering
 \resizebox{.75\textwidth}{!}{
 
-\begin{tabular}{l r r r r}
-\toprule
- & \multicolumn{2}{c}{Standard Normal} & \multicolumn{2}{c}{Joint Normal} \tabularnewline
-\cmidrule[0.25pt]{2-3}
-\cmidrule[0.25pt]{4-5}
-Estimator$^1$ & Bias & RMSE & Bias & RMSE
-\tabularnewline
-\midrule
-Ichi & -0.045 & 0.3672 & -0.057 & 0.3665
-\tabularnewline
-KS & -0.0095 & 0.3231 & -0.015 & 0.3125
-\tabularnewline 
-Logit & -0.030 & 0.2760  & -0.034 & 0.2813
-\tabularnewline
-\bottomrule
-\end{tabular}
+\input {../../out/tables/table_bias.tex}
 }
 \caption {Bias and Root Mean Squared Error Comparison} \label{tab:bias and mean squared error}
 
-$^1$Ichi = Ichimura's method, KS = Klein and Spady's method.
+% $^1$Ichi = Ichimura's method, KS = Klein and Spady's method.
 
 \end{table}
 
