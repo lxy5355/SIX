@@ -3,7 +3,7 @@
 
 def build(ctx):
 
-    for model in '1', '2','3':
+    for model in '1', '2','3','4':
 
         ctx(
             features='run_py_script',
