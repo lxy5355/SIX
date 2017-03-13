@@ -33,5 +33,22 @@ def build(ctx):
             ctx.path_to(ctx, 'OUT_TABLES', 'table_bias.tex'),
             ],
         append=model,
-        name='table'
+        name='table_bias'
     )
+
+    ctx(
+    features='run_py_script',
+    source='table_consistency.py',
+    deps=[
+        ctx.path_to(ctx, 'OUT_ANALYSIS', 'simulation_1.pickle'),
+        ctx.path_to(ctx, 'OUT_ANALYSIS', 'simulation_2.pickle'),
+        ctx.path_to(ctx, 'OUT_ANALYSIS', 'simulation_3.pickle'),
+        ctx.path_to(ctx, 'IN_MODEL_SPECS', 'model_3.json')
+        ],
+    target=[
+        ctx.path_to(ctx, 'OUT_TABLES', 'table_consistency.tex'),
+        ],
+    append=model,
+    name='table_consistency'
+)
+

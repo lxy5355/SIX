@@ -10,51 +10,6 @@ import numpy as np
 from bld.project_paths import project_paths_join as ppj
 
 
-
-# if __name__ == "__main__":
-#     model_name = sys.argv[1]
-
-#     with open(ppj("OUT_ANALYSIS", "bias.pickle"), "rb") as in_file:
-#         bias = pickle.load(in_file)
-
-
-#     with open(ppj("OUT_ANALYSIS", "RMSE.pickle"), "rb") as in_file:
-#         RMSE = pickle.load(in_file)
-
-
-#     plt.figure()
-#     plt.hist(bias['log']['3'])
-#     plt.savefig(ppj("OUT_FIGURES", 'b.png'))
-            
-#     #table_row = '{par} & {val_100:.3f} & {val_1000:.3f}& {val_10000:.3f}\\tabularnewline\n' 
-
-#     with open(ppj("OUT_TABLES","table_bias.tex"), 'w') as tex_file:
-
-#         tex_file.write("{}".format(bias['ichimura']['3']))
-
-#     # # # Top of table.
-#     #     tex_file.write('\\begin{tabular}{l r r r r}\n\\toprule\n')
-            
-#     #     # Header row.    
-        
-#     #     tex_file.write('\\textbf{(Estimator)} & \\textbf{(bias)} & \\textbf{(RMSE)} & \\textbf{(bias)}& \\textbf{(RMSE)}')
-#     #     tex_file.write('\\tabularnewline\\midrule\n')
-
-#     #     names = ['ichimura','KS','log']
-#     #     for n, acro in zip(names, "Ichi, KS, Logit".split(", ")):
-#     #         b = []
-#     #         r = []
-#     #         for i in model_name:
-#     #             b.append(bias[n][i])
-#     #             r.append(RMSE[n][i])
-#     #         tex_file.write("{} & {} & {} & {} &{} \\tabularnewline\n".format(acro,b[0],r[0], b[1],r[1] ))
-        
-    
-            
-#     #     # Bottom of table.
-#     #     tex_file.write('\\bottomrule\n\\end{tabular}\n')
-
-
 if __name__ == "__main__":
 
     model = json.load(open(ppj("IN_MODEL_SPECS", "model_3.json"), encoding="utf-8"))
@@ -82,8 +37,7 @@ if __name__ == "__main__":
         bias[n]['joint_normal']=beta_hat_4[n].mean()-beta_true
         RMSE[n]['joint_normal']=np.sqrt(np.sum(np.square(beta_hat_4[n]-beta_true))/trial)
 
-
-            
+    
 
     
     with open(ppj("OUT_TABLES","table_bias.tex"), 'w') as tex_file:
