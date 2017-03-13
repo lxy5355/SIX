@@ -37,7 +37,7 @@ if __name__ == "__main__":
 
     X={}
     Y={}
-
+    
     for i in range (trial):
         X[i]=np.zeros((sample_size,2))
         Y[i]=np.zeros(sample_size)
@@ -47,18 +47,13 @@ if __name__ == "__main__":
         e2=e_mean_2+np.random.randn(sample_size, 1)*e_sd_2
         e=e_weight*e1+(1-e_weight)*e2
         x=np.concatenate((x1,x2),axis=1)
+        # Set the dependent variable to be binary.
         y=(np.dot(x,beta_true)>e.T).T*1
         y=y.reshape((sample_size,))
 
         x,y=data_trim(x,y,h,grid_start,grid_end)
         X[i]=x
         Y[i]=y
-
-
-        #X.tofile(ppj("OUT_DATA","x1_sample_size_{}.csv".format(model_name)), sep=",")
-        #x2.tofile(ppj("OUT_DATA","x2_sample_size_{}.csv".format(model_name)), sep=",")
-        #Y.tofile(ppj("OUT_DATA","y_sample_size_{}.csv".format(model_name)), sep=",")
-           
 
     with open(ppj("OUT_DATA", "x_model_{}.pickle".format(model_name)), "wb") as out_file:
         pickle.dump(X, out_file)

@@ -1,4 +1,4 @@
-""" Plot hstograms for the estimator for three models defined in analysis.
+""" Plot histograms for the estimator for three models defined in analysis.
 
 """
 import sys

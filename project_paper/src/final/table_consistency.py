@@ -1,6 +1,7 @@
-# """ Plot hstograms for the estimator for three models defined in analysis.
+""" Create table that shows how the bias of beta hat changes with increasing
+sample size for Klein and Spady's, Ichimura's and the logistic model.
 
-# """
+"""
 import sys
 import pickle
 import json

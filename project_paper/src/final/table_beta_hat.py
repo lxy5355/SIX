@@ -1,6 +1,8 @@
-# """ Plot hstograms for the estimator for three models defined in analysis.
+""" Create table with values for bias and RMSE of beta hat for Klein and Spady's,
+Iichimura's and logistic model.
 
-# """
+"""
+
 import sys
 import pickle
 import json
@@ -8,7 +10,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from bld.project_paths import project_paths_join as ppj
-
 
 if __name__ == "__main__":
 
@@ -36,14 +37,10 @@ if __name__ == "__main__":
         RMSE[n]['normal']=np.sqrt(np.sum(np.square(beta_hat_3[n]-beta_true))/trial)
         bias[n]['joint_normal']=beta_hat_4[n].mean()-beta_true
         RMSE[n]['joint_normal']=np.sqrt(np.sum(np.square(beta_hat_4[n]-beta_true))/trial)
-
-    
-
-    
+  
     with open(ppj("OUT_TABLES","table_bias.tex"), 'w') as tex_file:
 
-
-    # # # Top of table.
+        # Top of table.
         tex_file.write('\\begin{tabular}{l r r r r}\n\\toprule\n')
             
         # Header row.   
@@ -61,8 +58,6 @@ if __name__ == "__main__":
                 b.append(bias[n][i])
                 r.append(RMSE[n][i])
             tex_file.write(" %s  & %.2f & %.2f& %.2f &%.2f \\tabularnewline\n" %(acro,b[0],r[0], b[1],r[1] ))
-        
-    
-            
+                    
         # Bottom of table.
         tex_file.write('\\bottomrule\n\\end{tabular}\n')

@@ -2,18 +2,30 @@
 
 
 def build(ctx):
+    # Illustrate use of run_py_script with automatic model specification.
+    ctx(
+              features='run_py_script',
+              source='ichimura_test.py',
+              deps='ichimura.py'
+    )
+    
+    ctx(
+              features='run_py_script',
+              source='KS_test.py',
+              deps='KS.py'
+    )
 
+    # Loop over the four models.
     for model in '1', '2','3','4':
 
-        # Illustrate use of run_py_script with automatic model specification.
         ctx(
             features='run_py_script',
             source='simulation.py',
             deps=[
                ctx.path_to(ctx, 'OUT_DATA', "x_model_{}.pickle".format(model)),
                 ctx.path_to(ctx, 'OUT_DATA', "y_model_{}.pickle".format(model)),
-               ctx.path_to(ctx, 'IN_MODEL_CODE', 'ichimura.py'),
-                ctx.path_to(ctx, 'IN_MODEL_CODE', 'KS.py'),
+               'ichimura.py',
+                'KS.py',
                 ctx.path_to(ctx, 'IN_MODEL_SPECS', 'model_{}.json'.format(model))
             ],
             target=[

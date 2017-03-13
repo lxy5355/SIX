@@ -5,10 +5,16 @@ variables have a relatively low density.
 import numpy as np
 
 def normal_kde(u,h):
+    """Calculation of a fourth order kernel."""
+    
     res = (1/2)*(3-u**2)*((1/np.sqrt(2 *np.pi)) * np.exp(-0.5 * ((u/h)**2)))
     return res
     
 def data_trim(X,y,h,grid_start,grid_end):
+    """Eliminates observations that have a low density of X, i.e., the density
+    is smaller than np.finfo(float).eps.
+    
+    """
     grid=np.arange(grid_start, grid_end, 0.1)
     for beta in grid:
         beta_vec=[1,beta]
@@ -26,4 +32,4 @@ def data_trim(X,y,h,grid_start,grid_end):
             else:
                 i=i+1
     return X,y
-    
+
