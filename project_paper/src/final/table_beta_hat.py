@@ -50,7 +50,6 @@ if __name__ == "__main__":
         tex_file.write('\\textbf{(Estimator)} & \\textbf{(bias)} & \\textbf{(RMSE)} & \\textbf{(bias)}& \\textbf{(RMSE)}')
         tex_file.write('\\tabularnewline\\midrule\n')
 
-        names = ['ichimura','KS','log']
         for n, acro in zip(names, "Ichi, KS, Logit".split(", ")):
             b = []
             r = []

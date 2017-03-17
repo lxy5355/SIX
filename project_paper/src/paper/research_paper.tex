@@ -732,43 +732,24 @@ This section presents an empirical application on gender recognition by voice us
 
 The dataset we used is the pre-processed Gender Recognition by Voice and Speech Analysis dataset, a publicly available dataset from online resources containing 3,168 recorded voice samples by 1584 male and 1584 female speakers. 21 independent variables of acoustic properties of voice and 1 binary dependent indicator variable for gender are included in the dataset. More information regarding the dataset can be found in the appendix.  
 
-As a first step, we removed three variables that have shown to cause multicollinearity problem,  namely; IQR, centroid, and dfrange. Next, the dataset is split into training sample for estimation of parameters, and test sample for prediction using estimated parameters. 70\% of the data are randomly selected into the training sample, with the remaining 30\% left for the test sample. 
+As a first step, we removed three variables that have shown to cause multicollinearity problem,  namely; IQR, centroid, and dfrange. Next, the dataset is split into training sample for estimation of parameters, and test sample for prediction using estimated parameters. 70\% of the data are randomly selected into the training sample, with the remaining 30\% left for the test sample. We use the training sample for estimation and use the estimated parameters to predict gender outcome on the test sample.
 
-For estimation, we use the pre-implemented np-package in R (Racine and Hayfield, 2008 \cite{[28]}) for computational simplicity. In our self-implemented Ichimura (1993) \cite{[6]} and KS (1993) \cite{[12]} methods we employed grid search in the minimization process for equation (9) and (14), which is also the method proposed by Ichimura (1993) \cite{[6]}. The minimization results are highly dependent on the specification of the grid for each independent variables and an appropriate resolution of the grid is necessary for precise results. As such, the grid search method suffers from the curse of dimensionality. Numerical approximation becomes infeasible in our case as the data contains 18 independent variables. We therefore use the np-package which employs the $npksum()$ and $nlm()$ minimization procedures in R with multiple starting values to best avoid local minima. A comparison with logistic regression is also provided using the pre-implemented logistic regression routine in R.
+In our self-implemented Ichimura (1993) \cite{[6]} and KS (1993) \cite{[12]} methods we employed grid search in the minimization process for equation (9) and (14), which is also the method proposed by Ichimura (1993) \cite{[6]}. The minimization results are highly dependent on the specification of the grid for each independent variables and an appropriate resolution of the grid is necessary for precise results. As such, the grid search method suffers from the curse of dimensionality. Numerical approximation becomes extremely time consuming in our case as the data contains 18 independent variables. We therefore use only two selected independent variables: median and Q25 to demostrate the use of our estimation procedures on empirical dataset. A comparison with logistic regression is also provided using the pre-implemented logistic regression routine in python.
 
-% \begin{figure}[H]
-%   \includegraphics[width=\linewidth]{figure2.png}
-%   \label{fig: Plot of estimates on test sample}
-%   \caption{Plot of Estimates on Test Sample}
-% \end{figure}
 
-\begin{table}
-    \centering
-    \begin{center}
-    \begin{tabular}{  m{2cm} | m{3cm} c m{3cm} c m{3cm} |}
-      & Logistic Regression & Ichimura Method & Klein-Spady Method
-    \tabularnewline
-    \midrule
-    Approximate calculation time & $<$ 1 second & $>$ 3 hours & $>$ 3 hours
-    \tabularnewline
-    \midrule
-    In-sample Accuracy Rate (training sample) & 0.971145 & 0.974752 & 0.976104
-    \tabularnewline
-    \midrule
-    Prediction Accuracy Rate (test sample) & 0.978947 &  0.977894 & 0.981052 
-    \tabularnewline
-    \bottomrule
-    \end{tabular}
-    \end{center}
-    \caption {Estimation time and accuracy rate}
+\begin{table}[H]
+\centering
+\input {../../out/tables/table_empirical.tex}
+\caption {Compariosn of out-sample prediction accuracy rate of estimation procedures} 
 \end{table}
 
-The prediction results and the true values are plotted in \textit{Figure 2}, with grey points representing predicted values and black points true values. A comparison of in-sample and prediction accuracy rate and approximate calculation time are also presented in \textit{Table 3}. The accuracy rate is defined as ratio of correct gender prediction to the total number of data points.
+% The prediction results and the true values are plotted in \textit{Figure 2}, with grey points representing predicted values and black points true values. 
+
+A comparison of prediction accuracy rate on test set are presented in \textit{Table 3}. The accuracy rate is defined as ratio of correct gender prediction to the total number of data points.
 
 
-From \textit{Table 3} and \textit{Figure 2}, we could conclude that the logistic regression would be the preferred method in this case since the improvement in accuracy rate by using semiparametric methods are minimum while the calculation time increases significantly. However, this could be due to the fact that the underlying data fit the logistic distribution better, and thus this comparison should not be generalized to other datasets. 
+From \textit{Table 3}, we see modest improvement in accuracy rate by using semiparametric methods while the calculation time actually increases significantly.  
 
-We also take note of the two peculiar features of the results. First, the accuracy rate is higher for test sample than for training sample. As the difference is relatively small, we postulate that this could be random and of no particular significance. Moreover, the fact that the training sample contains 3.5 times more data points than the test sample could exacerbate the random effect. The second feature is that the resulting graph for the KS (1993) \cite{[12]} method is not very smooth. This could be due to a problem with bandwidth selection included in the np-package (Racine and Hayfield, 2008) \cite{[28]} or the minimization process. However, as the result is not significantly worse than the other estimators, actually slightly better, we do not think that this should be of great concern.
 
 \section{Conclusion} % (fold)
 \label{sec:Conclusion}

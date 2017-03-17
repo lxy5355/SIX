@@ -52,3 +52,16 @@ def build(ctx):
     name='table_consistency'
 )
 
+    ctx(
+    features='run_py_script',
+    source='table_empirical.py',
+    deps=[
+        ctx.path_to(ctx, 'OUT_EMPIRICAL', 'empirical.pickle'),
+        ],
+    target=[
+        ctx.path_to(ctx, 'OUT_TABLES', 'table_empirical.tex'),
+        ],
+    append=model,
+    name='table_empirical'
+)
+
