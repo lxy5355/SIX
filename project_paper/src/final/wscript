@@ -30,9 +30,8 @@ def build(ctx):
             ctx.path_to(ctx, 'IN_MODEL_SPECS', 'model_3.json')
             ],
         target=[
-            ctx.path_to(ctx, 'OUT_TABLES', 'table_bias.tex'),
+            ctx.path_to(ctx, 'OUT_TABLES', 'table_bias.tex')
             ],
-        append=model,
         name='table_bias'
     )
 
@@ -46,22 +45,19 @@ def build(ctx):
         ctx.path_to(ctx, 'IN_MODEL_SPECS', 'model_3.json')
         ],
     target=[
-        ctx.path_to(ctx, 'OUT_TABLES', 'table_consistency.tex'),
+        ctx.path_to(ctx, 'OUT_TABLES', 'table_consistency.tex')
         ],
-    append=model,
     name='table_consistency'
-)
+    )
 
     ctx(
     features='run_py_script',
     source='table_empirical.py',
     deps=[
-        ctx.path_to(ctx, 'OUT_EMPIRICAL', 'empirical.pickle'),
+        ctx.path_to(ctx, 'OUT_EMPIRICAL', 'empirical.pickle')
         ],
     target=[
-        ctx.path_to(ctx, 'OUT_TABLES', 'table_empirical.tex'),
+        ctx.path_to(ctx, 'OUT_TABLES', 'table_empirical.tex')
         ],
-    append=model,
     name='table_empirical'
-)
-
+    )

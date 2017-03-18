@@ -18,15 +18,15 @@ if __name__ == "__main__":
     bins = np.linspace(-5, 0, 50, endpoint=True)
 
     plt.figure()
-    plt.hist(beta_hat['ichimura'],bins)
+    plt.hist(beta_hat['ichimura'], bins)
     plt.savefig(ppj("OUT_FIGURES", 'beta_hat_ichimura_{}.png'.format(model_name)))
 
     plt.figure()
-    plt.hist(beta_hat['KS'],bins)
+    plt.hist(beta_hat['KS'], bins)
     plt.savefig(ppj("OUT_FIGURES", 'beta_hat_KS_{}.png'.format(model_name)))
 
     plt.figure()
-    plt.hist(beta_hat['log'],bins)
+    plt.hist(beta_hat['log'], bins)
     plt.savefig(ppj("OUT_FIGURES", 'beta_hat_log_{}.png'.format(model_name)))
 
 

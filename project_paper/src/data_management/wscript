@@ -3,9 +3,9 @@
 def build(ctx):
     # Illustrate use of run_py_script with automatic model specification.
     ctx(
-              features='run_py_script',
-              source='data_trim_test.py',
-              deps='data_trim.py'
+        features='run_py_script',
+        source='data_trim_test.py',
+        deps='data_trim.py'
     )
     
     # Loop over the models.
@@ -22,6 +22,6 @@ def build(ctx):
 	                ctx.path_to(ctx, 'IN_MODEL_SPECS', 'model_{}.json'.format(model)),
 	                'data_trim.py'
 	            ],
-             append=model,
-	       name='get_simulation_draws_{}'.format(model)
+          append=model,
+	        name='get_simulation_draws_{}'.format(model)
 	    )

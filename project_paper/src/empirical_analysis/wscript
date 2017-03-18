@@ -10,13 +10,10 @@ def build(ctx):
           deps=[
              ctx.path_to(ctx, 'IN_EMPIRICAL', "voice.csv"),
              ctx.path_to(ctx, 'ANALYSIS', 'ichimura.py'),
-             ctx.path_to(ctx, 'ANALYSIS', 'KS.py'),
+             ctx.path_to(ctx, 'ANALYSIS', 'KS.py')
           ],
           target=[
-              ctx.path_to(ctx, 'OUT_EMPIRICAL', 'empirical.pickle'),
+              ctx.path_to(ctx, 'OUT_EMPIRICAL', 'empirical.pickle')
           ],
           name='empirical'
       )
-
-
-

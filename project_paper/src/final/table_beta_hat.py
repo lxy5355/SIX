@@ -15,7 +15,7 @@ if __name__ == "__main__":
 
     model = json.load(open(ppj("IN_MODEL_SPECS", "model_3.json"), encoding="utf-8"))
     trial = model["trial"]
-    beta_true=model["beta_true"][1]
+    beta_true = model["beta_true"][1]
 
     with open(ppj("OUT_ANALYSIS", "simulation_3.pickle"), "rb") as in_file:
         beta_hat_3 = pickle.load(in_file)

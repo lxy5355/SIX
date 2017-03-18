@@ -46,7 +46,7 @@ if __name__ == "__main__":
     y_hat['log']=log.predict(x_test)
 
     accuracy={}
-    for name in ['ichimura','KS','log']:
+    for name in 'ichimura','KS','log':
         accuracy[name]=sum((y_hat[name]-y_test)==0)/len(y_test)
 
     # Dump data to be used for table.
