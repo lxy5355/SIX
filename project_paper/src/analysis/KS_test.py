@@ -14,7 +14,7 @@ def test_normal_ke():
     """
     h=0.5
     u=0.0000000001
-    assert_almost_equal(normal_kde(u,h), 0.598413420602)   
+    assert_array_almost_equal(normal_kde(u,h), 0.598413420602)   
     
 
 def test_g_i_restrained():

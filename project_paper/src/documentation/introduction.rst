@@ -5,65 +5,36 @@
 Introduction
 ************
 
+* We cloned the template from the repository.
+
+* Author names, affiliation and project title are changed: Isa Marques, Xi Sun, Xueying Liu; SIX; Semiparametric Single Index Models: Ichimura and Klein and Spady's methods.
+
+* The project is run through following steps:
+
+    * python waf.py configure
+    * python waf.py build
+    * python waf.py install
+
+* Extra modifications are necessary to prevent error when calling biber:
+
+    * Change ctx.load('biber') to ctx.load('tex') in main wscript.
+    * Change similarly in src/paper/research_paper.tex and src/paper/research_pres_30min.tex backend=biber by bibtex.
+
+* The logic of the project works by step of the analysis: 
+
+    1. Data management;
+    2. The actual estimations / simulations;
+    3. Visualisation and results formatting;
+    4. Research paper and presentations. 
+
+* In this project, tasks are divided across directories in **src/** in the following way:
+
+    1. The **data management** directory contains random draws of simulation data. These draws correpond to model specifications in **model specs**. 
+    2. The **model specs** directory includes models characterized by parameters, which are differentiated by sample size and error distribution.
+    3. The **model code** directory is empty in the present case as testing is more favourable to the situation in which all files are in one folder, in which instructions for build can be given.
+    4. The **analysis** directory provides the estimation code for the two methods: Ichimura's and Klein and Spady's. Each of the two is subject to testing. Simulation code for calculation of figures and tables is also provided.
+    5. The **empirical data** directory saves a .csv file which provides a set of data for an empirical application of the semi-parametric methods.
+    6. The **empirical analysis** directory contains codes analysing this empirical data set with our estimation models and calculating results for table.
+    7. The **final** directory has the code that creates all figures and tables from the content calculated in **analysis** and **empirical analysis**. This content is transported from one directory to the other with the help of *pickle*.
+
 Documentation on the rationale, Waf, and more background is at http://hmgaudecker.github.io/econ-project-templates/
-
-.. _getting_started:
-
-Getting started
-===============
-
-**This assumes you have completed the steps in the** `README.md file <https://github.com/hmgaudecker/econ-project-templates/tree/python#templates-for-reproducible-research-projects-in-economics>`_ **and everything worked.**
-
-The logic of the project template works by step of the analysis: 
-
-1. Data management
-2. The actual estimations / simulations / ?
-3. Visualisation and results formatting (e.g. exporting of LaTeX tables)
-4. Research paper and presentations. 
-
-It can be useful to have code and model parameters available to more than one of these steps, in that case see sections :ref:`model_specifications`, :ref:`model_code`, and :ref:`library`.
-
-First of all, think about whether this structure fits your needs -- if it does not, you need to adjust (delete/add/rename) directories and files in the following locations:
-
-    * Directories in **src/**;
-    * The list of included wscript files in **src/wscript**;
-    * The documentation source files in **src/documentation/** (Note: These should follow the directories in **src** exactly);
-    * The list of included documentation source files in **src/documentation/index.rst**
-
-Later adjustments should be painlessly possible, so things won't be set in stone.
-
-Once you have done that, move your source data to **src/original_data/** and start filling up the actual steps of the project workflow (data management, analysis, final steps, paper). All you should need to worry about is to call the correct task generators in the wscript files. Always specify the actions in the wscript that lives in the same directory as your main source file. Make sure you understand how the paths work in Waf and how to use the auto-generated files in the language you are using particular language (see the section :ref:`project_paths` below).
-
-
-.. _project_paths:
-
-Project paths
-=============
-
-A variety of project paths are defined in the top-level wscript file. These are exported to header files in other languages. So in case you require different paths (e.g. if you have many different datasets, you may want to have one path to each of them), adjust them in the top-level wscript file.
-
-The following is taken from the top-level wscript file. Modify any project-wide path settings there.
-
-.. literalinclude:: ../../wscript
-    :start-after: out = 'bld'
-    :end-before:     # Convert the directories into Waf nodes
-
-
-As should be evident from the similarity of the names, the paths follow the steps of the analysis in the :file:`src` directory:
-
-    1. **data_management** → **OUT_DATA**
-    2. **analysis** → **OUT_ANALYSIS**
-    3. **final** → **OUT_FINAL**, **OUT_FIGURES**, **OUT_TABLES**
-
-These will re-appear in automatically generated header files by calling the ``write_project_paths`` task generator (just use an output file with the correct extension for the language you need -- ``.py``, ``.r``, ``.m``, ``.do``)
-
-By default, these header files are generated in the top-level build directory, i.e. ``bld``. The Python version defines a dictionary ``project_paths`` and a couple of convencience functions documented below. You can access these by adding a line::
-
-    from bld.project_paths import XXX
-
-at the top of you Python-scripts. Here is the documentation of the module:
-
-    **bld.project_paths**
-
-    .. automodule:: bld.project_paths
-        :members:

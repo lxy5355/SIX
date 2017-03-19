@@ -11,12 +11,12 @@ Welcome to the Semiparametric Single Index Models: Ichimura and Klein and Spady'
     :maxdepth: 2
 
     introduction
-    original_data
+    model_specs
     data_management
     analysis
+    empirical_data
+    empirical_analysis
     final
     paper
-    model_code
-    model_specs
     library
     references

@@ -1,4 +1,4 @@
-""" Create table with values for bias and RMSE of beta hat for Klein and Spady's,
+""" Create table with values for accuracy rate of beta hat for Klein and Spady's,
 Iichimura's and logistic model.
 
 """

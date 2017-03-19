@@ -1,12 +1,17 @@
-"""Draw simulated samples from two uncorrelated uniform variables
-(locations in two dimensions) for two types of agents and store
-them in a 3-dimensional NumPy array.
+"""Draw simulation data formed of two independent variables drawn from 
+uncorrelated standard normal distributions, error term drawn from differently 
+specified distributions and the dependent variable following a binary choice 
+model. Each sample corresponds to one parameter specification in *model specs*.
 
-*Note:* In principle, one would read the number of dimensions etc.
-from the "IN_MODEL_SPECS" file, this is to demonstrate the most basic
-use of *run_py_script* only.
+This data set is trimmed according to theoretical and computational restrictions 
+for Ichimura's and Klein and Spady's methods.
+
+The trimmed data set is stored seperately for X and Y, both of which are 
+dictionaries containing the trial number as keys and trimmed data arrays 
+(2-dimentional and 1-dimentional respectively) as arguments. 
 
 """
+
 import sys
 import json
 import numpy as np
