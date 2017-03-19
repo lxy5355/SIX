@@ -1,6 +1,7 @@
-"""Calculates the optimal values from the Monte Carlo simulation for beta hat 
-for both Klein and Spady's (1993) and Ichimura's (1993) models. Additonally, it
-compares these results with the pre-implemented logitstic's model.
+"""Seperate empirical data set into two parts. Use the training set 
+to calculate estimators, respectively of Ichimura's, Klein and Spady's 
+and the logistic model. Compare the accuracy of estimation with the testing 
+set and save results for table.
 
 """
 import sys
