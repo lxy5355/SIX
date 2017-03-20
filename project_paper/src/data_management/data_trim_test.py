@@ -1,4 +1,4 @@
-"""Testing of the data trimming function for Klein and Spady's (1993) and 
+""" Testing of the data trimming function for Klein and Spady's (1993) and 
 Ichimura's (1993) model.
 
 """

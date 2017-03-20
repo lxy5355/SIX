@@ -1,4 +1,4 @@
-"""Draw simulated samplescomposed of two independent variables drawn from 
+"""Draw simulated samples composed of two independent variables drawn from 
 uncorrelated standard normal distributions with error term drawn from differently 
 specified distributions and the dependent variable following a binary choice 
 model. Each sample corresponds to one parameter specification in *model specs*.

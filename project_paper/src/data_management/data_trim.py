@@ -1,5 +1,6 @@
 """ Definition of a trimming function that excludes observations whose x 
 variables have a relatively low density.
+
 """
 
 import numpy as np
