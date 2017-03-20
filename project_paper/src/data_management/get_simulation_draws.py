@@ -38,13 +38,15 @@ if __name__ == "__main__":
     e_sd_2=model["e"]["sd_2"]
     e_weight=model["e"]["weight"]
 
-    # Set dictionary to store simulated data for X and Y.
+    # Set dictionary to store simulated data for X and Y. 
+    # Each trial of simulation consist of samples of Xs and Ys, and is stored as one entry to the dictionary.
     X={}
     Y={}
     
     for i in range (trial):
         X[i]=np.zeros((sample_size,2))
         Y[i]=np.zeros(sample_size)
+        # Generate random data based on pre-specified parameters.
         x1=np.random.randn(sample_size, 1) 
         x2=np.random.randn(sample_size, 1) 
         e1=e_mean_1+np.random.randn(sample_size, 1)*e_sd_1

@@ -30,13 +30,14 @@ if __name__ == "__main__":
     grid_end = model["grid_end"]
     trial = model["trial"]
 
-    # Defining dictionary for beta hat for three different models.
+    # Defining dictionary for beta hat for three different estimation procedures.
+    # All simulated data will be estimated by all three methods for the monte carlo study. 
     beta_hat={}
     beta_hat['ichimura']=np.zeros(trial)
     beta_hat['KS']=np.zeros(trial)
     beta_hat['log']=np.zeros(trial)
 
-    # Saving values in dictionary beta hat for different trials.
+    # Saving values in dictionary beta hat for different trials with different estimation methods.
     for i in range (trial):
         x=X[i]
         y=Y[i]

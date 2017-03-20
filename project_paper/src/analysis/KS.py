@@ -7,7 +7,8 @@ import numpy as np
 from scipy import optimize
 
 def normal_kde(u,h):
-    """Calculation of a fourth order kernel."""
+    """Calculation of a fourth order kernel. This should not be changed 
+    since KS methods requires a fouth order kernel"""
     
     res = (1/2)*(3-u**2)*((1/np.sqrt(2 *np.pi)) * np.exp(-0.5 * ((u/h)**2)))
     return res
@@ -43,10 +44,13 @@ def log_likelihood(beta_hat, *params):
     return -L
     
 def KS(X,y,h,grid_start,grid_end):
-    """Solves the maximum likelihood problem from Klein and Spady's model.
+    """Solves the maximum likelihood problem from Klein and Spady's model using grid-search procedure. 
+    In general, the optimization procedure could be changed in further studies 
+    as Klein and Spady did not propose a specific approach. 
+    Grid-search is used here to allow comparison with Ichimura methods. 
     
     As the first component of beta is set to one throughout the study, we are
-    only interested in the second component.
+    only interested in the second component, hence the normalization of the optimization results. 
     
     """
     

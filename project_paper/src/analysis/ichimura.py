@@ -8,12 +8,13 @@ from scipy import optimize
 
 #define Gaussian fourth order kernel 
 def normal_kde(u,h):
-    """Calculation of a fourth order kernel."""
+    """Calculation of a fourth order kernel. This could be changed to other kernels 
+    in further studies that exmine optimal kernel selection for estimation"""
 
     res = (1/2)*(3-u**2)*((1/np.sqrt(2 *np.pi)) * np.exp(-0.5 * ((u/h)**2)))
     return res
     
-#define leave one out estimator
+#define leave one out estimator g_i as per Ichimura (1993)
 def g_i(beta_hat,X,y,h):
     """Calculation of the g function for Ichimura's model. """
     
@@ -40,10 +41,11 @@ def loss(beta_hat,*params):
  
 #minimize loss function  
 def ichimura(X,y,h,grid_start, grid_end):
-    """Solves the nonlinear least problem from Ichimura's model.
+    """Solves the nonlinear least problem from Ichimura's model by using grid-search as Ichimura (1993) proposed.
     
     As the first component of beta is set to one throughout the study, we are
-    only interested in the second component.
+    only interested in the second component. As such, we normalize the opimization results 
+    and only look at the second component. 
     
     """   
     params=(X,y,h)
