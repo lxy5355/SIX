@@ -471,9 +471,9 @@ Using Taylor expansions:
 
 \begin{align*}
 g(X_i'\beta_0) - E[g(X_i'\beta_0)|X_i'\beta_n)] & = g(X_i'\beta_0) - g(X_i'\beta_n) \\
-                                             & - g^{(1)}(X_i'\beta_n)E[(\beta_0 - \beta_n)X_i'|X_i'\beta_n] + o_p(1) \\
-                                              & = g^{(1)}(X_i'\beta_n)( X_i - E[X_i'|X_i'\beta_n])(\beta_0 - \beta_n) + o_p(1) \\
-                                              & = g^{(1)}(X_i'\beta_0)( X_i - E[X_i'|X_i'\beta_0])(\beta_0 - \beta_n) + o_p(1)
+                                             & - g^{(1)}(X_i'\beta_n)E[(\beta_0 - \beta_n)X_i'|X_i'\beta_n] + o_p(n^{-\frac{1}{2}}) \\
+                                              & = g^{(1)}(X_i'\beta_n)( X_i - E[X_i'|X_i'\beta_n])(\beta_0 - \beta_n) + o_p(n^{-\frac{1}{2}}) \\
+                                              & = g^{(1)}(X_i'\beta_0)( X_i - E[X_i'|X_i'\beta_0])(\beta_0 - \beta_n) + o_p(n^{-\frac{1}{2}})
 \end{align*}
 
 
@@ -481,11 +481,11 @@ Hence, for $g_{i0}^{(1)} = g^{(1)}(X_i'\beta_0)$ and $v_{i0} = X_i - E[X_i'|X_i'
  
 \begin{align*}
 S_{n}(\beta_n) & = (\beta_0 - \beta_n)'\left[\frac{1}{n}\sum_i (g_{i0}^{(1)})^2v_{i0}v_{i0}'\right](\beta_0 - \beta_n) \\
-             & + 2\frac{1}{n}\sum_i\varepsilon_ig_{i0}^{(1)}v_{i0}'(\beta_0 - \beta_n) + \frac{1}{n}\sum_i \varepsilon_i^2 + o_p(1)
+             & + 2\frac{1}{n}\sum_i\varepsilon_ig_{i0}^{(1)}v_{i0}'(\beta_0 - \beta_n) + \frac{1}{n}\sum_i \varepsilon_i^2 + o_p(n^{-\frac{1}{2}}).
 \end{align*}
 
-Now following closely Li and Racine (2007) \cite{[1]}, the objective function is minimized with respect to $\beta$, ignoring terms independent of $\beta_n$ and keeping the term $o_p(1)$ so as to make the previous approximations evident. \footnote{ The sketch for the proof can be found on pages 256-277.} Then, replace $\beta_n$ by the minimizing value $\hat{\beta}_n$. Ultimately, one obtains
-\[2\frac{1}{n}(\hat{\beta}_n - \beta_0)\sum_i(g_{i0}^{(1)})^2v_{i0}v_{i0}' - 2\frac{1}{n}\sum_i\varepsilon_ig_{i0}^{(1)}v_{i0}' + o_p(1) = 0.  \]
+Now following closely Li and Racine (2007) \cite{[1]}, the objective function is minimized with respect to $\beta$, ignoring terms independent of $\beta_n$ and keeping the term $o_p(n^{-\frac{1}{2}})$ so as to make the previous approximations evident. \footnote{ The sketch for the proof can be found on pages 256-277.} Then, replace $\beta_n$ by the minimizing value $\hat{\beta}_n$. Ultimately, one obtains
+\[2\frac{1}{n}(\hat{\beta}_n - \beta_0)\sum_i(g_{i0}^{(1)})^2v_{i0}v_{i0}' - 2\frac{1}{n}\sum_i\varepsilon_ig_{i0}^{(1)}v_{i0}' + o_p(n^{-\frac{1}{2}}) = 0.  \]
 Hence, 
 \begin{align*}
 \sqrt{n}(\hat{\beta}_n - \beta_0) & = (\frac{1}{n}\sum_i(g_{i0}^{(1)})^2v_{i0}v_{i0}')^{-1}\frac{1}{\sqrt{n}}\sum_i\varepsilon_i g_{i0}^{(1)}v_{i0} + o_p(1).
@@ -532,11 +532,11 @@ where $SI$ stands for single index. Thus, the efficiency bound from equation (11
 
 To make the equality between equation (11) and $\Omega_I$ clear, for known $\sigma^2(X)$, consider the result shown in the present section
 \begin{align*}
-E[g(X_i'\beta_0)|X_i'\beta)] & = g(X_i'\beta_0) - g^{(1)}(X_i'\beta_0)( X_i - E[X_i'|X_i'\beta_0])(\beta_0 - \beta) + o_p(1).                                          
+E[g(X_i'\beta_0)|X_i'\beta)] & = g(X_i'\beta_0) - g^{(1)}(X_i'\beta_0)( X_i - E[X_i'|X_i'\beta_0])(\beta_0 - \beta) + o_p(n^{-\frac{1}{2}}).                                          
 \end{align*}
 Minimizing the previous result in order to $\beta$, ignoring terms independent of $\beta$ and keeping the term $o_p(1)$ so as to make the previous approximations evident, one obtains
 \begin{align*}
- \frac{\partial}{\partial \beta} G(X_i'\beta) & = g^{(1)}(X_i'\beta_0)( X_i - E[X_i'|X_i'\beta_0]) + o_p(1).
+ \frac{\partial}{\partial \beta} G(X_i'\beta) & = g^{(1)}(X_i'\beta_0)( X_i - E[X_i'|X_i'\beta_0]) + o_p(n^{-\frac{1}{2}}).
 \end{align*}
 
 Even when $\sigma^2(X)$ is unknown, an asymptotic efficient estimator of $\beta_0$ can be obtained by using an analogue of FGLS.  Consider a given consistent estimator of $\sigma^2(X)$, say $\hat{\sigma}_{n}^{2}(x)$, that adopts a two-step procedure. On the first step, minimize function (9) with respect to $\beta$ for $w(x) = 1$. The resulting estimator $\hat{\beta}_n$ is root-n consistent and asymptotically normal but inefficient. This estimator is used on the second step to calculate the weight function $\hat{w}_i(x) = \frac{1}{\hat{\sigma}_{i}^{2}}$. Robinson (1987) \cite{[20]} estimates $\hat{\sigma}_{i}^{2}$ using a nearest-neighbor nonparametric regression estimator
@@ -790,7 +790,51 @@ Furthermore, as the grid search method is used to carry out the estimation, the 
 Firstly, the same trimmed dataset is used for Ichimura's (1993) \cite{[6]} and the KS (1993) \cite{[12]} estimation methods. However, this is not enough for the latter model to work, as it only prevents $g(\cdot)$ from growing out of bounds.  The KS (1993) \cite{[12]} model is more restrictive than Ichimura's (1993) \cite{[6]} model on this point, as it requires any estimate of $\hat{G}_i$ not to be too close to 0 or 1. Recall that the numerator follows the sum of dependent binary variables $y_i$ weighted by its corresponding kernel evaluation. This issue becomes apparent for relatively large evaluations. Therefore, we further introduce a lower bound equal to square root of machine double epsilon and set any estimate smaller than the lower bound to this value.
 
 
+\subsection{A Comparison in Results of self implemented functions and pre-implemented np-package}
+Model design of Monte Carlo simulation following Ichimura (1993):
+\begin{itemize}
+\item sample size is 250;
+\item the SSIM is specified as binary choice model;
+\item the model includes two exogenous variables, both are independently generated from standard normal distribution  
+\item when constructing the single index, coefficient of the first exogenous variable is normalized to 1, and the true value for the coefficient of the second exogenous variable is -2;
+\item standard normal distribution for error distribution;
+\item the amount of Monte carlo simulation is 1000 times.
+\end{itemize}
+To summarize, the simulation is based on the following model setup 
+\begin{equation*}
+y_i = I(x_{1i} - 2x_{2i} > \epsilon_i).
+\end{equation*}
 
+The \textit{Table 4} presents a comparison between the pre-implemented np-package and our own implementation using grid search.
+
+\begin{table}[H]
+
+\begin{tabular}{l r r}
+
+\toprule
+\textbf{Method} & \textbf{np-package} & \textbf{self-implementation} \tabularnewline\midrule
+(standard normal distribution for $x_1$, $x_2$, $\epsilon$) & &
+\tabularnewline
+Ichimura & 0.00363 & 0.00201 \tabularnewline
+Klein and Spady & 0.00416 & 0.0000893 \tabularnewline
+
+\bottomrule
+\end{tabular}
+\caption {Mean Squared Error Comparison} \label{tab:mean squared error)
+}
+
+\end{table}
+
+% \begin{figure}[h!]
+%   \includegraphics[width=\linewidth]{compare_done.png}
+ 
+%   \label{fig:comparison of estimates on the same scale}
+%     \caption{Comparison of Estimates on the Same Scale}
+
+% \end{figure}
+
+
+From \textit{Table 4} and \textit{Figure 3}, we see that our self-implemented code does not perform significantly worse than the np-package \cite{[28]}. In fact it is even better for the KS (1993) \cite{[12]} method. This could be due to the use of our \textit{a-priori} knowledge of the true value of the coefficients when specifying the grid. We thus conclude that it is an useful and successful practice in constructing our own code for single index model functions.
 
 \subsection{Analysis of consistency}
 These are the graphs that follow the analysis of finite sample bias on section 7. For the three models, the variance of the estimates decreases with the sample size. Moreover, the histograms resemble more and more closely the distribution of normal variables.
