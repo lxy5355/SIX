@@ -488,7 +488,8 @@ Now following closely Li and Racine (2007) \cite{[1]}, the objective function is
 \[2\frac{1}{n}(\hat{\beta}_n - \beta_0)\sum_i(g_{i0}^{(1)})^2v_{i0}v_{i0}' - 2\frac{1}{n}\sum_i\varepsilon_ig_{i0}^{(1)}v_{i0}' + o_p(n^{-\frac{1}{2}}) = 0.  \]
 Hence, 
 \begin{align*}
-\sqrt{n}(\hat{\beta}_n - \beta_0) & = (\frac{1}{n}\sum_i(g_{i0}^{(1)})^2v_{i0}v_{i0}')^{-1}\frac{1}{\sqrt{n}}\sum_i\varepsilon_i g_{i0}^{(1)}v_{i0} + o_p(1).
+\sqrt{n}(\hat{\beta}_n - \beta_0) & = (\frac{1}{n}\sum_i(g_{i0}^{(1)})^2v_{i0}v_{i0}')^{-1}\frac{1}{\sqrt{n}}\sum_i\varepsilon_i g_{i0}^{(1)}v_{i0} \\
+& + (\frac{1}{n}\sum_i(g_{i0}^{(1)})^2v_{i0}v_{i0}')^{-1}o_p(1).
 \end{align*}
 
 With this in mind, as well as the Lindeberg-Levy Central Limit Theorem and the Law of Large Numbers, we obtain the result from Theorem 4.1 if we set $w(X_i) = 1$ and ignore the trimming function $\mathbf{1}(X_i \in A_\delta)$ .
