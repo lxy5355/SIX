@@ -1,6 +1,6 @@
 """Calculates the optimal values from the Monte Carlo simulation for beta hat 
 for both Klein and Spady's (1993) and Ichimura's (1993) models. Additonally, it
-compares these results with the pre-implemented logitstic's model.
+compares these results with the pre-implemented logistic's model.
 
 """
 import sys

@@ -1,5 +1,5 @@
 """ Create table with values for accuracy rate of beta hat for Klein and Spady's,
-Iichimura's and logistic model.
+Ichimura's and logistic model.
 
 """
 
@@ -30,7 +30,7 @@ if __name__ == "__main__":
         rate=[]
         for n in names:
             rate.append(accuracy_rate[n])
-        tex_file.write(" %s  & %.3f & %.3f& %.3f  \\tabularnewline\n" %('accuracy rate',rate[0],rate[1], rate[2] ))
+        tex_file.write(" %s  & %.3f & %.3f& %.3f  \\tabularnewline\n" %('Accuracy Rate',rate[0],rate[1], rate[2] ))
                     
         # Bottom of table.
         tex_file.write('\\bottomrule\n\\end{tabular}\n')

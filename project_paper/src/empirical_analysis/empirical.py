@@ -1,5 +1,5 @@
-"""Seperate empirical data set into two parts. Use the training set 
-to calculate estimators, respectively of Ichimura's, Klein and Spady's 
+"""Separate empirical data set into two parts. Use the training set 
+to calculate estimators, respectively for Ichimura's, Klein and Spady's 
 and the logistic model. Compare the accuracy of estimation with the testing 
 set and save results for table.
 

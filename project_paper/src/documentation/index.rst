@@ -5,7 +5,7 @@
 
 
 Welcome to the Semiparametric Single Index Models: Ichimura and Klein and Spady's methods project's documentation!
-================================================
+==================================================================================================================
 
 .. toctree::
     :maxdepth: 2
@@ -18,5 +18,4 @@ Welcome to the Semiparametric Single Index Models: Ichimura and Klein and Spady'
     empirical_analysis
     final
     paper
-    library
     references

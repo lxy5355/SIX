@@ -1,5 +1,5 @@
-"""Draw simulated samples formed of two independent variables drawn from 
-uncorrelated standard normal distributions, error term drawn from differently 
+"""Draw simulated samplescomposed of two independent variables drawn from 
+uncorrelated standard normal distributions with error term drawn from differently 
 specified distributions and the dependent variable following a binary choice 
 model. Each sample corresponds to one parameter specification in *model specs*.
 
@@ -11,13 +11,13 @@ dictionaries containing the trial number as keys and trimmed data arrays
 (2-dimentional and 1-dimentional respectively) as arguments. 
 
 """
+
 import sys
 import json
 import numpy as np
 import pickle
-
 from bld.project_paths import project_paths_join as ppj
-from data_trim import data_trim
+from src.data_management.data_trim import data_trim
 
 np.random.seed(12345)
 
@@ -38,7 +38,7 @@ if __name__ == "__main__":
     e_sd_2=model["e"]["sd_2"]
     e_weight=model["e"]["weight"]
 
-
+    # Set dictionary to store simulated data for X and Y.
     X={}
     Y={}
     

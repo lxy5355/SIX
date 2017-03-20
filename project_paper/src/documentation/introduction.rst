@@ -22,7 +22,7 @@ Introduction
 
 * The logic of the project works by step of the analysis: 
 
-    1. Data management;
+    1. Data management for simulations and upload of a real dataset;
     2. The actual estimations / simulations;
     3. Visualisation and results formatting;
     4. Research paper and presentations. 
@@ -33,8 +33,8 @@ Introduction
     2. The **model specs** directory includes models characterized by parameters, which are differentiated by sample size and error distribution.
     3. The **model code** directory is empty in the present case as testing is more favourable to the situation in which all files are in one folder, in which instructions for build can be given.
     4. The **analysis** directory provides the estimation code for the two methods: Ichimura's and Klein and Spady's. Each of the two is subject to testing. Simulation code for calculation of figures and tables is also provided.
-    5. The **empirical data** directory saves a .csv file which provides a set of data for an empirical application of the semi-parametric methods.
-    6. The **empirical analysis** directory contains codes analysing this empirical data set with our estimation models and calculating results for table.
-    7. The **final** directory has the code that creates all figures and tables from the content calculated in **analysis** and **empirical analysis**. This content is transported from one directory to the other with the help of *pickle*.
+    5. The **empirical data** directory saves a .csv file which provides a dataset for an empirical application of the semiparametric methods.
+    6. The **empirical analysis** directory contains the code running our estimation models on the empirical dataset from *empirical data* and calculating results for table.
+    7. The **final** directory has the code that creates all figures and tables from the content calculated in *analysis* and *empirical analysis*. This content is transported from one directory to the other with the help of *pickle*.
 
 Documentation on the rationale, Waf, and more background is at http://hmgaudecker.github.io/econ-project-templates/
