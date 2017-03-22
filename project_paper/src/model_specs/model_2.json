@@ -1,6 +1,6 @@
 {
-    "sample_size": 20,
-    "trial": 3,
+    "sample_size": 150,
+    "trial": 200,
     "beta_true": [1,-2],
     "bandwidth": 0.1,
     "grid_start": -3,
