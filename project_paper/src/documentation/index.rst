@@ -18,4 +18,4 @@ Welcome to the Semiparametric Single Index Models: Ichimura and Klein and Spady'
     empirical_analysis
     final
     paper
-    references
+
