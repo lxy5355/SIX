@@ -1,3 +1,11 @@
+Intro to this Project
+=====================
+This project is written based on the templates provided by Prof. Hans Martin Von Gaudecker from the University of Bonn.
+The project is a monte carlo study of semi-parametric methods: Ichimura methods and Klein & Spady methods. A short empirical application is also included.
+For more info regarding these two methods please see background literature.
+Due to the large amount of calculation required by the monte carlo study, the project runnning time is estimated to be 10+ hours.
+
+
 Templates for Reproducible Research Projects in Economics
 ===========================================================
 
@@ -21,21 +29,9 @@ Full documentation
 Getting started (Python-based project)
 --------------------------------------
 
-1. Clone the project template repository (or download the [zip file](https://github.com/hmgaudecker/econ-project-templates/archive/python.zip) and copy its contents to the place on your machine where you want the resulting project to live, e.g.
+1. Make sure to have [Miniconda](http://conda.pydata.org/miniconda.html) or Anaconda installed. A a modern LaTeX distribution (e.g. [TeXLive](www.tug.org/texlive/), [MacTex](http://tug.org/mactex/), or [MikTex](http://miktex.org/)) needs to be found on your path.
 
-        C:\Projects\structural-retirement-model\
-
-   Make sure that the entire path **does not contain any spaces**. Things may work in the beginning, but they will break eventually.
-
-2. Use the "find in project"-functionality of your editor to search and replace the following terms:
-
-        NNN -> Your name
-        UUU -> Your affiliation
-        TTT -> The title of the project
-
-3. Make sure to have [Miniconda](http://conda.pydata.org/miniconda.html) or Anaconda installed. A a modern LaTeX distribution (e.g. [TeXLive](www.tug.org/texlive/), [MacTex](http://tug.org/mactex/), or [MikTex](http://miktex.org/)) needs to be found on your path.
-
-4. Navigate to the folder in a shell. Execute 
+2. Navigate to the folder in a shell. Execute 
 
    **(Mac, Linux)**
 
@@ -47,7 +43,7 @@ Getting started (Python-based project)
 
     This will create a conda environment named as the current directory (structural-retirement-model in the above example) with a sufficiently rich Python setup.
 
-4.  Type the following commands to see whether the examples are working:
+3.  Type the following commands to see whether the examples are working:
 
         python waf.py configure
         python waf.py build
