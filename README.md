@@ -3,7 +3,7 @@ Intro to this Project
 This project is written based on the templates provided by Prof. Hans Martin Von Gaudecker from the University of Bonn.
 The project is a monte carlo study of semi-parametric methods: Ichimura methods and Klein & Spady methods. A short empirical application is also included.
 For more info regarding these two methods please see background literature.
-Due to the large amount of calculation required by the monte carlo study, the project runnning time is estimated to be 10+ hours.
+Due to the large amount of calculation required by the monte carlo study, the project runnning time is estimated to be 10+ hours. To reduce the running time, parameters for simulations could be adjusted. This is however not recommended since monte carlo studies generally require relatively large number of trials and sample size. 
 
 
 Templates for Reproducible Research Projects in Economics
