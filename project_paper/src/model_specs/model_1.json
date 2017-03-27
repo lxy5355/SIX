@@ -5,7 +5,7 @@
     "bandwidth": 0.1,
     "grid_start": -3,
     "grid_end": 2,
-    
+
     "e":{
     	"mean_1":0,
     	"mean_2":0,
